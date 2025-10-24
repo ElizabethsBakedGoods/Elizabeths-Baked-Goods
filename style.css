@@ -37,8 +37,9 @@ nav {
 }
 
 .logo-box {
-    width: 56px;
-    height: 56px;
+    /* slightly larger box so the logo reads at small sizes */
+    width: 72px;
+    height: 72px;
     overflow: hidden;
     border-radius: 8px;
     display: flex;
@@ -49,11 +50,12 @@ nav {
 }
 
 .site-logo {
-    width: 120%; /* slightly larger so it crops to the box */
-    height: auto;
-    object-fit: cover;
+    /* show full logo inside the box instead of cropping */
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     display: block;
-    transform: translateX(-10%); /* center/logo-specific tweak */
+    transform: none;
 }
 
 .nav-links a {

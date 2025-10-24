@@ -10,8 +10,9 @@
 <body>
     <nav>
         <div class="logo">
-            <div class="logo-box">
-                <img src="images/logo.png" alt="Elizabeth's Baked Goods" class="site-logo">
+                <div class="logo-box">
+                <!-- cache-bust query string to force fresh fetch when browsers cache the old asset -->
+                <img src="images/logo.png?v=2" alt="Elizabeth's Baked Goods" class="site-logo">
             </div>
         </div>
         <div class="nav-links">
@@ -37,7 +38,8 @@
             <h2>Sweet Treats & Creative Designs</h2>
             <div class="about-container">
                 <div class="about-image">
-                    <img src="images/about.jpg" alt="Elizabeth" class="about-photo">
+                    <!-- cache-bust query string so browsers request the updated photo -->
+                    <img src="images/about.jpg?v=2" alt="Elizabeth" class="about-photo">
                 </div>
                 <div class="about-content">
                     <p>Hi, I'm Elizabeth from Rosenberg, TX! I create handmade cookies, cakes, candies, and custom desserts, all crafted with care and attention to detail.</p>
