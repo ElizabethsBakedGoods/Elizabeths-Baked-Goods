@@ -142,33 +142,7 @@ nav {
     max-width: 1200px;
 }
 
-.menu-item {
-    background-color: var(--primary-pink);
-    padding: 2rem;
-    border-radius: 10px;
-    transition: transform 0.3s ease;
-}
 
-.menu-item:hover {
-    transform: translateY(-5px);
-}
-
-.menu-item h3 {
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-}
-
-footer {
-    background-color: var(--primary-pink);
-    text-align: center;
-    padding: 2rem;
-    margin-top: 3rem;
-}
-
-.section {
-    padding: 4rem 5%;
-    text-align: center;
-}
 
 .section h2 {
     margin-bottom: 3rem;
@@ -304,27 +278,27 @@ footer {
 .about-image {
     flex: 1;
     min-width: 300px;
+    max-width: 420px;
 }
 
 .image-placeholder {
     background-color: var(--primary-pink);
     border-radius: 20px;
-    aspect-ratio: 3/4;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
     color: var(--text-color);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem;
 }
 
 .about-image img,
 .about-photo {
     width: 100%;
-    height: auto; /* let the image keep its aspect ratio */
-    aspect-ratio: 3/4;
-    object-fit: cover;
-    border-radius: 20px;
+    height: auto;
+    object-fit: contain; /* show the full image without cropping */
+    border-radius: 12px;
     display: block;
 }
 
