@@ -298,6 +298,15 @@ footer {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
+.about-image img,
+.about-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    display: block;
+}
+
 .about-content {
     flex: 2;
 }
