@@ -58,6 +58,27 @@ nav {
     transform: none;
 }
 
+/* Top banner logo (large, centered above hero) */
+.top-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.2rem 5%;
+    background: var(--white);
+}
+
+.top-logo-img {
+    max-width: 420px;
+    width: 40%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .top-logo-img { width: 60%; max-width: 260px; }
+}
+
 .nav-links a {
     text-decoration: none;
     color: var(--text-color);
