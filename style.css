@@ -175,8 +175,8 @@ nav {
 /* Full-width menu image */
 .menu-image {
     display: block;
-    width: 100%;
-    max-width: 1000px;
+    width: 50%; /* roughly half the container width on larger screens */
+    max-width: 600px; /* cap the size so it stays modest */
     height: auto;
     margin: 0 auto;
     border-radius: 10px;
@@ -402,5 +402,11 @@ nav {
     .form-group select,
     .form-group textarea {
         font-size: 16px; /* Prevents zoom on mobile */
+    }
+    
+    /* On mobile, use most of the width for readability */
+    .menu-image {
+        width: 95%;
+        max-width: none;
     }
 }
