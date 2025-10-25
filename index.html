@@ -58,16 +58,16 @@
         <section id="order" class="section">
             <h2>Place an Order</h2>
             <div class="order-form">
-                <form>
+                <form id="orderForm">
                     <div class="form-group">
-                        <input type="text" placeholder="Your Name">
+                        <input type="text" name="name" placeholder="Your Name" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" placeholder="Your Email">
+                        <input type="email" name="email" placeholder="Your Email" required>
                     </div>
                     <!-- Choose flavors first -->
                     <div class="form-group">
-                        <select name="flavor" multiple>
+                        <select name="flavor" multiple required>
                             <option value="chocolate-chip">Chocolate Chip</option>
                             <option value="double-chocolate-chunk">Double Chocolate Chunk</option>
                             <option value="smores">Smores</option>
@@ -82,7 +82,7 @@
                     </div>
                     <!-- Then choose pack size -->
                     <div class="form-group">
-                        <select name="item">
+                        <select name="item" required>
                             <option value="">Select Item</option>
                             <option value="cookies-4">Small Cookies Pack of 4 - $8</option>
                             <option value="cookies-6">Small Cookies Pack of 6 - $12</option>
@@ -91,12 +91,17 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <textarea placeholder="Special Instructions"></textarea>
+                        <textarea name="instructions" placeholder="Special Instructions"></textarea>
                     </div>
                     <button type="submit" class="submit-btn">Place Order</button>
+                    <div id="order-status" aria-live="polite" style="margin-top:0.75rem;"></div>
                 </form>
             </div>
         </section>
+
+        <!-- EmailJS SDK -->
+        <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js" defer></script>
+        <script src="main.js" defer></script>
 
         <section id="contact" class="section">
             <h2>Contact Us</h2>

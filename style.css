@@ -227,6 +227,11 @@ nav {
     color: var(--text-color);
 }
 
+/* Order status message */
+#order-status {
+    font-size: 0.95rem;
+}
+
 /* Contact Styles */
 .contact-info {
     display: grid;
