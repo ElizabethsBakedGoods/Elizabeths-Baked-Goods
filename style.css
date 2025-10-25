@@ -40,9 +40,9 @@ nav {
 }
 
 .logo-box {
-    /* slightly larger box so the logo reads at small sizes */
-    width: 108px; /* ~50% larger than original 72px */
-    height: 108px; /* ~50% larger than original 72px */
+    /* 75% larger than original 72px */
+    width: 189px; /* 108px * 1.75 */
+    height: 189px; /* 108px * 1.75 */
     overflow: hidden;
     border-radius: 8px;
     display: flex;
@@ -465,10 +465,10 @@ nav {
     .form-group textarea {
         font-size: 16px; /* Prevents zoom on mobile */
     }
-    /* Keep the nav logo modest on small screens */
+    /* Keep the nav logo at reasonable size on small screens */
     .logo-box {
-        width: 72px;
-        height: 72px;
+        width: 126px; /* 72px * 1.75 */
+        height: 126px;
     }
     
     /* On mobile, use most of the width for readability */
