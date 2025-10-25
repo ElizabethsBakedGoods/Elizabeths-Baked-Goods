@@ -8,7 +8,9 @@
 const CONFIG = {
 	emailjsPublicKey: "fxvSd_ExVAwMZmUCn",
 	emailjsServiceId: "service_5jsjkh6",
-	emailjsOwnerTemplateId: "REPLACE_WITH_OWNER_TEMPLATE_ID",
+	// Temporarily use the same template for owner notifications so you receive emails now.
+	// You can share a dedicated owner template ID later and we'll swap it in.
+	emailjsOwnerTemplateId: "template_cc4bkye",
 			emailjsCustomerTemplateId: "template_cc4bkye",
 	ownerEmail: "bethsbakedgoodss@yahoo.com", // where owner notifications go
 	smsWebhookUrl: "", // e.g., https://hooks.zapier.com/hooks/catch/XXXXX/XXXXX
