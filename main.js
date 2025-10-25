@@ -10,8 +10,9 @@ const CONFIG = {
   emailjsServiceId: "REPLACE_WITH_YOUR_SERVICE_ID",
   emailjsOwnerTemplateId: "REPLACE_WITH_OWNER_TEMPLATE_ID",
   emailjsCustomerTemplateId: "REPLACE_WITH_CUSTOMER_TEMPLATE_ID",
-  ownerEmail: "BethsBakedGoodss@yahoo.com", // where owner notifications go
+  ownerEmail: "bethsbakedgoodss@yahoo.com", // where owner notifications go
   smsWebhookUrl: "", // e.g., https://hooks.zapier.com/hooks/catch/XXXXX/XXXXX
+  smsRecipient: "+13308429877", // your phone for SMS notifications (E.164 format)
 };
 
 // Initialize EmailJS when SDK is loaded
@@ -77,6 +78,7 @@ window.addEventListener("load", () => {
               item,
               flavors: selectedFlavors,
               instructions,
+              to: CONFIG.smsRecipient,
               submitted_at: templateParams.submitted_at,
             }),
           });
