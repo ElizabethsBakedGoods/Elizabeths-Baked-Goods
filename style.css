@@ -40,9 +40,9 @@ nav {
 }
 
 .logo-box {
-    /* 50% larger than 189px = 283.5px */
-    width: 284px;
-    height: 284px;
+    /* Much larger for prominent branding */
+    width: 568px;
+    height: 568px;
     overflow: hidden;
     border-radius: 8px;
     display: flex;
@@ -467,8 +467,8 @@ nav {
     }
     /* Keep the nav logo at reasonable size on small screens */
     .logo-box {
-        width: 189px; /* 50% larger than mobile base */
-        height: 189px;
+        width: 284px;
+        height: 284px;
     }
     
     /* On mobile, use most of the width for readability */
