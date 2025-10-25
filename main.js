@@ -9,7 +9,7 @@ const CONFIG = {
 	emailjsPublicKey: "fxvSd_ExVAwMZmUCn",
 	emailjsServiceId: "service_5jsjkh6",
 	emailjsOwnerTemplateId: "REPLACE_WITH_OWNER_TEMPLATE_ID",
-		emailjsCustomerTemplateId: "template_zaruhnd",
+			emailjsCustomerTemplateId: "template_cc4bkye",
 	ownerEmail: "bethsbakedgoodss@yahoo.com", // where owner notifications go
 	smsWebhookUrl: "", // e.g., https://hooks.zapier.com/hooks/catch/XXXXX/XXXXX
 	smsRecipient: "+13308429877", // your phone for SMS notifications (E.164 format)
