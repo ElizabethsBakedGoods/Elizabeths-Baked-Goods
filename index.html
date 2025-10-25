@@ -65,29 +65,68 @@
                     <div class="form-group">
                         <input type="email" name="email" placeholder="Your Email" required>
                     </div>
-                    <!-- Choose flavors first -->
-                    <div class="form-group">
-                        <select name="flavor" multiple required>
-                            <option value="chocolate-chip">Chocolate Chip</option>
-                            <option value="double-chocolate-chunk">Double Chocolate Chunk</option>
-                            <option value="smores">Smores</option>
-                            <option value="peanut-butter">Peanut Butter</option>
-                            <option value="toffee">Toffee</option>
-                            <option value="biscoff">Biscoff</option>
-                            <option value="almond-coconut">Almond Coconut</option>
-                            <option value="pecan-pie-shortbread">Pecan Pie Shortbread</option>
-                            <option value="sprinkle">Sprinkle</option>
+                    <!-- Flavors will be dynamically populated based on item selection -->
+                    <div class="form-group" id="flavor-group" style="display:none;">
+                        <select name="flavor" id="flavor-select" required>
+                            <option value="">Select Flavor</option>
                         </select>
-                        <small>Tip: Hold Ctrl (Windows) or Command (Mac) to select multiple flavors.</small>
+                        <small id="flavor-note"></small>
                     </div>
-                    <!-- Then choose pack size -->
+                    <!-- Then choose pack size or menu item -->
                     <div class="form-group">
-                        <select name="item" required>
+                        <select name="item" id="item-select" required>
                             <option value="">Select Item</option>
-                            <option value="cookies-4">Small Cookies Pack of 4 - $8</option>
-                            <option value="cookies-6">Small Cookies Pack of 6 - $12</option>
-                            <option value="cookies-8">Small Cookies Pack of 8 - $18</option>
-                            <option value="cookies-12">Small Cookies Pack of 12 - $24</option>
+                            <!-- Cookies -->
+                            <optgroup label="Cookies">
+                                <option value="cookies-4" data-flavors="chocolate-chip,double-chocolate-chunk,smores,peanut-butter,toffee,biscoff,almond-coconut,pecan-pie-shortbread,sprinkle" data-price="$8">Small Cookies Pack of 4 - $8</option>
+                                <option value="cookies-6" data-flavors="chocolate-chip,double-chocolate-chunk,smores,peanut-butter,toffee,biscoff,almond-coconut,pecan-pie-shortbread,sprinkle" data-price="$12">Small Cookies Pack of 6 - $12</option>
+                                <option value="cookies-8" data-flavors="chocolate-chip,double-chocolate-chunk,smores,peanut-butter,toffee,biscoff,almond-coconut,pecan-pie-shortbread,sprinkle" data-price="$18">Small Cookies Pack of 8 - $18</option>
+                                <option value="cookies-12" data-flavors="chocolate-chip,double-chocolate-chunk,smores,peanut-butter,toffee,biscoff,almond-coconut,pecan-pie-shortbread,sprinkle" data-price="$24">Small Cookies Pack of 12 - $24</option>
+                            </optgroup>
+                            <!-- Brownies -->
+                            <optgroup label="Brownies">
+                                <option value="brownie-classic" data-flavors="classic" data-price="$4">Classic Chocolate Brownie - $4</option>
+                                <option value="brownie-gourmet-smores" data-flavors="smores" data-price="$8">Gourmet Brownie (S’mores) - $8</option>
+                                <option value="brownie-gourmet-cookie-dough" data-flavors="cookie-dough" data-price="$8">Gourmet Brownie (Cookie Dough) - $8</option>
+                                <option value="brownie-gourmet-oreo" data-flavors="oreo" data-price="$8">Gourmet Brownie (Oreo) - $8</option>
+                                <option value="brownie-gourmet-caramel-turtle" data-flavors="caramel-turtle" data-price="$8">Gourmet Brownie (Caramel Turtle) - $8</option>
+                                <option value="brownie-gourmet-biscoff" data-flavors="biscoff" data-price="$8">Gourmet Brownie (Biscoff) - $8</option>
+                                <option value="brownie-gourmet-peanut-butter-swirl" data-flavors="peanut-butter-swirl" data-price="$8">Gourmet Brownie (Peanut Butter Swirl) - $8</option>
+                                <option value="brownie-gourmet-coffee" data-flavors="coffee" data-price="$8">Gourmet Brownie (Coffee) - $8</option>
+                                <option value="brownie-variety" data-flavors="classic,smores,cookie-dough,oreo,caramel-turtle,biscoff,peanut-butter-swirl,coffee" data-price="$40">Brownie Variety Box (6 assorted) - $40</option>
+                            </optgroup>
+                            <!-- Cupcakes -->
+                            <optgroup label="Cupcakes">
+                                <option value="cupcake-single" data-flavors="vanilla,chocolate,red-velvet,lemon,strawberry" data-price="$4">Cupcake (any flavor) - $4 each</option>
+                                <option value="cupcake-dozen" data-flavors="vanilla,chocolate,red-velvet,lemon,strawberry" data-price="$40">Cupcakes (dozen, any flavor) - $40</option>
+                            </optgroup>
+                            <!-- Cereal Bars -->
+                            <optgroup label="Cereal Bars">
+                                <option value="cerealbar-ricekrispies" data-flavors="rice-krispies" data-price="$3">Rice Krispies Cereal Bar - $3</option>
+                                <option value="cerealbar-fruitypebbles" data-flavors="fruity-pebbles" data-price="$3">Fruity Pebbles Cereal Bar - $3</option>
+                                <option value="cerealbar-reesespuffs" data-flavors="reeses-puffs" data-price="$3">Reese’s Puffs Cereal Bar - $3</option>
+                            </optgroup>
+                            <!-- Pretzels -->
+                            <optgroup label="Chocolate Dipped Pretzels">
+                                <option value="pretzel-rod-single" data-flavors="milk-chocolate,white-chocolate,sprinkle" data-price="$2">Pretzel Rod - $2 each</option>
+                                <option value="pretzel-rod-5" data-flavors="milk-chocolate,white-chocolate,sprinkle" data-price="$3">Pretzel Rods (5) - $3</option>
+                                <option value="pretzel-large-3" data-flavors="milk-chocolate,white-chocolate,sprinkle" data-price="$3">Large Pretzel Set (3) - $3</option>
+                            </optgroup>
+                            <!-- Cotton Candy -->
+                            <optgroup label="Cotton Candy">
+                                <option value="cottoncandy-large" data-flavors="blue-raspberry,strawberry,grape" data-price="$8">Large Cotton Candy - $8</option>
+                                <option value="cottoncandy-small" data-flavors="blue-raspberry,strawberry,grape" data-price="$4">Small Cotton Candy - $4</option>
+                            </optgroup>
+                            <!-- Popcorn -->
+                            <optgroup label="Gourmet Popcorn">
+                                <option value="popcorn-gourmet" data-flavors="caramel,cheddar,classic" data-price="$8">Gourmet Popcorn - $8</option>
+                            </optgroup>
+                            <!-- Cookie Cakes -->
+                            <optgroup label="Cookie Cakes">
+                                <option value="cookiecake-small" data-flavors="chocolate-chip,sprinkle,red-velvet" data-price="$25">Small Cookie Cake (6") - $25</option>
+                                <option value="cookiecake-medium" data-flavors="chocolate-chip,sprinkle,red-velvet" data-price="$35">Medium Cookie Cake (8") - $35</option>
+                                <option value="cookiecake-large" data-flavors="chocolate-chip,sprinkle,red-velvet" data-price="$50">Large Cookie Cake (12") - $50</option>
+                            </optgroup>
                         </select>
                     </div>
                     <div class="form-group">
