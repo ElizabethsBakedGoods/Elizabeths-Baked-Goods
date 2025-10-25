@@ -38,8 +38,8 @@ nav {
 
 .logo-box {
     /* slightly larger box so the logo reads at small sizes */
-    width: 100px; /* ~40% larger */
-    height: 100px; /* ~40% larger */
+    width: 108px; /* ~50% larger than original 72px */
+    height: 108px; /* ~50% larger than original 72px */
     overflow: hidden;
     border-radius: 8px;
     display: flex;
