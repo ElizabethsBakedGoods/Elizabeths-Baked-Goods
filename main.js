@@ -7,7 +7,7 @@
 
 const CONFIG = {
 	emailjsPublicKey: "fxvSd_ExVAwMZmUCn",
-	emailjsServiceId: "REPLACE_WITH_YOUR_SERVICE_ID",
+	emailjsServiceId: "service_5jsjkh6",
 	emailjsOwnerTemplateId: "REPLACE_WITH_OWNER_TEMPLATE_ID",
 	emailjsCustomerTemplateId: "REPLACE_WITH_CUSTOMER_TEMPLATE_ID",
 	ownerEmail: "bethsbakedgoodss@yahoo.com", // where owner notifications go
