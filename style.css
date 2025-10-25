@@ -140,6 +140,8 @@ nav {
     font-size: 1.1rem;
     cursor: pointer;
     transition: all 0.3s ease;
+    text-decoration: none; /* for anchor usage */
+    display: inline-block; /* for proper padding on anchor */
 }
 
 .cta-button:hover {
