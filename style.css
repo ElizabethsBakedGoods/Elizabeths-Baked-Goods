@@ -367,6 +367,14 @@ nav {
     transform: translateY(-2px);
 }
 
+/* Contact action buttons under Get in Touch */
+.contact-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-links {
