@@ -25,76 +25,7 @@ window.addEventListener("load", () => {
 
 	const form = document.getElementById("orderForm") || document.querySelector("#order .order-form form");
 	const statusEl = document.getElementById("order-status");
-	const itemSelect = document.getElementById("item-select");
-	const flavorGroup = document.getElementById("flavor-group");
-	const flavorSelect = document.getElementById("flavor-select");
-	const flavorNote = document.getElementById("flavor-note");
-
-	// Map flavor keys to display names
-	const FLAVOR_LABELS = {
-		"chocolate-chip": "Chocolate Chip",
-		"double-chocolate-chunk": "Double Chocolate Chunk",
-		"smores": "S'mores",
-		"peanut-butter": "Peanut Butter",
-		"toffee": "Toffee",
-		"biscoff": "Biscoff",
-		"almond-coconut": "Almond Coconut",
-		"pecan-pie-shortbread": "Pecan Pie Shortbread",
-		"sprinkle": "Sprinkle",
-		"classic": "Classic Chocolate",
-		"cookie-dough": "Cookie Dough",
-		"oreo": "Oreo",
-		"caramel-turtle": "Caramel Turtle",
-		"peanut-butter-swirl": "Peanut Butter Swirl",
-		"coffee": "Coffee",
-		"vanilla": "Vanilla",
-		"chocolate": "Chocolate",
-		"red-velvet": "Red Velvet",
-		"lemon": "Lemon",
-		"strawberry": "Strawberry",
-		"rice-krispies": "Rice Krispies",
-		"fruity-pebbles": "Fruity Pebbles",
-		"reeses-puffs": "Reese's Puffs",
-		"milk-chocolate": "Milk Chocolate",
-		"white-chocolate": "White Chocolate",
-		"blue-raspberry": "Blue Raspberry",
-		"grape": "Grape",
-		"caramel": "Caramel",
-		"cheddar": "Cheddar",
-		// ...add more as needed
-	};
-
-	// Show/hide and populate flavor dropdown based on item
-	if (itemSelect && flavorGroup && flavorSelect) {
-		itemSelect.addEventListener("change", function() {
-			const selected = itemSelect.options[itemSelect.selectedIndex];
-			const flavorList = selected.getAttribute("data-flavors");
-			const price = selected.getAttribute("data-price") || "";
-			// Clear previous
-			flavorSelect.innerHTML = '<option value="">Select Flavor</option>';
-			flavorNote.textContent = "";
-			if (flavorList) {
-				const flavors = flavorList.split(",");
-				flavors.forEach(f => {
-					const label = FLAVOR_LABELS[f] || f.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase());
-					const opt = document.createElement("option");
-					opt.value = f;
-					opt.textContent = label;
-					flavorSelect.appendChild(opt);
-				});
-				flavorGroup.style.display = "block";
-				flavorSelect.required = true;
-				flavorNote.textContent = price ? `Price: ${price}` : "";
-			} else {
-				flavorGroup.style.display = "none";
-				flavorSelect.required = false;
-			}
-		});
-		// Trigger on load if item is preselected
-		if (itemSelect.value) {
-			itemSelect.dispatchEvent(new Event("change"));
-		}
-	}
+	// No dynamic flavor logic needed; flavor dropdown is always visible and grouped by category
 
 	if (!form) return;
 
@@ -121,7 +52,7 @@ window.addEventListener("load", () => {
 			customer_name: name,
 			customer_email: email,
 			item,
-			flavors: FLAVOR_LABELS[flavor] || flavor,
+			flavors: flavor,
 			instructions,
 			owner_email: CONFIG.ownerEmail,
 			submitted_at: new Date().toLocaleString(),
@@ -144,7 +75,7 @@ window.addEventListener("load", () => {
 							name,
 							email,
 							item,
-							flavors: FLAVOR_LABELS[flavor] || flavor,
+							flavors: flavor,
 							instructions,
 							to: CONFIG.smsRecipient,
 							submitted_at: templateParams.submitted_at,
@@ -157,8 +88,6 @@ window.addEventListener("load", () => {
 
 			showStatus(statusEl, "Order received! A confirmation email has been sent. We'll reach out soon.", true);
 			form.reset();
-			// Hide flavor group after reset
-			if (flavorGroup) flavorGroup.style.display = "none";
 		} catch (err) {
 			console.error(err);
 			showStatus(statusEl, "Sorry, there was a problem submitting your order. Please try again or email us directly.", false);

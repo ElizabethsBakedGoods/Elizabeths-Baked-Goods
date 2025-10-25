@@ -65,12 +65,71 @@
                     <div class="form-group">
                         <input type="email" name="email" placeholder="Your Email" required>
                     </div>
-                    <!-- Flavors will be dynamically populated based on item selection -->
-                    <div class="form-group" id="flavor-group" style="display:none;">
+                    <!-- Flavors dropdown with categories for each item -->
+                    <div class="form-group" id="flavor-group">
                         <select name="flavor" id="flavor-select" required>
                             <option value="">Select Flavor</option>
+                            <optgroup label="Cookie Flavors">
+                                <option value="chocolate-chip">Chocolate Chip</option>
+                                <option value="double-chocolate-chunk">Double Chocolate Chunk</option>
+                                <option value="smores">Smores</option>
+                                <option value="peanut-butter">Peanut Butter</option>
+                                <option value="toffee">Toffee</option>
+                                <option value="biscoff">Biscoff</option>
+                                <option value="almond-coconut">Almond Coconut</option>
+                                <option value="pecan-pie-shortbread">Pecan Pie Shortbread</option>
+                                <option value="sprinkle">Sprinkle</option>
+                            </optgroup>
+                            <optgroup label="Brownie Flavors">
+                                <option value="classic-chocolate">Classic Chocolate</option>
+                                <option value="smores-brownie">S’mores</option>
+                                <option value="cookie-dough">Cookie Dough</option>
+                                <option value="oreo">Oreo</option>
+                                <option value="caramel-turtle">Caramel Turtle</option>
+                                <option value="biscoff-brownie">Biscoff</option>
+                                <option value="peanut-butter-swirl">Peanut Butter Swirl</option>
+                                <option value="coffee">Coffee</option>
+                                <option value="variety">Variety Box (6 assorted)</option>
+                            </optgroup>
+                            <optgroup label="Cupcake Flavors">
+                                <option value="vanilla">Vanilla</option>
+                                <option value="chocolate">Chocolate</option>
+                                <option value="red-velvet">Red Velvet</option>
+                                <option value="lemon">Lemon</option>
+                                <option value="strawberry">Strawberry</option>
+                            </optgroup>
+                            <optgroup label="Cereal Bar Flavors">
+                                <option value="rice-krispies">Rice Krispies</option>
+                                <option value="fruity-pebbles">Fruity Pebbles</option>
+                                <option value="reeses-puffs">Reese’s Puffs</option>
+                            </optgroup>
+                            <optgroup label="Pretzel Flavors">
+                                <option value="milk-chocolate">Milk Chocolate</option>
+                                <option value="white-chocolate">White Chocolate</option>
+                                <option value="sprinkle-pretzel">Sprinkle</option>
+                            </optgroup>
+                            <optgroup label="Cotton Candy Flavors">
+                                <option value="orange">Orange</option>
+                                <option value="grape">Grape</option>
+                                <option value="lemon">Lemon</option>
+                                <option value="cherry">Cherry</option>
+                                <option value="pink-vanilla">Pink Vanilla</option>
+                                <option value="blue-raspberry">Blue Raspberry</option>
+                            </optgroup>
+                            <optgroup label="Popcorn Flavors">
+                                <option value="buttered">Buttered</option>
+                                <option value="cheddar">Cheddar</option>
+                                <option value="caramel">Caramel</option>
+                                <option value="oreo-popcorn">Oreo</option>
+                                <option value="unicorn">Unicorn</option>
+                                <option value="chocolate-drizzle">Chocolate Drizzle</option>
+                            </optgroup>
+                            <optgroup label="Cookie Cake Flavors">
+                                <option value="chocolate-chip-cake">Chocolate Chip</option>
+                                <option value="sprinkle-cake">Sprinkle</option>
+                                <option value="red-velvet-cake">Red Velvet</option>
+                            </optgroup>
                         </select>
-                        <small id="flavor-note"></small>
                     </div>
                     <!-- Then choose pack size or menu item -->
                     <div class="form-group">
@@ -170,9 +229,9 @@
             <h2>Featured Recipes</h2>
             <div class="recipe-grid">
                 <div class="recipe-item">
-                    <h3>Classic Croissants</h3>
-                    <p>Master the art of French pastry</p>
-                    <button class="recipe-btn">View Recipe</button>
+                    <h3>Chunky Chocolate Chip Cookies</h3>
+                    <p>Thick, chewy, and packed with chips</p>
+                    <a class="recipe-btn" href="recipes/chunky-chocolate-chip-cookies.html">View Recipe</a>
                 </div>
                 <div class="recipe-item">
                     <h3>Sourdough Bread</h3>
