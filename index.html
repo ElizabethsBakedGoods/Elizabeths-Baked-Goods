@@ -65,21 +65,9 @@
                     <div class="form-group">
                         <input type="email" placeholder="Your Email">
                     </div>
+                    <!-- Choose flavors first -->
                     <div class="form-group">
-                        <select name="item">
-                            <option value="">Select Item</option>
-                            <option value="" disabled>
-                                Flavors: Chocolate Chip • Double Chocolate Chunk • Smores • Peanut Butter • Toffee • Biscoff • Almond Coconut • Pecan Pie Shortbread • Sprinkle
-                            </option>
-                            <option value="cookies-4">Small Cookies Pack of 4 - $8</option>
-                            <option value="cookies-6">Small Cookies Pack of 6 - $12</option>
-                            <option value="cookies-8">Pack of 8 - $18</option>
-                            <option value="cookies-12">Pack of 12 - $24</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select name="flavor">
-                            <option value="">Choose Flavor</option>
+                        <select name="flavor" multiple>
                             <option value="chocolate-chip">Chocolate Chip</option>
                             <option value="double-chocolate-chunk">Double Chocolate Chunk</option>
                             <option value="smores">Smores</option>
@@ -89,6 +77,17 @@
                             <option value="almond-coconut">Almond Coconut</option>
                             <option value="pecan-pie-shortbread">Pecan Pie Shortbread</option>
                             <option value="sprinkle">Sprinkle</option>
+                        </select>
+                        <small>Tip: Hold Ctrl (Windows) or Command (Mac) to select multiple flavors.</small>
+                    </div>
+                    <!-- Then choose pack size -->
+                    <div class="form-group">
+                        <select name="item">
+                            <option value="">Select Item</option>
+                            <option value="cookies-4">Small Cookies Pack of 4 - $8</option>
+                            <option value="cookies-6">Small Cookies Pack of 6 - $12</option>
+                            <option value="cookies-8">Small Cookies Pack of 8 - $18</option>
+                            <option value="cookies-12">Small Cookies Pack of 12 - $24</option>
                         </select>
                     </div>
                     <div class="form-group">
