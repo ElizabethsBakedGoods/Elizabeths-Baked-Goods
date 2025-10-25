@@ -1,3 +1,12 @@
+/* Footer styling */
+footer {
+    text-align: center;
+    padding: 2rem 5%;
+    background-color: var(--white);
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.05);
+}
+
+footer p { margin-top: 0.75rem; }
 :root {
     --primary-pink: #ffeef2;
     --dark-pink: #ffb6c1;
