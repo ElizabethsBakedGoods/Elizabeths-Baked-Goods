@@ -129,6 +129,28 @@ nav {
     color: var(--text-color);
 }
 
+/* Typographic brand block in hero */
+.brand { margin-bottom: 1.25rem; }
+.brand-title {
+    font-family: 'White Star', 'Dancing Script', cursive;
+    font-size: 3rem;
+    line-height: 1.1;
+    color: var(--soft-brown);
+}
+.brand-subtitle {
+    font-family: 'Moon Jelly', 'Poppins', sans-serif;
+    font-size: 2.2rem;
+    line-height: 1.1;
+    color: var(--soft-brown);
+    margin-top: 0.25rem;
+}
+.brand-tagline {
+    margin-top: 0.5rem;
+    font-family: 'White Star', 'Poppins', sans-serif;
+    font-size: 1.05rem;
+    color: var(--text-color);
+}
+
 .hero p {
     font-size: 1.2rem;
     color: var(--text-color);
@@ -467,6 +489,10 @@ nav {
     .hero h1 {
         font-size: 2rem;
     }
+
+    .brand-title { font-size: 2.2rem; }
+    .brand-subtitle { font-size: 1.6rem; }
+    .brand-tagline { font-size: 0.95rem; }
     
     .section h2 {
         font-size: 2rem;
