@@ -64,9 +64,27 @@ window.addEventListener("load", () => {
 		};
 
 		// Owner notification goes to the owner email
-		const ownerParams = { ...baseParams, to_email: CONFIG.ownerEmail, to_name: "Owner" };
+		const ownerParams = {
+			...baseParams,
+			to_email: CONFIG.ownerEmail,
+			to_name: "Owner",
+			// common aliases in case the template uses different variable names
+			email: CONFIG.ownerEmail,
+			to: CONFIG.ownerEmail,
+			name: "Owner",
+			recipient_email: CONFIG.ownerEmail,
+		};
 		// Customer confirmation goes to the customer's email
-		const customerParams = { ...baseParams, to_email: email, to_name: name };
+		const customerParams = {
+			...baseParams,
+			to_email: email,
+			to_name: name,
+			// aliases for broader template compatibility
+			email: email,
+			to: email,
+			name: name,
+			recipient_email: email,
+		};
 
 		try {
 			// Send email to owner
