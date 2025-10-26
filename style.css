@@ -291,6 +291,14 @@ nav {
     font-size: 0.95rem;
 }
 
+/* Order free shipping note */
+.order-free-shipping {
+    text-align: center;
+    margin-top: 0.75rem;
+    color: var(--soft-brown);
+    font-weight: 600;
+}
+
 /* Contact Styles */
 .contact-info {
     display: grid;

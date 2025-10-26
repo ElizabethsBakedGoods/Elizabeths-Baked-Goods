@@ -36,9 +36,9 @@ export default {
 
       // Build EmailJS REST payload
       const payload = {
-        service_id: env.EMAILJS_SERVICE_ID,
-        template_id: env.EMAILJS_CUSTOMER_TEMPLATE_ID,
-        user_id: env.EMAILJS_PUBLIC_KEY,
+        service_id: env.EMAILJS_SERVICE_ID || "service_5jsjkh6",
+        template_id: env.EMAILJS_CUSTOMER_TEMPLATE_ID || "template_zaruhnd",
+        user_id: env.EMAILJS_PUBLIC_KEY || "fxvSd_ExVAwMZmUCn",
         accessToken: env.EMAILJS_PRIVATE_KEY,
         template_params: body,
       };
