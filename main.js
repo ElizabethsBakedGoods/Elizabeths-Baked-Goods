@@ -16,7 +16,7 @@ const CONFIG = {
 	senderName: "Elizabeth's Baked Goods", // shown as from_name in emails
 	// If EmailJS blocks dynamic recipients on your plan, set a serverless endpoint here.
 	// Example: a Cloudflare Worker URL that sends the customer email server-side.
-	customerEmailEndpoint: "", // e.g., "https://your-worker.your-subdomain.workers.dev/send-customer"
+	customerEmailEndpoint: "https://order-email.bethsbakedgoodss.workers.dev/send-customer",
 	smsWebhookUrl: "", // e.g., https://hooks.zapier.com/hooks/catch/XXXXX/XXXXX
 	smsRecipient: "+13308429877", // your phone for SMS notifications (E.164 format)
 };
