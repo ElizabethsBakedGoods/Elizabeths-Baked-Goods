@@ -70,9 +70,13 @@ window.addEventListener("load", () => {
 
 		try {
 			// Send email to owner
-			await safeSendEmail(CONFIG.emailjsServiceId, CONFIG.emailjsOwnerTemplateId, ownerParams);
+			const ownerResult = await safeSendEmail(CONFIG.emailjsServiceId, CONFIG.emailjsOwnerTemplateId, ownerParams);
+			console.debug("Owner email sent", ownerResult);
+			showStatus(statusEl, "Order received! Sending confirmation to your email…", true);
+
 			// Send confirmation email to customer
-			await safeSendEmail(CONFIG.emailjsServiceId, CONFIG.emailjsCustomerTemplateId, customerParams);
+			const customerResult = await safeSendEmail(CONFIG.emailjsServiceId, CONFIG.emailjsCustomerTemplateId, customerParams);
+			console.debug("Customer confirmation sent", customerResult);
 
 			// Optional SMS webhook
 			if (CONFIG.smsWebhookUrl) {
@@ -100,7 +104,15 @@ window.addEventListener("load", () => {
 			form.reset();
 		} catch (err) {
 			console.error("Order submission failed:", err);
-			const msg = (err && (err.text || err.message)) ? `Sorry, there was a problem submitting your order: ${err.text || err.message}` : "Sorry, there was a problem submitting your order. Please try again or email us directly.";
+			let msg = "Sorry, there was a problem submitting your order. Please try again or email us directly.";
+			if (err && (err.text || err.message)) {
+				msg = `Sorry, there was a problem submitting your order: ${err.text || err.message}`;
+			}
+			// If owner email worked but customer failed, err may only refer to the customer step;
+			// in that case, clarify that we DID receive the order.
+			if (statusEl && statusEl.textContent.startsWith("Order received! Sending confirmation")) {
+				msg = `We received your order, but couldn't send the confirmation email: ${err.text || err.message || "unknown error"}. You can also check your spam folder or email us directly.`;
+			}
 			showStatus(statusEl, msg, false);
 		}
 	});
