@@ -485,6 +485,9 @@ nav {
     box-shadow: 0 6px 16px rgba(0,0,0,0.12);
 }
 
+/* Align social icons nicely when used inside nav */
+nav .social-icons { margin-top: 0; }
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-links {
