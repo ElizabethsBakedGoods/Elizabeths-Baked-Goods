@@ -1,6 +1,6 @@
-// Simple order form that opens the customer's email app with pre-filled order details
+// Simple order form using Formspree
 const CONFIG = {
-	ownerEmail: "bethsbakedgoodss@yahoo.com",
+	formspreeEndpoint: "https://formspree.io/f/mgvpvzkz",
 };
 
 window.addEventListener("load", () => {
@@ -9,7 +9,7 @@ window.addEventListener("load", () => {
 
 	if (!form) return;
 
-	form.addEventListener("submit", (e) => {
+	form.addEventListener("submit", async (e) => {
 		e.preventDefault();
 
 		// Gather data
@@ -26,38 +26,42 @@ window.addEventListener("load", () => {
 			return;
 		}
 
-		// Build mailto link
-		const subject = encodeURIComponent(`New Order from ${name}`);
-		const bodyLines = [
-			`Name: ${name}`,
-			`Email: ${email}`,
-			`Item: ${item}`,
-			`Flavor: ${flavor}`,
-			`Instructions: ${instructions || "None"}`,
-			`Submitted: ${new Date().toLocaleString()}`,
-		];
-		const body = encodeURIComponent(bodyLines.join("\n"));
-		const mailto = `mailto:${CONFIG.ownerEmail}?subject=${subject}&body=${body}`;
+		showStatus(statusEl, "Submitting your order…", true);
 
-		// Show success with clickable fallback
-		const linkHtml = `Opening your email app… <a href="${mailto}" style="color: inherit; text-decoration: underline;">Click here if it doesn't open</a>`;
-		showStatus(statusEl, linkHtml, true, true);
+		try {
+			// Send to Formspree
+			const response = await fetch(CONFIG.formspreeEndpoint, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					"Accept": "application/json"
+				},
+				body: JSON.stringify({
+					name,
+					email,
+					item,
+					flavor,
+					instructions: instructions || "None",
+					submitted_at: new Date().toLocaleString()
+				})
+			});
 
-		// Open email client
-		window.location.href = mailto;
+			if (!response.ok) {
+				throw new Error("Failed to submit order");
+			}
 
-		// Reset form after a moment
-		setTimeout(() => form.reset(), 800);
+			showStatus(statusEl, "Thank you! Your order has been received. We'll contact you soon!", true);
+			form.reset();
+		} catch (error) {
+			showStatus(statusEl, "Sorry, there was a problem submitting your order. Please try again or call us at (330) 842-9877.", false);
+			console.error("Form submission error:", error);
+		}
 	});
 });
 
-function showStatus(el, msg, ok, asHTML = false) {
+function showStatus(el, msg, ok) {
 	if (!el) return;
-	if (asHTML) {
-		el.innerHTML = msg;
-	} else {
-		el.textContent = msg;
-	}
+	el.textContent = msg;
 	el.style.color = ok ? "#155724" : "#8a1c1c";
 }
 
