@@ -8,11 +8,12 @@
 const CONFIG = {
 	emailjsPublicKey: "fxvSd_ExVAwMZmUCn",
 	emailjsServiceId: "service_5jsjkh6",
-	// Temporarily use the same template for owner notifications so you receive emails now.
-	// You can share a dedicated owner template ID later and we'll swap it in.
+	// Using the same template for owner + customer is okay if the template's "To" is a variable (e.g., {{to_email}}).
+	// If you later create a dedicated customer template, set emailjsCustomerTemplateId to that ID and keep passing to_email.
 	emailjsOwnerTemplateId: "template_cc4bkye",
-			emailjsCustomerTemplateId: "template_cc4bkye",
+	emailjsCustomerTemplateId: "template_cc4bkye",
 	ownerEmail: "bethsbakedgoodss@yahoo.com", // where owner notifications go
+	senderName: "Elizabeth's Baked Goods", // shown as from_name in emails
 	smsWebhookUrl: "", // e.g., https://hooks.zapier.com/hooks/catch/XXXXX/XXXXX
 	smsRecipient: "+13308429877", // your phone for SMS notifications (E.164 format)
 };
@@ -48,7 +49,9 @@ window.addEventListener("load", () => {
 
 		showStatus(statusEl, "Placing your order…", true);
 
-		const templateParams = {
+
+		// Base template params used by both owner + customer emails
+		const baseParams = {
 			customer_name: name,
 			customer_email: email,
 			item,
@@ -56,13 +59,20 @@ window.addEventListener("load", () => {
 			instructions,
 			owner_email: CONFIG.ownerEmail,
 			submitted_at: new Date().toLocaleString(),
+			from_name: CONFIG.senderName,
+			reply_to: email, // allows owner to reply directly to customer
 		};
+
+		// Owner notification goes to the owner email
+		const ownerParams = { ...baseParams, to_email: CONFIG.ownerEmail, to_name: "Owner" };
+		// Customer confirmation goes to the customer's email
+		const customerParams = { ...baseParams, to_email: email, to_name: name };
 
 		try {
 			// Send email to owner
-			await safeSendEmail(CONFIG.emailjsServiceId, CONFIG.emailjsOwnerTemplateId, templateParams);
+			await safeSendEmail(CONFIG.emailjsServiceId, CONFIG.emailjsOwnerTemplateId, ownerParams);
 			// Send confirmation email to customer
-			await safeSendEmail(CONFIG.emailjsServiceId, CONFIG.emailjsCustomerTemplateId, templateParams);
+			await safeSendEmail(CONFIG.emailjsServiceId, CONFIG.emailjsCustomerTemplateId, customerParams);
 
 			// Optional SMS webhook
 			if (CONFIG.smsWebhookUrl) {
@@ -89,8 +99,9 @@ window.addEventListener("load", () => {
 			showStatus(statusEl, "Order received! A confirmation email has been sent. We'll reach out soon.", true);
 			form.reset();
 		} catch (err) {
-			console.error(err);
-			showStatus(statusEl, "Sorry, there was a problem submitting your order. Please try again or email us directly.", false);
+			console.error("Order submission failed:", err);
+			const msg = (err && (err.text || err.message)) ? `Sorry, there was a problem submitting your order: ${err.text || err.message}` : "Sorry, there was a problem submitting your order. Please try again or email us directly.";
+			showStatus(statusEl, msg, false);
 		}
 	});
 });
@@ -100,6 +111,8 @@ async function safeSendEmail(serviceId, templateId, params) {
 	if (!serviceId || serviceId.includes("REPLACE") || !templateId || templateId.includes("REPLACE")) {
 		throw new Error("EmailJS configuration not set");
 	}
+	// Helpful debug in console
+	console.debug("Sending email via EmailJS", { serviceId, templateId, params });
 	return emailjs.send(serviceId, templateId, params);
 }
 
