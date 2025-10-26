@@ -11,7 +11,7 @@ const CONFIG = {
 	// Using the same template for owner + customer is okay if the template's "To" is a variable (e.g., {{to_email}}).
 	// If you later create a dedicated customer template, set emailjsCustomerTemplateId to that ID and keep passing to_email.
 	emailjsOwnerTemplateId: "template_cc4bkye",
-	emailjsCustomerTemplateId: "template_cc4bkye",
+	emailjsCustomerTemplateId: "template_zaruhnd",
 	ownerEmail: "bethsbakedgoodss@yahoo.com", // where owner notifications go
 	senderName: "Elizabeth's Baked Goods", // shown as from_name in emails
 	smsWebhookUrl: "", // e.g., https://hooks.zapier.com/hooks/catch/XXXXX/XXXXX
