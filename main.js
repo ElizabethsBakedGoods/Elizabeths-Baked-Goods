@@ -14,18 +14,17 @@ const CONFIG = {
 	emailjsCustomerTemplateId: "template_zaruhnd",
 	ownerEmail: "bethsbakedgoodss@yahoo.com", // where owner notifications go
 	senderName: "Elizabeth's Baked Goods", // shown as from_name in emails
-	// If EmailJS blocks dynamic recipients on your plan, set a serverless endpoint here.
-	// Example: a Cloudflare Worker URL that sends the customer email server-side.
-	customerEmailEndpoint: "https://order-email.bethsbakedgoodss.workers.dev/send-customer",
+	// If you use a serverless endpoint for customer confirmations, put it here.
+	// Set to empty to disable Worker usage.
+	customerEmailEndpoint: "",
+	// Set to false to temporarily skip sending a customer confirmation (owner notifications will still be sent).
+	enableCustomerConfirmation: false,
 	smsWebhookUrl: "", // e.g., https://hooks.zapier.com/hooks/catch/XXXXX/XXXXX
 	smsRecipient: "+13308429877", // your phone for SMS notifications (E.164 format)
 };
 
 // Initialize EmailJS when SDK is loaded
 window.addEventListener("load", () => {
-	if (window.emailjs && CONFIG.emailjsPublicKey) {
-		try { emailjs.init(CONFIG.emailjsPublicKey); } catch (_) {}
-	}
 
 	const form = document.getElementById("orderForm") || document.querySelector("#order .order-form form");
 	const statusEl = document.getElementById("order-status");
@@ -89,58 +88,28 @@ window.addEventListener("load", () => {
 			recipient_email: email,
 		};
 
+		// No EmailJS. Open user's email client with a prefilled email to the owner.
+		const subject = encodeURIComponent(`New Order from ${name}`);
+		const bodyLines = [
+			`Name: ${name}`,
+			`Email: ${email}`,
+			`Item: ${item}`,
+			`Flavor: ${flavor}`,
+			`Instructions: ${instructions || "None"}`,
+			`Submitted: ${new Date().toLocaleString()}`,
+		];
+		const body = encodeURIComponent(bodyLines.join("\n"));
+		const mailto = `mailto:${CONFIG.ownerEmail}?subject=${subject}&body=${body}`;
+
+		// Provide a clickable fallback link in case the email client doesn't open
+		const linkHtml = `<a href="${mailto}">Click here to email your order</a>`;
+		showStatus(statusEl, `Opening your email app… ${linkHtml}`, true, true);
 		try {
-			// Send email to owner
-			const ownerResult = await safeSendEmail(CONFIG.emailjsServiceId, CONFIG.emailjsOwnerTemplateId, ownerParams);
-			console.debug("Owner email sent", ownerResult);
-			showStatus(statusEl, "Order received! Sending confirmation to your email…", true);
+			window.location.href = mailto;
+		} catch (_) {}
 
-			// Send confirmation email to customer (prefer serverless endpoint if provided)
-			let customerResult;
-			if (CONFIG.customerEmailEndpoint) {
-				customerResult = await safeSendViaEndpoint(CONFIG.customerEmailEndpoint, customerParams);
-			} else {
-				customerResult = await safeSendEmail(CONFIG.emailjsServiceId, CONFIG.emailjsCustomerTemplateId, customerParams);
-			}
-			console.debug("Customer confirmation sent", customerResult);
-
-			// Optional SMS webhook
-			if (CONFIG.smsWebhookUrl) {
-				try {
-					await fetch(CONFIG.smsWebhookUrl, {
-						method: "POST",
-						headers: { "Content-Type": "application/json" },
-						body: JSON.stringify({
-							event: "new_order",
-							name,
-							email,
-							item,
-							flavors: flavor,
-							instructions,
-							to: CONFIG.smsRecipient,
-							submitted_at: templateParams.submitted_at,
-						}),
-					});
-				} catch (_) {
-					// Non-blocking: ignore SMS webhook failures
-				}
-			}
-
-			showStatus(statusEl, "Order received! A confirmation email has been sent. We'll reach out soon.", true);
-			form.reset();
-		} catch (err) {
-			console.error("Order submission failed:", err);
-			let msg = "Sorry, there was a problem submitting your order. Please try again or email us directly.";
-			if (err && (err.text || err.message)) {
-				msg = `Sorry, there was a problem submitting your order: ${err.text || err.message}`;
-			}
-			// If owner email worked but customer failed, err may only refer to the customer step;
-			// in that case, clarify that we DID receive the order.
-			if (statusEl && statusEl.textContent.startsWith("Order received! Sending confirmation")) {
-				msg = `We received your order, but couldn't send the confirmation email: ${err.text || err.message || "unknown error"}. You can also check your spam folder or email us directly.`;
-			}
-			showStatus(statusEl, msg, false);
-		}
+		// Optionally reset the form after a short delay
+		setTimeout(() => form.reset(), 800);
 	});
 });
 
@@ -168,9 +137,13 @@ async function safeSendViaEndpoint(endpoint, params) {
 	return res.json().catch(() => ({ ok: true }));
 }
 
-function showStatus(el, msg, ok) {
+function showStatus(el, msg, ok, asHTML = false) {
 	if (!el) return;
-	el.textContent = msg;
+	if (asHTML) {
+		el.innerHTML = msg;
+	} else {
+		el.textContent = msg;
+	}
 	el.style.color = ok ? "#155724" : "#8a1c1c";
 }
 
