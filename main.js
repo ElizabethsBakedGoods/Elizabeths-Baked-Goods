@@ -14,6 +14,9 @@ const CONFIG = {
 	emailjsCustomerTemplateId: "template_zaruhnd",
 	ownerEmail: "bethsbakedgoodss@yahoo.com", // where owner notifications go
 	senderName: "Elizabeth's Baked Goods", // shown as from_name in emails
+	// If EmailJS blocks dynamic recipients on your plan, set a serverless endpoint here.
+	// Example: a Cloudflare Worker URL that sends the customer email server-side.
+	customerEmailEndpoint: "", // e.g., "https://your-worker.your-subdomain.workers.dev/send-customer"
 	smsWebhookUrl: "", // e.g., https://hooks.zapier.com/hooks/catch/XXXXX/XXXXX
 	smsRecipient: "+13308429877", // your phone for SMS notifications (E.164 format)
 };
@@ -92,8 +95,13 @@ window.addEventListener("load", () => {
 			console.debug("Owner email sent", ownerResult);
 			showStatus(statusEl, "Order received! Sending confirmation to your email…", true);
 
-			// Send confirmation email to customer
-			const customerResult = await safeSendEmail(CONFIG.emailjsServiceId, CONFIG.emailjsCustomerTemplateId, customerParams);
+			// Send confirmation email to customer (prefer serverless endpoint if provided)
+			let customerResult;
+			if (CONFIG.customerEmailEndpoint) {
+				customerResult = await safeSendViaEndpoint(CONFIG.customerEmailEndpoint, customerParams);
+			} else {
+				customerResult = await safeSendEmail(CONFIG.emailjsServiceId, CONFIG.emailjsCustomerTemplateId, customerParams);
+			}
 			console.debug("Customer confirmation sent", customerResult);
 
 			// Optional SMS webhook
@@ -144,6 +152,20 @@ async function safeSendEmail(serviceId, templateId, params) {
 	// Helpful debug in console
 	console.debug("Sending email via EmailJS", { serviceId, templateId, params });
 	return emailjs.send(serviceId, templateId, params);
+}
+
+async function safeSendViaEndpoint(endpoint, params) {
+	console.debug("Sending customer email via endpoint", { endpoint, params });
+	const res = await fetch(endpoint, {
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify(params),
+	});
+	if (!res.ok) {
+		const text = await res.text();
+		throw new Error(`Endpoint error ${res.status}: ${text}`);
+	}
+	return res.json().catch(() => ({ ok: true }));
 }
 
 function showStatus(el, msg, ok) {
