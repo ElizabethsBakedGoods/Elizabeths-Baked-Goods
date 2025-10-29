@@ -4,7 +4,7 @@ const CONFIG = {
 	stripePublishableKey: "pk_live_51SNIwWAKipJWOAbPpTyitJZ0bjUS8DtFYMDOwWW7vfmUpXqaP4C5U9rq4cGhG6iragLQ0CrKlQgo5az178HPRg4I00y6YwznJ8",
 	// Optional: When set, we will create a Stripe Checkout Session via this endpoint
 	// Example: "https://your-worker-subdomain.workers.dev/checkout"
-	workerEndpoint: "",
+	workerEndpoint: "https://worker.bethsbakedgoodss.workers.dev/",
 	shippingRates: {
 		standard: "shr_1SNN8uAKipJWOAbPTYYrDSiC", // $8 standard shipping
 		free: "shr_1SNN9iAKipJWOAbPoHVk3SfH" // Free shipping over $60
@@ -413,25 +413,25 @@ function checkForSuccessfulCheckout() {
 
 // Send order notification to Formspree
 async function sendOrderNotification(orderItems, customerEmail) {
-	const subtotal = orderItems.reduce((sum, item) => sum + item.price, 0);
-	const subtotalDollars = (subtotal / 100).toFixed(2);
-	
+	const subtotalCents = orderItems.reduce((sum, item) => sum + item.price, 0);
+	const subtotalDollars = (subtotalCents / 100).toFixed(2);
+	const freeShipping = subtotalCents >= 6000; // $60 threshold
+	const shippingDollars = freeShipping ? 'FREE' : '$8.00';
+	const totalDollars = ((subtotalCents + (freeShipping ? 0 : 800)) / 100).toFixed(2);
+
 	// Format order details for email
 	const orderDetails = orderItems.map((item, index) => 
 		`${index + 1}. ${item.name} - Flavor: ${item.flavor} - $${(item.price / 100).toFixed(2)}`
 	).join('\n');
-	
+
 	const emailBody = `
 NEW ORDER RECEIVED
 
-Customer: ${customerName || 'Not provided'}
-Email: ${customerEmail || 'Not provided'}
-Phone: ${customerPhone || 'Not provided'}
+Customer Email: ${customerEmail || 'not provided'}
 
-Order Total: ${subtotalDollars}
-Shipping: ${subtotalDollars >= 60 ? 'FREE' : '$8.00'}otal: $${subtotalDollars}
-Shipping: ${subtotalDollars >= 60 ? 'FREE' : '$8.00'}
- Customer Email: ${customerEmail || 'not provided'}
+Subtotal: $${subtotalDollars}
+Shipping: ${shippingDollars}
+Total: $${totalDollars}
 
 Items:
 ${orderDetails}
@@ -448,12 +448,12 @@ Customer will receive Stripe email receipt
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({
-				subject: `New Order - $${subtotalDollars}`,
+				subject: `New Order - $${totalDollars}`,
 				message: emailBody,
 				_replyto: customerEmail || "noreply@elizabethsbakedgoods.com"
 			}),
 		});
-		
+        
 		console.log("Order notification sent successfully");
 	} catch (error) {
 		console.error("Failed to send order notification:", error);
