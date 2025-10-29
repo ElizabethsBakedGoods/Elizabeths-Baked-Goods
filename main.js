@@ -35,8 +35,6 @@ const CONFIG = {
 		"cerealbar-fruitypebbles": { name: "Fruity Pebbles Cereal Bar", price: 300, flavor: false },
 		"cerealbar-reesespuffs": { name: "Reese's Puffs Cereal Bar", price: 300, flavor: false },
 		// Pretzels
-		"pretzel-rod-single": { name: "Pretzel Rod", price: 200, flavor: true },
-		"pretzel-rod-5": { name: "Pretzel Rods (5)", price: 300, flavor: true },
 		"pretzel-large-3": { name: "Large Pretzel Set (3)", price: 300, flavor: true },
 		// Cotton Candy
 		"cottoncandy-large": { name: "Large Cotton Candy", price: 800, flavor: true },
