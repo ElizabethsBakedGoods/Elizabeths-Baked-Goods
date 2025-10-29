@@ -245,7 +245,10 @@ async function handleCheckout() {
 		const item = cart[0];
 		const paymentLink = CONFIG.paymentLinks[item.id];
 		if (paymentLink) {
+			// Send you an order email via Formspree before redirecting
+			try { await sendOrderNotification(cart); } catch (e) { console.warn('Notify failed (non-blocking):', e); }
 			sessionStorage.setItem('pendingOrder', JSON.stringify(cart));
+			// Redirect to Stripe Payment Link (collects shipping/contact configured in Stripe)
 			window.location.href = paymentLink;
 			return;
 		}
@@ -267,6 +270,8 @@ async function handleCheckout() {
 	
 	const message = `📦 Your Order (${cart.length} items):\n\n${cart.map((item, i) => `${i + 1}. ${item.name} (${item.flavor})`).join('\n')}\n\nSubtotal: $${subtotalDollars.toFixed(2)}\nShipping: ${shippingCost}\nTotal: $${grandTotal.toFixed(2)}\n\nWe’ll email you one secure Stripe link to pay for all items together.\nClick OK to send your order.`;
 	
+	// Send you an order email via Formspree so you can reply with a combined link
+	try { await sendOrderNotification(cart); } catch (e) { console.warn('Notify failed (non-blocking):', e); }
 	alert(message);
 	
 	// Open default email client with order details
