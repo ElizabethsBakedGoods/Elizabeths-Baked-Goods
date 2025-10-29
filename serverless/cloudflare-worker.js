@@ -45,6 +45,7 @@ export default {
       }));
 
       // Create Stripe Checkout Session
+      const origin = request.headers.get('origin') || 'https://elizabethsbakedgoods.com';
       const stripeResponse = await fetch('https://api.stripe.com/v1/checkout/sessions', {
         method: 'POST',
         headers: {
@@ -53,8 +54,9 @@ export default {
         },
         body: new URLSearchParams({
           'mode': 'payment',
-          'success_url': `${new URL(request.headers.get('origin') || 'https://elizabethsbakedgoods.com')}?checkout=success`,
-          'cancel_url': `${new URL(request.headers.get('origin') || 'https://elizabethsbakedgoods.com')}?checkout=cancel`,
+          'success_url': `${origin}?checkout=success`,
+          'cancel_url': `${origin}?checkout=cancel`,
+          'phone_number_collection[enabled]': 'true',
           ...Object.fromEntries(
             lineItems.flatMap((item, i) => [
               [`line_items[${i}][price_data][currency]`, item.price_data.currency],

@@ -2,6 +2,9 @@
 const CONFIG = {
 	formspreeEndpoint: "https://formspree.io/f/mgvpvzkz",
 	stripePublishableKey: "pk_live_51SNIwWAKipJWOAbPpTyitJZ0bjUS8DtFYMDOwWW7vfmUpXqaP4C5U9rq4cGhG6iragLQ0CrKlQgo5az178HPRg4I00y6YwznJ8",
+	// Optional: When set, we will create a Stripe Checkout Session via this endpoint
+	// Example: "https://your-worker-subdomain.workers.dev/checkout"
+	workerEndpoint: "",
 	shippingRates: {
 		standard: "shr_1SNN8uAKipJWOAbPTYYrDSiC", // $8 standard shipping
 		free: "shr_1SNN9iAKipJWOAbPoHVk3SfH" // Free shipping over $60
@@ -213,16 +216,36 @@ async function handleCheckout() {
 		return;
 	}
 
-	// If cart has only ONE item, redirect directly to Stripe payment link
+	// Preferred: If a serverless endpoint is configured, create a Checkout Session for the whole cart
+	if (CONFIG.workerEndpoint && CONFIG.workerEndpoint.trim() !== "") {
+		try {
+			const shippingRateId = subtotalDollars >= 60 ? CONFIG.shippingRates.free : CONFIG.shippingRates.standard;
+			const res = await fetch(CONFIG.workerEndpoint, {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ cart, shippingRateId })
+			});
+			const data = await res.json();
+			if (!res.ok || !data.url) {
+				throw new Error(data.error || "Failed to create checkout session");
+			}
+			// Store order for post-success notification
+			sessionStorage.setItem('pendingOrder', JSON.stringify(cart));
+			// Redirect to Stripe Checkout Session URL
+			window.location.href = data.url;
+			return;
+		} catch (err) {
+			console.error("Worker checkout error:", err);
+			// Fall through to payment link or email flow
+		}
+	}
+
+	// Fallback: If cart has only ONE item, redirect directly to its Stripe payment link
 	if (cart.length === 1) {
 		const item = cart[0];
 		const paymentLink = CONFIG.paymentLinks[item.id];
-		
 		if (paymentLink) {
-			// Store order for notification
 			sessionStorage.setItem('pendingOrder', JSON.stringify(cart));
-			
-			// Redirect to Stripe payment link
 			window.location.href = paymentLink;
 			return;
 		}
@@ -242,7 +265,7 @@ async function handleCheckout() {
 	
 	const emailSubject = encodeURIComponent(`New Order - $${grandTotal.toFixed(2)}`);
 	
-	const message = `📦 Your Order (${cart.length} items):\n\n${cart.map((item, i) => `${i + 1}. ${item.name} (${item.flavor})`).join('\n')}\n\nSubtotal: $${subtotalDollars.toFixed(2)}\nShipping: ${shippingCost}\nTotal: $${grandTotal.toFixed(2)}\n\nFor multiple items, we'll email you a combined payment link.\nClick OK to send your order!`;
+	const message = `📦 Your Order (${cart.length} items):\n\n${cart.map((item, i) => `${i + 1}. ${item.name} (${item.flavor})`).join('\n')}\n\nSubtotal: $${subtotalDollars.toFixed(2)}\nShipping: ${shippingCost}\nTotal: $${grandTotal.toFixed(2)}\n\nWe’ll email you one secure Stripe link to pay for all items together.\nClick OK to send your order.`;
 	
 	alert(message);
 	
