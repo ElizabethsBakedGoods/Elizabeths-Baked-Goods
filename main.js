@@ -44,11 +44,11 @@ const CONFIG = {
 		"large-cookies-6": { name: "Large Cookies Pack of 6", price: 2400, flavor: true },
 		"large-cookies-8": { name: "Large Cookies Pack of 8", price: 3200, flavor: true },
 		"large-cookies-12": { name: "Large Cookies Pack of 12", price: 4800, flavor: true },
-		// Brownies
-		"brownies-4": { name: "Brownies 4 count", price: 1600, flavor: true },
-		"brownies-6": { name: "Brownies 6 count", price: 2400, flavor: true },
-		"brownies-8": { name: "Brownies 8 count", price: 3200, flavor: true },
-		"brownies-12": { name: "Brownies 12 count", price: 4800, flavor: true },
+		// Brownies (no flavor selection - classic only)
+		"brownies-4": { name: "Brownies 4 count", price: 1600, flavor: false },
+		"brownies-6": { name: "Brownies 6 count", price: 2400, flavor: false },
+		"brownies-8": { name: "Brownies 8 count", price: 3200, flavor: false },
+		"brownies-12": { name: "Brownies 12 count", price: 4800, flavor: false },
 		// Gourmet Brownies
 		"gourmet-brownies-4": { name: "Gourmet Brownies 4 count", price: 3200, flavor: true },
 		"gourmet-brownies-6": { name: "Gourmet Brownies 6 count", price: 4800, flavor: true },
@@ -61,8 +61,8 @@ const CONFIG = {
 		"cerealbar-ricekrispies": { name: "Rice Krispies Cereal Bar", price: 300, flavor: false },
 		"cerealbar-fruitypebbles": { name: "Fruity Pebbles Cereal Bar", price: 300, flavor: false },
 		"cerealbar-reesespuffs": { name: "Reese's Puffs Cereal Bar", price: 300, flavor: false },
-		// Pretzels
-		"pretzel-large-3": { name: "Large Pretzel Set (3)", price: 300, flavor: true },
+		// Pretzels (no flavor selection)
+		"pretzel-large-3": { name: "Large Pretzel Set (3)", price: 300, flavor: false },
 		// Cotton Candy
 		"cottoncandy-large": { name: "Large Cotton Candy", price: 800, flavor: true },
 		"cottoncandy-small": { name: "Small Cotton Candy", price: 400, flavor: true },
@@ -89,6 +89,7 @@ const FLAVOR_OPTIONS = {
 		"Classic Chocolate", "S'mores", "Cookie Dough", "Oreo",
 		"Caramel Turtle", "Biscoff", "Peanut Butter Swirl", "Coffee", "Variety"
 	],
+	cupcakes: ["Vanilla", "Chocolate", "Red Velvet"],
 	cottoncandy: ["Blue Raspberry", "Strawberry", "Grape", "Orange", "Lemon", "Cherry", "Pink Vanilla"],
 	popcorn: ["Caramel", "Cheddar", "Classic Butter", "Oreo", "Unicorn", "Chocolate Drizzle"]
 };
@@ -191,8 +192,11 @@ function showFlavorModal(productId) {
 	let flavors = [];
 	if (productId.includes("cookies") || productId.includes("cookie")) {
 		flavors = FLAVOR_OPTIONS.cookies;
-	} else if (productId.includes("brownie")) {
+	} else if (productId.includes("gourmet-brownie")) {
+		// Only gourmet brownies get flavor selection
 		flavors = FLAVOR_OPTIONS.brownies;
+	} else if (productId.includes("cupcake")) {
+		flavors = FLAVOR_OPTIONS.cupcakes;
 	} else if (productId.includes("cottoncandy")) {
 		flavors = FLAVOR_OPTIONS.cottoncandy;
 	} else if (productId.includes("popcorn")) {
