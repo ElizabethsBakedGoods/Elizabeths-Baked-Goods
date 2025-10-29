@@ -61,7 +61,7 @@ window.removeFromCart = function(index) {
 
 window.addEventListener("load", () => {
 	initializeCart();
-	// Old Formspree form removed - use cart checkout only
+	checkForSuccessfulCheckout();
 });
 
 function initializeCart() {
@@ -191,6 +191,9 @@ async function handleCheckout() {
 		return;
 	}
 
+	// Store cart in sessionStorage so we can send notification after redirect
+	sessionStorage.setItem('pendingOrder', JSON.stringify(cart));
+
 	// Determine shipping rate
 	const shippingRate = subtotalDollars >= 60 ? CONFIG.shippingRates.free : CONFIG.shippingRates.standard;
 	
@@ -232,3 +235,75 @@ async function handleCheckout() {
 	}
 }
 
+// Check if returning from successful checkout and send notification
+function checkForSuccessfulCheckout() {
+	const urlParams = new URLSearchParams(window.location.search);
+	
+	if (urlParams.get('checkout') === 'success') {
+		const pendingOrder = sessionStorage.getItem('pendingOrder');
+		
+		if (pendingOrder) {
+			try {
+				const orderItems = JSON.parse(pendingOrder);
+				sendOrderNotification(orderItems);
+				sessionStorage.removeItem('pendingOrder');
+				
+				// Clear the cart
+				cart = [];
+				updateCartDisplay();
+				
+				// Show success message
+				alert("Thank you for your order! You'll receive a confirmation email shortly.");
+				
+				// Clean up URL
+				window.history.replaceState({}, document.title, window.location.pathname);
+			} catch (error) {
+				console.error("Error processing order notification:", error);
+			}
+		}
+	}
+}
+
+// Send order notification to Formspree
+async function sendOrderNotification(orderItems) {
+	const subtotal = orderItems.reduce((sum, item) => sum + item.price, 0);
+	const subtotalDollars = (subtotal / 100).toFixed(2);
+	
+	// Format order details for email
+	const orderDetails = orderItems.map((item, index) => 
+		`${index + 1}. ${item.name} - Flavor: ${item.flavor} - $${(item.price / 100).toFixed(2)}`
+	).join('\n');
+	
+	const emailBody = `
+NEW ORDER RECEIVED
+
+Order Total: $${subtotalDollars}
+Shipping: ${subtotalDollars >= 60 ? 'FREE' : '$8.00'}
+
+Items:
+${orderDetails}
+
+---
+Order placed via Stripe Checkout
+Customer will receive Stripe email receipt
+	`.trim();
+
+	try {
+		await fetch(CONFIG.formspreeEndpoint, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				subject: `New Order - $${subtotalDollars}`,
+				message: emailBody,
+				_replyto: "noreply@elizabethsbakedgoods.com"
+			}),
+		});
+		
+		console.log("Order notification sent successfully");
+	} catch (error) {
+		console.error("Failed to send order notification:", error);
+		// Don't show error to customer - they already paid successfully
+	}
+}
