@@ -77,6 +77,21 @@ const CONFIG = {
 
 // Shopping cart
 let cart = [];
+let pendingProductId = null; // For flavor selection modal
+
+// Flavor options by product type
+const FLAVOR_OPTIONS = {
+	cookies: [
+		"Chocolate Chip", "Double Chocolate Chunk", "S'mores", "Peanut Butter",
+		"Toffee", "Biscoff", "Almond Coconut", "Pecan Pie Shortbread", "Sprinkle"
+	],
+	brownies: [
+		"Classic Chocolate", "S'mores", "Cookie Dough", "Oreo",
+		"Caramel Turtle", "Biscoff", "Peanut Butter Swirl", "Coffee", "Variety"
+	],
+	cottoncandy: ["Blue Raspberry", "Strawberry", "Grape", "Orange", "Lemon", "Cherry", "Pink Vanilla"],
+	popcorn: ["Caramel", "Cheddar", "Classic Butter", "Oreo", "Unicorn", "Chocolate Drizzle"]
+};
 
 // Make removeFromCart available globally
 window.removeFromCart = function(index) {
@@ -86,6 +101,7 @@ window.removeFromCart = function(index) {
 
 window.addEventListener("load", () => {
 	initializeCart();
+	initializeFlavorModal();
 	checkForSuccessfulCheckout();
 });
 
@@ -111,9 +127,16 @@ function initializeCart() {
 		btn.addEventListener("click", (e) => {
 			e.preventDefault();
 			e.stopPropagation();
-			const flavor = btn.dataset.flavor || "Classic";
-			console.log("Button clicked! Product:", productId, "Flavor:", flavor);
-			addToCart(productId, flavor);
+			const product = CONFIG.products[productId];
+			
+			// If product requires flavor selection, show modal
+			if (product && product.flavor) {
+				pendingProductId = productId;
+				showFlavorModal(productId);
+			} else {
+				// No flavor needed, add directly
+				addToCart(productId, "N/A");
+			}
 		});
 	});
 
@@ -125,6 +148,70 @@ function initializeCart() {
 
 	updateCartDisplay();
 	console.log("Cart initialized successfully");
+}
+
+function initializeFlavorModal() {
+	const modal = document.getElementById("flavor-modal");
+	const confirmBtn = document.getElementById("flavor-confirm");
+	const cancelBtn = document.getElementById("flavor-cancel");
+	
+	if (!modal || !confirmBtn || !cancelBtn) return;
+	
+	confirmBtn.addEventListener("click", () => {
+		const flavorSelect = document.getElementById("flavor-select");
+		const selectedFlavor = flavorSelect.value;
+		
+		if (!selectedFlavor) {
+			alert("Please select a flavor");
+			return;
+		}
+		
+		if (pendingProductId) {
+			addToCart(pendingProductId, selectedFlavor);
+			pendingProductId = null;
+		}
+		
+		modal.style.display = "none";
+	});
+	
+	cancelBtn.addEventListener("click", () => {
+		modal.style.display = "none";
+		pendingProductId = null;
+	});
+}
+
+function showFlavorModal(productId) {
+	const modal = document.getElementById("flavor-modal");
+	const flavorSelect = document.getElementById("flavor-select");
+	const title = document.getElementById("flavor-modal-title");
+	
+	if (!modal || !flavorSelect) return;
+	
+	// Determine flavor options based on product
+	let flavors = [];
+	if (productId.includes("cookies") || productId.includes("cookie")) {
+		flavors = FLAVOR_OPTIONS.cookies;
+	} else if (productId.includes("brownie")) {
+		flavors = FLAVOR_OPTIONS.brownies;
+	} else if (productId.includes("cottoncandy")) {
+		flavors = FLAVOR_OPTIONS.cottoncandy;
+	} else if (productId.includes("popcorn")) {
+		flavors = FLAVOR_OPTIONS.popcorn;
+	} else {
+		flavors = ["Classic"]; // default
+	}
+	
+	// Populate select
+	flavorSelect.innerHTML = '<option value="">-- Select Flavor --</option>';
+	flavors.forEach(flavor => {
+		const option = document.createElement("option");
+		option.value = flavor;
+		option.textContent = flavor;
+		flavorSelect.appendChild(option);
+	});
+	
+	title.textContent = `Choose Your Flavor`;
+	modal.style.display = "flex";
 }
 
 function addToCart(productId, flavor) {
@@ -157,12 +244,14 @@ function updateCartDisplay() {
 	const cartTotal = document.getElementById("cart-total");
 	const checkoutBtn = document.getElementById("checkout-btn");
 	const cartEmpty = document.getElementById("cart-empty");
+	const contactForm = document.getElementById("contact-form");
 
 	if (!cartItems || !cartTotal) return;
 
 	if (cart.length === 0) {
 		if (cartEmpty) cartEmpty.style.display = "block";
 		if (checkoutBtn) checkoutBtn.style.display = "none";
+		if (contactForm) contactForm.style.display = "none";
 		cartItems.innerHTML = "";
 		cartTotal.textContent = "$0.00";
 		return;
@@ -170,6 +259,7 @@ function updateCartDisplay() {
 
 	if (cartEmpty) cartEmpty.style.display = "none";
 	if (checkoutBtn) checkoutBtn.style.display = "inline-block";
+	if (contactForm) contactForm.style.display = "block";
 
 	// Render cart items
 	cartItems.innerHTML = cart.map((item, index) => `
@@ -330,7 +420,12 @@ async function sendOrderNotification(orderItems, customerEmail) {
 	const emailBody = `
 NEW ORDER RECEIVED
 
-Order Total: $${subtotalDollars}
+Customer: ${customerName || 'Not provided'}
+Email: ${customerEmail || 'Not provided'}
+Phone: ${customerPhone || 'Not provided'}
+
+Order Total: ${subtotalDollars}
+Shipping: ${subtotalDollars >= 60 ? 'FREE' : '$8.00'}otal: $${subtotalDollars}
 Shipping: ${subtotalDollars >= 60 ? 'FREE' : '$8.00'}
  Customer Email: ${customerEmail || 'not provided'}
 
