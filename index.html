@@ -78,149 +78,6 @@
 
         <section id="order" class="section">
             <h2>Place an Order</h2>
-            <div class="order-form">
-                <form>
-                    <div class="form-group">
-                        <input type="text" name="name" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" name="email" placeholder="Your Email" required>
-                    </div>
-                    <!-- Flavors dropdown with categories for each item -->
-                    <div class="form-group" id="flavor-group">
-                        <select name="flavor" id="flavor-select" required>
-                            <option value="">Select Flavor</option>
-                            <optgroup label="Cookie Flavors">
-                                <option value="chocolate-chip">Chocolate Chip</option>
-                                <option value="double-chocolate-chunk">Double Chocolate Chunk</option>
-                                <option value="smores">Smores</option>
-                                <option value="peanut-butter">Peanut Butter</option>
-                                <option value="toffee">Toffee</option>
-                                <option value="biscoff">Biscoff</option>
-                                <option value="almond-coconut">Almond Coconut</option>
-                                <option value="pecan-pie-shortbread">Pecan Pie Shortbread</option>
-                                <option value="sprinkle">Sprinkle</option>
-                            </optgroup>
-                            <optgroup label="Brownie Flavors">
-                                <option value="classic-chocolate">Classic Chocolate</option>
-                                <option value="smores-brownie">S’mores</option>
-                                <option value="cookie-dough">Cookie Dough</option>
-                                <option value="oreo">Oreo</option>
-                                <option value="caramel-turtle">Caramel Turtle</option>
-                                <option value="biscoff-brownie">Biscoff</option>
-                                <option value="peanut-butter-swirl">Peanut Butter Swirl</option>
-                                <option value="coffee">Coffee</option>
-                                <option value="variety">Variety Box (6 assorted)</option>
-                            </optgroup>
-                            <optgroup label="Cupcake Flavors">
-                                <option value="vanilla">Vanilla</option>
-                                <option value="chocolate">Chocolate</option>
-                                <option value="red-velvet">Red Velvet</option>
-                                <option value="lemon">Lemon</option>
-                                <option value="strawberry">Strawberry</option>
-                            </optgroup>
-                            <optgroup label="Cereal Bar Flavors">
-                                <option value="rice-krispies">Rice Krispies</option>
-                                <option value="fruity-pebbles">Fruity Pebbles</option>
-                                <option value="reeses-puffs">Reese’s Puffs</option>
-                            </optgroup>
-                            <optgroup label="Pretzel Flavors">
-                                <option value="milk-chocolate">Milk Chocolate</option>
-                                <option value="white-chocolate">White Chocolate</option>
-                                <option value="sprinkle-pretzel">Sprinkle</option>
-                            </optgroup>
-                            <optgroup label="Cotton Candy Flavors">
-                                <option value="orange">Orange</option>
-                                <option value="grape">Grape</option>
-                                <option value="lemon">Lemon</option>
-                                <option value="cherry">Cherry</option>
-                                <option value="pink-vanilla">Pink Vanilla</option>
-                                <option value="blue-raspberry">Blue Raspberry</option>
-                            </optgroup>
-                            <optgroup label="Popcorn Flavors">
-                                <option value="buttered">Buttered</option>
-                                <option value="cheddar">Cheddar</option>
-                                <option value="caramel">Caramel</option>
-                                <option value="oreo-popcorn">Oreo</option>
-                                <option value="unicorn">Unicorn</option>
-                                <option value="chocolate-drizzle">Chocolate Drizzle</option>
-                            </optgroup>
-                            <optgroup label="Cookie Cake Flavors">
-                                <option value="chocolate-chip-cake">Chocolate Chip</option>
-                                <option value="sprinkle-cake">Sprinkle</option>
-                                <option value="red-velvet-cake">Red Velvet</option>
-                            </optgroup>
-                        </select>
-                    </div>
-                    <!-- Then choose pack size or menu item -->
-                    <div class="form-group">
-                        <select name="item" id="item-select" required>
-                            <option value="">Select Item</option>
-                            <!-- Cookies -->
-                            <optgroup label="Small Cookies">
-                                <option value="cookies-4" data-flavors="chocolate-chip,double-chocolate-chunk,smores,peanut-butter,toffee,biscoff,almond-coconut,pecan-pie-shortbread,sprinkle" data-price="$8">Small Cookies Pack of 4 - $8</option>
-                                <option value="cookies-6" data-flavors="chocolate-chip,double-chocolate-chunk,smores,peanut-butter,toffee,biscoff,almond-coconut,pecan-pie-shortbread,sprinkle" data-price="$12">Small Cookies Pack of 6 - $12</option>
-                                <option value="cookies-8" data-flavors="chocolate-chip,double-chocolate-chunk,smores,peanut-butter,toffee,biscoff,almond-coconut,pecan-pie-shortbread,sprinkle" data-price="$18">Small Cookies Pack of 8 - $18</option>
-                                <option value="cookies-12" data-flavors="chocolate-chip,double-chocolate-chunk,smores,peanut-butter,toffee,biscoff,almond-coconut,pecan-pie-shortbread,sprinkle" data-price="$24">Small Cookies Pack of 12 - $24</option>
-                            </optgroup>
-                            <optgroup label="Large Cookies">
-                                <option value="large-cookies-4" data-flavors="chocolate-chip,double-chocolate-chunk,smores,peanut-butter,toffee,biscoff,almond-coconut,pecan-pie-shortbread,sprinkle" data-price="$16">Large Cookies Pack of 4 - $16</option>
-                                <option value="large-cookies-6" data-flavors="chocolate-chip,double-chocolate-chunk,smores,peanut-butter,toffee,biscoff,almond-coconut,pecan-pie-shortbread,sprinkle" data-price="$24">Large Cookies Pack of 6 - $24</option>
-                                <option value="large-cookies-8" data-flavors="chocolate-chip,double-chocolate-chunk,smores,peanut-butter,toffee,biscoff,almond-coconut,pecan-pie-shortbread,sprinkle" data-price="$32">Large Cookies Pack of 8 - $32</option>
-                                <option value="large-cookies-12" data-flavors="chocolate-chip,double-chocolate-chunk,smores,peanut-butter,toffee,biscoff,almond-coconut,pecan-pie-shortbread,sprinkle" data-price="$48">Large Cookies Pack of 12 - $48</option>
-                            </optgroup>
-                            <!-- Brownies -->
-                            <optgroup label="Brownies">
-                                <option value="brownies-4" data-price="$16">Brownies 4 count - $16</option>
-                                <option value="brownies-6" data-price="$24">Brownies 6 count - $24</option>
-                                <option value="brownies-8" data-price="$32">Brownies 8 count - $32</option>
-                                <option value="brownies-12" data-price="$48">Brownies 12 count - $48</option>
-                            </optgroup>
-                            <optgroup label="Gourmet Brownies">
-                                <option value="gourmet-brownies-4" data-price="$32">Gourmet Brownies 4 count - $32</option>
-                                <option value="gourmet-brownies-6" data-price="$48">Gourmet Brownies 6 count - $48</option>
-                                <option value="gourmet-brownies-8" data-price="$64">Gourmet Brownies 8 count - $64</option>
-                                <option value="gourmet-brownies-12" data-price="$96">Gourmet Brownies 12 count - $96</option>
-                            </optgroup>
-                            <!-- Cupcakes -->
-                            <optgroup label="Cupcakes">
-                                <option value="cupcake-single" data-flavors="vanilla,chocolate,red-velvet,lemon,strawberry" data-price="$4">Cupcake (any flavor) - $4 each</option>
-                                <option value="cupcake-dozen" data-flavors="vanilla,chocolate,red-velvet,lemon,strawberry" data-price="$40">Cupcakes (dozen, any flavor) - $40</option>
-                            </optgroup>
-                            <!-- Cereal Bars -->
-                            <optgroup label="Cereal Bars">
-                                <option value="cerealbar-ricekrispies" data-flavors="rice-krispies" data-price="$3">Rice Krispies Cereal Bar - $3</option>
-                                <option value="cerealbar-fruitypebbles" data-flavors="fruity-pebbles" data-price="$3">Fruity Pebbles Cereal Bar - $3</option>
-                                <option value="cerealbar-reesespuffs" data-flavors="reeses-puffs" data-price="$3">Reese’s Puffs Cereal Bar - $3</option>
-                            </optgroup>
-                            <!-- Pretzels -->
-                            <optgroup label="Chocolate Dipped Pretzels">
-                                <option value="pretzel-large-3" data-flavors="milk-chocolate,white-chocolate,sprinkle" data-price="$3">Large Pretzel Set (3) - $3</option>
-                            </optgroup>
-                            <!-- Cotton Candy -->
-                            <optgroup label="Cotton Candy">
-                                <option value="cottoncandy-large" data-flavors="blue-raspberry,strawberry,grape" data-price="$8">Large Cotton Candy - $8</option>
-                                <option value="cottoncandy-small" data-flavors="blue-raspberry,strawberry,grape" data-price="$4">Small Cotton Candy - $4</option>
-                            </optgroup>
-                            <!-- Popcorn -->
-                            <optgroup label="Gourmet Popcorn">
-                                <option value="popcorn-gourmet" data-flavors="caramel,cheddar,classic" data-price="$8">Gourmet Popcorn - $8</option>
-                            </optgroup>
-                            <!-- Cookie Cakes -->
-                            <optgroup label="Cookie Cakes">
-                                <option value="cookiecake-small" data-flavors="chocolate-chip,sprinkle,red-velvet" data-price="$25">Small Cookie Cake (6") - $25</option>
-                                <option value="cookiecake-medium" data-flavors="chocolate-chip,sprinkle,red-velvet" data-price="$35">Medium Cookie Cake (8") - $35</option>
-                                <option value="cookiecake-large" data-flavors="chocolate-chip,sprinkle,red-velvet" data-price="$50">Large Cookie Cake (12") - $50</option>
-                            </optgroup>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <textarea name="instructions" placeholder="Special Instructions"></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Place Order</button>
-                    <div id="order-status" aria-live="polite" style="margin-top:0.75rem;"></div>
-                </form>
-            </div>
             <div class="stripe-buy-buttons" style="margin:2rem 0 1.5rem 0; padding:1.25rem; background:#fff8f0; border:1.5px solid #e0c9a6; border-radius:8px;">
                 <h3 style="margin-top:0; color:#8b4513; font-size:1.15rem;">Shop Our Products</h3>
                 <div id="cart-message" style="display:none; padding:0.5rem; background:#d4edda; color:#155724; border-radius:4px; margin-bottom:1rem;"></div>
@@ -326,6 +183,24 @@
                 <h3 style="margin: 0 0 0.5rem; font-size: 1.1rem; color: #8b4513;">Shipping Policy</h3>
                 <p style="margin: 0; line-height: 1.6;">To ensure quality and freshness, shipped orders require a <strong>$25 minimum purchase</strong>.<br>
                 Orders <strong>$60 or more ship FREE</strong> anywhere in the U.S.!</p>
+            </div>
+            
+            <!-- Custom Orders Section -->
+            <div class="custom-orders" style="margin-top: 1.5rem; padding: 1.5rem; background: #fff8f0; border: 2px solid #e0c9a6; border-radius: 8px;">
+                <h3 style="margin: 0 0 1rem; font-size: 1.3rem; color: #8b4513; text-align: center;">🎨 Custom Orders & Special Designs</h3>
+                <p style="margin: 0 0 1rem; line-height: 1.6; text-align: center; color: #555;">
+                    Looking for something unique? We love creating custom designs for special occasions!<br>
+                    <strong>Email us</strong> to discuss your custom cake, cookie, or treat ideas.
+                </p>
+                <div style="text-align: center;">
+                    <a href="mailto:ElizabethsBakedGoods@gmail.com?subject=Custom Order Inquiry" 
+                       style="display: inline-block; padding: 0.9rem 2rem; background: #8b4513; color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 1.05rem; transition: background 0.3s;">
+                        📧 Email for Custom Orders
+                    </a>
+                </div>
+                <p style="margin: 1rem 0 0; font-size: 0.9rem; color: #666; text-align: center;">
+                    We typically respond within 24 hours. Custom orders require 48-72 hours notice.
+                </p>
             </div>
         </section>
 
