@@ -6,6 +6,30 @@ const CONFIG = {
 		standard: "shr_1SNN8uAKipJWOAbPTYYrDSiC", // $8 standard shipping
 		free: "shr_1SNN9iAKipJWOAbPoHVk3SfH" // Free shipping over $60
 	},
+	paymentLinks: {
+		// Cookies
+		"cookies-4": "https://buy.stripe.com/5kQ14merf16L0V44vH1VK0v",
+		"cookies-6": "https://buy.stripe.com/6oUdR81Et6r5fPYe6h1VK0u",
+		"cookies-8": "https://buy.stripe.com/00wbJ0bf34iX1Z80fr1VK0t",
+		"cookies-12": "https://buy.stripe.com/dRm3cuerf2aP5bk5zL1VK0s",
+		"large-cookies-4": "https://buy.stripe.com/cNieVcdnb4iX33c5zL1VK0r",
+		"large-cookies-6": "https://buy.stripe.com/dRm9AS82Rg1F6fo5zL1VK0q",
+		"large-cookies-12": "https://buy.stripe.com/3cIcN4dnb6r5cDMfal1VK0o",
+		"gourmet-brownies-4": "https://buy.stripe.com/3cIaEW2IxaHl0V46DP1VK0n",
+		"gourmet-brownies-6": "https://buy.stripe.com/eVq28qfvj5n1avE8LX1VK0m",
+		"gourmet-brownies-8": "https://buy.stripe.com/8x26oG6YNdTxcDM2nz1VK0l",
+		"gourmet-brownies-12": "https://buy.stripe.com/7sY3cu3MB3eT33cd2d1VK0k",
+		"cupcake-dozen": "https://buy.stripe.com/cNi8wOaaZ2aP9rA7HT1VK0g",
+		"cerealbar-ricekrispies": "https://buy.stripe.com/cNi28qerfeXB7js3rD1VK0e",
+		"cerealbar-fruitypebbles": "https://buy.stripe.com/00w9AS96VdTxeLU1jv1VK0b",
+		"cerealbar-reesespuffs": "https://buy.stripe.com/aFa6oG1Et9Dh0V43rD1VK07",
+		"pretzel-large-3": "https://buy.stripe.com/9B67sK1EtaHl6fod2d1VK01",
+		"cottoncandy-large": "https://buy.stripe.com/9B6eVcdnbdTxavE6DP1VK03",
+		"popcorn-gourmet": "https://buy.stripe.com/3cIaEW5UJ6r56foe6h1VK02",
+		"cookiecake-small": "https://buy.stripe.com/14A6oG1Et5n1avEfal1VK0j",
+		"cookiecake-medium": "https://buy.stripe.com/5kQbJ0fvjg1FfPYaU51VK0i",
+		"cookiecake-large": "https://buy.stripe.com/14AdR896VeXBeLU2nz1VK0h"
+	},
 	products: {
 		// Small Cookies
 		"cookies-4": { name: "Small Cookies Pack of 4", price: 800, flavor: true },
@@ -189,7 +213,22 @@ async function handleCheckout() {
 		return;
 	}
 
-	// Build order details for email
+	// If cart has only ONE item, redirect directly to Stripe payment link
+	if (cart.length === 1) {
+		const item = cart[0];
+		const paymentLink = CONFIG.paymentLinks[item.id];
+		
+		if (paymentLink) {
+			// Store order for notification
+			sessionStorage.setItem('pendingOrder', JSON.stringify(cart));
+			
+			// Redirect to Stripe payment link
+			window.location.href = paymentLink;
+			return;
+		}
+	}
+	
+	// For multiple items, use email workflow
 	const orderDetails = cart.map((item, i) => 
 		`${i + 1}. ${item.name} - Flavor: ${item.flavor} - $${(item.price / 100).toFixed(2)}`
 	).join('\n');
@@ -203,8 +242,7 @@ async function handleCheckout() {
 	
 	const emailSubject = encodeURIComponent(`New Order - $${grandTotal.toFixed(2)}`);
 	
-	// Show order summary and open email
-	const message = `📦 Your Order Summary:\n\n${cart.map((item, i) => `${i + 1}. ${item.name} (${item.flavor})`).join('\n')}\n\nSubtotal: $${subtotalDollars.toFixed(2)}\nShipping: ${shippingCost}\nTotal: $${grandTotal.toFixed(2)}\n\nClick OK to email your order, and we'll send you a secure payment link!`;
+	const message = `📦 Your Order (${cart.length} items):\n\n${cart.map((item, i) => `${i + 1}. ${item.name} (${item.flavor})`).join('\n')}\n\nSubtotal: $${subtotalDollars.toFixed(2)}\nShipping: ${shippingCost}\nTotal: $${grandTotal.toFixed(2)}\n\nFor multiple items, we'll email you a combined payment link.\nClick OK to send your order!`;
 	
 	alert(message);
 	
