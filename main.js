@@ -27,6 +27,26 @@ const CONFIG = {
 		"gourmet-brownies-6": { name: "Gourmet Brownies 6 count", price: 4800, flavor: true },
 		"gourmet-brownies-8": { name: "Gourmet Brownies 8 count", price: 6400, flavor: true },
 		"gourmet-brownies-12": { name: "Gourmet Brownies 12 count", price: 9600, flavor: true },
+		// Cupcakes
+		"cupcake-single": { name: "Cupcake", price: 400, flavor: true },
+		"cupcake-dozen": { name: "Cupcakes (dozen)", price: 4000, flavor: true },
+		// Cereal Bars
+		"cerealbar-ricekrispies": { name: "Rice Krispies Cereal Bar", price: 300, flavor: false },
+		"cerealbar-fruitypebbles": { name: "Fruity Pebbles Cereal Bar", price: 300, flavor: false },
+		"cerealbar-reesespuffs": { name: "Reese's Puffs Cereal Bar", price: 300, flavor: false },
+		// Pretzels
+		"pretzel-rod-single": { name: "Pretzel Rod", price: 200, flavor: true },
+		"pretzel-rod-5": { name: "Pretzel Rods (5)", price: 300, flavor: true },
+		"pretzel-large-3": { name: "Large Pretzel Set (3)", price: 300, flavor: true },
+		// Cotton Candy
+		"cottoncandy-large": { name: "Large Cotton Candy", price: 800, flavor: true },
+		"cottoncandy-small": { name: "Small Cotton Candy", price: 400, flavor: true },
+		// Popcorn
+		"popcorn-gourmet": { name: "Gourmet Popcorn", price: 800, flavor: true },
+		// Cookie Cakes
+		"cookiecake-small": { name: "Small Cookie Cake (6\")", price: 2500, flavor: true },
+		"cookiecake-medium": { name: "Medium Cookie Cake (8\")", price: 3500, flavor: true },
+		"cookiecake-large": { name: "Large Cookie Cake (12\")", price: 5000, flavor: true }
 	}
 };
 
