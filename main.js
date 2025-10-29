@@ -189,48 +189,33 @@ async function handleCheckout() {
 		return;
 	}
 
-	// Store cart in sessionStorage so we can send notification after redirect
-	sessionStorage.setItem('pendingOrder', JSON.stringify(cart));
-
-	// Determine shipping rate
-	const shippingRate = subtotalDollars >= 60 ? CONFIG.shippingRates.free : CONFIG.shippingRates.standard;
+	// Build order details for email
+	const orderDetails = cart.map((item, i) => 
+		`${i + 1}. ${item.name} - Flavor: ${item.flavor} - $${(item.price / 100).toFixed(2)}`
+	).join('\n');
 	
-	showCartMessage("Redirecting to checkout...");
-
-	try {
-		// Initialize Stripe
-		const stripe = Stripe(CONFIG.stripePublishableKey);
-
-		// Create line items for Stripe
-		const lineItems = cart.map(item => ({
-			price_data: {
-				currency: "usd",
-				product_data: {
-					name: item.name,
-					description: `Flavor: ${item.flavor}`,
-				},
-				unit_amount: item.price,
-			},
-			quantity: item.quantity,
-		}));
-
-		// Redirect to Stripe Checkout
-		const { error } = await stripe.redirectToCheckout({
-			lineItems: lineItems,
-			mode: "payment",
-			shippingRates: [shippingRate],
-			successUrl: `${window.location.origin}?checkout=success`,
-			cancelUrl: `${window.location.origin}?checkout=cancel`,
-		});
-
-		if (error) {
-			console.error("Stripe error:", error);
-			alert("Sorry, there was a problem with checkout. Please try again or call us.");
-		}
-	} catch (error) {
-		console.error("Checkout error:", error);
-		alert("Sorry, there was a problem. Please try again or call us at (330) 842-9877.");
-	}
+	const shippingCost = subtotalDollars >= 60 ? 'FREE' : '$8.00';
+	const grandTotal = subtotalDollars >= 60 ? subtotalDollars : subtotalDollars + 8;
+	
+	const emailBody = encodeURIComponent(
+		`Hello! I'd like to place the following order:\n\n${orderDetails}\n\nSubtotal: $${subtotalDollars.toFixed(2)}\nShipping: ${shippingCost}\nTotal: $${grandTotal.toFixed(2)}\n\nPlease send me a Stripe payment link to complete my order. Thank you!`
+	);
+	
+	const emailSubject = encodeURIComponent(`New Order - $${grandTotal.toFixed(2)}`);
+	
+	// Show order summary and open email
+	const message = `📦 Your Order Summary:\n\n${cart.map((item, i) => `${i + 1}. ${item.name} (${item.flavor})`).join('\n')}\n\nSubtotal: $${subtotalDollars.toFixed(2)}\nShipping: ${shippingCost}\nTotal: $${grandTotal.toFixed(2)}\n\nClick OK to email your order, and we'll send you a secure payment link!`;
+	
+	alert(message);
+	
+	// Open default email client with order details
+	window.location.href = `mailto:ElizabethsBakedGoods@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+	
+	// Clear cart after sending order
+	setTimeout(() => {
+		cart = [];
+		updateCartDisplay();
+	}, 1000);
 }
 
 // Check if returning from successful checkout and send notification
