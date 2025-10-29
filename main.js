@@ -53,6 +53,12 @@ const CONFIG = {
 // Shopping cart
 let cart = [];
 
+// Make removeFromCart available globally
+window.removeFromCart = function(index) {
+	cart.splice(index, 1);
+	updateCartDisplay();
+};
+
 window.addEventListener("load", () => {
 	initializeCart();
 	initializeFormSubmission();
@@ -62,7 +68,10 @@ function initializeCart() {
 	const cartContainer = document.getElementById("cart-container");
 	const checkoutBtn = document.getElementById("checkout-btn");
 	
-	if (!cartContainer || !checkoutBtn) return;
+	if (!cartContainer || !checkoutBtn) {
+		console.error("Cart container or checkout button not found");
+		return;
+	}
 
 	// Add to cart button listeners
 	document.querySelectorAll(".add-to-cart-btn").forEach(btn => {
@@ -70,6 +79,7 @@ function initializeCart() {
 			e.preventDefault();
 			const productId = btn.dataset.product;
 			const flavor = btn.dataset.flavor || "Classic";
+			console.log("Adding to cart:", productId, flavor);
 			addToCart(productId, flavor);
 		});
 	});
@@ -85,7 +95,10 @@ function initializeCart() {
 
 function addToCart(productId, flavor) {
 	const product = CONFIG.products[productId];
-	if (!product) return;
+	if (!product) {
+		console.error("Product not found:", productId);
+		return;
+	}
 
 	cart.push({
 		id: productId,
@@ -95,6 +108,7 @@ function addToCart(productId, flavor) {
 		quantity: 1
 	});
 
+	console.log("Cart updated:", cart);
 	updateCartDisplay();
 	showCartMessage("Added to cart!");
 }
