@@ -73,13 +73,21 @@ function initializeCart() {
 		return;
 	}
 
+	console.log("Initializing cart...");
+
 	// Add to cart button listeners
-	document.querySelectorAll(".add-to-cart-btn").forEach(btn => {
+	const buttons = document.querySelectorAll(".add-to-cart-btn");
+	console.log(`Found ${buttons.length} add-to-cart buttons`);
+	
+	buttons.forEach((btn, index) => {
+		const productId = btn.dataset.product;
+		console.log(`Button ${index}: product=${productId}`);
+		
 		btn.addEventListener("click", (e) => {
 			e.preventDefault();
-			const productId = btn.dataset.product;
+			e.stopPropagation();
 			const flavor = btn.dataset.flavor || "Classic";
-			console.log("Adding to cart:", productId, flavor);
+			console.log("Button clicked! Product:", productId, "Flavor:", flavor);
 			addToCart(productId, flavor);
 		});
 	});
@@ -91,6 +99,7 @@ function initializeCart() {
 	});
 
 	updateCartDisplay();
+	console.log("Cart initialized successfully");
 }
 
 function addToCart(productId, flavor) {
