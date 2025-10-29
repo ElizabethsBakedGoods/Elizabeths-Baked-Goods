@@ -321,7 +321,9 @@ async function handleCheckout() {
 			});
 			const data = await res.json();
 			if (!res.ok || !data.url) {
-				throw new Error(data.error || "Failed to create checkout session");
+				// Surface worker error to the user and stop here
+				alert(`Checkout error: ${data.error || 'Failed to create checkout session'}`);
+				return;
 			}
 			// Store order for post-success notification
 			sessionStorage.setItem('pendingOrder', JSON.stringify(cart));
@@ -330,7 +332,8 @@ async function handleCheckout() {
 			return;
 		} catch (err) {
 			console.error("Worker checkout error:", err);
-			// Fall through to payment link or email flow
+			alert(`Checkout error: ${err?.message || err}`);
+			return;
 		}
 	}
 
