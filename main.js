@@ -254,7 +254,14 @@ async function handleCheckout() {
 		}
 	}
 	
-	// For multiple items, use email workflow
+	// For multiple items, collect a contact email and notify you to send a combined link
+	// Ask customer for an email to receive the payment link
+	let customerEmail = prompt("Enter your email to receive one secure payment link for your full order:");
+	if (!customerEmail || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(customerEmail)) {
+		alert("Please enter a valid email address to continue.");
+		return;
+	}
+
 	const orderDetails = cart.map((item, i) => 
 		`${i + 1}. ${item.name} - Flavor: ${item.flavor} - $${(item.price / 100).toFixed(2)}`
 	).join('\n');
@@ -271,11 +278,8 @@ async function handleCheckout() {
 	const message = `📦 Your Order (${cart.length} items):\n\n${cart.map((item, i) => `${i + 1}. ${item.name} (${item.flavor})`).join('\n')}\n\nSubtotal: $${subtotalDollars.toFixed(2)}\nShipping: ${shippingCost}\nTotal: $${grandTotal.toFixed(2)}\n\nWe’ll email you one secure Stripe link to pay for all items together.\nClick OK to send your order.`;
 	
 	// Send you an order email via Formspree so you can reply with a combined link
-	try { await sendOrderNotification(cart); } catch (e) { console.warn('Notify failed (non-blocking):', e); }
-	alert(message);
-	
-	// Open default email client with order details
-	window.location.href = `mailto:ElizabethsBakedGoods@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+	try { await sendOrderNotification(cart, customerEmail); } catch (e) { console.warn('Notify failed (non-blocking):', e); }
+	alert(message + "\n\nThanks! We\'ll email your payment link shortly.");
 	
 	// Clear cart after sending order
 	setTimeout(() => {
@@ -314,7 +318,7 @@ function checkForSuccessfulCheckout() {
 }
 
 // Send order notification to Formspree
-async function sendOrderNotification(orderItems) {
+async function sendOrderNotification(orderItems, customerEmail) {
 	const subtotal = orderItems.reduce((sum, item) => sum + item.price, 0);
 	const subtotalDollars = (subtotal / 100).toFixed(2);
 	
@@ -328,6 +332,7 @@ NEW ORDER RECEIVED
 
 Order Total: $${subtotalDollars}
 Shipping: ${subtotalDollars >= 60 ? 'FREE' : '$8.00'}
+ Customer Email: ${customerEmail || 'not provided'}
 
 Items:
 ${orderDetails}
@@ -346,7 +351,7 @@ Customer will receive Stripe email receipt
 			body: JSON.stringify({
 				subject: `New Order - $${subtotalDollars}`,
 				message: emailBody,
-				_replyto: "noreply@elizabethsbakedgoods.com"
+				_replyto: customerEmail || "noreply@elizabethsbakedgoods.com"
 			}),
 		});
 		
