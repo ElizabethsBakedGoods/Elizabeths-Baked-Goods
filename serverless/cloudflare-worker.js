@@ -40,10 +40,9 @@ export default {
         });
       }
 
-      // Determine shipping cost based on rate ID
-      const isFreeShipping = shippingRateId === 'shr_1SNN9iAKipJWOAbPoHVk3SfH';
-      const shippingCost = isFreeShipping ? 0 : 800; // $8 in cents
-      const shippingLabel = isFreeShipping ? 'Free Shipping (orders $60+)' : 'Standard Shipping';
+      // Determine shipping cost - always $8
+      const shippingCost = 800; // $8 in cents
+      const shippingLabel = 'Standard Shipping';
 
       // Create line items
       const lineItems = cart.map(item => ({
@@ -58,19 +57,17 @@ export default {
         quantity: item.quantity || 1,
       }));
       
-      // Add shipping as a line item
-      if (shippingCost > 0) {
-        lineItems.push({
-          price_data: {
-            currency: 'usd',
-            product_data: {
-              name: shippingLabel,
-            },
-            unit_amount: shippingCost,
+      // Add shipping as a line item (always $8)
+      lineItems.push({
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: shippingLabel,
           },
-          quantity: 1,
-        });
-      }
+          unit_amount: shippingCost,
+        },
+        quantity: 1,
+      });
 
       // Create Stripe Checkout Session
       const origin = request.headers.get('origin') || 'https://elizabethsbakedgoods.com';

@@ -313,7 +313,8 @@ async function handleCheckout() {
 	// Preferred: If a serverless endpoint is configured, create a Checkout Session for the whole cart
 	if (CONFIG.workerEndpoint && CONFIG.workerEndpoint.trim() !== "") {
 		try {
-			const shippingRateId = subtotalDollars >= 60 ? CONFIG.shippingRates.free : CONFIG.shippingRates.standard;
+			// Always use standard shipping rate ($8)
+			const shippingRateId = CONFIG.shippingRates.standard;
 			const res = await fetch(CONFIG.workerEndpoint, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
