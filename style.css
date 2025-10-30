@@ -33,6 +33,19 @@ body {
     line-height: 1.6;
 }
 
+/* Optional full-page background image (set on <body class="site-bg">) */
+body.site-bg {
+    /* Replace images/site-bg.jpg with your Canva export */
+    background-image: url('images/site-bg.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* Keeps background steady while scrolling on desktop; mobile ignores fixed for performance */
+    background-attachment: fixed;
+    /* Fallback color in case image fails to load */
+    background-color: var(--primary-pink);
+}
+
 nav {
     background-color: var(--white);
     padding: 1rem 5%;

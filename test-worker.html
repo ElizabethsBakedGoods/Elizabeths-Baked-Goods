@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Worker</title>
+</head>
+<body>
+    <h1>Test Cloudflare Worker</h1>
+    <button onclick="testWorker()">Test Worker</button>
+    <pre id="result"></pre>
+
+    <script>
+        async function testWorker() {
+            const result = document.getElementById('result');
+            result.textContent = 'Testing...';
+            
+            try {
+                const response = await fetch('https://worker.bethsbakedgoodss.workers.dev/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        cart: [
+                            { id: 'cookies-4', name: 'Test Cookie', price: 1600, flavor: 'Chocolate Chip' }
+                        ],
+                        shippingRateId: 'shr_1SNN8uAKipJWOAbPTYYrDSiC'
+                    })
+                });
+                
+                const data = await response.json();
+                result.textContent = JSON.stringify({
+                    status: response.status,
+                    ok: response.ok,
+                    data: data
+                }, null, 2);
+            } catch (error) {
+                result.textContent = 'Error: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>
