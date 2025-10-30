@@ -2,9 +2,8 @@
 const CONFIG = {
 	formspreeEndpoint: "https://formspree.io/f/mgvpvzkz",
 	stripePublishableKey: "pk_live_51SNIwWAKipJWOAbPpTyitJZ0bjUS8DtFYMDOwWW7vfmUpXqaP4C5U9rq4cGhG6iragLQ0CrKlQgo5az178HPRg4I00y6YwznJ8",
-	// Optional: When set, we will create a Stripe Checkout Session via this endpoint
-	// Example: "https://your-worker-subdomain.workers.dev/checkout"
-	workerEndpoint: "",  // Temporarily disabled until Worker is confirmed working
+	// Cloudflare Worker endpoint for multi-item checkout
+	workerEndpoint: "https://elizabeths-checkout.bethsbakedgoodss.workers.dev",
 	shippingRates: {
 		standard: "shr_1SNN8uAKipJWOAbPTYYrDSiC", // $8 standard shipping
 		free: "shr_1SNN9iAKipJWOAbPoHVk3SfH" // Free shipping over $60
