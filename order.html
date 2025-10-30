@@ -146,16 +146,30 @@
                 <h3 style="margin: 0 0 1rem; font-size: 1.3rem; color: #8b4513; text-align: center;">🎨 Custom Orders & Special Designs</h3>
                 <p style="margin: 0 0 1rem; line-height: 1.6; text-align: center; color: #555;">
                     Looking for something unique? We love creating custom designs for special occasions!<br>
-                    <strong>Email us</strong> to discuss your custom cake, cookie, or treat ideas.
+                    Fill out the form below and we'll get back to you within 24 hours.
                 </p>
-                <div style="text-align: center;">
-                    <a href="mailto:orders.elizabethsbakedgoods@gmail.com?subject=Custom%20Order%20Inquiry" 
-                       style="display: inline-block; padding: 0.9rem 2rem; background: #8b4513; color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 1.05rem; transition: background 0.3s; cursor: pointer;"
-                       onmouseover="this.style.background='#6d3510'" 
-                       onmouseout="this.style.background='#8b4513'">
-                        📧 Email for Custom Orders
-                    </a>
-                </div>
+                
+                <!-- Custom Order Form -->
+                <form id="custom-order-form" action="https://formspree.io/f/mgvpvzkz" method="POST" style="max-width: 600px; margin: 0 auto;">
+                    <input type="text" name="name" placeholder="Your Name *" required style="width: 100%; padding: 0.7rem; margin-bottom: 0.75rem; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; box-sizing: border-box;">
+                    
+                    <input type="email" name="email" placeholder="Your Email *" required style="width: 100%; padding: 0.7rem; margin-bottom: 0.75rem; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; box-sizing: border-box;">
+                    
+                    <input type="tel" name="phone" placeholder="Phone Number *" required style="width: 100%; padding: 0.7rem; margin-bottom: 0.75rem; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; box-sizing: border-box;">
+                    
+                    <input type="text" name="event-date" placeholder="Event Date (optional)" style="width: 100%; padding: 0.7rem; margin-bottom: 0.75rem; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; box-sizing: border-box;">
+                    
+                    <textarea name="message" placeholder="Tell us about your custom order... (theme, flavors, colors, design ideas, quantity, etc.) *" required rows="5" style="width: 100%; padding: 0.7rem; margin-bottom: 0.75rem; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; box-sizing: border-box; resize: vertical;"></textarea>
+                    
+                    <input type="hidden" name="_subject" value="New Custom Order Inquiry">
+                    
+                    <button type="submit" style="width: 100%; padding: 0.9rem 2rem; background: #8b4513; color: #fff; text-decoration: none; border: none; border-radius: 6px; font-weight: 600; font-size: 1.05rem; cursor: pointer; transition: background 0.3s;"
+                            onmouseover="this.style.background='#6d3510'" 
+                            onmouseout="this.style.background='#8b4513'">
+                        📧 Submit Custom Order Request
+                    </button>
+                </form>
+                
                 <p style="margin: 1rem 0 0; font-size: 0.9rem; color: #666; text-align: center;">
                     We typically respond within 24 hours. Custom orders require 1 week notice.<br>
                     Local pickup available in Rosenberg, TX!
