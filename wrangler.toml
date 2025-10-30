@@ -1,0 +1,7 @@
+# Wrangler configuration for Cloudflare Worker
+name = "elizabeths-checkout"
+main = "serverless/cloudflare-worker.js"
+compatibility_date = "2024-01-01"
+
+# Environment variables (set these in Cloudflare Dashboard)
+# STRIPE_SECRET_KEY = "your-secret-key"
