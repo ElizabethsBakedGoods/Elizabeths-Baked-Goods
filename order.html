@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Now - Elizabeth's Baked Goods</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9289301430903450"
+     crossorigin="anonymous"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#menu">Menu</a>
+            <a href="order.html" class="active">Order</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="index.html#recipes">Recipes</a>
+            <a href="index.html#designs">Designs</a>
+        </div>
+        <div class="mobile-menu">☰</div>
+    </nav>
+
+    <main style="padding-top: 80px;">
+        <section id="order" class="section">
+            <h2>Place an Order</h2>
+            <div class="stripe-buy-buttons" style="margin:2rem 0 1.5rem 0; padding:1.25rem; background:#fff8f0; border:1.5px solid #e0c9a6; border-radius:8px;">
+                <h3 style="margin-top:0; color:#8b4513; font-size:1.15rem;">Shop Our Products</h3>
+                <div id="cart-message" style="display:none; padding:0.5rem; background:#d4edda; color:#155724; border-radius:4px; margin-bottom:1rem;"></div>
+                
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.5rem;">
+                    <!-- Large Cookies -->
+                    <div style="background:#fff; padding:1rem; border-radius:6px; border:1px solid #e0c9a6;">
+                        <div style="font-weight:600; color:#7a4a1b; font-size:1.05rem; margin-bottom:0.5rem;">🍪 Large Cookies</div>
+                        <button class="add-to-cart-btn" data-product="large-cookies-12" data-flavor="Chocolate Chip" style="width:100%; margin:0.3rem 0; background:#8b4513; color:#fff; padding:0.6rem; border:none; border-radius:5px; cursor:pointer; font-weight:500;">Pack of 12 – $48</button>
+                        <button class="add-to-cart-btn" data-product="large-cookies-8" data-flavor="Chocolate Chip" style="width:100%; margin:0.3rem 0; background:#8b4513; color:#fff; padding:0.6rem; border:none; border-radius:5px; cursor:pointer; font-weight:500;">Pack of 8 – $32</button>
+                        <button class="add-to-cart-btn" data-product="large-cookies-6" data-flavor="Chocolate Chip" style="width:100%; margin:0.3rem 0; background:#8b4513; color:#fff; padding:0.6rem; border:none; border-radius:5px; cursor:pointer; font-weight:500;">Pack of 6 – $24</button>
+                        <button class="add-to-cart-btn" data-product="large-cookies-4" data-flavor="Chocolate Chip" style="width:100%; margin:0.3rem 0; background:#8b4513; color:#fff; padding:0.6rem; border:none; border-radius:5px; cursor:pointer; font-weight:500;">Pack of 4 – $16</button>
+                        <small style="color:#666;">Choose flavor after adding</small>
+                    </div>
+                    
+                    <!-- Small Cookies -->
+                    <div style="background:#fff; padding:1rem; border-radius:6px; border:1px solid #e0c9a6;">
+                        <div style="font-weight:600; color:#7a4a1b; font-size:1.05rem; margin-bottom:0.5rem;">🍪 Small Cookies</div>
+                        <button class="add-to-cart-btn" data-product="cookies-12" data-flavor="Chocolate Chip" style="width:100%; margin:0.3rem 0; background:#8b4513; color:#fff; padding:0.6rem; border:none; border-radius:5px; cursor:pointer; font-weight:500;">Pack of 12 – $24</button>
+                        <button class="add-to-cart-btn" data-product="cookies-8" data-flavor="Chocolate Chip" style="width:100%; margin:0.3rem 0; background:#8b4513; color:#fff; padding:0.6rem; border:none; border-radius:5px; cursor:pointer; font-weight:500;">Pack of 8 – $18</button>
+                        <button class="add-to-cart-btn" data-product="cookies-6" data-flavor="Chocolate Chip" style="width:100%; margin:0.3rem 0; background:#8b4513; color:#fff; padding:0.6rem; border:none; border-radius:5px; cursor:pointer; font-weight:500;">Pack of 6 – $12</button>
+                        <button class="add-to-cart-btn" data-product="cookies-4" data-flavor="Chocolate Chip" style="width:100%; margin:0.3rem 0; background:#8b4513; color:#fff; padding:0.6rem; border:none; border-radius:5px; cursor:pointer; font-weight:500;">Pack of 4 – $8</button>
+                        <small style="color:#666;">Choose flavor after adding</small>
+                    </div>
+
+                    <!-- Brownies -->
+                    <div style="background:#fff; padding:1rem; border-radius:6px; border:1px solid #e0c9a6;">
+                        <div style="font-weight:600; color:#7a4a1b; font-size:1.05rem; margin-bottom:0.5rem;">🍫 Brownies</div>
+                        <button class="add-to-cart-btn" data-product="brownies-12" data-flavor="Classic Chocolate" style="width:100%; margin:0.3rem 0; background:#8b4513; color:#fff; padding:0.6rem; border:none; border-radius:5px; cursor:pointer; font-weight:500;">12 count – $48</button>
+                        <button class="add-to-cart-btn" data-product="brownies-8" data-flavor="Classic Chocolate" style="width:100%; margin:0.3rem 0; background:#8b4513; color:#fff; padding:0.6rem; border:none; border-radius:5px; cursor:pointer; font-weight:500;">8 count – $32</button>
+                        <button class="add-to-cart-btn" data-product="brownies-6" data-flavor="Classic Chocolate" style="width:100%; margin:0.3rem 0; background:#8b4513; color:#fff; padding:0.6rem; border:none; border-radius:5px; cursor:pointer; font-weight:500;">6 count – $24</button>
+                        <button class="add-to-cart-btn" data-product="brownies-4" data-flavor="Classic Chocolate" style="width:100%; margin:0.3rem 0; background:#8b4513; color:#fff; padding:0.6rem; border:none; border-radius:5px; cursor:pointer; font-weight:500;">4 count – $16</button>
+                    </div>
+
+                    <!-- Gourmet Brownies -->
+                    <div style="background:#fff; padding:1rem; border-radius:6px; border:1px solid #e0c9a6;">
+                        <div style="font-weight:600; color:#7a4a1b; font-size:1.05rem; margin-bottom:0.5rem;">✨ Gourmet Brownies</div>
+                        <button class="add-to-cart-btn" data-product="gourmet-brownies-12" data-flavor="Variety" style="width:100%; margin:0.3rem 0; background:#8b4513; color:#fff; padding:0.6rem; border:none; border-radius:5px; cursor:pointer; font-weight:500;">12 count – $96</button>
+                        <button class="add-to-cart-btn" data-product="gourmet-brownies-8" data-flavor="Variety" style="width:100%; margin:0.3rem 0; background:#8b4513; color:#fff; padding:0.6rem; border:none; border-radius:5px; cursor:pointer; font-weight:500;">8 count – $64</button>
+                        <button class="add-to-cart-btn" data-product="gourmet-brownies-6" data-flavor="Variety" style="width:100%; margin:0.3rem 0; background:#8b4513; color:#fff; padding:0.6rem; border:none; border-radius:5px; cursor:pointer; font-weight:500;">6 count – $48</button>
+                        <button class="add-to-cart-btn" data-product="gourmet-brownies-4" data-flavor="Variety" style="width:100%; margin:0.3rem 0; background:#8b4513; color:#fff; padding:0.6rem; border:none; border-radius:5px; cursor:pointer; font-weight:500;">4 count – $32</button>
+                    </div>
+
+                    <!-- Cupcakes -->
+                    <div style="background:#fff; padding:1rem; border-radius:6px; border:1px solid #e0c9a6;">
+                        <div style="font-weight:600; color:#7a4a1b; font-size:1.05rem; margin-bottom:0.5rem;">🧁 Cupcakes</div>
+                        <button class="add-to-cart-btn" data-product="cupcake-dozen" data-flavor="Vanilla" style="width:100%; margin:0.3rem 0; background:#8b4513; color:#fff; padding:0.6rem; border:none; border-radius:5px; cursor:pointer; font-weight:500;">Dozen – $40</button>
+                        <button class="add-to-cart-btn" data-product="cupcake-single" data-flavor="Vanilla" style="width:100%; margin:0.3rem 0; background:#8b4513; color:#fff; padding:0.6rem; border:none; border-radius:5px; cursor:pointer; font-weight:500;">Single – $4</button>
+                    </div>
+
+                    <!-- Cereal Bars -->
+                    <div style="background:#fff; padding:1rem; border-radius:6px; border:1px solid #e0c9a6;">
+                        <div style="font-weight:600; color:#7a4a1b; font-size:1.05rem; margin-bottom:0.5rem;">🥣 Cereal Bars</div>
+                        <button class="add-to-cart-btn" data-product="cerealbar-ricekrispies" data-flavor="Rice Krispies" style="width:100%; margin:0.3rem 0; background:#8b4513; color:#fff; padding:0.6rem; border:none; border-radius:5px; cursor:pointer; font-weight:500;">Rice Krispies – $3</button>
+                        <button class="add-to-cart-btn" data-product="cerealbar-fruitypebbles" data-flavor="Fruity Pebbles" style="width:100%; margin:0.3rem 0; background:#8b4513; color:#fff; padding:0.6rem; border:none; border-radius:5px; cursor:pointer; font-weight:500;">Fruity Pebbles – $3</button>
+                        <button class="add-to-cart-btn" data-product="cerealbar-reesespuffs" data-flavor="Reese's Puffs" style="width:100%; margin:0.3rem 0; background:#8b4513; color:#fff; padding:0.6rem; border:none; border-radius:5px; cursor:pointer; font-weight:500;">Reese's Puffs – $3</button>
+                    </div>
+
+                    <!-- Pretzels -->
+                    <div style="background:#fff; padding:1rem; border-radius:6px; border:1px solid #e0c9a6;">
+                        <div style="font-weight:600; color:#7a4a1b; font-size:1.05rem; margin-bottom:0.5rem;">🥨 Chocolate Pretzels</div>
+                        <button class="add-to-cart-btn" data-product="pretzel-large-3" data-flavor="Milk Chocolate" style="width:100%; margin:0.3rem 0; background:#8b4513; color:#fff; padding:0.6rem; border:none; border-radius:5px; cursor:pointer; font-weight:500;">Large Set (3) – $3</button>
+                    </div>
+
+                    <!-- Cotton Candy -->
+                    <div style="background:#fff; padding:1rem; border-radius:6px; border:1px solid #e0c9a6;">
+                        <div style="font-weight:600; color:#7a4a1b; font-size:1.05rem; margin-bottom:0.5rem;">🍭 Cotton Candy</div>
+                        <button class="add-to-cart-btn" data-product="cottoncandy-large" data-flavor="Blue Raspberry" style="width:100%; margin:0.3rem 0; background:#8b4513; color:#fff; padding:0.6rem; border:none; border-radius:5px; cursor:pointer; font-weight:500;">Large – $8</button>
+                        <button class="add-to-cart-btn" data-product="cottoncandy-small" data-flavor="Blue Raspberry" style="width:100%; margin:0.3rem 0; background:#8b4513; color:#fff; padding:0.6rem; border:none; border-radius:5px; cursor:pointer; font-weight:500;">Small – $4</button>
+                    </div>
+
+                    <!-- Popcorn -->
+                    <div style="background:#fff; padding:1rem; border-radius:6px; border:1px solid #e0c9a6;">
+                        <div style="font-weight:600; color:#7a4a1b; font-size:1.05rem; margin-bottom:0.5rem;">🍿 Gourmet Popcorn</div>
+                        <button class="add-to-cart-btn" data-product="popcorn-gourmet" data-flavor="Caramel" style="width:100%; margin:0.3rem 0; background:#8b4513; color:#fff; padding:0.6rem; border:none; border-radius:5px; cursor:pointer; font-weight:500;">Gourmet Popcorn – $8</button>
+                    </div>
+
+                    <!-- Cookie Cakes -->
+                    <div style="background:#fff; padding:1rem; border-radius:6px; border:1px solid #e0c9a6;">
+                        <div style="font-weight:600; color:#7a4a1b; font-size:1.05rem; margin-bottom:0.5rem;">🎂 Cookie Cakes</div>
+                        <button class="add-to-cart-btn" data-product="cookiecake-large" data-flavor="Chocolate Chip" style="width:100%; margin:0.3rem 0; background:#8b4513; color:#fff; padding:0.6rem; border:none; border-radius:5px; cursor:pointer; font-weight:500;">Large (12") – $50</button>
+                        <button class="add-to-cart-btn" data-product="cookiecake-medium" data-flavor="Chocolate Chip" style="width:100%; margin:0.3rem 0; background:#8b4513; color:#fff; padding:0.6rem; border:none; border-radius:5px; cursor:pointer; font-weight:500;">Medium (8") – $35</button>
+                        <button class="add-to-cart-btn" data-product="cookiecake-small" data-flavor="Chocolate Chip" style="width:100%; margin:0.3rem 0; background:#8b4513; color:#fff; padding:0.6rem; border:none; border-radius:5px; cursor:pointer; font-weight:500;">Small (6") – $25</button>
+                    </div>
+                </div>
+                
+                <!-- Shopping Cart -->
+                <div id="cart-container" style="margin-top:1.5rem; padding:1rem; background:#fff; border:2px solid #8b4513; border-radius:6px;">
+                    <h4 style="margin:0 0 0.75rem; color:#8b4513;">Your Cart</h4>
+                    <div id="cart-empty" style="color:#666; text-align:center; padding:1rem;">Your cart is empty. Add items to get started!</div>
+                    <div id="cart-items"></div>
+                    <div style="display:flex; justify-content:space-between; align-items:center; padding-top:1rem; margin-top:1rem; border-top:2px solid #e0c9a6; font-weight:600; font-size:1.1rem;">
+                        <span>Total:</span>
+                        <span id="cart-total">$0.00</span>
+                    </div>
+                    
+                    <!-- Contact Info Form (shows when ready to checkout) -->
+                    <div id="contact-form" style="display:none; margin-top:1rem; padding:1rem; background:#f9f9f9; border-radius:6px;">
+                        <h5 style="margin:0 0 0.75rem; color:#8b4513;">Contact Information</h5>
+                        <input type="text" id="customer-name" placeholder="Full Name *" required style="width:100%; padding:0.6rem; margin-bottom:0.5rem; border:1px solid #ccc; border-radius:4px; font-size:1rem;">
+                        <input type="email" id="customer-email" placeholder="Email *" required style="width:100%; padding:0.6rem; margin-bottom:0.5rem; border:1px solid #ccc; border-radius:4px; font-size:1rem;">
+                        <input type="tel" id="customer-phone" placeholder="Phone Number *" required style="width:100%; padding:0.6rem; margin-bottom:0.5rem; border:1px solid #ccc; border-radius:4px; font-size:1rem;">
+                    </div>
+                    
+                    <button id="checkout-btn" style="display:none; width:100%; margin-top:1rem; background:#155724; color:#fff; padding:0.9rem; border:none; border-radius:6px; cursor:pointer; font-weight:600; font-size:1.05rem;">Proceed to Checkout</button>
+                    <div style="font-size:0.9em; color:#666; margin-top:0.75rem; text-align:center;">
+                        $25 minimum • $8 flat rate shipping
+                    </div>
+                </div>
+            </div>
+            <div class="shipping-policy" style="margin-top: 1.5rem; padding: 1rem; background: #f9f3e8; border-left: 4px solid #8b4513; border-radius: 4px;">
+                <h3 style="margin: 0 0 0.5rem; font-size: 1.1rem; color: #8b4513;">Shipping Policy</h3>
+                <p style="margin: 0; line-height: 1.6;">To ensure quality and freshness, shipped orders require a <strong>$25 minimum purchase</strong>.</p>
+            </div>
+            
+            <!-- Custom Orders Section -->
+            <div class="custom-orders" style="margin-top: 1.5rem; padding: 1.5rem; background: #fff8f0; border: 2px solid #e0c9a6; border-radius: 8px;">
+                <h3 style="margin: 0 0 1rem; font-size: 1.3rem; color: #8b4513; text-align: center;">🎨 Custom Orders & Special Designs</h3>
+                <p style="margin: 0 0 1rem; line-height: 1.6; text-align: center; color: #555;">
+                    Looking for something unique? We love creating custom designs for special occasions!<br>
+                    <strong>Email us</strong> to discuss your custom cake, cookie, or treat ideas.
+                </p>
+                <div style="text-align: center;">
+                    <a href="mailto:orders.elizabethsbakedgoods@gmail.com?subject=Custom Order Inquiry" 
+                       style="display: inline-block; padding: 0.9rem 2rem; background: #8b4513; color: #fff; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 1.05rem; transition: background 0.3s;">
+                        📧 Email for Custom Orders
+                    </a>
+                </div>
+                <p style="margin: 1rem 0 0; font-size: 0.9rem; color: #666; text-align: center;">
+                    We typically respond within 24 hours. Custom orders require 1 week notice.<br>
+                    Local pickup available in Rosenberg, TX!
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Flavor Selection Modal -->
+    <div id="flavor-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; align-items:center; justify-content:center;">
+        <div style="background:#fff; padding:2rem; border-radius:8px; max-width:400px; width:90%; box-shadow:0 4px 12px rgba(0,0,0,0.3);">
+            <h3 style="margin:0 0 1rem; color:#8b4513;" id="flavor-modal-title">Choose Your Flavor</h3>
+            <select id="flavor-select" style="width:100%; padding:0.7rem; font-size:1rem; border:1px solid #ccc; border-radius:4px; margin-bottom:1rem;">
+                <option value="">-- Select Flavor --</option>
+            </select>
+            <div style="display:flex; gap:0.5rem;">
+                <button id="flavor-confirm" style="flex:1; padding:0.7rem; background:#155724; color:#fff; border:none; border-radius:4px; cursor:pointer; font-weight:600;">Add to Cart</button>
+                <button id="flavor-cancel" style="flex:1; padding:0.7rem; background:#ccc; color:#333; border:none; border-radius:4px; cursor:pointer; font-weight:600;">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="social-icons" aria-label="Follow us">
+            <a href="https://www.instagram.com/elizabethsbakedgoodss" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="1.8" fill="none"/>
+                    <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8" fill="none"/>
+                    <circle cx="17.3" cy="6.7" r="1.3" fill="currentColor"/>
+                </svg>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61580339963937" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M22 12.07C22 6.98 18.02 3 12.93 3 7.84 3 3.86 6.98 3.86 12.07c0 4.5 3.12 8.24 7.2 9.08v-6.42H8.86v-2.66h2.2v-2.04c0-2.18 1.3-3.39 3.29-3.39.95 0 1.95.17 1.95.17v2.14h-1.1c-1.08 0-1.41.67-1.41 1.35v1.77h2.4l-.38 2.66h-2.02v6.42c4.08-.84 7.2-4.58 7.2-9.08z" fill="currentColor"/>
+                </svg>
+            </a>
+            <a href="https://www.tiktok.com/@elizabethsbakedgoods" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M14 3v6.2a4.8 4.8 0 01-2.4-.6v4.4a3 3 0 11-3-3c.34 0 .67.06.98.16v2.08a1 1 0 10-1 1 1 1 0 001-1V6.5c1.2 1 2.7 1.6 4.32 1.6h.2A5.98 5.98 0 0020 11V8.5a6.5 6.5 0 01-6-5.5z" fill="currentColor"/>
+                </svg>
+            </a>
+        </div>
+        <p>&copy; 2025 Elizabeth's Baked Goods</p>
+    </footer>
+
+    <script src="main.js" defer></script>
+</body>
+</html>
