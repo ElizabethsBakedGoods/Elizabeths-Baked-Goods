@@ -23,44 +23,48 @@
         <div class="mobile-menu">☰</div>
     </nav>
 
-    <header class="hero canva-hero" id="home">
-        <img src="images/websitetemp.jpg" alt="Elizabeth's Baked Goods – Hero" class="hero-canva">
-        <div class="brand">
-            <div class="brand-title">Elizabeth's</div>
-            <div class="brand-subtitle">Baked Goods</div>
-            <div class="brand-tagline">Cookies • Popcorn • Cotton Candy • Brownies • Custom Orders</div>
+    <header class="canva-hero" id="home">
+        <h1>Shop Online</h1>
+        <p class="tagline">Cookies • Brownies • Cakes • Candies & More</p>
+        
+        <!-- Product Showcase Grid -->
+        <div class="product-showcase">
+            <div class="showcase-item">
+                <h3>Take a bite!</h3>
+                <p>BISCOFF, COFFEE, PEANUT BUTTER, ROCKY ROAD & MORE</p>
+            </div>
+            <div class="showcase-item">
+                <h3>Yummy Brownies</h3>
+                <p>Choose from our delicious selection of gourmet brownie flavors</p>
+            </div>
+            <div class="showcase-item">
+                <h3>Custom Cookie Cakes</h3>
+                <p>ANY FLAVOR, ANY DESIGN, ANY OCCASION</p>
+            </div>
+            <div class="showcase-item">
+                <h3>Gourmet Flavors</h3>
+                <p>CHOCOLATE COVERED PRETZELS, POPCORN, COTTON CANDY, TOFFEE - WE'VE GOT YOU COVERED!</p>
+            </div>
         </div>
-        <h1>Sweet Creations Made Just for You</h1>
-        <h2>Cookies, Cakes, Candy & More – All Made with Love</h2>
-    <p>Welcome to Elizabeth's Baked Goods & Sweet Treats! From classic cookies and cakes to fun candies and themed desserts, everything is handcrafted with care right here in Texas. Whether you're planning a party, craving a sweet pick-me-up, or looking for a custom treat, we've got something special for every occasion.</p>
-    <a href="#menu" class="cta-button">Explore Our Creations</a>
-    <div class="home-links" style="margin-top:1rem; display:flex; flex-wrap:wrap; gap:0.75rem; justify-content:center;">
-        <a href="order.html" class="cta-button" style="background:#8b4513;">Order Now</a>
-        <a href="#menu" class="cta-button">Menu</a>
-        <a href="#recipes" class="cta-button">Recipes</a>
-        <a href="#designs" class="cta-button">Designs</a>
-        <a href="#contact" class="cta-button">Contact</a>
-    </div>
-        <div class="social-icons" aria-label="Follow us">
-            <a href="https://www.instagram.com/elizabethsbakedgoodss" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="1.8" fill="none"/>
-                    <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8" fill="none"/>
-                    <circle cx="17.3" cy="6.7" r="1.3" fill="currentColor"/>
-                </svg>
-            </a>
-            <a href="https://www.facebook.com/profile.php?id=61580339963937" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M22 12.07C22 6.98 18.02 3 12.93 3 7.84 3 3.86 6.98 3.86 12.07c0 4.5 3.12 8.24 7.2 9.08v-6.42H8.86v-2.66h2.2v-2.04c0-2.18 1.3-3.39 3.29-3.39.95 0 1.95.17 1.95.17v2.14h-1.1c-1.08 0-1.41.67-1.41 1.35v1.77h2.4l-.38 2.66h-2.02v6.42c4.08-.84 7.2-4.58 7.2-9.08z" fill="currentColor"/>
-                </svg>
-            </a>
-            <a href="https://www.tiktok.com/@elizabethsbakedgoods" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M14 3v6.2a4.8 4.8 0 01-2.4-.6v4.4a3 3 0 11-3-3c.34 0 .67.06.98.16v2.08a1 1 0 10-1 1 1 1 0 001-1V6.5c1.2 1 2.7 1.6 4.32 1.6h.2A5.98 5.98 0 0020 11V8.5a6.5 6.5 0 01-6-5.5z" fill="currentColor"/>
-                </svg>
-            </a>
+
+        <!-- Service Information -->
+        <div class="service-info">
+            <div class="service-card">
+                <h4>Local in Rosenberg, TX</h4>
+                <p>Delivers to surrounding areas<br>Pick ups available Monday-Friday</p>
+            </div>
+            <div class="service-card">
+                <h4>Custom Orders Ready</h4>
+                <p>With just 1 week's notice</p>
+            </div>
+            <div class="service-card">
+                <h4>Ships Nationwide</h4>
+                <p>Anywhere in the United States<br>$25 minimum purchase</p>
+            </div>
         </div>
-        </header>
+
+        <a href="order.html" class="cta-button" style="margin-top: 2rem;">Order Now</a>
+    </header>
 
         <section class="about-section" id="about">
             <div class="about-container">
@@ -82,11 +86,13 @@
         <section id="menu" class="section">
             <h2>Our Menu</h2>
             <img src="images/menu.png" alt="Elizabeth's Fall Menu" class="menu-image">
-            <div style="text-align: center; margin-top: 2rem;">
-                <a href="order.html" class="cta-button" style="display: inline-block; padding: 1rem 3rem; background: #8b4513; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 1.2rem; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                    🛒 Order Now
-                </a>
-            </div>
+        </section>
+
+        <!-- Order CTA Section (Canva style) -->
+        <section class="order-cta-section">
+            <h2>Order Online</h2>
+            <p>Ships anywhere in the United States • Minimum $25 purchase</p>
+            <a href="order.html" class="cta-button">Click here for the order form</a>
         </section>
 
     <!-- Flavor Selection Modal -->
@@ -106,25 +112,34 @@
     <script src="main.js" defer></script>
 
         <section id="contact" class="section">
-            <h2>Contact Us</h2>
+            <h2>We'd love to hear from you!</h2>
             <div class="contact-info">
                 <div class="contact-item">
-                    <h3>Location</h3>
-                    <p>Rosenberg, Texas 77471</p>
+                    <h3>📧 Email</h3>
+                    <p><a href="mailto:orders.elizabethsbakedgoods@gmail.com">orders.elizabethsbakedgoods@gmail.com</a></p>
                 </div>
                 <div class="contact-item">
-                    <h3>Hours</h3>
-                    <p>Mon-Sat: 7am - 7pm</p>
-                    <p>Sun: 8am - 5pm</p>
-                </div>
-                <div class="contact-item">
-                    <h3>Get in Touch</h3>
-                    <p>Phone: <a href="tel:+13308429877">(330) 842-9877</a></p>
-                    <p>Email: <a href="mailto:orders.elizabethsbakedgoods@gmail.com">orders.elizabethsbakedgoods@gmail.com</a></p>
-                    <div class="contact-actions">
-                        <a class="btn" href="tel:+13308429877" aria-label="Call Elizabeth's Baked Goods">Call Now</a>
-                        <a class="btn" href="mailto:orders.elizabethsbakedgoods@gmail.com" aria-label="Email Elizabeth's Baked Goods">Email Us</a>
+                    <h3>📱 Instagram / Facebook</h3>
+                    <p><a href="https://www.instagram.com/elizabethsbakedgoodss" target="_blank">@ELIZABETHSBAKEDGOODSS</a></p>
+                    <div class="social-icons" style="margin-top: 1rem;">
+                        <a href="https://www.instagram.com/elizabethsbakedgoodss" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="1.8" fill="none"/>
+                                <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8" fill="none"/>
+                                <circle cx="17.3" cy="6.7" r="1.3" fill="currentColor"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61580339963937" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M22 12.07C22 6.98 18.02 3 12.93 3 7.84 3 3.86 6.98 3.86 12.07c0 4.5 3.12 8.24 7.2 9.08v-6.42H8.86v-2.66h2.2v-2.04c0-2.18 1.3-3.39 3.29-3.39.95 0 1.95.17 1.95.17v2.14h-1.1c-1.08 0-1.41.67-1.41 1.35v1.77h2.4l-.38 2.66h-2.02v6.42c4.08-.84 7.2-4.58 7.2-9.08z" fill="currentColor"/>
+                            </svg>
+                        </a>
                     </div>
+                </div>
+                <div class="contact-item">
+                    <h3>📞 Phone Number</h3>
+                    <p><a href="tel:+13308429877">330-842-9877</a></p>
+                    <a class="btn" href="tel:+13308429877" aria-label="Call Elizabeth's Baked Goods">Call Now</a>
                 </div>
             </div>
         </section>

@@ -33,30 +33,10 @@ body {
     line-height: 1.6;
 }
 
-/* Optional full-page background image (set on <body class="site-bg">) */
+/* Canva-inspired soft gradient background */
 body.site-bg {
-    /* Canva export background */
-    background-image: url('images/websitetemp.jpg');
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    /* Keeps background steady while scrolling on desktop; mobile ignores fixed for performance */
+    background: linear-gradient(180deg, #fff5f7 0%, #fef5e7 50%, #fff8f0 100%);
     background-attachment: fixed;
-    /* Fallback color in case image fails to load */
-    background-color: var(--primary-pink);
-}
-
-/* Display the Canva background image fully inside the hero (not cropped) */
-.hero-canva {
-    width: min(100%, 1200px);
-    height: auto;
-    max-height: 65vh; /* show the full image while keeping hero compact */
-    object-fit: contain; /* ensure no cropping */
-    display: block;
-    margin: 0 auto 1.25rem auto;
-    border-radius: 12px;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.08);
-    background: var(--white); /* fills any transparent areas nicely */
 }
 
 nav {
@@ -159,14 +139,124 @@ nav.nav--glass {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
-/* Canva hero variant: rounded card look with softer shadow */
+/* Canva hero variant: full-width showcase with product highlights */
 .canva-hero {
-    margin: 2rem 5% 3rem 5%;
-    padding: 2.5rem 5%;
-    background: rgba(255, 255, 255, 0.88);
+    margin: 0;
+    padding: 3rem 5% 4rem 5%;
+    background: linear-gradient(135deg, #fff0f5 0%, #fef5e7 100%);
+    text-align: center;
+    border-bottom: 3px solid var(--warm-beige);
+}
+
+.canva-hero h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4rem;
+    color: var(--soft-brown);
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.canva-hero .tagline {
+    font-size: 1.4rem;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+/* Product showcase grid (Canva style) */
+.product-showcase {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 3rem auto;
+    max-width: 1200px;
+}
+
+.showcase-item {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem 1.5rem;
+    border-radius: 20px;
     border: 2px solid var(--warm-beige);
-    border-radius: 16px;
-    box-shadow: 0 10px 28px rgba(166, 120, 93, 0.12);
+    box-shadow: 0 8px 20px rgba(166, 120, 93, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.showcase-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(166, 120, 93, 0.25);
+}
+
+.showcase-item h3 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: var(--soft-brown);
+    margin-bottom: 0.5rem;
+}
+
+.showcase-item p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+/* Service info cards (Local, Delivery, Custom orders) */
+.service-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem auto;
+    max-width: 1000px;
+}
+
+.service-card {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 15px;
+    border: 2px solid var(--caramel);
+    text-align: center;
+}
+
+.service-card h4 {
+    color: var(--soft-brown);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.service-card p {
+    color: var(--text-color);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Large CTA section for "Order Online" */
+.order-cta-section {
+    background: linear-gradient(135deg, #ffeef2 0%, #fff8f0 100%);
+    padding: 4rem 5%;
+    text-align: center;
+    margin: 3rem 0;
+    border-top: 3px solid var(--caramel);
+    border-bottom: 3px solid var(--caramel);
+}
+
+.order-cta-section h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem;
+    color: var(--soft-brown);
+    margin-bottom: 1rem;
+}
+
+.order-cta-section p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+.order-cta-section .cta-button {
+    font-size: 1.3rem;
+    padding: 1.2rem 3rem;
 }
 
 .hero h1 {
