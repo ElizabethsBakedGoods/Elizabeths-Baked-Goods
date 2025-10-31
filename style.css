@@ -35,8 +35,8 @@ body {
 
 /* Optional full-page background image (set on <body class="site-bg">) */
 body.site-bg {
-    /* Replace images/site-bg.jpg with your Canva export */
-    background-image: url('images/site-bg.jpg');
+    /* Canva export background */
+    background-image: url('images/websitetemp.jpg');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
