@@ -46,6 +46,19 @@ body.site-bg {
     background-color: var(--primary-pink);
 }
 
+/* Display the Canva background image fully inside the hero (not cropped) */
+.hero-canva {
+    width: min(100%, 1200px);
+    height: auto;
+    max-height: 65vh; /* show the full image while keeping hero compact */
+    object-fit: contain; /* ensure no cropping */
+    display: block;
+    margin: 0 auto 1.25rem auto;
+    border-radius: 12px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+    background: var(--white); /* fills any transparent areas nicely */
+}
+
 nav {
     background-color: var(--white);
     padding: 1rem 5%;
@@ -53,6 +66,15 @@ nav {
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Glassy nav variant inspired by Canva aesthetic */
+nav.nav--glass {
+    background: rgba(255, 255, 255, 0.9);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--warm-beige);
+    box-shadow: 0 6px 20px rgba(166, 120, 93, 0.10);
 }
 
 .logo {
@@ -137,6 +159,16 @@ nav {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
+/* Canva hero variant: rounded card look with softer shadow */
+.canva-hero {
+    margin: 2rem 5% 3rem 5%;
+    padding: 2.5rem 5%;
+    background: rgba(255, 255, 255, 0.88);
+    border: 2px solid var(--warm-beige);
+    border-radius: 16px;
+    box-shadow: 0 10px 28px rgba(166, 120, 93, 0.12);
+}
+
 .hero h1 {
     font-family: 'Dancing Script', cursive;
     font-size: 3.5rem;
@@ -217,6 +249,82 @@ nav {
     gap: 2rem;
     margin: 0 auto;
     max-width: 1200px;
+}
+
+/* Canva-styled content cards and grids */
+.canva-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.section.card {
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid var(--warm-beige);
+    border-radius: 16px;
+    box-shadow: 0 10px 28px rgba(166, 120, 93, 0.12);
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.product-card {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1.5px solid #e0c9a6;
+}
+
+.btn-brown {
+    background: #8b4513;
+    color: #fff;
+    padding: 0.65rem 0.9rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    width: 100%;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.btn-brown:hover { background: #6d3510; transform: translateY(-1px); }
+
+.btn-green {
+    background: #155724;
+    color: #fff;
+    padding: 0.9rem 1rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.05rem;
+    width: 100%;
+}
+
+.card-soft {
+    background: #fff8f0;
+    border: 1.5px solid #e0c9a6;
+    border-radius: 12px;
+    padding: 1.25rem;
+}
+
+.cart {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #fff;
+    border: 2px solid #8b4513;
+    border-radius: 10px;
+}
+
+.policy-card {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #f9f3e8;
+    border-left: 4px solid #8b4513;
+    border-radius: 8px;
 }
 
 .section {
@@ -526,6 +634,11 @@ nav .social-icons { margin-top: 0; }
     .brand-title { font-size: 3.1rem; } /* +40% from 2.2rem */
     .brand-subtitle { font-size: 1.6rem; }
     .brand-tagline { font-size: 0.95rem; }
+
+    .hero-canva {
+        max-height: 45vh; /* keep image readable on smaller screens */
+        border-radius: 10px;
+    }
     
     .section h2 {
         font-size: 2rem;
