@@ -8,9 +8,13 @@ footer {
 
 footer p { margin-top: 0.75rem; }
 :root {
-    --primary-pink: #ffeef2;
-    --dark-pink: #ffb6c1;
+    /* Canva template exact colors */
+    --primary-pink: #ffd4d4;
+    --soft-pink: #ffe4e9;
+    --peach: #ffd8c4;
+    --cream: #fff5e6;
     --warm-beige: #f7e3d2;
+    --dark-brown: #8b4513;
     --soft-brown: #a6785d;
     --caramel: #d9a25f;
     --text-color: #4b3b36;
@@ -33,10 +37,17 @@ body {
     line-height: 1.6;
 }
 
-/* Canva-inspired soft gradient background */
+/* Canva-inspired soft gradient background - matching template */
 body.site-bg {
-    background: linear-gradient(180deg, #fff5f7 0%, #fef5e7 50%, #fff8f0 100%);
+    background: linear-gradient(180deg, #ffd4d4 0%, #ffd8c4 50%, #fff5e6 100%);
     background-attachment: fixed;
+}
+
+/* Main content wrapper - centered like Canva template */
+.canva-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0;
 }
 
 nav {
@@ -139,124 +150,146 @@ nav.nav--glass {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
-/* Canva hero variant: full-width showcase with product highlights */
+/* Canva hero variant: full-width showcase matching template exactly */
 .canva-hero {
     margin: 0;
-    padding: 3rem 5% 4rem 5%;
-    background: linear-gradient(135deg, #fff0f5 0%, #fef5e7 100%);
+    padding: 4rem 5%;
+    background: linear-gradient(180deg, rgba(255, 212, 212, 0.8) 0%, rgba(255, 216, 196, 0.8) 100%);
     text-align: center;
-    border-bottom: 3px solid var(--warm-beige);
 }
 
 .canva-hero h1 {
     font-family: 'Dancing Script', cursive;
-    font-size: 4rem;
-    color: var(--soft-brown);
-    margin-bottom: 1rem;
+    font-size: 5rem;
+    color: #8b4513;
+    margin-bottom: 0.5rem;
     font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
 .canva-hero .tagline {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     color: var(--text-color);
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 600;
+    letter-spacing: 1px;
+    font-weight: 500;
 }
 
-/* Product showcase grid (Canva style) */
+/* Product showcase grid - EXACTLY like Canva with images */
 .product-showcase {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
-    margin: 3rem auto;
-    max-width: 1200px;
+    margin: 0 auto 3rem auto;
+    max-width: 1100px;
 }
 
 .showcase-item {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 2rem 1.5rem;
+    background: var(--white);
+    padding: 0;
     border-radius: 20px;
-    border: 2px solid var(--warm-beige);
-    box-shadow: 0 8px 20px rgba(166, 120, 93, 0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 3px solid #8b4513;
+    box-shadow: 0 8px 20px rgba(139, 69, 19, 0.2);
+    overflow: hidden;
+    text-align: center;
 }
 
-.showcase-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(166, 120, 93, 0.25);
+.showcase-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-bottom: 3px solid #8b4513;
+}
+
+.showcase-item-content {
+    padding: 1.5rem;
 }
 
 .showcase-item h3 {
     font-family: 'Dancing Script', cursive;
-    font-size: 2rem;
-    color: var(--soft-brown);
+    font-size: 2.5rem;
+    color: #8b4513;
     margin-bottom: 0.5rem;
+    font-weight: 700;
 }
 
 .showcase-item p {
-    font-size: 1rem;
-    line-height: 1.6;
+    font-size: 0.95rem;
+    line-height: 1.5;
     color: var(--text-color);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
-/* Service info cards (Local, Delivery, Custom orders) */
+/* Service info cards (Local, Delivery, Custom orders) - matching Canva */
 .service-info {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
-    margin: 2rem auto;
-    max-width: 1000px;
+    margin: 2rem auto 3rem auto;
+    max-width: 1100px;
 }
 
 .service-card {
     background: var(--white);
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
     border-radius: 15px;
-    border: 2px solid var(--caramel);
+    border: 3px solid #8b4513;
     text-align: center;
+    box-shadow: 0 6px 15px rgba(139, 69, 19, 0.15);
 }
 
 .service-card h4 {
-    color: var(--soft-brown);
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
+    color: #8b4513;
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
     font-weight: 700;
+    font-family: 'Poppins', sans-serif;
 }
 
 .service-card p {
     color: var(--text-color);
     font-size: 0.95rem;
-    line-height: 1.5;
+    line-height: 1.6;
+    font-weight: 500;
 }
 
-/* Large CTA section for "Order Online" */
+/* Large CTA section for "Order Online" - matching Canva template */
 .order-cta-section {
-    background: linear-gradient(135deg, #ffeef2 0%, #fff8f0 100%);
+    background: linear-gradient(135deg, #ffd4d4 0%, #ffd8c4 100%);
     padding: 4rem 5%;
     text-align: center;
     margin: 3rem 0;
-    border-top: 3px solid var(--caramel);
-    border-bottom: 3px solid var(--caramel);
+    border-top: 4px solid #8b4513;
+    border-bottom: 4px solid #8b4513;
 }
 
 .order-cta-section h2 {
     font-family: 'Dancing Script', cursive;
-    font-size: 3.5rem;
-    color: var(--soft-brown);
+    font-size: 4.5rem;
+    color: #8b4513;
     margin-bottom: 1rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
 .order-cta-section p {
     font-size: 1.2rem;
     margin-bottom: 2rem;
     color: var(--text-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .order-cta-section .cta-button {
-    font-size: 1.3rem;
-    padding: 1.2rem 3rem;
+    font-size: 1.4rem;
+    padding: 1.3rem 3.5rem;
+    background: #8b4513;
+    border: 3px solid #6d3510;
+    box-shadow: 0 6px 20px rgba(139, 69, 19, 0.3);
 }
 
 .hero h1 {
