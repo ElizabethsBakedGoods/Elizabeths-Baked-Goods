@@ -2,9 +2,9 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "git-push-cookie-cake-image-change",
+			"label": "git-push",
 			"type": "shell",
-			"command": "powershell -NoProfile -Command \"git -C 'c:\\Users\\Eliza\\Desktop\\Elizabeths-Baked-Goods' add -A; git -C 'c:\\Users\\Eliza\\Desktop\\Elizabeths-Baked-Goods' commit -m 'Point Cookie Cakes image to images/cookie-cake.jfif and fix line break'; git -C 'c:\\Users\\Eliza\\Desktop\\Elizabeths-Baked-Goods' push\"",
+			"command": "powershell -NoProfile -Command \"git -C 'c:\\Users\\Eliza\\Desktop\\Elizabeths-Baked-Goods' add -A; git -C 'c:\\Users\\Eliza\\Desktop\\Elizabeths-Baked-Goods' commit -m 'Update site'; git -C 'c:\\Users\\Eliza\\Desktop\\Elizabeths-Baked-Goods' push\"",
 			"problemMatcher": [],
 			"group": "build"
 		}
