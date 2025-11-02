@@ -118,13 +118,13 @@ nav.nav--glass {
     /* 50% smaller than previous (40% -> 20%, 420px -> 210px) */
     max-width: 210px;
     width: 20%;
-    /* Crop top and bottom by using a wider aspect ratio and cover */
-    aspect-ratio: 3 / 1;
+    /* Stronger vertical crop using a wider aspect ratio */
+    aspect-ratio: 4 / 1;
     height: auto;
-    object-fit: cover; /* will crop vertically if image is taller */
+    object-fit: cover; /* crop top/bottom to fit */
     object-position: center center; /* crop equally from top/bottom */
     display: inline-block; /* center via text-align on container */
-    margin-bottom: 0.5rem;
+    margin: 0.5rem 0; /* small top and bottom margin */
 }
 
 @media (max-width: 768px) {
