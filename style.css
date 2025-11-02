@@ -146,6 +146,19 @@ img.logo {
     object-fit: cover;
 }
 
+/* Tight crop for hero logo: trims top and bottom to remove extra margins */
+.hero-logo.crop-tight {
+    /* Adjustable crop amounts; tweak these to align right at the black line */
+    --crop-top: 8%;
+    --crop-bottom: 8%;
+    -webkit-clip-path: inset(var(--crop-top) 0 var(--crop-bottom) 0);
+            clip-path: inset(var(--crop-top) 0 var(--crop-bottom) 0);
+    /* Use cover so the logo fills its box when cropped */
+    object-fit: cover;
+    /* Remove extra spacing so crop sits flush to the line */
+    margin: 0;
+}
+
 @media (max-width: 768px) {
     .top-logo-img { width: 60%; max-width: 260px; }
     /* Larger on mobile but capped so it fits nicely */
