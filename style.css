@@ -115,9 +115,9 @@ nav.nav--glass {
 
 /* Logo placed inside the hero (replaces the Shop Online heading) */
 .hero-logo {
-    /* Make the logo much larger and show the full image (no crop) */
-    max-width: 520px;
-    width: 50%;
+    /* Make the logo larger and allow optional crop variant to fill nicely */
+    max-width: 640px;
+    width: 60%;
     height: auto;            /* preserve intrinsic ratio */
     object-fit: contain;     /* no cropping */
     display: inline-block;   /* center via text-align on container */
@@ -162,7 +162,7 @@ img.logo {
 @media (max-width: 768px) {
     .top-logo-img { width: 60%; max-width: 260px; }
     /* Larger on mobile but capped so it fits nicely */
-    .hero-logo { width: 70%; max-width: 300px; }
+    .hero-logo { width: 80%; max-width: 360px; }
 }
 
 .nav-links a {
