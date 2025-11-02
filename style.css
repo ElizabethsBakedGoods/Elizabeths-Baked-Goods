@@ -121,8 +121,8 @@ nav.nav--glass {
     /* Loosen crop slightly per request */
     aspect-ratio: 3.5 / 1;
     height: auto;
-    object-fit: cover; /* crop top/bottom to fit */
-    object-position: 50% 35%; /* shift focus upward (show more top area) */
+    object-fit: cover; /* crop to box, but keep top fully visible */
+    object-position: 50% 0%; /* align to top so no top is cropped */
     display: inline-block; /* center via text-align on container */
     margin: 0.5rem 0; /* small top and bottom margin */
 }
