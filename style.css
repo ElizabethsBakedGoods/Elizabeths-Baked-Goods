@@ -202,6 +202,14 @@ nav.nav--glass {
     border-bottom: 3px solid #8b4513;
 }
 
+/* Optionally zoom out an image inside the showcase by 25% (show more of the photo) */
+.showcase-item img.zoom-75 {
+    transform: scale(0.75);
+    transform-origin: center center;
+    display: block; /* ensure centering works consistently */
+    margin: 0 auto;
+}
+
 .showcase-item-content {
     padding: 1.5rem;
 }
