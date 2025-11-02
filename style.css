@@ -155,8 +155,8 @@ img.logo {
             clip-path: inset(var(--crop-top) 0 var(--crop-bottom) 0);
     /* Use cover so the logo fills its box when cropped */
     object-fit: cover;
-    /* Remove extra spacing so crop sits flush to the line */
-    margin: 0;
+    /* Remove extra vertical spacing but keep horizontal centering */
+    margin: 0 auto;
 }
 
 @media (max-width: 768px) {
