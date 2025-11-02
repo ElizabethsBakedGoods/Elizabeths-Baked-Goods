@@ -115,16 +115,22 @@ nav.nav--glass {
 
 /* Logo placed inside the hero (replaces the Shop Online heading) */
 .hero-logo {
-    max-width: 420px;
-    width: 40%;
+    /* 50% smaller than previous (40% -> 20%, 420px -> 210px) */
+    max-width: 210px;
+    width: 20%;
+    /* Crop top and bottom by using a wider aspect ratio and cover */
+    aspect-ratio: 3 / 1;
     height: auto;
-    object-fit: contain;
+    object-fit: cover; /* will crop vertically if image is taller */
+    object-position: center center; /* crop equally from top/bottom */
     display: inline-block; /* center via text-align on container */
     margin-bottom: 0.5rem;
 }
 
 @media (max-width: 768px) {
-    .top-logo-img, .hero-logo { width: 60%; max-width: 260px; }
+    /* 50% smaller on mobile too (60% -> 30%, 260px -> 130px) */
+    .top-logo-img { width: 60%; max-width: 260px; }
+    .hero-logo { width: 30%; max-width: 130px; }
 }
 
 .nav-links a {
