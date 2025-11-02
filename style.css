@@ -118,11 +118,11 @@ nav.nav--glass {
     /* 50% smaller than previous (40% -> 20%, 420px -> 210px) */
     max-width: 210px;
     width: 20%;
-    /* Stronger vertical crop using a wider aspect ratio */
-    aspect-ratio: 4 / 1;
+    /* Loosen crop slightly per request */
+    aspect-ratio: 3.5 / 1;
     height: auto;
     object-fit: cover; /* crop top/bottom to fit */
-    object-position: center center; /* crop equally from top/bottom */
+    object-position: 50% 35%; /* shift focus upward (show more top area) */
     display: inline-block; /* center via text-align on container */
     margin: 0.5rem 0; /* small top and bottom margin */
 }
