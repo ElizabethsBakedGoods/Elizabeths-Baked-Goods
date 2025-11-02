@@ -115,24 +115,21 @@ nav.nav--glass {
 
 /* Logo placed inside the hero (replaces the Shop Online heading) */
 .hero-logo {
-    /* Size +25% from previous */
-    max-width: 302px; /* 242px * 1.25 ≈ 302 */
-    width: 29%;       /* 23% * 1.25 ≈ 28.75% */
-    /* Reduce bottom cropping while keeping the top visible */
-    aspect-ratio: 3 / 1; /* taller box shows more bottom */
-    height: auto;
-    object-fit: cover; /* crop to box, but keep top fully visible */
-    object-position: 50% 0%; /* align to top so no top is cropped */
-    display: inline-block; /* center via text-align on container */
-    margin: 0.6rem 0; /* small top and bottom margin */
+    /* Make the logo much larger and show the full image (no crop) */
+    max-width: 520px;
+    width: 50%;
+    height: auto;            /* preserve intrinsic ratio */
+    object-fit: contain;     /* no cropping */
+    display: inline-block;   /* center via text-align on container */
+    margin: 0.75rem 0;       /* breathing room above/below */
     /* Improve lettering visibility with subtle dual shadows: soft light glow + soft dark lift */
     filter: drop-shadow(0 2px 2px rgba(0,0,0,0.18)) drop-shadow(0 0 8px rgba(255,255,255,0.85));
 }
 
 @media (max-width: 768px) {
     .top-logo-img { width: 60%; max-width: 260px; }
-    /* +25% mobile size (35% -> 44%, 150px -> ~188px) */
-    .hero-logo { width: 44%; max-width: 188px; }
+    /* Larger on mobile but capped so it fits nicely */
+    .hero-logo { width: 70%; max-width: 300px; }
 }
 
 .nav-links a {
