@@ -853,3 +853,223 @@ nav .social-icons { margin-top: 0; }
         max-width: none;
     }
 }
+
+/* ===========================
+   LOCAL ORDERING STYLES
+   =========================== */
+
+/* Local Ordering CTA on Homepage */
+.local-ordering-cta {
+    text-align: center;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: linear-gradient(135deg, #d4edda, #c3e6cb);
+    border-radius: 15px;
+    max-width: 800px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.local-order-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+    transition: all 0.3s ease;
+}
+
+.local-order-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+    background: linear-gradient(135deg, #20c997, #28a745);
+}
+
+.local-order-subtitle {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    color: #155724;
+    font-weight: 600;
+}
+
+/* Local Ordering Page Styles */
+.local-order-hero {
+    background: linear-gradient(135deg, var(--soft-pink), var(--peach));
+    padding: 3rem 5%;
+    text-align: center;
+    border-bottom: 4px solid var(--dark-brown);
+}
+
+.local-order-hero h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    color: var(--dark-brown);
+    margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    color: var(--dark-brown);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.local-delivery-info {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    display: inline-block;
+    margin-top: 1rem;
+    border: 2px solid var(--dark-brown);
+}
+
+.menu-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.holiday-menu-image {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    border: 3px solid var(--dark-brown);
+}
+
+.local-order-form-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.local-order-form {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    border: 2px solid var(--dark-brown);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: var(--dark-brown);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid var(--peach);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--dark-brown);
+    box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+}
+
+.policy-card {
+    background: var(--cream);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 2px solid var(--peach);
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.policy-card h3 {
+    color: var(--dark-brown);
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, var(--dark-brown), #654321);
+    color: white;
+    padding: 1rem 3rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 400px;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
+}
+
+.contact-item {
+    margin: 2rem 0;
+}
+
+.contact-item h3 {
+    color: var(--dark-brown);
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.contact-item a {
+    color: var(--dark-brown);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.contact-item a:hover {
+    text-decoration: underline;
+}
+
+/* Mobile Responsiveness for Local Ordering */
+@media (max-width: 768px) {
+    .local-order-hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .local-order-button {
+        font-size: 1.1rem;
+        padding: 0.9rem 2rem;
+    }
+    
+    .local-order-form {
+        padding: 1.5rem;
+    }
+    
+    .submit-btn {
+        font-size: 1.1rem;
+        padding: 0.9rem 2rem;
+    }
+}

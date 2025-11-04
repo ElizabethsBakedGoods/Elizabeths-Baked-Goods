@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Ordering - Elizabeth's Baked Goods</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9289301430903450"
+     crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css?v=20251102d">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="site-bg">
+    <nav class="nav--glass">
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#menu">Menu</a>
+            <a href="order.html">Order Online</a>
+            <a href="#" class="active">Local Ordering</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+        <div class="mobile-menu">☰</div>
+    </nav>
+
+    <main>
+        <section class="section local-order-hero">
+            <h1>🎄 Holiday Local Ordering 🎄</h1>
+            <p class="hero-subtitle">Special Holiday Menu for Rosenberg, TX & Surrounding Areas</p>
+            <p class="local-delivery-info">
+                <strong>Local Delivery & Pickup Available</strong><br>
+                Monday - Friday | Order with 1 Week Notice
+            </p>
+        </section>
+
+        <!-- Holiday Menu Section -->
+        <section class="section" id="holiday-menu">
+            <h2>Holiday Menu</h2>
+            <div class="menu-container">
+                <!-- Placeholder for holiday menu image - user will upload -->
+                <img src="images/holiday-menu.jpg" alt="Elizabeth's Holiday Menu" class="holiday-menu-image" 
+                     onerror="this.style.display='none'; document.getElementById('menu-placeholder').style.display='block';">
+                <div id="menu-placeholder" style="display:none; padding: 3rem; background: var(--cream); border-radius: 15px; border: 3px dashed var(--dark-brown);">
+                    <h3 style="color: var(--dark-brown); margin-bottom: 1rem;">Holiday Menu Coming Soon!</h3>
+                    <p>Upload your holiday menu image as <strong>images/holiday-menu.jpg</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Local Order Form -->
+        <section class="section">
+            <h2>Place Your Local Order</h2>
+            <div class="local-order-form-container">
+                <form class="order-form local-order-form" action="https://formspree.io/f/mgvpvzkz" method="POST">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="(123) 456-7890">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Delivery Address *</label>
+                        <textarea id="address" name="address" required placeholder="Street address, City, State, ZIP" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pickup-delivery">Order Type *</label>
+                        <select id="pickup-delivery" name="pickup-delivery" required>
+                            <option value="">-- Select One --</option>
+                            <option value="pickup">Pickup (Rosenberg, TX)</option>
+                            <option value="delivery">Local Delivery</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="order-date">Desired Pickup/Delivery Date *</label>
+                        <input type="date" id="order-date" name="order-date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="order-details">Order Details *</label>
+                        <textarea id="order-details" name="order-details" required placeholder="Please list the items you'd like to order from the holiday menu above. Include quantities, flavors, sizes, and any special requests." rows="8"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="special-instructions">Special Instructions (Optional)</label>
+                        <textarea id="special-instructions" name="special-instructions" placeholder="Any dietary restrictions, custom decorations, or special delivery instructions?" rows="4"></textarea>
+                    </div>
+
+                    <div class="policy-card">
+                        <h3>📋 Local Ordering Policy</h3>
+                        <ul style="text-align: left; margin: 1rem 0; line-height: 1.8;">
+                            <li>Orders require <strong>1 week advance notice</strong></li>
+                            <li>Payment due upon pickup/delivery (Cash, Venmo, Zelle accepted)</li>
+                            <li>Delivery available within 15 miles of Rosenberg, TX</li>
+                            <li>We will contact you to confirm your order and provide pricing</li>
+                        </ul>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Submit Local Order Request</button>
+                    
+                    <p id="order-status" style="margin-top: 1rem; color: var(--dark-brown); font-weight: 600;"></p>
+                </form>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section" style="background: var(--cream); padding: 3rem 5%;">
+            <h2>Questions About Local Ordering?</h2>
+            <div class="contact-info" style="max-width: 800px; margin: 2rem auto;">
+                <div class="contact-item">
+                    <h3>📧 Email</h3>
+                    <p><a href="mailto:orders.elizabethsbakedgoods@gmail.com">orders.elizabethsbakedgoods@gmail.com</a></p>
+                </div>
+                <div class="contact-item">
+                    <h3>📞 Call or Text</h3>
+                    <p><a href="tel:+13308429877">330-842-9877</a></p>
+                    <a class="btn" href="tel:+13308429877" aria-label="Call Elizabeth's Baked Goods">Call Now</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-icons" aria-label="Follow us">
+            <a href="https://www.instagram.com/elizabethsbakedgoodss" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="1.8" fill="none"/>
+                    <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8" fill="none"/>
+                    <circle cx="17.3" cy="6.7" r="1.3" fill="currentColor"/>
+                </svg>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61580339963937" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M22 12.07C22 6.98 18.02 3 12.93 3 7.84 3 3.86 6.98 3.86 12.07c0 4.5 3.12 8.24 7.2 9.08v-6.42H8.86v-2.66h2.2v-2.04c0-2.18 1.3-3.39 3.29-3.39.95 0 1.95.17 1.95.17v2.14h-1.1c-1.08 0-1.41.67-1.41 1.35v1.77h2.4l-.38 2.66h-2.02v6.42c4.08-.84 7.2-4.58 7.2-9.08z" fill="currentColor"/>
+                </svg>
+            </a>
+            <a href="https://www.tiktok.com/@elizabethsbakedgoods" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M14 3v6.2a4.8 4.8 0 01-2.4-.6v4.4a3 3 0 11-3-3c.34 0 .67.06.98.16v2.08a1 1 0 10-1 1 1 1 0 001-1V6.5c1.2 1 2.7 1.6 4.32 1.6h.2A5.98 5.98 0 0020 11V8.5a6.5 6.5 0 01-6-5.5z" fill="currentColor"/>
+                </svg>
+            </a>
+        </div>
+        <p>&copy; 2025 Elizabeth's Baked Goods</p>
+    </footer>
+
+    <script>
+        // Form submission handler
+        const form = document.querySelector('.local-order-form');
+        const statusMsg = document.getElementById('order-status');
+
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                statusMsg.textContent = 'Sending your order...';
+                statusMsg.style.color = 'var(--dark-brown)';
+            });
+        }
+
+        // Set minimum date to tomorrow
+        const dateInput = document.getElementById('order-date');
+        if (dateInput) {
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            dateInput.min = tomorrow.toISOString().split('T')[0];
+        }
+    </script>
+</body>
+</html>
