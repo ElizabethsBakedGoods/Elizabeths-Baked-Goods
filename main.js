@@ -237,6 +237,20 @@ function addToCart(productId, flavor) {
 	showCartMessage("Added to cart!");
 }
 
+// Helper function for custom items (like gift basket)
+window.addItemToCart = function(productId, price, customDetails) {
+	cart.push({
+		id: productId,
+		name: 'Holiday Gift Basket',
+		price: price,
+		flavor: customDetails,
+		quantity: 1
+	});
+	
+	console.log("Custom item added to cart:", cart);
+	updateCartDisplay();
+}
+
 function removeFromCart(index) {
 	cart.splice(index, 1);
 	updateCartDisplay();
