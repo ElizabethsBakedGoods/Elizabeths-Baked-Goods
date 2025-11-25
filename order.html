@@ -22,9 +22,10 @@
             <a href="contact.html">Contact</a>
             <a href="index.html#recipes">Recipes</a>
             <a href="index.html#designs">Designs</a>
-                        <span class="dropdown" style="position:relative;">
-                            <a href="#" aria-haspopup="true" aria-expanded="false">Policies ▾</a>
-                            <div class="dropdown-menu" style="position:absolute; right:0; background:#fff; border:1px solid var(--warm-beige); border-radius:10px; box-shadow:0 8px 20px rgba(0,0,0,0.12); padding:0.5rem; display:none; min-width:240px;">
+                                    <span class="dropdown" style="position:relative;">
+                                        <a href="policies.html" aria-haspopup="true" aria-expanded="false">Policies</a>
+                                        <button class="dropdown-caret" aria-label="Open policy menu" style="background:none;border:none;color:inherit;cursor:pointer;">▾</button>
+                                        <div class="dropdown-menu" style="position:absolute; right:0; background:#fff; border:1px solid var(--warm-beige); border-radius:10px; box-shadow:0 8px 20px rgba(0,0,0,0.12); padding:0.5rem; display:none; min-width:240px;">
                                 <a href="privacy-policy.html" style="display:block; padding:0.5rem 0.75rem;">Privacy Policy</a>
                                 <a href="terms-and-conditions.html" style="display:block; padding:0.5rem 0.75rem;">Terms & Conditions</a>
                                 <a href="disclaimer.html" style="display:block; padding:0.5rem 0.75rem;">Disclaimer</a>
@@ -32,6 +33,25 @@
                                 <a href="shipping-delivery-policy.html" style="display:block; padding:0.5rem 0.75rem;">Shipping & Delivery Policy</a>
                             </div>
                         </span>
+        <script>
+            // Dropdown caret toggles menu; Policies link navigates to full policies page
+            (function(){
+                const dropdown = document.querySelector('.dropdown');
+                if (!dropdown) return;
+                const caret = dropdown.querySelector('.dropdown-caret');
+                const triggerLink = dropdown.querySelector('a[href="policies.html"]');
+                const menu = dropdown.querySelector('.dropdown-menu');
+                caret.addEventListener('click', function(e){
+                    e.preventDefault();
+                    const open = menu.style.display === 'block';
+                    menu.style.display = open ? 'none' : 'block';
+                    triggerLink.setAttribute('aria-expanded', (!open).toString());
+                });
+                document.addEventListener('click', function(e){
+                    if (!dropdown.contains(e.target)) menu.style.display = 'none';
+                });
+            })();
+        </script>
         </div>
         <div class="mobile-menu">☰</div>
     </nav>
