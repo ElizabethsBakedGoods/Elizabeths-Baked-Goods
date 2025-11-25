@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Disclaimer | Elizabeth's Baked Goods</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Disclaimer | Elizabeth’s Baked Goods</title>
   <link rel="stylesheet" href="style.css?v=20251102d" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
-  <meta name="description" content="Disclaimer for informational content, allergy warnings, and external links for Elizabeth’s Baked Goods." />
+  <meta name="description" content="Website information, allergy notice, AdSense disclaimer, and professional disclaimer for Elizabeth’s Baked Goods." />
 </head>
 <body class="site-bg">
   <nav class="nav--glass">
@@ -18,33 +18,64 @@
       <a href="about.html">About</a>
       <a href="blog.html">Blog</a>
       <a href="contact.html">Contact</a>
+      <span class="dropdown" style="position:relative;">
+        <a href="policies.html" aria-haspopup="true" aria-expanded="false">Policies</a>
+        <button class="dropdown-caret" aria-label="Open policy menu" style="background:none;border:none;color:inherit;cursor:pointer;">▾</button>
+        <div class="dropdown-menu" style="position:absolute; right:0; background:#fff; border:1px solid var(--warm-beige); border-radius:10px; box-shadow:0 8px 20px rgba(0,0,0,0.12); padding:0.5rem; display:none; min-width:240px;">
+          <a href="privacy-policy.html" style="display:block; padding:0.5rem 0.75rem;">Privacy Policy</a>
+          <a href="terms-and-conditions.html" style="display:block; padding:0.5rem 0.75rem;">Terms & Conditions</a>
+          <a href="disclaimer.html" style="display:block; padding:0.5rem 0.75rem;">Disclaimer</a>
+          <a href="refund-policy.html" style="display:block; padding:0.5rem 0.75rem;">Return & Refund Policy</a>
+          <a href="shipping-delivery-policy.html" style="display:block; padding:0.5rem 0.75rem;">Shipping & Delivery Policy</a>
+        </div>
+      </span>
     </div>
     <div class="mobile-menu">☰</div>
   </nav>
 
   <main style="padding-top:80px;">
-    <section class="section" style="max-width: 900px; margin:0 auto;">
+    <section class="section" style="max-width: 900px; margin:0 auto; text-align:left;">
       <h1>Disclaimer</h1>
-      <div class="card-soft" style="line-height:1.85;">
-        <h2>Informational Content</h2>
-        <p>The content on this website and blog is for informational and promotional purposes only. It is not professional advice.</p>
+      <p><em>Last updated: January 2025</em></p>
 
-        <h2>Allergy Notice</h2>
-        <p>Our products are prepared in a home kitchen and may contain or come into contact with common allergens such as nuts, dairy, eggs, soy, and wheat. Customers with allergies should use caution and contact us with questions.</p>
+      <div class="card-soft" style="line-height:1.9;">
+        <h2>Website Information</h2>
+        <p>Information on this website is provided for general purposes only. While we aim for accuracy, we make no guarantees regarding completeness or reliability.</p>
 
-        <h2>External Links</h2>
-        <p>We may link to external websites or social profiles. We are not responsible for the content or policies of third-party sites.</p>
+        <h2>Food Allergies</h2>
+        <p>Our products are made in a kitchen that handles dairy, eggs, wheat, nuts, and gluten. Customers are responsible for notifying us of allergies before ordering.</p>
 
-        <h2>Accuracy</h2>
-        <p>We strive to keep information up to date. However, product availability, pricing, and details may change without notice.</p>
+        <h2>Google AdSense Disclaimer</h2>
+        <p>This website displays advertisements through Google AdSense. Ads may be based on browsing history and may not reflect our recommendations.</p>
 
-        <p style="margin-top:1rem;">Questions? Contact us via our <a href="contact.html">Contact</a> page.</p>
+        <h2>Professional Disclaimer</h2>
+        <p>Any baking, food, or culinary advice shared on this site is based on personal experience and is not professional or medical advice.</p>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 Elizabeth's Baked Goods | <a href="privacy-policy.html" style="color: inherit; text-decoration: underline;">Privacy Policy</a></p>
+    <p>&copy; 2025 Elizabeth's Baked Goods | <a href="privacy-policy.html" style="color: inherit; text-decoration: underline;">Privacy Policy</a> • <a href="terms-and-conditions.html" style="color: inherit; text-decoration: underline;">Terms</a> • <a href="disclaimer.html" style="color: inherit; text-decoration: underline;">Disclaimer</a> • <a href="refund-policy.html" style="color: inherit; text-decoration: underline;">Returns</a> • <a href="shipping-delivery-policy.html" style="color: inherit; text-decoration: underline;">Shipping</a></p>
   </footer>
+
+  <script>
+    // Dropdown caret toggles menu; Policies link navigates to full policies page
+    (function(){
+      const dropdown = document.querySelector('.dropdown');
+      if (!dropdown) return;
+      const caret = dropdown.querySelector('.dropdown-caret');
+      const triggerLink = dropdown.querySelector('a[href="policies.html"]');
+      const menu = dropdown.querySelector('.dropdown-menu');
+      caret.addEventListener('click', function(e){
+        e.preventDefault();
+        const open = menu.style.display === 'block';
+        menu.style.display = open ? 'none' : 'block';
+        triggerLink.setAttribute('aria-expanded', (!open).toString());
+      });
+      document.addEventListener('click', function(e){
+        if (!dropdown.contains(e.target)) menu.style.display = 'none';
+      });
+    })();
+  </script>
 </body>
 </html>

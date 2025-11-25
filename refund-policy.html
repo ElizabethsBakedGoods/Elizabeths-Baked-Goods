@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Return & Refund Policy | Elizabeth's Baked Goods</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Refund & Return Policy | Elizabeth’s Baked Goods</title>
   <link rel="stylesheet" href="style.css?v=20251102d" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
-  <meta name="description" content="Return and refund policy for Elizabeth’s Baked Goods including custom orders and perishable items." />
+  <meta name="description" content="Refund & Return Policy: cancellations, refunds on issues, no returns on food items, and how to contact us." />
 </head>
 <body class="site-bg">
   <nav class="nav--glass">
@@ -18,34 +18,70 @@
       <a href="about.html">About</a>
       <a href="blog.html">Blog</a>
       <a href="contact.html">Contact</a>
+      <span class="dropdown" style="position:relative;">
+        <a href="policies.html" aria-haspopup="true" aria-expanded="false">Policies</a>
+        <button class="dropdown-caret" aria-label="Open policy menu" style="background:none;border:none;color:inherit;cursor:pointer;">▾</button>
+        <div class="dropdown-menu" style="position:absolute; right:0; background:#fff; border:1px solid var(--warm-beige); border-radius:10px; box-shadow:0 8px 20px rgba(0,0,0,0.12); padding:0.5rem; display:none; min-width:240px;">
+          <a href="privacy-policy.html" style="display:block; padding:0.5rem 0.75rem;">Privacy Policy</a>
+          <a href="terms-and-conditions.html" style="display:block; padding:0.5rem 0.75rem;">Terms & Conditions</a>
+          <a href="disclaimer.html" style="display:block; padding:0.5rem 0.75rem;">Disclaimer</a>
+          <a href="refund-policy.html" style="display:block; padding:0.5rem 0.75rem;">Return & Refund Policy</a>
+          <a href="shipping-delivery-policy.html" style="display:block; padding:0.5rem 0.75rem;">Shipping & Delivery Policy</a>
+        </div>
+      </span>
     </div>
     <div class="mobile-menu">☰</div>
   </nav>
 
   <main style="padding-top:80px;">
-    <section class="section" style="max-width: 900px; margin:0 auto;">
-      <h1>Return & Refund Policy</h1>
-      <div class="card-soft" style="line-height:1.85;">
-        <h2>Perishable Goods</h2>
-        <p>Due to the nature of baked goods and food items, we do not accept returns of perishable products. If there is a quality issue, please contact us within 24 hours of delivery or pickup.</p>
+    <section class="section" style="max-width: 900px; margin:0 auto; text-align:left;">
+      <h1>Refund & Return Policy</h1>
+      <p><em>Last updated: January 2025</em></p>
 
-        <h2>Custom Orders</h2>
-        <p>Custom items are made to order and are non-refundable once preparation has begun. We’ll do our best to make it right if there’s an issue—please reach out promptly.</p>
+      <div class="card-soft" style="line-height:1.9;">
+        <h2>Order Cancellations</h2>
+        <p>Cancellations must be made at least 24 hours before pickup or delivery. Same-day cancellations may not qualify for a refund.</p>
 
-        <h2>Order Changes & Cancellations</h2>
-        <p>For local orders, changes or cancellations must be requested at least 48 hours prior to the scheduled delivery/pickup time. For online orders, please contact us immediately; changes may not be possible after checkout.</p>
+        <h2>Refunds</h2>
+        <p>Because baked goods are perishable, all sales are final once delivered or picked up. Refunds may be granted only for:</p>
+        <ul>
+          <li>Incorrect items</li>
+          <li>Missing items</li>
+          <li>Quality issues with photo evidence within 2 hours of delivery or pickup</li>
+        </ul>
 
-        <h2>Damaged or Incorrect Items</h2>
-        <p>If your order arrives damaged or incorrect, contact us within 24 hours with photos and your order details. We’ll evaluate and offer a replacement or partial refund where appropriate.</p>
+        <h2>No Returns on Food Items</h2>
+        <p>Food items cannot be returned.</p>
 
-        <h2>Contact</h2>
-        <p>Questions about this policy? Please use our <a href="contact.html">Contact</a> page.</p>
+        <h2>Contact for Issues</h2>
+        <p>If there is a problem with your order, contact us immediately:<br>
+        Email: info@elizabethsbakedgoods.com</p>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 Elizabeth's Baked Goods | <a href="privacy-policy.html" style="color: inherit; text-decoration: underline;">Privacy Policy</a></p>
+    <p>&copy; 2025 Elizabeth's Baked Goods | <a href="privacy-policy.html" style="color: inherit; text-decoration: underline;">Privacy Policy</a> • <a href="terms-and-conditions.html" style="color: inherit; text-decoration: underline;">Terms</a> • <a href="disclaimer.html" style="color: inherit; text-decoration: underline;">Disclaimer</a> • <a href="refund-policy.html" style="color: inherit; text-decoration: underline;">Returns</a> • <a href="shipping-delivery-policy.html" style="color: inherit; text-decoration: underline;">Shipping</a></p>
   </footer>
+
+  <script>
+    // Dropdown caret toggles menu; Policies link navigates to full policies page
+    (function(){
+      const dropdown = document.querySelector('.dropdown');
+      if (!dropdown) return;
+      const caret = dropdown.querySelector('.dropdown-caret');
+      const triggerLink = dropdown.querySelector('a[href="policies.html"]');
+      const menu = dropdown.querySelector('.dropdown-menu');
+      caret.addEventListener('click', function(e){
+        e.preventDefault();
+        const open = menu.style.display === 'block';
+        menu.style.display = open ? 'none' : 'block';
+        triggerLink.setAttribute('aria-expanded', (!open).toString());
+      });
+      document.addEventListener('click', function(e){
+        if (!dropdown.contains(e.target)) menu.style.display = 'none';
+      });
+    })();
+  </script>
 </body>
 </html>
