@@ -2,258 +2,116 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elizabeth's Baked Goods - Handmade Desserts & Holiday Treats</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
     <meta name="description" content="Handmade cookies, macarons, brownies, and seasonal dessert boxes. Small-batch baked goods crafted with love in Texas.">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9289301430903450"
          crossorigin="anonymous"></script>
     <style>
-        * { margin:0; padding:0; box-sizing:border-box; }
+        /* General Styles */
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: Arial, sans-serif;
+            margin:0;
+            padding:0;
             line-height:1.6;
-            color:#333;
-            background-color:#fff;
-            --warm-beige:#e0c9a6;
         }
         a { text-decoration:none; color:#c04a2f; }
-        a:hover { text-decoration:underline; }
         img { display:block; max-width:100%; height:auto; }
-        
-        header { 
-            background-color:#333; 
-            color:#fff; 
-            padding:15px 20px;
-        }
-        header h1 { 
-            margin:0; 
-            font-size:24px;
-        }
-        
-        
-        .hero { 
-            text-align:center; 
-            padding:40px 20px; 
-            background-color:#f9f3f1; 
-        }
-        .hero img { 
-            width:100%; 
-            max-width:600px;
-            max-height:400px; 
-            object-fit:cover;
-            border-radius:12px;
-            margin:20px auto;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        .hero p {
-            font-size:1.1rem;
-            color:#666;
-            max-width:800px;
-            margin:0 auto 20px;
-        }
-        
-        main { 
-            display:flex; 
-            flex-wrap:wrap; 
-            padding:40px 20px; 
-            gap:30px; 
-            max-width:1200px;
-            margin:0 auto;
-            justify-content:flex-start;
-        }
-        
-        .content { 
-            flex:2; 
-            min-width:300px; 
-        }
-        
-        .sidebar { 
-            flex:1; 
-            min-width:250px; 
-            background-color:#f9f3f1; 
-            padding:30px; 
-            border-radius:12px;
-            border:1px solid #e0c9a6;
-            height:fit-content;
-        }
-        
-        .sidebar h3 {
-            font-family: 'Dancing Script', cursive;
-            color:#8b4513;
-            font-size:1.8rem;
-            margin-bottom:15px;
-        }
-        
-        .sidebar img.profile {
-            border-radius:50%;
-            width:120px;
-            height:120px;
-            object-fit:cover;
-            margin:0 auto 20px;
-            display:block;
-        }
-        
-        .blog-post { 
-            margin-bottom:30px; 
-            border-bottom:1px solid #e0c9a6; 
-            padding-bottom:20px; 
-        }
-        .blog-post:last-child {
-            border-bottom:none;
-        }
-        
-        .blog-post h3 { 
-            margin:0 0 10px 0;
-            font-size:1.3rem;
-        }
-        .blog-post h3 a {
-            color:#8b4513;
-            font-weight:600;
-        }
-        .blog-post h3 a:hover {
-            color:#c04a2f;
-        }
-        
-        .blog-post p {
-            color:#666;
-            margin:0;
-        }
-        
-        .product { 
-            margin-bottom:25px; 
-            border:1px solid #ddd; 
-            padding:15px; 
-            text-align:center;
-            border-radius:8px;
-            background-color:#fff;
-        }
-        
-        .product img { 
-            height:180px; 
-            object-fit:cover; 
-            border-radius:8px;
-            margin-bottom:10px;
-        }
-        
-        .product h4 {
-            color:#8b4513;
-            margin:10px 0;
-            font-size:1.1rem;
-        }
-        
-        .product p {
-            color:#666;
-            font-size:0.95rem;
-            margin:10px 0;
-        }
-        
-        .product a {
-            display:inline-block;
-            padding:8px 16px;
-            background-color:#8b4513;
+
+        /* Header / Navigation */
+        header {
+            background-color:#333;
             color:#fff;
+            padding:15px 20px;
+            position:sticky;
+            top:0;
+            z-index:1000;
+        }
+        header h1 { margin:0; font-size:24px; }
+        nav ul {
+            list-style:none;
+            margin:0;
+            padding:0;
+            display:flex;
+            gap:15px;
+            flex-wrap:wrap;
+        }
+        nav a { color:#fff; }
+        nav a:hover { color:#f2b6a0; }
+
+        /* Container */
+        .container { max-width:1200px; margin:0 auto; padding:0 20px; }
+
+        /* Hero */
+        .hero {
+            text-align:center;
+            padding:30px 20px;
+            background-color:#f9f3f1;
+        }
+        .hero img { width:100%; max-height:400px; object-fit:cover; }
+
+        /* Main + Sidebar */
+        main {
+            display:flex;
+            flex-wrap:wrap;
+            gap:20px;
+            padding:40px 0;
+        }
+        .content { flex:3; min-width:300px; }
+        .sidebar {
+            flex:1;
+            min-width:250px;
+            background-color:#f9f3f1;
+            padding:20px;
+            border:1px solid #ddd;
+        }
+
+        /* Blog Posts */
+        .blog-post { margin-bottom:30px; border-bottom:1px solid #ddd; padding-bottom:15px; }
+        .blog-post h3 { margin-top:0; }
+
+        /* Sidebar Products */
+        .product { margin-bottom:20px; border:1px solid #ddd; padding:15px; text-align:center; }
+        .product img { height:200px; object-fit:cover; border-radius:5px; }
+
+        /* CTA */
+        .cta { text-align:center; padding:40px 20px; background-color:#f9f3f1; }
+        .cta a {
+            padding:15px 25px;
+            background-color:#c04a2f;
+            color:#fff;
+            display:inline-block;
             border-radius:5px;
-            margin-top:10px;
-            font-weight:600;
         }
-        .product a:hover {
-            background-color:#c04a2f;
-            text-decoration:none;
+
+        /* Footer */
+        footer {
+            background-color:#333;
+            color:#fff;
+            text-align:center;
+            padding:20px;
         }
-        
-        .cta { 
-            text-align:center; 
-            padding:50px 20px; 
-            background-color:#f9f3f1; 
-            margin:40px 0 0 0;
-        }
-        
-        .cta h2 {
-            font-family: 'Dancing Script', cursive;
-            color:#8b4513;
-            font-size:2rem;
-            margin-bottom:10px;
-        }
-        
-        .cta p {
-            color:#666;
-            font-size:1.1rem;
-            margin-bottom:20px;
-        }
-        
-        .cta a { 
-            padding:15px 30px; 
-            background-color:#8b4513; 
-            color:#fff; 
-            display:inline-block; 
-            border-radius:8px;
-            font-weight:600;
-            font-size:1.1rem;
-        }
-        .cta a:hover {
-            background-color:#c04a2f;
-            text-decoration:none;
-        }
-        
-        footer { 
-            background-color:#333; 
-            color:#fff; 
-            padding:30px 20px; 
-            text-align:center; 
-            margin-top:40px;
-        }
-        
-        footer a { 
-            color:#fff; 
-            margin:0 8px; 
-        }
-        footer a:hover {
-            text-decoration:underline;
-        }
-        
-        footer p {
-            margin:10px 0;
-        }
-        
-        @media (max-width: 768px) {
-            main {
-                flex-direction:column;
-            }
-            .sidebar {
-                order:1;
-            }
-            .content {
-                order:2;
-            }
-            header h1 {
-                font-size:1.8rem;
-            }
-            .cta h2 {
-                font-size:1.5rem;
-            }
-        }
+        footer a { color:#fff; margin:0 5px; }
     </style>
 </head>
 <body>
 
-<!-- Header -->
-<header style="background-color:#333; color:#fff; padding:15px 20px;">
-    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
-        <!-- Site Title / Logo -->
-        <h1 style="margin:0; font-size:24px; font-family: 'Dancing Script', cursive;">Elizabeth's Baked Goods</h1>
+<!-- Google AdSense Script -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9289301430903450"
+     crossorigin="anonymous"></script>
 
-        <!-- Navigation Menu -->
+<!-- Header / Navigation -->
+<header>
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+        <h1>Elizabeth's Baked Goods</h1>
         <nav>
-            <ul style="list-style:none; margin:0; padding:0; display:flex; gap:15px; flex-wrap:wrap;">
-                <li><a href="index.html" style="color:#fff; text-decoration:none;">Home</a></li>
-                <li><a href="blog.html" style="color:#fff; text-decoration:none;">Blogs</a></li>
-                <li><a href="order.html" style="color:#fff; text-decoration:none;">Recipes</a></li>
-                <li><a href="order.html" style="color:#fff; text-decoration:none;">Order</a></li>
-                <li><a href="local-ordering.html" style="color:#fff; text-decoration:none;">Local Ordering</a></li>
-                <li><a href="contact.html" style="color:#fff; text-decoration:none;">Contact</a></li>
-                <li><a href="policies.html" style="color:#fff; text-decoration:none;">Policies</a></li>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html">Blogs</a></li>
+                <li><a href="recipes.html">Recipes</a></li>
+                <li><a href="order.html">Order</a></li>
+                <li><a href="local-ordering.html">Local Ordering</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="policies.html">Policies</a></li>
             </ul>
         </nav>
     </div>
@@ -261,63 +119,67 @@
 
 <!-- Hero Section -->
 <section class="hero">
-    <img src="images/about.jpg" alt="Assorted baked goods">
-    <p>Handmade desserts made from scratch with premium ingredients and a lot of love. From cookies and brownies to macarons and seasonal boxes, every treat is crafted to delight!</p>
+    <div class="container">
+        <img src="images/about.jpg" alt="Assorted baked goods">
+        <p>Handmade desserts made from scratch with premium ingredients and a lot of love. From cookies and brownies to macarons and seasonal boxes, every treat is crafted to delight!</p>
+    </div>
 </section>
 
 <!-- Main Content & Sidebar -->
-<main>
-    <!-- Sidebar (Comes First in Flex Order on Desktop) -->
-    <aside class="sidebar">
-        <h3>About Elizabeth</h3>
-        <img src="images/about.jpg" alt="Elizabeth" class="profile">
-        <p>Hi! I'm Elizabeth, the baker behind all these sweet creations. Every treat is handmade with love and high-quality ingredients, from cookies and macarons to seasonal gift boxes.</p>
+<div class="container">
+    <main>
+        <!-- Main Blog Content -->
+        <div class="content">
+            <div class="blog-post">
+                <h3><a href="blog/how-to-store-homemade-cookies.html">How to Store Homemade Cookies for Maximum Freshness</a></h3>
+                <p>Learn the secrets to keeping your cookies soft, chewy, or crisp for days—even weeks. Perfect for holiday baking and gift giving!</p>
+            </div>
+            <div class="blog-post">
+                <h3><a href="blog/secret-to-perfect-holiday-chocolate-treats.html">The Secret to Perfect Holiday Chocolate Treats</a></h3>
+                <p>Discover tips for glossy, smooth chocolate and festive treats that will impress friends, family, and gift recipients.</p>
+            </div>
+            <div class="blog-post">
+                <h3><a href="blog/top-5-macaron-mistakes.html">My Top 5 Mistakes Beginners Make When Baking Macarons</a></h3>
+                <p>A practical guide to avoid common pitfalls and finally achieve perfect macarons at home.</p>
+            </div>
+            <div class="blog-post">
+                <h3><a href="blog/behind-the-scenes-holiday-boxes.html">Behind the Scenes: How I Make My Holiday Boxes</a></h3>
+                <p>A peek into my process for creating beautiful and delicious holiday gift boxes.</p>
+            </div>
+            <div class="blog-post">
+                <h3><a href="blog/perfect-dessert-gift-holidays.html">How to Choose the Perfect Dessert Gift for the Holidays</a></h3>
+                <p>Learn how to pick desserts that are thoughtful, festive, and perfect for anyone on your gift list.</p>
+            </div>
+        </div>
 
-        <h3 style="margin-top:30px;">Featured Treats</h3>
-        <div class="product">
-            <img src="images/chocchip2.jpg" alt="Chocolate chip cookies">
-            <h4>Chocolate Chip Cookies</h4>
-            <p>Soft, chewy, and packed with chocolate chips. A classic favorite!</p>
-            <a href="recipes/chunky-chocolate-chip-cookies.html">View Recipe</a>
-        </div>
-        <div class="product">
-            <img src="images/browniesbiscoff.jfif" alt="Brownies">
-            <h4>Ultimate Fudgy Brownies</h4>
-            <p>Rich, decadent, and perfectly fudgy. Pure chocolate bliss!</p>
-            <a href="recipes/ultimate-fudgy-brownies.html">View Recipe</a>
-        </div>
-        <div class="product">
-            <img src="images/sugar cookieset.jpg" alt="Sugar cookies">
-            <h4>Classic Sugar Cookies</h4>
-            <p>Perfect for decorating with royal icing. Beautiful and delicious!</p>
-            <a href="recipes/classic-sugar-cookies.html">View Recipe</a>
-        </div>
-    </aside>
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h3>About Elizabeth</h3>
+            <img src="images/about.jpg" alt="Elizabeth" style="border-radius:50%; margin-bottom:15px; width:100px; height:100px; object-fit:cover;">
+            <p>Hi! I'm Elizabeth, the baker behind all these sweet creations. Every treat is handmade with love and high-quality ingredients, from cookies and macarons to seasonal gift boxes.</p>
 
-    <!-- Main Blog Content -->
-    <div class="content">
-        <div class="blog-post">
-            <h3><a href="blog/how-to-store-homemade-cookies.html">How to Store Homemade Cookies for Maximum Freshness</a></h3>
-            <p>Learn the secrets to keeping your cookies soft, chewy, or crisp for days—even weeks. Perfect for holiday baking and gift giving!</p>
-        </div>
-        <div class="blog-post">
-            <h3><a href="blog/secret-to-perfect-holiday-chocolate-treats.html">The Secret to Perfect Holiday Chocolate Treats</a></h3>
-            <p>Discover tips for glossy, smooth chocolate and festive treats that will impress friends, family, and gift recipients.</p>
-        </div>
-        <div class="blog-post">
-            <h3><a href="blog/top-5-macaron-mistakes.html">My Top 5 Mistakes Beginners Make When Baking Macarons</a></h3>
-            <p>A practical guide to avoid common pitfalls and finally achieve perfect macarons at home.</p>
-        </div>
-        <div class="blog-post">
-            <h3><a href="blog/behind-the-scenes-holiday-boxes.html">Behind the Scenes: How I Make My Holiday Boxes</a></h3>
-            <p>A peek into my process for creating beautiful and delicious holiday gift boxes.</p>
-        </div>
-        <div class="blog-post">
-            <h3><a href="blog/perfect-dessert-gift-holidays.html">How to Choose the Perfect Dessert Gift for the Holidays</a></h3>
-            <p>Learn how to pick desserts that are thoughtful, festive, and perfect for anyone on your gift list.</p>
-        </div>
-    </div>
-</main>
+            <h3>Featured Treats</h3>
+            <div class="product">
+                <img src="images/chocchip2.jpg" alt="Chocolate chip cookies">
+                <h4>Chocolate Chip Cookies</h4>
+                <p>Soft, chewy, and packed with chocolate chips. A classic favorite!</p>
+                <a href="recipes/chunky-chocolate-chip-cookies.html">View Recipe</a>
+            </div>
+            <div class="product">
+                <img src="images/browniesbiscoff.jfif" alt="Brownies">
+                <h4>Ultimate Fudgy Brownies</h4>
+                <p>Rich, decadent, and perfectly fudgy. Pure chocolate bliss!</p>
+                <a href="recipes/ultimate-fudgy-brownies.html">View Recipe</a>
+            </div>
+            <div class="product">
+                <img src="images/sugar cookieset.jpg" alt="Sugar cookies">
+                <h4>Classic Sugar Cookies</h4>
+                <p>Perfect for decorating with royal icing. Beautiful and delicious!</p>
+                <a href="recipes/classic-sugar-cookies.html">View Recipe</a>
+            </div>
+        </aside>
+    </main>
+</div>
 
 <!-- Call to Action -->
 <section class="cta">
@@ -328,7 +190,7 @@
 
 <!-- Footer -->
 <footer>
-    <p><a href="about.html">About</a> | <a href="contact.html">Contact</a> | <a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-and-conditions.html">Terms</a> | <a href="disclaimer.html">Disclaimer</a></p>
+    <p><a href="about.html">About</a> | <a href="contact.html">Contact</a> | <a href="privacy-policy.html">Privacy Policy</a></p>
     <p>&copy; 2025 Elizabeth's Baked Goods. All Rights Reserved.</p>
 </footer>
 
