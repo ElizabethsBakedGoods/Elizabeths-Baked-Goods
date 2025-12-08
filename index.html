@@ -23,131 +23,13 @@
         img { display:block; max-width:100%; height:auto; }
         
         header { 
-            background-color:#8b4513; 
+            background-color:#333; 
             color:#fff; 
-            padding:20px; 
-            text-align:center; 
-            position:sticky;
-            top:0;
-            z-index:100;
+            padding:15px 20px;
         }
         header h1 { 
             margin:0; 
-            font-family: 'Dancing Script', cursive;
-            font-size:2.2rem;
-            margin-bottom:15px;
-        }
-        
-        .nav--glass {
-            background-color:rgba(139, 69, 19, 0.95);
-            padding:0;
-        }
-        
-        .nav-links {
-            display:flex;
-            flex-wrap:wrap;
-            justify-content:center;
-            gap:0;
-            list-style:none;
-            align-items:center;
-        }
-        
-        .nav-links a {
-            color:#fff;
-            padding:12px 15px;
-            display:block;
-            font-weight:500;
-        }
-        
-        .nav-links a:hover {
-            background-color:#c04a2f;
-            text-decoration:none;
-        }
-        
-        .nav-links a.active {
-            background-color:#c04a2f;
-        }
-        
-        .dropdown {
-            position:relative;
-            display:inline-flex;
-            align-items:center;
-        }
-        
-        .dropdown-caret {
-            padding:12px 5px;
-            cursor:pointer;
-            color:#fff;
-        }
-        
-        .dropdown-menu {
-            position:absolute;
-            right:0;
-            background:#fff;
-            border:1px solid var(--warm-beige);
-            border-radius:10px;
-            box-shadow:0 8px 20px rgba(0,0,0,0.12);
-            padding:0.5rem;
-            display:none;
-            min-width:240px;
-            top:100%;
-            z-index:1000;
-        }
-        
-        .dropdown-menu a {
-            display:block;
-            padding:0.5rem 0.75rem;
-            color:#333;
-        }
-        
-        .dropdown-menu a:hover {
-            background-color:#f9f3f1;
-            text-decoration:none;
-        }
-        
-        .mobile-menu {
-            display:none;
-            cursor:pointer;
-            color:#fff;
-            font-size:1.5rem;
-        }
-        
-        @media (max-width:768px) {
-            .nav-links {
-                display:none;
-                flex-direction:column;
-                width:100%;
-                position:absolute;
-                top:80px;
-                left:0;
-                background-color:rgba(139, 69, 19, 0.95);
-                gap:0;
-            }
-            
-            .nav-links.active {
-                display:flex;
-            }
-            
-            .nav-links a {
-                width:100%;
-                border-bottom:1px solid rgba(0,0,0,0.1);
-            }
-            
-            .mobile-menu {
-                display:block;
-            }
-            
-            .dropdown-menu {
-                position:static;
-                background-color:#7a4a1b;
-                box-shadow:none;
-                border:none;
-                display:none;
-            }
-            
-            .dropdown-menu.active {
-                display:block;
-            }
+            font-size:24px;
         }
         
         
@@ -357,31 +239,24 @@
 <body>
 
 <!-- Header -->
-<header>
-    <h1>Elizabeth's Baked Goods</h1>
-    <nav class="nav--glass">
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="index.html#featured">Featured</a>
-            <a href="order.html">Order Online</a>
-            <a href="local-ordering.html">Local Ordering</a>
-            <a href="about.html">About</a>
-            <a href="blog.html">Blog</a>
-            <a href="contact.html">Contact</a>
-            <span class="dropdown" style="position:relative;">
-                <a href="policies.html" aria-haspopup="true" aria-expanded="false">Policies</a>
-                <button class="dropdown-caret" aria-label="Open policy menu" style="background:none;border:none;color:inherit;cursor:pointer;">▾</button>
-                <div class="dropdown-menu" style="position:absolute; right:0; background:#fff; border:1px solid var(--warm-beige); border-radius:10px; box-shadow:0 8px 20px rgba(0,0,0,0.12); padding:0.5rem; display:none; min-width:240px;">
-                    <a href="privacy-policy.html" style="display:block; padding:0.5rem 0.75rem;">Privacy Policy</a>
-                    <a href="terms-and-conditions.html" style="display:block; padding:0.5rem 0.75rem;">Terms & Conditions</a>
-                    <a href="disclaimer.html" style="display:block; padding:0.5rem 0.75rem;">Disclaimer</a>
-                    <a href="refund-policy.html" style="display:block; padding:0.5rem 0.75rem;">Return & Refund Policy</a>
-                    <a href="shipping-delivery-policy.html" style="display:block; padding:0.5rem 0.75rem;">Shipping & Delivery Policy</a>
-                </div>
-            </span>
-        </div>
-        <div class="mobile-menu">☰</div>
-    </nav>
+<header style="background-color:#333; color:#fff; padding:15px 20px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+        <!-- Site Title / Logo -->
+        <h1 style="margin:0; font-size:24px; font-family: 'Dancing Script', cursive;">Elizabeth's Baked Goods</h1>
+
+        <!-- Navigation Menu -->
+        <nav>
+            <ul style="list-style:none; margin:0; padding:0; display:flex; gap:15px; flex-wrap:wrap;">
+                <li><a href="index.html" style="color:#fff; text-decoration:none;">Home</a></li>
+                <li><a href="blog.html" style="color:#fff; text-decoration:none;">Blogs</a></li>
+                <li><a href="order.html" style="color:#fff; text-decoration:none;">Recipes</a></li>
+                <li><a href="order.html" style="color:#fff; text-decoration:none;">Order</a></li>
+                <li><a href="local-ordering.html" style="color:#fff; text-decoration:none;">Local Ordering</a></li>
+                <li><a href="contact.html" style="color:#fff; text-decoration:none;">Contact</a></li>
+                <li><a href="policies.html" style="color:#fff; text-decoration:none;">Policies</a></li>
+            </ul>
+        </nav>
+    </div>
 </header>
 
 <!-- Hero Section -->
@@ -459,34 +334,3 @@
 
 </body>
 </html>
-
-<script>
-    // Mobile menu toggle
-    const mobileMenu = document.querySelector('.mobile-menu');
-    const navLinks = document.querySelector('.nav-links');
-    
-    if (mobileMenu) {
-        mobileMenu.addEventListener('click', function() {
-            navLinks.classList.toggle('active');
-        });
-    }
-    
-    // Dropdown menu
-    const dropdown = document.querySelector('.dropdown');
-    if (dropdown) {
-        const caret = dropdown.querySelector('.dropdown-caret');
-        const triggerLink = dropdown.querySelector('a[href="policies.html"]');
-        const menu = dropdown.querySelector('.dropdown-menu');
-        
-        caret.addEventListener('click', function(e){
-            e.preventDefault();
-            const open = menu.style.display === 'block';
-            menu.style.display = open ? 'none' : 'block';
-            triggerLink.setAttribute('aria-expanded', (!open).toString());
-        });
-        
-        document.addEventListener('click', function(e){
-            if (!dropdown.contains(e.target)) menu.style.display = 'none';
-        });
-    }
-</script>
