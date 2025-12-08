@@ -54,6 +54,7 @@
             width:100%;
             max-height:400px;
             object-fit:cover;
+            object-position:top;
             border-radius:10px;
         }
         .hero p {
@@ -245,6 +246,27 @@
     <main>
         <!-- Main Blog Posts -->
         <div class="content">
+            <!-- Featured Blog Posts -->
+            <div class="featured-blogs" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px; margin-bottom:40px;">
+                <div style="border:1px solid #ddd; border-radius:8px; overflow:hidden; background:#fff;">
+                    <img src="images/imagesgift-basket.jpg" alt="Holiday gift baskets" style="width:100%; height:200px; object-fit:cover;">
+                    <div style="padding:15px;">
+                        <h3 style="margin-top:0; font-family:'Playfair Display', serif; color:#4d2c2a; font-size:1.2rem;"><a href="blog/how-i-build-my-50-holiday-gift-baskets.html" style="color:#4d2c2a;">How I Build My $50 Holiday Gift Baskets</a></h3>
+                        <p>Discover my process for creating beautiful, thoughtful holiday gift baskets that spread joy and impress everyone on your list.</p>
+                        <a href="blog/how-i-build-my-50-holiday-gift-baskets.html" style="display:inline-block; padding:8px 15px; background-color:#c04a2f; color:#fff; border-radius:5px; font-size:0.85rem;">Read More →</a>
+                    </div>
+                </div>
+                <div style="border:1px solid #ddd; border-radius:8px; overflow:hidden; background:#fff;">
+                    <img src="images/Knomecookies.jpg" alt="Decorated sugar cookies" style="width:100%; height:200px; object-fit:cover;">
+                    <div style="padding:15px;">
+                        <h3 style="margin-top:0; font-family:'Playfair Display', serif; color:#4d2c2a; font-size:1.2rem;"><a href="blog/holiday-sugar-cookie-decorating.html" style="color:#4d2c2a;">Holiday Sugar Cookie Decorating Tradition</a></h3>
+                        <p>Learn my favorite techniques for decorating beautiful sugar cookies with royal icing. Perfect for holiday gifts and celebrations!</p>
+                        <a href="blog/holiday-sugar-cookie-decorating.html" style="display:inline-block; padding:8px 15px; background-color:#c04a2f; color:#fff; border-radius:5px; font-size:0.85rem;">Read More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <h2 style="margin-top:40px; margin-bottom:20px; font-family:'Playfair Display', serif; color:#4d2c2a;">More Blog Posts</h2>
             <div class="blog-post">
                 <h3><a href="blog/how-to-store-homemade-cookies.html">How to Store Homemade Cookies for Maximum Freshness</a></h3>
                 <p>Learn the secrets to keeping your cookies soft, chewy, or crisp for days—even weeks. Perfect for holiday baking and gift giving!</p>
