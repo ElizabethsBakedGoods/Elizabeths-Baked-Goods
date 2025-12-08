@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes | Elizabeth's Baked Goods</title>
+    <meta name="description" content="Browse all of Elizabeth's handmade baked goods recipes. Learn how to make sugar cookies, brownies, chocolate chip cookies, and more!">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans&display=swap" rel="stylesheet">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9289301430903450"
+         crossorigin="anonymous"></script>
+
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #333;
+            margin:0;
+            padding:0;
+            line-height:1.6;
+        }
+        a { text-decoration:none; color:#c04a2f; }
+        img { display:block; max-width:100%; height:auto; }
+
+        /* Header / Navigation */
+        header {
+            background-color:#333;
+            color:#fff;
+            padding:15px 20px;
+            position:sticky;
+            top:0;
+            z-index:1000;
+        }
+        header h1 { margin:0; font-size:24px; }
+        nav ul {
+            list-style:none;
+            margin:0;
+            padding:0;
+            display:flex;
+            gap:15px;
+            flex-wrap:wrap;
+        }
+        nav a { color:#fff; }
+        nav a:hover { color:#f2b6a0; }
+
+        /* Container */
+        .container { max-width:1200px; margin:0 auto; padding:0 20px; }
+
+        /* Page Title */
+        .page-title {
+            text-align:center;
+            padding:40px 20px;
+            background-color:#f9f3f1;
+        }
+        .page-title h1 {
+            font-family:'Playfair Display', serif;
+            color:#4d2c2a;
+            margin:0 0 10px 0;
+            font-size:2.5rem;
+        }
+        .page-title p {
+            color:#666;
+            font-size:1.1rem;
+        }
+
+        /* Recipe Grid */
+        .recipe-grid {
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+            gap:30px;
+            padding:50px 0;
+        }
+        .recipe-card {
+            border:1px solid #ddd;
+            border-radius:10px;
+            overflow:hidden;
+            background:#fff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .recipe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+        .recipe-card img {
+            width:100%;
+            height:220px;
+            object-fit:cover;
+        }
+        .recipe-card-content {
+            padding:20px;
+        }
+        .recipe-card h3 {
+            margin:0 0 10px 0;
+            font-family:'Playfair Display', serif;
+            color:#4d2c2a;
+            font-size:1.3rem;
+        }
+        .recipe-card p {
+            color:#666;
+            margin:0 0 15px 0;
+            line-height:1.6;
+        }
+        .recipe-card a {
+            display:inline-block;
+            padding:10px 20px;
+            background-color:#c04a2f;
+            color:#fff;
+            border-radius:5px;
+            transition: background 0.3s ease;
+        }
+        .recipe-card a:hover {
+            background-color:#a13722;
+        }
+
+        /* Footer */
+        footer {
+            background-color:#333;
+            color:#fff;
+            text-align:center;
+            padding:20px;
+        }
+        footer a { color:#fff; margin:0 5px; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .recipe-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Google AdSense Script -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9289301430903450"
+     crossorigin="anonymous"></script>
+
+<!-- Header / Navigation -->
+<header>
+    <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+        <h1>Elizabeth's Baked Goods</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html">Blogs</a></li>
+                <li><a href="recipes.html">Recipes</a></li>
+                <li><a href="order.html">Order</a></li>
+                <li><a href="local-ordering.html">Local Ordering</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="policies.html">Policies</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Page Title -->
+<section class="page-title">
+    <div class="container">
+        <h1>Recipes</h1>
+        <p>Learn how to make Elizabeth's signature handmade treats at home!</p>
+    </div>
+</section>
+
+<!-- Recipe Grid -->
+<div class="container">
+    <div class="recipe-grid">
+        <div class="recipe-card">
+            <img src="images/sugar cookieset.jpg" alt="Classic sugar cookies">
+            <div class="recipe-card-content">
+                <h3>Classic Sugar Cookies</h3>
+                <p>Perfect for decorating with royal icing. Soft, delicious, and holds shapes beautifully!</p>
+                <a href="recipes/classic-sugar-cookies.html">View Recipe</a>
+            </div>
+        </div>
+
+        <div class="recipe-card">
+            <img src="images/chocchip2.jpg" alt="Chocolate chip cookies">
+            <div class="recipe-card-content">
+                <h3>Chunky Chocolate Chip Cookies</h3>
+                <p>Soft, chewy, and loaded with premium chocolate chips. A timeless favorite!</p>
+                <a href="recipes/chunky-chocolate-chip-cookies.html">View Recipe</a>
+            </div>
+        </div>
+
+        <div class="recipe-card">
+            <img src="images/browniesbiscoff.jfif" alt="Ultimate fudgy brownies">
+            <div class="recipe-card-content">
+                <h3>Ultimate Fudgy Brownies</h3>
+                <p>Rich, decadent, and perfectly fudgy. Pure chocolate bliss in every bite!</p>
+                <a href="recipes/ultimate-fudgy-brownies.html">View Recipe</a>
+            </div>
+        </div>
+
+        <div class="recipe-card">
+            <img src="images/browniesbiscoff.jfif" alt="S'mores cookies">
+            <div class="recipe-card-content">
+                <h3>S'mores Cookies</h3>
+                <p>All the flavors of campfire s'mores in cookie form. Marshmallow, chocolate, and graham!</p>
+                <a href="recipes/smores-cookies.html">View Recipe</a>
+            </div>
+        </div>
+
+        <div class="recipe-card">
+            <img src="images/browniesbiscoff.jfif" alt="Chocolate covered caramel candied peanut clusters">
+            <div class="recipe-card-content">
+                <h3>Chocolate Covered Caramel Candied Peanut Clusters</h3>
+                <p>Sweet, salty, and irresistible! A perfect homemade gift or treat for yourself.</p>
+                <a href="recipes/chocolate-covered-caramel-candied-peanut-clusters.html">View Recipe</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <p><a href="about.html">About</a> | <a href="contact.html">Contact</a> | <a href="privacy-policy.html">Privacy Policy</a></p>
+    <p>&copy; 2025 Elizabeth's Baked Goods. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
