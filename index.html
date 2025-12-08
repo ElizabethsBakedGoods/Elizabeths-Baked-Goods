@@ -3,269 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elizabeth's Baked Goods</title>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9289301430903450"
-     crossorigin="anonymous"></script>
-    <script src="https://js.stripe.com/v3/"></script>
-    <link rel="stylesheet" href="style.css?v=20251102c">
+    <title>Elizabeth's Baked Goods - Homemade Desserts & Holiday Treats</title>
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Handmade cookies, macarons, brownies, and seasonal dessert boxes. Small-batch baked goods crafted with love in Texas.">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9289301430903450"
+         crossorigin="anonymous"></script>
 </head>
 <body class="site-bg">
     <nav class="nav--glass">
         <div class="nav-links">
-            <a href="#home" class="active">Home</a>
-            <a href="#menu">Menu</a>
+            <a href="index.html">Home</a>
+            <a href="#featured">Featured</a>
             <a href="order.html">Order Online</a>
             <a href="local-ordering.html">Local Ordering</a>
             <a href="about.html">About</a>
             <a href="blog.html">Blog</a>
             <a href="contact.html">Contact</a>
-            <a href="#recipes">Recipes</a>
-            <a href="#designs">Designs</a>
-                                    <span class="dropdown" style="position:relative;">
-                                        <a href="policies.html" aria-haspopup="true" aria-expanded="false">Policies</a>
-                                        <button class="dropdown-caret" aria-label="Open policy menu" style="background:none;border:none;color:inherit;cursor:pointer;">▾</button>
-                                        <div class="dropdown-menu" style="position:absolute; right:0; background:#fff; border:1px solid var(--warm-beige); border-radius:10px; box-shadow:0 8px 20px rgba(0,0,0,0.12); padding:0.5rem; display:none; min-width:240px;">
-                                <a href="privacy-policy.html" style="display:block; padding:0.5rem 0.75rem;">Privacy Policy</a>
-                                <a href="terms-and-conditions.html" style="display:block; padding:0.5rem 0.75rem;">Terms & Conditions</a>
-                                <a href="disclaimer.html" style="display:block; padding:0.5rem 0.75rem;">Disclaimer</a>
-                                <a href="refund-policy.html" style="display:block; padding:0.5rem 0.75rem;">Return & Refund Policy</a>
-                                <a href="shipping-delivery-policy.html" style="display:block; padding:0.5rem 0.75rem;">Shipping & Delivery Policy</a>
-                            </div>
-                        </span>
+            <span class="dropdown" style="position:relative;">
+                <a href="policies.html" aria-haspopup="true" aria-expanded="false">Policies</a>
+                <button class="dropdown-caret" aria-label="Open policy menu" style="background:none;border:none;color:inherit;cursor:pointer;">▾</button>
+                <div class="dropdown-menu" style="position:absolute; right:0; background:#fff; border:1px solid var(--warm-beige); border-radius:10px; box-shadow:0 8px 20px rgba(0,0,0,0.12); padding:0.5rem; display:none; min-width:240px;">
+                    <a href="privacy-policy.html" style="display:block; padding:0.5rem 0.75rem;">Privacy Policy</a>
+                    <a href="terms-and-conditions.html" style="display:block; padding:0.5rem 0.75rem;">Terms & Conditions</a>
+                    <a href="disclaimer.html" style="display:block; padding:0.5rem 0.75rem;">Disclaimer</a>
+                    <a href="refund-policy.html" style="display:block; padding:0.5rem 0.75rem;">Return & Refund Policy</a>
+                    <a href="shipping-delivery-policy.html" style="display:block; padding:0.5rem 0.75rem;">Shipping & Delivery Policy</a>
+                </div>
+            </span>
         </div>
         <div class="mobile-menu">☰</div>
     </nav>
 
-    <header class="canva-hero" id="home">
-        <h1>Elizabeth's Baked Goods</h1>
-        <p class="tagline">Handcrafted Treats Made with Love</p>
-        
-        <!-- Local Ordering CTA Button -->
-        <div class="local-ordering-cta">
-            <a href="local-ordering.html" class="local-order-button">🎄 Local Ordering - Click Here 🎄</a>
-            <p class="local-order-subtitle">Holiday Specials Available for Rosenberg & Surrounding Areas</p>
-        </div>
-        
-        <!-- Product Showcase Grid with Images (matching Canva template) -->
-        <div class="product-showcase">
-            <div class="showcase-item">
-                <img src="images/chocchip2.jpg" alt="Delicious Cookies">
-                <div class="showcase-item-content">
-                    <h3>Take a bite!</h3>
-                    <p>BISCOFF, COFFEE, PEANUT BUTTER,<br>ROCKY ROAD & MORE</p>
-                </div>
-            </div>
-            <div class="showcase-item">
-                <img src="images/browniespic.png" alt="Yummy Brownies">
-                <div class="showcase-item-content">
-                    <h3>Yummy Brownies</h3>
-                    <p>CLASSIC, S'MORES, COOKIE DOUGH,<br>CARAMEL TURTLE & MORE</p>
-                </div>
-            </div>
-            <div class="showcase-item">
-                <img class="zoom-75" src="images/cookiecake.jpg?v=2" alt="Custom Cookie Cakes" onerror="this.onerror=null; this.src='images/menu.png';">
-                <div class="showcase-item-content">
-                    <h3>Custom Cookie Cakes</h3>
-                    <p>ANY FLAVOR, ANY DESIGN,<br>ANY OCCASION</p>
-                </div>
-            </div>
-            <div class="showcase-item">
-                <img src="images/smorescookie.jpg" alt="Gourmet Flavors">
-                <div class="showcase-item-content">
-                    <h3>Gourmet Flavors</h3>
-                    <p>CHOCOLATE COVERED PRETZELS, POPCORN,<br>TOFFEE & MORE - WE'VE GOT YOU COVERED!</p>
-                </div>
-            </div>
-        </div>
+    <main style="padding-top: 80px;">
+        <!-- Hero Section -->
+        <section style="text-align:center; padding:50px 20px; background-color:#f9f3f1;">
+            <h1 style="font-family: 'Dancing Script', cursive; color: #8b4513; font-size: 2.8rem; margin-bottom: 1rem;">Welcome to Elizabeth's Baked Goods</h1>
+            <p style="font-size: 1.1rem; color: #666; max-width: 800px; margin: 0 auto 2rem;">Homemade desserts made from scratch with premium ingredients and a lot of love. From cookies and brownies to macarons and holiday boxes, every treat is crafted to delight!</p>
+            <img src="images/chocchip2.jpg" alt="Assorted baked goods" style="max-width:100%; height:auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+        </section>
 
-        <!-- Service Information (matching Canva template) -->
-        <div class="service-info">
-            <div class="service-card">
-                <h4>Local in Rosenberg, TX</h4>
-                <p>Delivers to surrounding areas<br>Pick ups available<br><strong>Monday-Friday</strong></p>
+        <!-- About / Bio Section -->
+        <section style="padding:50px 20px; max-width: 1000px; margin: 0 auto;">
+            <h2 style="font-family: 'Dancing Script', cursive; color: #8b4513; font-size: 2.2rem; text-align: center; margin-bottom: 2rem;">About Elizabeth</h2>
+            <div class="card-soft" style="line-height: 1.8; font-size: 1.05rem;">
+                <p>Hi! I'm Elizabeth, the baker behind all of these sweet creations. What started as a few holiday cookie boxes for friends and family turned into a full-time passion. I love experimenting with recipes, designing seasonal boxes, and creating treats that make celebrations extra special.</p>
+                <p>Every order is handmade in small batches using high-quality ingredients — nothing mass-produced, nothing rushed. From rich, buttery cookies to delicate macarons, each dessert is carefully crafted to bring joy to your table.</p>
             </div>
-            <div class="service-card">
-                <h4>Custom Orders Ready</h4>
-                <p>With just <strong>1 week's notice</strong></p>
-            </div>
-            <div class="service-card">
-                <h4>Ships Nationwide</h4>
-                <p>Anywhere in the United States<br><strong>$25 minimum purchase</strong></p>
-            </div>
-        </div>
+        </section>
 
-        <a href="order.html" class="cta-button">Order Now</a>
-    </header>
-
-        <section class="about-section" id="about">
-            <div class="about-container">
-                <div class="about-image">
-                    <img src="images/about.jpg" alt="About Elizabeth's Baked Goods" class="about-photo">
+        <!-- Featured Blog Posts -->
+        <section style="padding:50px 20px; background-color:#f9f3f1;">
+            <h2 style="font-family: 'Dancing Script', cursive; color: #8b4513; font-size: 2.2rem; text-align: center; margin-bottom: 2rem;">From the Blog</h2>
+            <div style="max-width: 1000px; margin: 0 auto;">
+                <div class="card-soft" style="margin-bottom: 1.5rem;">
+                    <h3 style="margin-top: 0; color: #8b4513;"><a href="blog/how-to-store-homemade-cookies.html" style="color: #8b4513; text-decoration: none;">How to Store Homemade Cookies for Maximum Freshness</a></h3>
+                    <p style="margin: 0; color: #666;">Learn the secrets to keeping your cookies soft, chewy, or crisp for days—even weeks. Perfect for holiday baking and gift giving!</p>
                 </div>
-                <div class="about-content">
-                    <h2>About Us</h2>
-                    <p>Welcome to Elizabeth's Baked Goods! We're passionate about creating delicious, handcrafted treats that bring joy to every occasion. From custom cakes to fresh pastries, each item is made with love and attention to detail.</p>
-                    <p>Our commitment to quality ingredients and traditional baking methods ensures that every bite is as memorable as the celebration itself.</p>
-                    <div class="about-cta">
-                        <a href="#menu" class="btn">View Our Menu</a>
-                        <a href="#contact" class="btn">Get in Touch</a>
-                    </div>
+                <div class="card-soft" style="margin-bottom: 1.5rem;">
+                    <h3 style="margin-top: 0; color: #8b4513;"><a href="blog/secret-to-perfect-holiday-chocolate-treats.html" style="color: #8b4513; text-decoration: none;">The Secret to Perfect Holiday Chocolate Treats</a></h3>
+                    <p style="margin: 0; color: #666;">Discover tips for glossy, smooth chocolate and festive treats that will impress friends, family, and gift recipients.</p>
+                </div>
+                <div class="card-soft" style="margin-bottom: 1.5rem;">
+                    <h3 style="margin-top: 0; color: #8b4513;"><a href="blog/top-5-macaron-mistakes.html" style="color: #8b4513; text-decoration: none;">My Top 5 Mistakes Beginners Make When Baking Macarons</a></h3>
+                    <p style="margin: 0; color: #666;">A practical guide to avoid common pitfalls and finally achieve perfect macarons at home.</p>
+                </div>
+                <div class="card-soft" style="margin-bottom: 1.5rem;">
+                    <h3 style="margin-top: 0; color: #8b4513;"><a href="blog/behind-the-scenes-holiday-boxes.html" style="color: #8b4513; text-decoration: none;">Behind the Scenes: How I Make My Holiday Boxes</a></h3>
+                    <p style="margin: 0; color: #666;">A peek into my process for creating beautiful and delicious holiday gift boxes.</p>
+                </div>
+                <div class="card-soft">
+                    <h3 style="margin-top: 0; color: #8b4513;"><a href="blog/perfect-dessert-gift-holidays.html" style="color: #8b4513; text-decoration: none;">How to Choose the Perfect Dessert Gift for the Holidays</a></h3>
+                    <p style="margin: 0; color: #666;">Learn how to pick desserts that are thoughtful, festive, and perfect for anyone on your gift list.</p>
                 </div>
             </div>
         </section>
 
-        <section id="menu" class="section">
-            <h2>Our Menu</h2>
-            <img src="images/menu.png" alt="Elizabeth's Fall Menu" class="menu-image">
-        </section>
-
-        <!-- Order CTA Section (Canva style) -->
-        <section class="order-cta-section">
-            <h2>Order Online</h2>
-            <p>Ships anywhere in the United States • Minimum $25 purchase</p>
-            <a href="order.html" class="cta-button">Click here for the order form</a>
-        </section>
-
-    <!-- Flavor Selection Modal -->
-    <div id="flavor-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; align-items:center; justify-content:center;">
-        <div style="background:#fff; padding:2rem; border-radius:8px; max-width:400px; width:90%; box-shadow:0 4px 12px rgba(0,0,0,0.3);">
-            <h3 style="margin:0 0 1rem; color:#8b4513;" id="flavor-modal-title">Choose Your Flavor</h3>
-            <select id="flavor-select" style="width:100%; padding:0.7rem; font-size:1rem; border:1px solid #ccc; border-radius:4px; margin-bottom:1rem;">
-                <option value="">-- Select Flavor --</option>
-            </select>
-            <div style="display:flex; gap:0.5rem;">
-                <button id="flavor-confirm" style="flex:1; padding:0.7rem; background:#155724; color:#fff; border:none; border-radius:4px; cursor:pointer; font-weight:600;">Add to Cart</button>
-                <button id="flavor-cancel" style="flex:1; padding:0.7rem; background:#ccc; color:#333; border:none; border-radius:4px; cursor:pointer; font-weight:600;">Cancel</button>
-            </div>
-        </div>
-    </div>
-
-    <script src="main.js" defer></script>
-
-        <section id="contact" class="section">
-            <h2>We'd love to hear from you!</h2>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <h3>📧 Email</h3>
-                    <p><a href="mailto:orders.elizabethsbakedgoods@gmail.com">orders.elizabethsbakedgoods@gmail.com</a></p>
+        <!-- Featured Recipes Section -->
+        <section id="featured" style="padding:50px 20px;">
+            <h2 style="font-family: 'Dancing Script', cursive; color: #8b4513; font-size: 2.2rem; text-align: center; margin-bottom: 3rem;">Featured Recipes</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto;">
+                <div class="card-soft" style="text-align: center;">
+                    <img src="images/chochip.png.jfif" alt="Chocolate Chip Cookies" style="width: 100%; border-radius: 12px; margin-bottom: 1rem; object-fit: cover; height: 200px;">
+                    <h3 style="color: #8b4513; margin: 1rem 0;">Chocolate Chip Cookies</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Soft, chewy, and packed with chocolate chips. A timeless classic!</p>
+                    <a href="recipes/chunky-chocolate-chip-cookies.html" class="btn-brown" style="display: inline-block; padding: 0.7rem 1.5rem; text-decoration: none;">View Recipe</a>
                 </div>
-                <div class="contact-item">
-                    <h3>📱 Instagram / Facebook</h3>
-                    <p><a href="https://www.instagram.com/elizabethsbakedgoodss" target="_blank">@ELIZABETHSBAKEDGOODSS</a></p>
-                    <div class="social-icons" style="margin-top: 1rem;">
-                        <a href="https://www.instagram.com/elizabethsbakedgoodss" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="1.8" fill="none"/>
-                                <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8" fill="none"/>
-                                <circle cx="17.3" cy="6.7" r="1.3" fill="currentColor"/>
-                            </svg>
-                        </a>
-                        <a href="https://www.facebook.com/profile.php?id=61580339963937" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path d="M22 12.07C22 6.98 18.02 3 12.93 3 7.84 3 3.86 6.98 3.86 12.07c0 4.5 3.12 8.24 7.2 9.08v-6.42H8.86v-2.66h2.2v-2.04c0-2.18 1.3-3.39 3.29-3.39.95 0 1.95.17 1.95.17v2.14h-1.1c-1.08 0-1.41.67-1.41 1.35v1.77h2.4l-.38 2.66h-2.02v6.42c4.08-.84 7.2-4.58 7.2-9.08z" fill="currentColor"/>
-                            </svg>
-                        </a>
-                    </div>
+                <div class="card-soft" style="text-align: center;">
+                    <img src="images/browniesbiscoff.jfif" alt="Ultimate Fudgy Brownies" style="width: 100%; border-radius: 12px; margin-bottom: 1rem; object-fit: cover; height: 200px;">
+                    <h3 style="color: #8b4513; margin: 1rem 0;">Ultimate Fudgy Brownies</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Rich, decadent, and perfectly fudgy. Pure chocolate bliss!</p>
+                    <a href="recipes/ultimate-fudgy-brownies.html" class="btn-brown" style="display: inline-block; padding: 0.7rem 1.5rem; text-decoration: none;">View Recipe</a>
                 </div>
-                <div class="contact-item">
-                    <h3>📞 Phone Number</h3>
-                    <p><a href="tel:+13308429877">330-842-9877</a></p>
-                    <a class="btn" href="tel:+13308429877" aria-label="Call Elizabeth's Baked Goods">Call Now</a>
+                <div class="card-soft" style="text-align: center;">
+                    <img src="images/chocchip.png.jfif" alt="Classic Sugar Cookies" style="width: 100%; border-radius: 12px; margin-bottom: 1rem; object-fit: cover; height: 200px;">
+                    <h3 style="color: #8b4513; margin: 1rem 0;">Classic Sugar Cookies</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Perfect for decorating with royal icing. Beautiful and delicious!</p>
+                    <a href="recipes/classic-sugar-cookies.html" class="btn-brown" style="display: inline-block; padding: 0.7rem 1.5rem; text-decoration: none;">View Recipe</a>
+                </div>
+                <div class="card-soft" style="text-align: center;">
+                    <img src="images/chocchip.png.jfif" alt="S'mores Cookies" style="width: 100%; border-radius: 12px; margin-bottom: 1rem; object-fit: cover; height: 200px;">
+                    <h3 style="color: #8b4513; margin: 1rem 0;">S'mores Cookies</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Graham cracker, chocolate, and marshmallow goodness in every bite!</p>
+                    <a href="recipes/smores-cookies.html" class="btn-brown" style="display: inline-block; padding: 0.7rem 1.5rem; text-decoration: none;">View Recipe</a>
+                </div>
+                <div class="card-soft" style="text-align: center;">
+                    <img src="images/chocchip.png.jfif" alt="Chocolate Peanut Clusters" style="width: 100%; border-radius: 12px; margin-bottom: 1rem; object-fit: cover; height: 200px;">
+                    <h3 style="color: #8b4513; margin: 1rem 0;">Chocolate Peanut Clusters</h3>
+                    <p style="color: #666; margin-bottom: 1.5rem;">Sweet, crunchy, and satisfying. A holiday favorite!</p>
+                    <a href="recipes/chocolate-covered-caramel-candied-peanut-clusters.html" class="btn-brown" style="display: inline-block; padding: 0.7rem 1.5rem; text-decoration: none;">View Recipe</a>
                 </div>
             </div>
         </section>
 
-        <section id="recipes" class="section">
-            <h2>Featured Recipes</h2>
-            <div class="recipe-grid">
-                <div class="recipe-item">
-                    <h3>Classic Sugar Cookies</h3>
-                    <p>Perfect for decorating and holiday fun</p>
-                    <a class="recipe-btn" href="recipes/classic-sugar-cookies.html">View Recipe</a>
-                </div>
-                <div class="recipe-item">
-                    <h3>Chunky Chocolate Chip Cookies</h3>
-                    <p>Thick, chewy, and packed with chips</p>
-                    <a class="recipe-btn" href="recipes/chunky-chocolate-chip-cookies.html">View Recipe</a>
-                </div>
-                <div class="recipe-item">
-                    <h3>Ultimate Fudgy Brownies</h3>
-                    <p>Rich, dense, and ultra fudgy</p>
-                    <a class="recipe-btn" href="recipes/ultimate-fudgy-brownies.html">View Recipe</a>
-                </div>
-                <div class="recipe-item">
-                    <h3>S'mores Cookies</h3>
-                    <p>My son's absolute favorite</p>
-                    <a class="recipe-btn" href="recipes/smores-cookies.html">View Recipe</a>
-                </div>
-                <div class="recipe-item">
-                    <h3>Chocolate Peanut Clusters</h3>
-                    <p>Crunchy caramel peanuts dipped in chocolate</p>
-                    <a class="recipe-btn" href="recipes/chocolate-covered-caramel-candied-peanut-clusters.html">View Recipe</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="designs" class="section">
-            <h2>Custom Cake Designs</h2>
-            <div class="design-grid">
-                <div class="design-item">
-                    <h3>Wedding Cakes</h3>
-                    <p>Elegant and personalized</p>
-                </div>
-                <div class="design-item">
-                    <h3>Birthday Cakes</h3>
-                    <p>Fun and creative</p>
-                </div>
-                <div class="design-item">
-                    <h3>Special Events</h3>
-                    <p>Unique celebrations</p>
-                </div>
-            </div>
+        <!-- Call to Action -->
+        <section style="text-align:center; padding:50px 20px; background-color:#f9f3f1;">
+            <h2 style="font-family: 'Dancing Script', cursive; color: #8b4513; font-size: 2.2rem; margin-bottom: 1rem;">Ready to Treat Yourself or Someone Special?</h2>
+            <p style="font-size: 1.1rem; color: #666; margin-bottom: 2rem;">Browse our selection of handmade desserts and place your order today!</p>
+            <a href="order.html" style="display: inline-block; padding: 0.9rem 2.5rem; background-color: #8b4513; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 1.1rem;">Shop Now</a>
         </section>
     </main>
 
     <footer>
-        <div class="social-icons" aria-label="Follow us">
-            <a href="https://www.instagram.com/elizabethsbakedgoodss" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="1.8" fill="none"/>
-                    <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8" fill="none"/>
-                    <circle cx="17.3" cy="6.7" r="1.3" fill="currentColor"/>
-                </svg>
-            </a>
-            <a href="https://www.facebook.com/profile.php?id=61580339963937" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M22 12.07C22 6.98 18.02 3 12.93 3 7.84 3 3.86 6.98 3.86 12.07c0 4.5 3.12 8.24 7.2 9.08v-6.42H8.86v-2.66h2.2v-2.04c0-2.18 1.3-3.39 3.29-3.39.95 0 1.95.17 1.95.17v2.14h-1.1c-1.08 0-1.41.67-1.41 1.35v1.77h2.4l-.38 2.66h-2.02v6.42c4.08-.84 7.2-4.58 7.2-9.08z" fill="currentColor"/>
-                </svg>
-            </a>
-            <a href="https://www.tiktok.com/@elizabethsbakedgoods" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M14 3v6.2a4.8 4.8 0 01-2.4-.6v4.4a3 3 0 11-3-3c.34 0 .67.06.98.16v2.08a1 1 0 10-1 1 1 1 0 001-1V6.5c1.2 1 2.7 1.6 4.32 1.6h.2A5.98 5.98 0 0020 11V8.5a6.5 6.5 0 01-6-5.5z" fill="currentColor"/>
-                </svg>
-            </a>
-        </div>
-                <p>&copy; 2025 Elizabeth's Baked Goods | <a href="privacy-policy.html" style="color: inherit; text-decoration: underline;">Privacy Policy</a> • <a href="terms-and-conditions.html" style="color: inherit; text-decoration: underline;">Terms</a> • <a href="disclaimer.html" style="color: inherit; text-decoration: underline;">Disclaimer</a> • <a href="refund-policy.html" style="color: inherit; text-decoration: underline;">Returns</a> • <a href="shipping-delivery-policy.html" style="color: inherit; text-decoration: underline;">Shipping</a></p>
+        <p>&copy; 2025 Elizabeth's Baked Goods | <a href="about.html" style="color: inherit; text-decoration: underline;">About</a> • <a href="contact.html" style="color: inherit; text-decoration: underline;">Contact</a> • <a href="privacy-policy.html" style="color: inherit; text-decoration: underline;">Privacy Policy</a> • <a href="terms-and-conditions.html" style="color: inherit; text-decoration: underline;">Terms</a> • <a href="disclaimer.html" style="color: inherit; text-decoration: underline;">Disclaimer</a></p>
     </footer>
-            <script>
-                // Dropdown caret toggles menu; Policies link navigates to full policies page
-                (function(){
-                    const dropdown = document.querySelector('.dropdown');
-                    if (!dropdown) return;
-                    const caret = dropdown.querySelector('.dropdown-caret');
-                    const triggerLink = dropdown.querySelector('a[href="policies.html"]');
-                    const menu = dropdown.querySelector('.dropdown-menu');
-                    caret.addEventListener('click', function(e){
-                        e.preventDefault();
-                        const open = menu.style.display === 'block';
-                        menu.style.display = open ? 'none' : 'block';
-                        triggerLink.setAttribute('aria-expanded', (!open).toString());
-                    });
-                    document.addEventListener('click', function(e){
-                        if (!dropdown.contains(e.target)) menu.style.display = 'none';
-                    });
-                })();
-            </script>
+
+    <script>
+        (function(){
+            const dropdown = document.querySelector('.dropdown');
+            if (!dropdown) return;
+            const caret = dropdown.querySelector('.dropdown-caret');
+            const triggerLink = dropdown.querySelector('a[href="policies.html"]');
+            const menu = dropdown.querySelector('.dropdown-menu');
+            caret.addEventListener('click', function(e){
+                e.preventDefault();
+                const open = menu.style.display === 'block';
+                menu.style.display = open ? 'none' : 'block';
+                triggerLink.setAttribute('aria-expanded', (!open).toString());
+            });
+            document.addEventListener('click', function(e){
+                if (!dropdown.contains(e.target)) menu.style.display = 'none';
+            });
+        })();
+    </script>
 </body>
 </html>
