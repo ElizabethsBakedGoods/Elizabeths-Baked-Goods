@@ -38,6 +38,26 @@ header nav a:hover {
     color: #f2b6a0;
 }
 
+/* Navbar (simple link-based navigation) */
+header nav.navbar {
+    margin: 0;
+    padding: 0;
+}
+
+header nav.navbar a {
+    color: #fff !important;
+    text-decoration: none;
+    padding: 8px 12px;
+    display: inline-block;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+header nav.navbar a:hover {
+    color: #f2b6a0;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
 /* Footer styling */
 footer {
     text-align: center;
