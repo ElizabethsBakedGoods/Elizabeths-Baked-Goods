@@ -1,264 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elizabeth's Baked Goods | Homemade Cookies & Dessert Boxes</title>
-    <meta name="description" content="Homemade cookies, holiday dessert boxes, and custom treats made fresh in Texas. Order online or browse seasonal baked goods, recipes, and gift ideas." />
-    <link rel="stylesheet" href="/style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <meta name="description" content="Homemade cookies, dessert boxes, and seasonal treats made fresh in Texas. Order online or explore our recipes and holiday gift ideas.">
+    <link rel="stylesheet" href="/style.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9289301430903450"
          crossorigin="anonymous"></script>
-
-    <style>
-        /* General Styles */
-        body {
-            font-family: 'Open Sans', sans-serif;
-            color: #333;
-            margin:0;
-            padding:0;
-            line-height:1.6;
-            background-color: #fafafa;
-        }
-        a { text-decoration:none; color:#c04a2f; }
-        img { display:block; max-width:100%; height:auto; }
-        h2 { font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 2rem; }
-        h3 { font-family: 'Playfair Display', serif; color: #4d2c2a; }
-
-        /* Hero Section */
-        .hero {
-            text-align:center;
-            padding:50px 20px;
-            background: linear-gradient(135deg, #fff6f6 0%, #ffe4e9 100%);
-            margin-bottom: 0;
-        }
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            color: #4d2c2a;
-            margin: 0 0 15px 0;
-        }
-        .hero p {
-            font-size: 1.2em;
-            color: #666;
-            max-width: 800px;
-            margin: 0 auto 30px;
-        }
-        .hero-btn {
-            display: inline-block;
-            padding: 14px 30px;
-            background-color: #d93535;
-            color: #fff;
-            border-radius: 6px;
-            font-size: 18px;
-            transition: background 0.3s ease;
-        }
-        .hero-btn:hover { background-color: #b82a2a; }
-
-        /* Container */
-        .container { max-width:1200px; margin:0 auto; padding:0 20px; }
-
-        /* Main Content + Sidebar Layout */
-        .main-wrapper {
-            display: flex;
-            gap: 30px;
-            max-width: 1200px;
-            margin: 50px auto;
-            padding: 0 20px;
-        }
-        .content { 
-            flex: 3;
-            min-width: 300px;
-        }
-        .sidebar {
-            flex: 1;
-            min-width: 250px;
-            background-color: #fff;
-            padding: 25px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            height: fit-content;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-
-        /* Section Styles */
-        .section {
-            background: #fff;
-            padding: 40px;
-            margin-bottom: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-
-        /* Featured Recipes Grid */
-        .featured-recipes {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-        .recipe-card {
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            overflow: hidden;
-            background: #fff;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .recipe-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-        }
-        .recipe-card img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-        }
-        .recipe-card-content {
-            padding: 15px;
-        }
-        .recipe-card h4 {
-            margin: 0 0 8px 0;
-            font-family: 'Playfair Display', serif;
-            color: #4d2c2a;
-            font-size: 1.1rem;
-        }
-        .recipe-card p {
-            margin: 0 0 12px 0;
-            font-size: 0.9rem;
-            color: #666;
-            line-height: 1.5;
-        }
-        .recipe-card a {
-            display: inline-block;
-            padding: 8px 15px;
-            background-color: #c04a2f;
-            color: #fff;
-            border-radius: 5px;
-            font-size: 0.85rem;
-            transition: background 0.3s ease;
-        }
-        .recipe-card a:hover {
-            background-color: #a13722;
-        }
-
-        /* Featured Blog Posts Grid */
-        .featured-blogs {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin: 30px 0;
-        }
-        .blog-card {
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-            border: 1px solid #eee;
-        }
-        .blog-card h4 {
-            margin: 0 0 12px 0;
-            font-family: 'Playfair Display', serif;
-            color: #4d2c2a;
-            font-size: 1.15rem;
-        }
-        .blog-card p {
-            color: #666;
-            margin: 0 0 15px 0;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        .blog-card a {
-            display: inline-block;
-            padding: 8px 15px;
-            background-color: #c04a2f;
-            color: #fff;
-            border-radius: 5px;
-            font-size: 0.85rem;
-            transition: background 0.3s ease;
-        }
-        .blog-card a:hover {
-            background-color: #a13722;
-        }
-
-        /* Sidebar About */
-        .sidebar h3 {
-            margin-top: 0;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #c04a2f;
-            padding-bottom: 10px;
-        }
-        .sidebar-about {
-            text-align: center;
-        }
-        .sidebar-about img {
-            width: 100%;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .sidebar-about p {
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: #666;
-        }
-        .sidebar-about a {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 8px 20px;
-            background-color: #c04a2f;
-            color: #fff;
-            border-radius: 5px;
-            transition: background 0.3s ease;
-        }
-        .sidebar-about a:hover {
-            background-color: #a13722;
-        }
-
-        /* Special Callout Box */
-        .callout {
-            background: linear-gradient(135deg, #fff6f6 0%, #ffe4e9 100%);
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 4px solid #d93535;
-            margin: 20px 0;
-            text-align: center;
-        }
-        .callout h4 {
-            margin: 0 0 8px 0;
-            color: #d93535;
-        }
-        .callout p {
-            margin: 0;
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 30px 20px;
-            margin-top: 50px;
-        }
-        footer a { color: #fff; margin: 0 5px; }
-
-        /* Responsive */
-        @media (max-width: 900px) {
-            .main-wrapper {
-                flex-direction: column;
-            }
-            .sidebar {
-                order: -1;
-            }
-            .hero h1 {
-                font-size: 2rem;
-            }
-            h2 {
-                font-size: 1.5rem;
-            }
-        }
-    </style>
 </head>
 <body>
 
@@ -275,114 +24,102 @@
 </header>
 
 <!-- HERO SECTION -->
-<section class="hero">
-    <h1>Homemade Cookies & Dessert Boxes</h1>
-    <p>Handcrafted sweets made fresh in Rosenberg, Texas — perfect for holidays, gifts, parties, and everyday indulgence.</p>
-    <a href="/order.html" class="hero-btn">Order Online</a>
+<section class="hero" style="padding: 60px; text-align: center; background: #fff6f6;">
+    <h1 style="font-size: 42px; margin-bottom: 15px;">Homemade Cookies & Dessert Boxes</h1>
+    <p style="font-size: 20px; margin-bottom: 25px;">Handcrafted with love in Rosenberg, Texas — perfect for holidays, gifts, or everyday indulgence.</p>
+    <a href="/order.html" style="padding: 15px 25px; background:#d93535; color:#fff; border-radius:6px; font-size:18px; text-decoration:none;">Order Your Holiday Box</a>
 </section>
 
-<!-- MAIN CONTENT + SIDEBAR -->
-<div class="main-wrapper">
-    <!-- LEFT COLUMN: MAIN CONTENT -->
-    <div class="content">
+<!-- ABOUT / STORY SECTION -->
+<section style="padding: 40px; max-width: 900px; margin: auto;">
+    <h2>Welcome to Elizabeth's Baked Goods</h2>
+    <p>At Elizabeth's Baked Goods, we believe every sweet treat should bring joy and comfort. From festive holiday cookies to decadent dessert boxes, each item is handcrafted in small batches using only the freshest ingredients. Our bakery is a Texas cottage-food operation, bringing homemade flavors and care to every order.</p>
+    <p>Whether you're shopping for holiday gifts, corporate treats, or just a special snack for yourself, our baked goods are thoughtfully prepared to delight every taste. We specialize in unique seasonal flavors, classic favorites, and custom orders to make your gifting truly personal.</p>
+    <p>Discover our story and why families and friends trust us for homemade desserts <a href="/about.html">here</a>.</p>
+</section>
 
-        <!-- FEATURED RECIPES SECTION -->
-        <section class="section">
-            <h2>Featured Recipes</h2>
-            <div class="featured-recipes">
-                <div class="recipe-card">
-                    <img src="/images/chocchip2.jpg" alt="Chunky Chocolate Chip Cookies">
-                    <div class="recipe-card-content">
-                        <h4>Chunky Chocolate Chip Cookies</h4>
-                        <p>Rich, chewy cookies loaded with premium chocolate chips. A timeless classic that never disappoints.</p>
-                        <a href="/recipes/chunky-chocolate-chip-cookies.html">View Recipe</a>
-                    </div>
-                </div>
+<!-- FEATURED PRODUCTS -->
+<section style="background:#fafafa; padding: 40px;">
+    <h2 style="text-align:center;">Featured Treats</h2>
+    <div style="display:flex; gap:25px; justify-content:center; flex-wrap:wrap; margin-top:20px;">
 
-                <div class="recipe-card">
-                    <img src="/images/browniespic.png" alt="Ultimate Fudgy Brownies">
-                    <div class="recipe-card-content">
-                        <h4>Ultimate Fudgy Brownies</h4>
-                        <p>Dense, chocolatey brownies with a rich fudgy center. Perfect with coffee or as a standalone dessert.</p>
-                        <a href="/recipes/ultimate-fudgy-brownies.html">View Recipe</a>
-                    </div>
-                </div>
+        <div style="width:280px; background:white; padding:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+            <img src="/images/candycanecookie.jpg" alt="Peppermint Candy Cane Cookies" style="width:100%; border-radius:6px;">
+            <h3>Peppermint Candy Cane Cookies</h3>
+            <p>Festive red-and-white sugar cookies with peppermint flavor — a holiday favorite.</p>
+            <a href="/blog/peppermint-candy-cane-cookies.html">View Recipe</a>
+        </div>
 
-                <div class="recipe-card">
-                    <img src="/images/sugar cookieset.jpg" alt="Classic Sugar Cookies">
-                    <div class="recipe-card-content">
-                        <h4>Classic Sugar Cookies</h4>
-                        <p>Delicate, buttery sugar cookies perfect for decorating. Ideal for holidays and special occasions.</p>
-                        <a href="/recipes/classic-sugar-cookies.html">View Recipe</a>
-                    </div>
-                </div>
+        <div style="width:280px; background:white; padding:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+            <img src="/images/xmas christmas assort.jfif" alt="Holiday Dessert Box" style="width:100%; border-radius:6px;">
+            <h3>Holiday Dessert Box</h3>
+            <p>Cookies, brownies, pretzels, and more — beautifully packaged and ready to gift.</p>
+            <a href="/order.html">Order Now</a>
+        </div>
 
-                <div class="recipe-card">
-                    <img src="/images/smorescookie.jpg" alt="S'mores Cookies">
-                    <div class="recipe-card-content">
-                        <h4>S'mores Cookies</h4>
-                        <p>Graham cracker and chocolate cookies with marshmallow bits. A fun twist on a campfire favorite.</p>
-                        <a href="/recipes/smores-cookies.html">View Recipe</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- FEATURED BLOG POSTS SECTION -->
-        <section class="section">
-            <h2>Latest From the Blog</h2>
-            <div class="featured-blogs">
-                <div class="blog-card">
-                    <h4>Behind the Scenes: Holiday Box Prep</h4>
-                    <p>Ever wondered how we prepare hundreds of holiday boxes? Get a glimpse into our baking process, from mixing to packaging, and see the care that goes into every order.</p>
-                    <a href="/blog/behind-the-scenes-holiday-boxes.html">Read More</a>
-                </div>
-
-                <div class="blog-card">
-                    <h4>How to Store Homemade Cookies</h4>
-                    <p>Keep your cookies fresh and delicious longer! Learn our best tips for storing different types of cookies, from chocolate chip to sugar cookies, to maintain perfect texture.</p>
-                    <a href="/blog/how-to-store-homemade-cookies.html">Read More</a>
-                </div>
-
-                <div class="blog-card">
-                    <h4>Perfect Dessert Gifts for the Holidays</h4>
-                    <p>Struggling with gift ideas? Discover why homemade desserts make the best gifts and how to choose the perfect treats for your loved ones this season.</p>
-                    <a href="/blog/perfect-dessert-gift-holidays.html">Read More</a>
-                </div>
-            </div>
-        </section>
+        <div style="width:280px; background:white; padding:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+            <img src="/images/peanutclust.jpg" alt="Chocolate Covered Peanut Clusters" style="width:100%; border-radius:6px;">
+            <h3>Chocolate Peanut Clusters</h3>
+            <p>Rich chocolate and caramel-covered peanuts, handcrafted in small batches.</p>
+            <a href="/blog/chocolate-covered-caramel-candied-peanut-clusters.html">Learn More</a>
+        </div>
 
     </div>
+</section>
 
-    <!-- RIGHT COLUMN: SIDEBAR -->
-    <aside class="sidebar">
-        <h3>About Me</h3>
-        <div class="sidebar-about">
-            <img src="/images/aboutme.jpg" alt="Elizabeth's portrait">
-            <p>Hi! I'm Elizabeth, the baker behind every sweet treat you'll find here. With a passion for quality ingredients and handcrafted goodness, I create cookies, brownies, and dessert boxes that bring joy to every bite.</p>
-            <a href="/about.html">Learn More</a>
+<!-- HOLIDAY BOX PROMO -->
+<section style="padding: 40px; text-align:center;">
+    <h2>Perfect for Gifts & Holidays</h2>
+    <p>Make gifting simple and special with our handcrafted dessert boxes. Each box includes a mix of cookies, brownies, and treats, beautifully packaged for family, friends, or coworkers.</p>
+    <a href="/order.html" style="padding: 12px 20px; background:#d93535; color:#fff; border-radius:6px; text-decoration:none; font-size:18px;">Shop Holiday Boxes</a>
+</section>
+
+<!-- BLOG PREVIEW -->
+<section style="padding: 40px;">
+    <h2 style="text-align:center;">From Our Blog</h2>
+    <div style="display:flex; gap:25px; justify-content:center; flex-wrap:wrap; margin-top:20px;">
+
+        <div style="width:300px; background:white; padding:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+            <h3>How to Choose the Perfect Dessert Gift</h3>
+            <p>Tips for picking the right treats for family, coworkers, and holiday events.</p>
+            <a href="/blog/perfect-dessert-gift-holidays.html">Read More</a>
         </div>
 
-        <div class="callout">
-            <h4>🎄 Holiday Specials</h4>
-            <p>Order your holiday gift boxes now! Limited time special pricing available.</p>
+        <div style="width:300px; background:white; padding:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+            <h3>Behind the Scenes: Holiday Box Prep</h3>
+            <p>A look into how our dessert boxes come together step by step.</p>
+            <a href="/blog/behind-the-scenes-holiday-boxes.html">Read More</a>
         </div>
 
-        <div class="callout">
-            <h4>⭐ Customer Favorite</h4>
-            <p>Chocolate Covered Peanut Clusters – our best-selling treat!</p>
+        <div style="width:300px; background:white; padding:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+            <h3>Peppermint Candy Cane Cookies</h3>
+            <p>A festive holiday favorite with peppermint and red-white swirls.</p>
+            <a href="/blog/peppermint-candy-cane-cookies.html">View Recipe</a>
         </div>
-    </aside>
-</div>
+
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section style="background:#fff6f6; padding:40px;">
+    <h2 style="text-align:center;">What Our Customers Say</h2>
+    <div style="max-width:900px; margin:auto; margin-top:20px;">
+        <blockquote style="background:white; padding:20px; border-left:5px solid #d93535; margin-bottom:20px;">
+            "Absolutely delicious! The holiday box was a hit with my family." – Sarah M.
+        </blockquote>
+        <blockquote style="background:white; padding:20px; border-left:5px solid #d93535; margin-bottom:20px;">
+            "Everything was fresh, beautifully packaged, and tasted amazing." – Angela T.
+        </blockquote>
+    </div>
+</section>
 
 <!-- FOOTER -->
-<footer>
-    <p>&copy; 2025 Elizabeth's Baked Goods – Rosenberg, Texas</p>
+<footer style="background:#333; color:white; padding:30px; text-align:center;">
+    <p>© 2025 Elizabeth's Baked Goods – Rosenberg, Texas</p>
     <p>
-        <a href="/contact.html">Contact</a> | 
-        <a href="/policies.html">Policies</a> | 
-        <a href="/about.html">About</a> |
-        <a href="/local-ordering.html">Local Ordering</a>
+        <a href="/contact.html" style="color:white;">Contact</a> | 
+        <a href="/policies.html" style="color:white;">Policies</a> | 
+        <a href="/about.html" style="color:white;">About</a>
     </p>
 </footer>
 
