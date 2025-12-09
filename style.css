@@ -18,10 +18,11 @@ header {
   top: 0;
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: block !important;
 }
 
 header nav.navbar {
-  display: flex;
+  display: flex !important;
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
@@ -121,10 +122,11 @@ body.site-bg {
     padding: 0;
 }
 
-nav {
+/* Old nav styles - hidden to prevent conflicts with navbar */
+nav:not(.navbar) {
     background-color: var(--white);
     padding: 1rem 5%;
-    display: flex;
+    display: none !important;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
