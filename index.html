@@ -29,6 +29,14 @@
         .cta-link:hover {
             color: #b72a2a;
         }
+        @media (max-width: 900px) {
+            div[style*="display: flex"][style*="gap: 30px"] {
+                flex-direction: column;
+            }
+            aside {
+                order: -1;
+            }
+        }
     </style>
 </head>
 <body>
@@ -59,67 +67,100 @@
     <p>Whether you're looking for corporate gifts, holiday party favors, or treats for your loved ones, we create custom dessert boxes for any occasion. <a href="/about.html" class="cta-link">Learn More About Our Story</a></p>
 </section>
 
-<!-- ================= FEATURED PRODUCTS ================= -->
-<section class="featured-products" style="background:#fafafa; padding: 40px;">
-    <h2 style="font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 2rem; text-align: center;">Our Featured Holiday Treats</h2>
-    <div style="display:flex; gap:25px; justify-content:center; flex-wrap:wrap; margin-top:20px;">
+<!-- ================= MAIN CONTENT + SIDEBAR WRAPPER ================= -->
+<div style="display: flex; gap: 30px; max-width: 1200px; margin: 0 auto; padding: 0 20px;">
 
-        <div class="product" style="width:280px; background:white; padding:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
-            <img src="/images/candycanecookie.jpg" alt="Homemade peppermint candy cane cookies with red and white swirls" style="width:100%; border-radius:6px;">
-            <h3 style="font-family: 'Playfair Display', serif; color: #4d2c2a;">Peppermint Candy Cane Cookies</h3>
-            <p>Beautiful red-and-white swirled peppermint sugar cookies handcrafted for the holidays. These festive favorites are perfect for gift boxes, cookie exchanges, or holiday parties.</p>
-            <a href="/blog/peppermint-candy-cane-cookies.html" class="cta-link">View Full Recipe</a>
-        </div>
+    <!-- LEFT COLUMN: FEATURED PRODUCTS & BLOG -->
+    <div style="flex: 3; min-width: 300px;">
 
-        <div class="product" style="width:280px; background:white; padding:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
-            <img src="/images/xmas christmas assort.jfif" alt="Luxury holiday dessert box with assorted homemade cookies, brownies, and festive treats" style="width:100%; border-radius:6px;">
-            <h3 style="font-family: 'Playfair Display', serif; color: #4d2c2a;">Holiday Dessert Box</h3>
-            <p>Our signature holiday gift box packed with an assortment of premium cookies, fudgy brownies, peppermint treats, and more. Beautifully packaged and ready to gift to clients, colleagues, or loved ones.</p>
-            <a href="/order.html" class="cta-button">Order Your Box Now</a>
-        </div>
+        <!-- ================= FEATURED PRODUCTS ================= -->
+        <section class="featured-products" style="background:#fafafa; padding: 40px; margin-bottom: 30px; border-radius: 8px;">
+            <h2 style="font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 2rem; text-align: center;">Our Featured Holiday Treats</h2>
+            <div style="display:flex; gap:25px; justify-content:center; flex-wrap:wrap; margin-top:20px;">
 
-        <div class="product" style="width:280px; background:white; padding:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
-            <img src="/images/peanutclust.jpg" alt="Rich chocolate and caramel covered peanut clusters handcrafted in small batches" style="width:100%; border-radius:6px;">
-            <h3 style="font-family: 'Playfair Display', serif; color: #4d2c2a;">Chocolate Peanut Clusters</h3>
-            <p>Luxurious chocolate and caramel-covered peanut clusters made in small batches with premium ingredients. A customer favorite for chocolate lovers and the perfect addition to any dessert gift.</p>
-            <a href="/blog/chocolate-covered-caramel-candied-peanut-clusters.html" class="cta-link">Learn More & Recipe</a>
-        </div>
+                <div class="product" style="width:280px; background:white; padding:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+                    <img src="/images/candycanecookie.jpg" alt="Homemade peppermint candy cane cookies with red and white swirls" style="width:100%; border-radius:6px;">
+                    <h3 style="font-family: 'Playfair Display', serif; color: #4d2c2a;">Peppermint Candy Cane Cookies</h3>
+                    <p>Beautiful red-and-white swirled peppermint sugar cookies handcrafted for the holidays. These festive favorites are perfect for gift boxes, cookie exchanges, or holiday parties.</p>
+                    <a href="/blog/peppermint-candy-cane-cookies.html" class="cta-link">View Full Recipe</a>
+                </div>
+
+                <div class="product" style="width:280px; background:white; padding:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+                    <img src="/images/xmas christmas assort.jfif" alt="Luxury holiday dessert box with assorted homemade cookies, brownies, and festive treats" style="width:100%; border-radius:6px;">
+                    <h3 style="font-family: 'Playfair Display', serif; color: #4d2c2a;">Holiday Dessert Box</h3>
+                    <p>Our signature holiday gift box packed with an assortment of premium cookies, fudgy brownies, peppermint treats, and more. Beautifully packaged and ready to gift to clients, colleagues, or loved ones.</p>
+                    <a href="/order.html" class="cta-button">Order Your Box Now</a>
+                </div>
+
+                <div class="product" style="width:280px; background:white; padding:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+                    <img src="/images/peanutclust.jpg" alt="Rich chocolate and caramel covered peanut clusters handcrafted in small batches" style="width:100%; border-radius:6px;">
+                    <h3 style="font-family: 'Playfair Display', serif; color: #4d2c2a;">Chocolate Peanut Clusters</h3>
+                    <p>Luxurious chocolate and caramel-covered peanut clusters made in small batches with premium ingredients. A customer favorite for chocolate lovers and the perfect addition to any dessert gift.</p>
+                    <a href="/blog/chocolate-covered-caramel-candied-peanut-clusters.html" class="cta-link">Learn More & Recipe</a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= HOLIDAY BOX PROMO ================= -->
+        <section class="holiday-promo" style="padding: 40px; text-align:center; background:#fff; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 30px;">
+            <h2 style="font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 2rem;">Corporate Gifts & Holiday Boxes — Perfect for Any Occasion</h2>
+            <p>Impress family, friends, and colleagues with handcrafted dessert gift boxes that stand out from generic store-bought options. Each box is carefully assembled with a mix of homemade cookies, brownies, and premium treats, beautifully packaged with care and attention to detail. Ideal for corporate gifting, holiday parties, thank-you gifts, or personal indulgence.</p>
+            <a href="/order.html" class="cta-button">Shop Holiday Boxes & Custom Orders</a>
+        </section>
+
+        <!-- ================= BLOG PREVIEW ================= -->
+        <section class="blog-preview" style="padding: 40px;">
+            <h2 style="font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 2rem; text-align: center;">Baking Tips, Recipes & Behind-the-Scenes Stories</h2>
+            <div style="display:flex; gap:25px; justify-content:center; flex-wrap:wrap; margin-top:20px;">
+
+                <div class="blog-post" style="width:300px; background:white; padding:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+                    <h3 style="font-family: 'Playfair Display', serif; color: #4d2c2a;">How to Choose the Perfect Dessert Gift</h3>
+                    <p>Learn expert tips for selecting the ideal homemade desserts for corporate gifts, holiday exchanges, or special occasions. Discover what makes a truly memorable gift that shows genuine care.</p>
+                    <a href="/blog/perfect-dessert-gift-holidays.html" class="cta-link">Read Full Guide</a>
+                </div>
+
+                <div class="blog-post" style="width:300px; background:white; padding:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+                    <h3 style="font-family: 'Playfair Display', serif; color: #4d2c2a;">Behind the Scenes: Holiday Box Preparation</h3>
+                    <p>Ever wondered how we prepare hundreds of holiday dessert boxes? Take a behind-the-scenes look at our baking process, from ingredient selection to final packaging and quality control.</p>
+                    <a href="/blog/behind-the-scenes-holiday-boxes.html" class="cta-link">See Our Process</a>
+                </div>
+
+                <div class="blog-post" style="width:300px; background:white; padding:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+                    <h3 style="font-family: 'Playfair Display', serif; color: #4d2c2a;">Peppermint Candy Cane Cookies Recipe</h3>
+                    <p>Master the art of making festive peppermint candy cane cookies with our step-by-step recipe. Perfect for holiday baking, gift-giving, or decorating with royal icing and festive sprinkles.</p>
+                    <a href="/blog/peppermint-candy-cane-cookies.html" class="cta-link">Get the Recipe</a>
+                </div>
+
+            </div>
+        </section>
 
     </div>
-</section>
 
-<!-- ================= HOLIDAY BOX PROMO ================= -->
-<section class="holiday-promo" style="padding: 40px; text-align:center;">
-    <h2 style="font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 2rem;">Corporate Gifts & Holiday Boxes — Perfect for Any Occasion</h2>
-    <p>Impress family, friends, and colleagues with handcrafted dessert gift boxes that stand out from generic store-bought options. Each box is carefully assembled with a mix of homemade cookies, brownies, and premium treats, beautifully packaged with care and attention to detail. Ideal for corporate gifting, holiday parties, thank-you gifts, or personal indulgence.</p>
-    <a href="/order.html" class="cta-button">Shop Holiday Boxes & Custom Orders</a>
-</section>
-
-<!-- ================= BLOG PREVIEW ================= -->
-<section class="blog-preview" style="padding: 40px;">
-    <h2 style="font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 2rem; text-align: center;">Baking Tips, Recipes & Behind-the-Scenes Stories</h2>
-    <div style="display:flex; gap:25px; justify-content:center; flex-wrap:wrap; margin-top:20px;">
-
-        <div class="blog-post" style="width:300px; background:white; padding:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
-            <h3 style="font-family: 'Playfair Display', serif; color: #4d2c2a;">How to Choose the Perfect Dessert Gift</h3>
-            <p>Learn expert tips for selecting the ideal homemade desserts for corporate gifts, holiday exchanges, or special occasions. Discover what makes a truly memorable gift that shows genuine care.</p>
-            <a href="/blog/perfect-dessert-gift-holidays.html" class="cta-link">Read Full Guide</a>
+    <!-- RIGHT COLUMN: ABOUT ME SIDEBAR -->
+    <aside style="flex: 1; min-width: 250px; background-color: #fff; padding: 25px; border: 1px solid #ddd; border-radius: 10px; height: fit-content; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+        <h3 style="font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 1.5rem; margin-top: 0; margin-bottom: 15px; border-bottom: 2px solid #d93535; padding-bottom: 10px;">About Elizabeth</h3>
+        
+        <div style="text-align: center;">
+            <img src="/images/aboutme.jpg" alt="Elizabeth, founder of Elizabeth's Baked Goods, in her kitchen" style="width: 100%; border-radius: 10px; margin-bottom: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            
+            <p style="font-size: 0.95rem; line-height: 1.6; color: #666; margin-bottom: 15px;">Hi! I'm Elizabeth, the baker behind every handcrafted treat you'll find here. With a passion for quality ingredients and artisan baking, I create small-batch cookies, brownies, and dessert boxes that bring joy and homemade flavor to every bite.</p>
+            
+            <a href="/about.html" class="cta-button" style="display: inline-block;">Learn My Story</a>
         </div>
 
-        <div class="blog-post" style="width:300px; background:white; padding:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
-            <h3 style="font-family: 'Playfair Display', serif; color: #4d2c2a;">Behind the Scenes: Holiday Box Preparation</h3>
-            <p>Ever wondered how we prepare hundreds of holiday dessert boxes? Take a behind-the-scenes look at our baking process, from ingredient selection to final packaging and quality control.</p>
-            <a href="/blog/behind-the-scenes-holiday-boxes.html" class="cta-link">See Our Process</a>
+        <div style="background: linear-gradient(135deg, #fff6f6 0%, #ffe4e9 100%); padding: 15px; border-radius: 8px; border-left: 4px solid #d93535; margin: 20px 0; text-align: center;">
+            <h4 style="margin: 0 0 8px 0; color: #d93535; font-family: 'Playfair Display', serif;">🎄 Holiday Specials</h4>
+            <p style="margin: 0; font-size: 0.9rem; color: #666;">Order your holiday gift boxes now! Limited time special pricing available.</p>
         </div>
 
-        <div class="blog-post" style="width:300px; background:white; padding:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1);">
-            <h3 style="font-family: 'Playfair Display', serif; color: #4d2c2a;">Peppermint Candy Cane Cookies Recipe</h3>
-            <p>Master the art of making festive peppermint candy cane cookies with our step-by-step recipe. Perfect for holiday baking, gift-giving, or decorating with royal icing and festive sprinkles.</p>
-            <a href="/blog/peppermint-candy-cane-cookies.html" class="cta-link">Get the Recipe</a>
+        <div style="background: linear-gradient(135deg, #fff6f6 0%, #ffe4e9 100%); padding: 15px; border-radius: 8px; border-left: 4px solid #d93535; margin: 20px 0; text-align: center;">
+            <h4 style="margin: 0 0 8px 0; color: #d93535; font-family: 'Playfair Display', serif;">⭐ Customer Favorite</h4>
+            <p style="margin: 0; font-size: 0.9rem; color: #666;">Chocolate Covered Peanut Clusters – our best-selling treat!</p>
         </div>
+    </aside>
 
-    </div>
-</section>
+</div>
 
 <!-- ================= TESTIMONIALS ================= -->
 <section class="testimonials" style="background:#fff6f6; padding:40px;">
