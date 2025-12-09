@@ -3,6 +3,41 @@ nav.nav--glass {
     display: none !important;
 }
 
+/* Standard Navigation Styling */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+header nav a {
+    color: #fff !important;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+header nav a:hover {
+    color: #f2b6a0;
+}
+
 /* Footer styling */
 footer {
     text-align: center;
