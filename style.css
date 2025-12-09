@@ -65,8 +65,8 @@ header h1 {
     display: none;
 }
 
-/* OVERRIDE all other nav rules */
-nav {
+/* OVERRIDE old nav rules (but NOT .navbar) */
+nav:not(.navbar) {
     display: none !important;
 }
 
