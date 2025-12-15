@@ -1397,8 +1397,10 @@ nav .social-icons { margin-top: 0; }
     border-left: 1px solid #eee;
     padding-left: 20px;
     position: sticky;
-    top: 100px;
+    top: 20px;
     height: fit-content;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
 }
 
 .about-box {
