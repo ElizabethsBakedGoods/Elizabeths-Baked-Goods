@@ -1309,3 +1309,228 @@ nav .social-icons { margin-top: 0; }
         padding: 1rem;
     }
 }
+
+/* RECIPE PAGE HEADER WITH LOGO AND SOCIAL */
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #f8f4f4;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.header-left {
+    flex: 0 0 auto;
+}
+
+.site-logo {
+    width: 120px;
+    height: auto;
+}
+
+.main-nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 8px 12px;
+    transition: background-color 0.3s ease;
+}
+
+.main-nav a:hover {
+    background-color: #e0e0e0;
+    border-radius: 4px;
+}
+
+.header-social {
+    flex: 0 0 auto;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.header-social a {
+    display: inline-flex;
+}
+
+.header-social img {
+    width: 25px;
+    height: 25px;
+    transition: opacity 0.3s ease;
+}
+
+.header-social a:hover img {
+    opacity: 0.7;
+}
+
+/* RECIPE PAGE TWO-COLUMN LAYOUT */
+.recipe-layout {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+}
+
+.recipe-main {
+    flex: 3;
+}
+
+.recipe-sidebar {
+    flex: 1;
+    border-left: 1px solid #eee;
+    padding-left: 20px;
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+}
+
+.about-box {
+    text-align: center;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.about-photo {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.about-box h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #4d2c2a;
+}
+
+.about-box p {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.sidebar-social {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.sidebar-social a {
+    display: inline-flex;
+}
+
+.sidebar-social img {
+    width: 28px;
+    height: 28px;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar-social a:hover img {
+    opacity: 0.7;
+}
+
+/* RECOMMENDED RECIPES SECTION */
+.recommended-recipes {
+    margin-top: 60px;
+    padding: 40px 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.recommended-recipes h2 {
+    font-size: 1.8rem;
+    color: #4d2c2a;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.recommend-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.rec-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.rec-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.rec-card a {
+    text-decoration: none;
+    display: block;
+    color: inherit;
+}
+
+.rec-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+}
+
+.rec-card p {
+    padding: 12px;
+    font-weight: 600;
+    color: #4d2c2a;
+    text-align: center;
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+    .site-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .recipe-layout {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .recipe-sidebar {
+        border-left: none;
+        border-top: 1px solid #eee;
+        padding-left: 0;
+        padding-top: 20px;
+        position: static;
+    }
+
+    .recommend-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+}
