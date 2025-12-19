@@ -46,7 +46,7 @@
     </nav>
 
     <main style="padding-top: 80px;">
-        <header class="canva-hero" style="padding-top:2rem; padding-bottom:2rem; margin-bottom:1.5rem;">
+        <header class="canva-hero" style="padding-top:2rem; padding-bottom:2rem; margin-bottom:1.5rem; position: sticky; top: 80px; z-index: 100; background: var(--light-bg); box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
             <h1>Order Online</h1>
             <p class="tagline">Sweet Treats Delivered to Your Door</p>
             <div class="service-info" style="margin-top:2rem;">
@@ -76,66 +76,69 @@
                     <div class="product-card">
                         <img src="images/chochip.png.jfif" alt="Large Chocolate Chip Cookies" style="width:100%; border-radius:8px; margin-bottom:0.5rem;" loading="lazy">
                         <div style="font-weight:600; color:#7a4a1b; font-size:1.05rem; margin-bottom:0.5rem;">🍪 Large Cookies</div>
-                        <button class="add-to-cart-btn btn-brown" data-product="large-cookies-12" data-flavor="Chocolate Chip" style="margin:0.3rem 0;">Pack of 12 – $48</button>
-                        <button class="add-to-cart-btn btn-brown" data-product="large-cookies-8" data-flavor="Chocolate Chip" style="margin:0.3rem 0;">Pack of 8 – $32</button>
-                        <button class="add-to-cart-btn btn-brown" data-product="large-cookies-6" data-flavor="Chocolate Chip" style="margin:0.3rem 0;">Pack of 6 – $24</button>
-                        <button class="add-to-cart-btn btn-brown" data-product="large-cookies-4" data-flavor="Chocolate Chip" style="margin:0.3rem 0;">Pack of 4 – $16</button>
-                        <small style="color:#666;">Choose flavor after adding</small>
+                        <button class="add-to-cart-btn btn-brown" data-product="large-cookies-12" data-flavor="Chocolate Chip" style="margin:0.3rem 0;">Pack of 12 – $60</button>
+                        <button class="add-to-cart-btn btn-brown" data-product="large-cookies-8" data-flavor="Chocolate Chip" style="margin:0.3rem 0;">Pack of 8 – $40</button>
+                        <button class="add-to-cart-btn btn-brown" data-product="large-cookies-6" data-flavor="Chocolate Chip" style="margin:0.3rem 0;">Pack of 6 – $30</button>
+                        <small style="color:#666;">$5 each • Sets of 6, 8, 12 or more • Choose flavor after adding</small>
                     </div>
                     
                     <!-- Small Cookies -->
                     <div class="product-card">
                         <img src="images/smallcookies.jpg" alt="Small Cookies Variety" style="width:100%; border-radius:8px; margin-bottom:0.5rem;" loading="lazy">
                         <div style="font-weight:600; color:#7a4a1b; font-size:1.05rem; margin-bottom:0.5rem;">🍪 Small Cookies</div>
-                        <button class="add-to-cart-btn btn-brown" data-product="cookies-12" data-flavor="Chocolate Chip" style="margin:0.3rem 0;">Pack of 12 – $24</button>
-                        <button class="add-to-cart-btn btn-brown" data-product="cookies-8" data-flavor="Chocolate Chip" style="margin:0.3rem 0;">Pack of 8 – $18</button>
-                        <button class="add-to-cart-btn btn-brown" data-product="cookies-6" data-flavor="Chocolate Chip" style="margin:0.3rem 0;">Pack of 6 – $12</button>
-                        <button class="add-to-cart-btn btn-brown" data-product="cookies-4" data-flavor="Chocolate Chip" style="margin:0.3rem 0;">Pack of 4 – $8</button>
-                        <small style="color:#666;">Choose flavor after adding</small>
+                        <button class="add-to-cart-btn btn-brown" data-product="cookies-12" data-flavor="Chocolate Chip" style="margin:0.3rem 0;">Pack of 12 – $36</button>
+                        <button class="add-to-cart-btn btn-brown" data-product="cookies-8" data-flavor="Chocolate Chip" style="margin:0.3rem 0;">Pack of 8 – $24</button>
+                        <button class="add-to-cart-btn btn-brown" data-product="cookies-6" data-flavor="Chocolate Chip" style="margin:0.3rem 0;">Pack of 6 – $18</button>
+                        <small style="color:#666;">$3 each • Sets of 6, 8, 12 or more • Choose flavor after adding</small>
                     </div>
 
                     <!-- Brownies -->
                     <div class="product-card">
                         <img src="images/browniespic.png" alt="Classic Chocolate Brownies" style="width:100%; border-radius:8px; margin-bottom:0.5rem;" loading="lazy">
-                        <div style="font-weight:600; color:#7a4a1b; font-size:1.05rem; margin-bottom:0.5rem;">🍫 Brownies</div>
+                        <div style="font-weight:600; color:#7a4a1b; font-size:1.05rem; margin-bottom:0.5rem;">🍫 Classic Brownies</div>
                         <button class="add-to-cart-btn btn-brown" data-product="brownies-12" data-flavor="Classic Chocolate" style="margin:0.3rem 0;">12 count – $48</button>
                         <button class="add-to-cart-btn btn-brown" data-product="brownies-8" data-flavor="Classic Chocolate" style="margin:0.3rem 0;">8 count – $32</button>
                         <button class="add-to-cart-btn btn-brown" data-product="brownies-6" data-flavor="Classic Chocolate" style="margin:0.3rem 0;">6 count – $24</button>
                         <button class="add-to-cart-btn btn-brown" data-product="brownies-4" data-flavor="Classic Chocolate" style="margin:0.3rem 0;">4 count – $16</button>
+                        <small style="color:#666;">$4 each • Minimum 4 brownies</small>
                     </div>
 
                     <!-- Gourmet Brownies -->
                     <div class="product-card">
                         <img src="images/browniesbiscoff.jfif" alt="Gourmet Biscoff Brownies" style="width:100%; border-radius:8px; margin-bottom:0.5rem; opacity:0.95; object-fit:cover;" loading="lazy">
                         <div style="font-weight:600; color:#7a4a1b; font-size:1.05rem; margin-bottom:0.5rem;">✨ Gourmet Brownies</div>
-                        <button class="add-to-cart-btn btn-brown" data-product="gourmet-brownies-12" data-flavor="Variety" style="margin:0.3rem 0;">12 count – $96</button>
-                        <button class="add-to-cart-btn btn-brown" data-product="gourmet-brownies-8" data-flavor="Variety" style="margin:0.3rem 0;">8 count – $64</button>
-                        <button class="add-to-cart-btn btn-brown" data-product="gourmet-brownies-6" data-flavor="Variety" style="margin:0.3rem 0;">6 count – $48</button>
+                        <button class="add-to-cart-btn btn-brown" data-product="gourmet-brownies-6" data-flavor="Variety" style="margin:0.3rem 0;">Variety Box (6) – $40</button>
                         <button class="add-to-cart-btn btn-brown" data-product="gourmet-brownies-4" data-flavor="Variety" style="margin:0.3rem 0;">4 count – $32</button>
+                        <small style="color:#666;">$8 each • Minimum 4 brownies</small>
                     </div>
 
                     <!-- Cupcakes -->
                     <div class="product-card">
                         <img src="images/cupcakes.jpg" alt="Cupcakes assortment" style="width:100%; border-radius:8px; margin-bottom:0.5rem; object-fit:cover;" loading="lazy">
                         <div style="font-weight:600; color:#7a4a1b; font-size:1.05rem; margin-bottom:0.5rem;">🧁 Cupcakes</div>
-                        <button class="add-to-cart-btn btn-brown" data-product="cupcake-dozen" data-flavor="Vanilla" style="margin:0.3rem 0;">Dozen – $40</button>
-                        <button class="add-to-cart-btn btn-brown" data-product="cupcake-single" data-flavor="Vanilla" style="margin:0.3rem 0;">Single – $4</button>
+                        <button class="add-to-cart-btn btn-brown" data-product="cupcake-24" data-flavor="Vanilla" style="margin:0.3rem 0;">24 count – $96</button>
+                        <button class="add-to-cart-btn btn-brown" data-product="cupcake-12" data-flavor="Vanilla" style="margin:0.3rem 0;">12 count – $48</button>
+                        <button class="add-to-cart-btn btn-brown" data-product="cupcake-6" data-flavor="Vanilla" style="margin:0.3rem 0;">6 count – $24</button>
+                        <small style="color:#666;">$4 each • Sets of 6, 12, 24 or more</small>
                     </div>
 
                     <!-- Cereal Bars -->
                     <div class="product-card">
                         <img src="images/ricecrisp.jpg" alt="Rice Krispies cereal bars" style="width:100%; border-radius:8px; margin-bottom:0.5rem; object-fit:cover;" loading="lazy">
                         <div style="font-weight:600; color:#7a4a1b; font-size:1.05rem; margin-bottom:0.5rem;">🥣 Cereal Bars</div>
-                        <button class="add-to-cart-btn btn-brown" data-product="cerealbar-ricekrispies" data-flavor="Rice Krispies" style="margin:0.3rem 0;">Rice Krispies – $3</button>
-                        <button class="add-to-cart-btn btn-brown" data-product="cerealbar-fruitypebbles" data-flavor="Fruity Pebbles" style="margin:0.3rem 0;">Fruity Pebbles – $3</button>
-                        <button class="add-to-cart-btn btn-brown" data-product="cerealbar-reesespuffs" data-flavor="Reese's Puffs" style="margin:0.3rem 0;">Reese's Puffs – $3</button>
+                        <button class="add-to-cart-btn btn-brown" data-product="cerealbar-ricekrispies" data-flavor="Rice Krispies" style="margin:0.3rem 0;">Rice Krispies (12) – $36</button>
+                        <button class="add-to-cart-btn btn-brown" data-product="cerealbar-fruitypebbles" data-flavor="Fruity Pebbles" style="margin:0.3rem 0;">Fruity Pebbles (12) – $36</button>
+                        <button class="add-to-cart-btn btn-brown" data-product="cerealbar-reesespuffs" data-flavor="Reese's Puffs" style="margin:0.3rem 0;">Reese's Puffs (12) – $36</button>
+                        <small style="color:#666;">$3 each • Sets of 6, 12 or more</small>
                     </div>
 
                     <!-- Pretzels -->
                     <div class="product-card">
                         <img src="images/chocpretz.jpg" alt="Chocolate dipped pretzels" style="width:100%; border-radius:8px; margin-bottom:0.5rem; object-fit:cover;" loading="lazy">
                         <div style="font-weight:600; color:#7a4a1b; font-size:1.05rem; margin-bottom:0.5rem;">🥨 Chocolate Pretzels</div>
-                        <button class="add-to-cart-btn btn-brown" data-product="pretzel-large-3" data-flavor="Milk Chocolate" style="margin:0.3rem 0;">Large Set (3) – $3</button>
+                        <button class="add-to-cart-btn btn-brown" data-product="pretzel-rod" data-flavor="Milk Chocolate" style="margin:0.3rem 0;">Pretzel Rods – $2 each</button>
+                        <button class="add-to-cart-btn btn-brown" data-product="pretzel-large-3" data-flavor="Milk Chocolate" style="margin:0.3rem 0;">Large Pretzels (3) – $3</button>
+                        <small style="color:#666;">Minimum 6 pretzels total</small>
                     </div>
 
 
@@ -143,16 +146,17 @@
                     <div class="product-card">
                         <img src="images/popcorn 3.jpg" alt="Gourmet caramel popcorn" style="width:100%; border-radius:8px; margin-bottom:0.5rem; object-fit:cover;" loading="lazy">
                         <div style="font-weight:600; color:#7a4a1b; font-size:1.05rem; margin-bottom:0.5rem;">🍿 Gourmet Popcorn</div>
-                        <button class="add-to-cart-btn btn-brown" data-product="popcorn-gourmet" data-flavor="Caramel" style="margin:0.3rem 0;">Gourmet Popcorn – $8</button>
+                        <button class="add-to-cart-btn btn-brown" data-product="popcorn-gourmet" data-flavor="Caramel" style="margin:0.3rem 0;">10 oz Bag – $15</button>
                     </div>
 
                     <!-- Cookie Cakes -->
                     <div class="product-card">
                         <img src="images/cookiecake.jpg" alt="Decorated chocolate chip cookie cake" style="width:100%; border-radius:8px; margin-bottom:0.5rem; object-fit:cover;" loading="lazy">
                         <div style="font-weight:600; color:#7a4a1b; font-size:1.05rem; margin-bottom:0.5rem;">🎂 Cookie Cakes</div>
-                        <button class="add-to-cart-btn btn-brown" data-product="cookiecake-large" data-flavor="Chocolate Chip" style="margin:0.3rem 0;">Large (12") – $50</button>
-                        <button class="add-to-cart-btn btn-brown" data-product="cookiecake-medium" data-flavor="Chocolate Chip" style="margin:0.3rem 0;">Medium (8") – $35</button>
-                        <button class="add-to-cart-btn btn-brown" data-product="cookiecake-small" data-flavor="Chocolate Chip" style="margin:0.3rem 0;">Small (6") – $25</button>
+                        <button class="add-to-cart-btn btn-brown" data-product="cookiecake-large" data-flavor="Chocolate Chip" style="margin:0.3rem 0;">Large (12") – $55</button>
+                        <button class="add-to-cart-btn btn-brown" data-product="cookiecake-medium" data-flavor="Chocolate Chip" style="margin:0.3rem 0;">Medium (8") – $40</button>
+                        <button class="add-to-cart-btn btn-brown" data-product="cookiecake-small" data-flavor="Chocolate Chip" style="margin:0.3rem 0;">Small (6") – $30</button>
+                        <small style="color:#666;">Custom designs & messages available</small>
                     </div>
 
                     <!-- Holiday Gift Basket -->

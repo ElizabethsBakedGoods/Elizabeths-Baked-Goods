@@ -40,13 +40,25 @@
         <!-- Holiday Menu Section -->
         <section class="section" id="holiday-menu">
             <h2>Holiday Menu</h2>
-            <div class="menu-container">
-                <!-- Placeholder for holiday menu image - user will upload -->
-                <img src="images/HolidayMenu.png" alt="Elizabeth's Holiday Menu" class="holiday-menu-image" 
-                     onerror="this.style.display='none'; document.getElementById('menu-placeholder').style.display='block';">
-                <div id="menu-placeholder" style="display:none; padding: 3rem; background: var(--cream); border-radius: 15px; border: 3px dashed var(--dark-brown);">
-                    <h3 style="color: var(--dark-brown); margin-bottom: 1rem;">Holiday Menu Coming Soon!</h3>
-                    <p>Upload your holiday menu image as <strong>images/holiday-menu.jpg</strong></p>
+            <div class="menu-container" style="display: flex; gap: 2rem; justify-content: center; align-items: center; flex-wrap: wrap;">
+                <!-- Holiday Menu Image -->
+                <div style="flex: 1; min-width: 280px; max-width: 400px;">
+                    <img src="images/HolidayMenu.png" alt="Elizabeth's Holiday Menu" style="width: 100%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" loading="lazy"
+                         onerror="this.style.display='none'; document.getElementById('menu-placeholder-1').style.display='block';">
+                    <div id="menu-placeholder-1" style="display:none; padding: 2rem; background: var(--cream); border-radius: 15px; border: 3px dashed var(--dark-brown); text-align: center;">
+                        <h3 style="color: var(--dark-brown); margin-bottom: 0.5rem;">Holiday Menu</h3>
+                        <p style="font-size: 0.9rem;">Image uploading...</p>
+                    </div>
+                </div>
+                
+                <!-- Custom Menu Image -->
+                <div style="flex: 1; min-width: 280px; max-width: 400px;">
+                    <img src="images/custom menu.png" alt="Elizabeth's Custom Menu" style="width: 100%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" loading="lazy"
+                         onerror="this.style.display='none'; document.getElementById('menu-placeholder-2').style.display='block';">
+                    <div id="menu-placeholder-2" style="display:none; padding: 2rem; background: var(--cream); border-radius: 15px; border: 3px dashed var(--dark-brown); text-align: center;">
+                        <h3 style="color: var(--dark-brown); margin-bottom: 0.5rem;">Custom Menu</h3>
+                        <p style="font-size: 0.9rem;">Image uploading...</p>
+                    </div>
                 </div>
             </div>
         </section>
