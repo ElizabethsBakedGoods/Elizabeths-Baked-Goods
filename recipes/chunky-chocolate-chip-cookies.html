@@ -15,13 +15,13 @@
     .back-link { text-decoration:none; color: var(--text-color); background:#f2f2f2; padding:0.5rem 0.9rem; border-radius: 20px; }
     .jump-btn { text-decoration:none; background: var(--dark-pink); color:#fff; padding:0.6rem 1.1rem; border-radius:22px; }
     .recipe-title { font-size: 2rem; margin: 0.5rem 0 0.75rem; }
-    .hero-image { margin: 0 0 1.5rem; text-align: center; }
-    .hero-image img { width: 100%; max-width: 640px; height: auto; border-radius: 12px; box-shadow: 0 4px 14px rgba(0,0,0,0.12); display:block; margin: 0 auto; }
     .blog p { margin-bottom: 1rem; }
     .ingredients, .instructions { background: #fff; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); padding: 1.25rem; }
     .ingredients ul { padding-left: 1.2rem; }
     .instructions ol { padding-left: 1.25rem; }
     .note { font-size: 0.95rem; color:#444; margin-top:0.5rem; }
+    .faq { background: #f9f9f9; border-left: 4px solid #d93535; padding: 1.25rem; border-radius: 8px; margin: 1.5rem 0; }
+    .faq h4 { color: #d93535; margin-top: 0; }
   </style>
 </head>
 <body>
@@ -37,7 +37,8 @@
   </nav>
 </header>
 
-  <main class="recipe-layout">
+<main class="recipe-layout">
+  <div class="recipe-main">
     <h1 style="font-family: 'Dancing Script', cursive; color: #8b4513; font-size: 2.8rem; margin-bottom: 1.5rem;">Chunky Chocolate Chip Cookies Recipe</h1>
     
     <div style="display: flex; gap: 2rem; align-items: flex-start;">
@@ -88,13 +89,68 @@
               </ol>
               <p class="note"><strong>Tip:</strong> A light sprinkle of flaky sea salt before baking adds amazing balance.</p>
             </div>
+
+            <div class="instructions" style="margin-top: 1.5rem;">
+              <h3>💡 Tips & Variations</h3>
+              <ul>
+                <li><strong>Chill the dough:</strong> Freezing the portioned dough results in thicker, chewier cookies.</li>
+                <li><strong>Brown your butter:</strong> For extra depth, brown the butter before mixing for a more complex flavor.</li>
+                <li><strong>Mix of chocolates:</strong> Use a combination of dark, milk, and semi-sweet chocolate chips for complexity.</li>
+                <li><strong>Don't overmix:</strong> Mix just until combined to keep cookies tender.</li>
+                <li><strong>Quality chocolate:</strong> Better chocolate makes better cookies.</li>
+              </ul>
+            </div>
+
+            <section id="faq" style="margin-top: 2.5rem;">
+              <h2>Frequently Asked Questions</h2>
+              
+              <div class="faq">
+                <h4>Why are my cookies spreading too much?</h4>
+                <p>Make sure to freeze or chill the dough before baking. Warm dough spreads more easily. Also, ensure your oven temperature is accurate.</p>
+              </div>
+
+              <div class="faq">
+                <h4>How do I get chewy cookies?</h4>
+                <p>Don't overbake! Remove cookies when the centers still look slightly underdone. They'll continue to cook on the hot pan.</p>
+              </div>
+
+              <div class="faq">
+                <h4>Can I use melted butter instead of softened?</h4>
+                <p>Yes, melted butter will give you a different texture—more cake-like and denser. Softened butter gives you a fluffier texture.</p>
+              </div>
+
+              <div class="faq">
+                <h4>How long do these cookies last?</h4>
+                <p>Stored in an airtight container at room temperature, these cookies will stay fresh for up to 7 days. You can also freeze baked cookies for up to 3 months.</p>
+              </div>
+
+              <div class="faq">
+                <h4>Can I use a mix of chocolates?</h4>
+                <p>Absolutely! Combining dark, milk, and semi-sweet chocolate chips creates a more interesting flavor profile.</p>
+              </div>
+
+              <div class="faq">
+                <h4>What's the best way to portion the dough?</h4>
+                <p>Use a kitchen scale for consistency. Weigh each portion to 60g for uniform, bakery-style cookies. A cookie scoop also works well.</p>
+              </div>
+            </section>
+
+            <section id="storage" style="margin-top: 2.5rem; background: #f9f9f9; padding: 1.5rem; border-radius: 10px;">
+              <h2 style="margin-top: 0;">Storage & Shelf Life</h2>
+              <p>Store baked cookies in an airtight container at room temperature for up to 7 days. For longer storage, freeze baked cookies in an airtight freezer-safe container for up to 3 months. You can also freeze the portioned dough for up to 1 month and bake directly from frozen, adding 1-2 minutes to the baking time.</p>
+            </section>
+
+            <div style="text-align: center; margin-top: 2.5rem; padding: 2rem; background: #f9f4ef; border-radius: 12px;">
+              <p style="margin: 0 0 1rem 0; color: #8b4513; font-weight: 600; font-size: 1.1rem;">🎁 Craving these chocolate chip cookies?</p>
+              <a href="../local-ordering.html" style="display: inline-block; padding: 0.8rem 1.5rem; background: #8b4513; color: white; text-decoration: none; border-radius: 6px; font-size: 1rem; font-weight: 600;">Order Your Cookies</a>
+            </div>
           </section>
         </article>
       </div>
 
       <div style="flex: 0 0 300px;">
         <div style="text-align: center; padding: 20px; background-color: #f9f5f0; border-radius: 8px; margin-bottom: 2rem; position: sticky; top: 100px;">
-          <img src="../images/aboutme.jpg" alt="Elizabeth" style="width: 200px; height: 200px; border-radius: 10px; object-fit: cover; object-position: top; margin: 0 auto 1rem; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+          <img src="/images/aboutme.jpg" alt="Elizabeth" style="width: 200px; height: 200px; border-radius: 10px; object-fit: cover; object-position: top; margin: 0 auto 1rem; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
           <h3 style="font-family: 'Dancing Script', cursive; color: #8b4513; margin: 1rem 0;">About Elizabeth</h3>
           <p style="font-size: 0.95rem; line-height: 1.6; color: #4d2c2a;">Hi! I'm Elizabeth, and I love creating delicious baked goods that bring joy to my family and friends. My passion is turning simple ingredients into memorable treats.</p>
           <div style="text-align: center; margin-top: 1.5rem;">
@@ -106,12 +162,6 @@
           <h4 style="font-family: 'Dancing Script', cursive; color: #8b4513; margin-bottom: 1rem;">Recommended Recipes</h4>
           <div style="display: flex; flex-direction: column; gap: 1rem;">
             <div style="text-align: center;">
-              <a href="../recipes/smores-cookies.html">
-                <img src="../images/smorescookie.jpg" alt="S'mores Cookies" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-bottom: 0.5rem;">
-                <div style="color: #8b4513; text-decoration: underline; font-size: 0.85rem; font-weight: 600;">S'mores Cookies</div>
-              </a>
-            </div>
-            <div style="text-align: center;">
               <a href="../recipes/classic-sugar-cookies.html">
                 <img src="../images/xmas christmas assort.jfif" alt="Classic Sugar Cookies" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-bottom: 0.5rem;">
                 <div style="color: #8b4513; text-decoration: underline; font-size: 0.85rem; font-weight: 600;">Sugar Cookies</div>
@@ -121,6 +171,12 @@
               <a href="../recipes/ultimate-fudgy-brownies.html">
                 <img src="../images/browniesbiscoff.jfif" alt="Ultimate Fudgy Brownies" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-bottom: 0.5rem;">
                 <div style="color: #8b4513; text-decoration: underline; font-size: 0.85rem; font-weight: 600;">Fudgy Brownies</div>
+              </a>
+            </div>
+            <div style="text-align: center;">
+              <a href="../recipes/smores-cookies.html">
+                <img src="../images/smorescookie.jpg" alt="S'mores Cookies" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-bottom: 0.5rem;">
+                <div style="color: #8b4513; text-decoration: underline; font-size: 0.85rem; font-weight: 600;">S'mores Cookies</div>
               </a>
             </div>
           </div>
@@ -135,24 +191,25 @@
       
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
         <div style="background: #f9f5f0; padding: 1.5rem; border-radius: 10px; display: flex; flex-direction: column;">
-          <h3 style="font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 1.1rem; margin-top: 0;"><a href="../blog/nightmare-inspired-baby-shower-treats.html" style="color: #4d2c2a; text-decoration: none;">Creating Custom Nightmare-Inspired Treats for a Baby Shower</a></h3>
-          <p style="flex-grow: 1; color: #666; font-size: 0.95rem; line-height: 1.6;">Learn how I created custom themed treats with detailed techniques and creative designs.</p>
-          <a href="../blog/nightmare-inspired-baby-shower-treats.html" style="color: #8b4513; text-decoration: underline; font-weight: 600; font-size: 0.9rem;">Read Post →</a>
-        </div>
-
-        <div style="background: #f9f5f0; padding: 1.5rem; border-radius: 10px; display: flex; flex-direction: column;">
-          <h3 style="font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 1.1rem; margin-top: 0;"><a href="../blog/behind-the-scenes-holiday-boxes.html" style="color: #4d2c2a; text-decoration: none;">Behind the Scenes: How I Make My Holiday Boxes</a></h3>
-          <p style="flex-grow: 1; color: #666; font-size: 0.95rem; line-height: 1.6;">Get an inside look at my complete process for designing, baking, packaging, and assembling holiday treat boxes.</p>
-          <a href="../blog/behind-the-scenes-holiday-boxes.html" style="color: #8b4513; text-decoration: underline; font-weight: 600; font-size: 0.9rem;">Read Post →</a>
+          <h3 style="font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 1.1rem; margin-top: 0;"><a href="../blog/how-to-store-homemade-cookies.html" style="color: #4d2c2a; text-decoration: none;">How to Store Homemade Cookies</a></h3>
+          <p style="flex-grow: 1; color: #666; font-size: 0.95rem; line-height: 1.6;">Learn the best methods for keeping your chocolate chip cookies fresh and delicious for days with proper storage techniques.</p>
+          <a href="../blog/how-to-store-homemade-cookies.html" style="color: #8b4513; text-decoration: underline; font-weight: 600; font-size: 0.9rem;">Read Post →</a>
         </div>
 
         <div style="background: #f9f5f0; padding: 1.5rem; border-radius: 10px; display: flex; flex-direction: column;">
           <h3 style="font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 1.1rem; margin-top: 0;"><a href="../blog/perfect-dessert-gift-holidays.html" style="color: #4d2c2a; text-decoration: none;">How to Choose the Perfect Dessert Gift for the Holidays</a></h3>
-          <p style="flex-grow: 1; color: #666; font-size: 0.95rem; line-height: 1.6;">Learn how to select the perfect dessert gift for your loved ones, with tips for different recipients and occasions.</p>
+          <p style="flex-grow: 1; color: #666; font-size: 0.95rem; line-height: 1.6;">These cookies make an excellent gift! Learn how to package and present homemade treats for maximum impact.</p>
           <a href="../blog/perfect-dessert-gift-holidays.html" style="color: #8b4513; text-decoration: underline; font-weight: 600; font-size: 0.9rem;">Read Post →</a>
+        </div>
+
+        <div style="background: #f9f5f0; padding: 1.5rem; border-radius: 10px; display: flex; flex-direction: column;">
+          <h3 style="font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 1.1rem; margin-top: 0;"><a href="../blog/behind-the-scenes-holiday-boxes.html" style="color: #4d2c2a; text-decoration: none;">Behind the Scenes: How I Make My Holiday Boxes</a></h3>
+          <p style="flex-grow: 1; color: #666; font-size: 0.95rem; line-height: 1.6;">Get an inside look at my complete process for designing, baking, packaging, and assembling holiday treat boxes featuring these cookies.</p>
+          <a href="../blog/behind-the-scenes-holiday-boxes.html" style="color: #8b4513; text-decoration: underline; font-weight: 600; font-size: 0.9rem;">Read Post →</a>
         </div>
       </div>
     </section>
+</main>
 
 <script type="application/ld+json">
 {
@@ -174,3 +231,8 @@
 </script>
 
 <footer>
+    <p>&copy; 2025 Elizabeth's Baked Goods | <a href="../privacy-policy.html" style="color: inherit; text-decoration: underline;">Privacy Policy</a> • <a href="../terms-and-conditions.html" style="color: inherit; text-decoration: underline;">Terms</a> • <a href="../disclaimer.html" style="color: inherit; text-decoration: underline;">Disclaimer</a> • <a href="../refund-policy.html" style="color: inherit; text-decoration: underline;">Returns</a> • <a href="../shipping-delivery-policy.html" style="color: inherit; text-decoration: underline;">Shipping</a></p>
+</footer>
+
+</body>
+</html>

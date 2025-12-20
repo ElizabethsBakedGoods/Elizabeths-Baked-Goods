@@ -9,6 +9,20 @@
     <meta name="description" content="My go-to sugar cookie recipe perfect for decorating. Soft, delicious, and holds shapes beautifully!">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9289301430903450"
          crossorigin="anonymous"></script>
+    <style>
+      .recipe-page { padding: 0; }
+      .recipe-header { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-bottom: 1.25rem; }
+      .back-link { text-decoration:none; color: var(--text-color); background:#f2f2f2; padding:0.5rem 0.9rem; border-radius: 20px; }
+      .jump-btn { text-decoration:none; background: var(--dark-pink); color:#fff; padding:0.6rem 1.1rem; border-radius:22px; }
+      .recipe-title { font-size: 2rem; margin: 0.5rem 0 0.75rem; }
+      .blog p { margin-bottom: 1rem; }
+      .ingredients, .instructions { background: #fff; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); padding: 1.25rem; }
+      .ingredients ul { padding-left: 1.2rem; }
+      .instructions ol { padding-left: 1.25rem; }
+      .note { font-size: 0.95rem; color:#444; margin-top:0.5rem; }
+      .faq { background: #f9f9f9; border-left: 4px solid #d93535; padding: 1.25rem; border-radius: 8px; margin: 1.5rem 0; }
+      .faq h4 { color: #d93535; margin-top: 0; }
+    </style>
 </head>
 <body>
 <header>
@@ -24,27 +38,24 @@
 </header>
 
 <main class="recipe-layout">
-  <h1 style="font-family: 'Dancing Script', cursive; color: #8b4513; font-size: 2.8rem; margin-bottom: 1.5rem; padding: 0 3%; text-align: center;">Classic Sugar Cookie Recipe</h1>
-  
-  <div style="display: flex; gap: 2rem; align-items: flex-start; padding: 0 3%; max-width: 1400px; margin: 0 auto;">
-    <!-- MAIN RECIPE CONTENT (CENTER) -->
-    <div style="flex: 2; min-width: 0;">
-      <article class="recipe section">
-          <div style="text-align: center; margin-bottom: 2rem;">
-              <img src="../images/sugarcookiesanta.jpg" alt="Sugar cookies with Santa design" style="width: 100%; max-width: 600px; border-radius: 12px; margin: 0 auto 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: block;">
-              <p style="color: #666; font-style: italic;">Perfect for decorating and holiday fun!</p>
-          </div>
+  <div class="recipe-main">
+    <h1 style="font-family: 'Dancing Script', cursive; color: #8b4513; font-size: 2.8rem; margin-bottom: 1.5rem;">Classic Sugar Cookie Recipe</h1>
+    
+    <div style="display: flex; gap: 2rem; align-items: flex-start;">
+      <div style="flex: 1; min-width: 0;">
+        <img src="../images/sugarcookiesanta.jpg" alt="Sugar cookies with Santa design" style="width: 100%; max-width: 500px; height: auto; border-radius: 12px; margin-bottom: 2rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: block;">
+        
+        <article>
+          <h2 style="margin: 1rem 0 0.75rem;">Why You'll Love These Classic Sugar Cookies</h2>
+          <p>These classic sugar cookies are soft, buttery, and easy to work with, making them perfect for decorating or enjoying plain. This recipe has been tested to create cookies that hold their shape while baking, making it ideal for holidays, birthdays, and special occasions. Whether you're baking with kids or preparing cookies for an event, these sugar cookies offer reliable results every time.</p>
+          <p>Unlike overly crisp or dry sugar cookies, this recipe balances flavor and texture, producing cookies that stay soft for days when stored properly. They pair beautifully with royal icing, glaze, or simple sanding sugar, and can be customized with flavors like vanilla, almond, or lemon.</p>
 
-        <div class="card-soft" style="line-height: 1.8; font-size: 1.05rem;">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; padding: 1rem; background: #fff8f0; border-radius: 8px;">
-                <div><strong>⏱️ Prep Time:</strong> 15 minutes</div>
-                <div><strong>🧊 Chill Time:</strong> 1 hour</div>
-                <div><strong>🔥 Bake Time:</strong> 8-10 minutes</div>
-                <div><strong>🍪 Yield:</strong> 24-30 cookies</div>
-            </div>
-
-            <h2 style="font-family: 'Dancing Script', cursive; color: #8b4513; font-size: 2rem; margin-top: 2rem;">Ingredients</h2>
-            <ul style="margin-left: 1.5rem; line-height: 2.2; font-size: 1.05rem;">
+          <section id="recipe" style="margin-top: 2rem;">
+            <h2 style="margin-bottom: 0.75rem;">Recipe</h2>
+            
+            <div class="ingredients" style="margin-bottom: 1rem;">
+              <h3>Ingredients</h3>
+              <ul>
                 <li>2 3/4 cups all-purpose flour</li>
                 <li>1 teaspoon baking powder</li>
                 <li>1/2 teaspoon salt</li>
@@ -53,223 +64,189 @@
                 <li>1 large egg</li>
                 <li>2 teaspoons vanilla extract</li>
                 <li>1 tablespoon milk (optional – for softer dough)</li>
-            </ul>
+              </ul>
+              <p class="note"><strong>Tip:</strong> Measure flour correctly by spooning and leveling for best texture.</p>
+            </div>
 
-            <h2 style="font-family: 'Dancing Script', cursive; color: #8b4513; font-size: 2rem; margin-top: 2.5rem;">Instructions</h2>
-            <ol style="margin-left: 1.5rem; line-height: 2.2; font-size: 1.05rem;">
+            <div class="instructions">
+              <h3>Instructions</h3>
+              <ol>
                 <li>In a medium bowl, whisk together flour, baking powder, and salt. Set aside.</li>
                 <li>In a large bowl, beat butter and sugar until light and fluffy (about 2–3 minutes).</li>
                 <li>Add egg and vanilla extract. Mix until fully combined.</li>
-                <li>Slowly add the dry ingredients into the wet ingredients. Mix until a soft dough forms. 
-                    If the dough feels crumbly, add 1 tablespoon of milk.</li>
+                <li>Slowly add the dry ingredients into the wet ingredients. Mix until a soft dough forms. If the dough feels crumbly, add 1 tablespoon of milk.</li>
                 <li>Divide dough into two discs, wrap in plastic, and refrigerate for 1 hour.</li>
                 <li>Preheat oven to 350°F (175°C).</li>
                 <li>Roll dough to 1/4 inch thick on a lightly floured surface.</li>
                 <li>Cut into shapes using cookie cutters and place on a baking sheet lined with parchment paper.</li>
                 <li>Bake for 8–10 minutes, or until edges are just barely turning golden.</li>
                 <li>Let cookies cool on the baking sheet for 5 minutes, then transfer to a wire rack to cool completely before decorating.</li>
-            </ol>
+              </ol>
+              <p class="note"><strong>Tip:</strong> These cookies are best decorated after they've cooled completely.</p>
+            </div>
 
-            <hr style="border: none; border-top: 2px solid #e0c9a6; margin: 2.5rem 0;">
-
-            <h2 style="font-family: 'Dancing Script', cursive; color: #8b4513; font-size: 2rem;">Royal Icing Recipe</h2>
-            <p style="margin-bottom: 1.5rem;">Perfect for decorating your sugar cookies!</p>
-
-            <h3 style="color: #7a4a1b; margin-top: 1.5rem;">Ingredients:</h3>
-            <ul style="margin-left: 1.5rem; line-height: 2.2;">
+            <div class="instructions" style="margin-top: 1.5rem;">
+              <h3>Royal Icing Recipe</h3>
+              <p style="margin-bottom: 1rem;">Perfect for decorating your sugar cookies!</p>
+              
+              <h4>Ingredients</h4>
+              <ul>
                 <li>4 cups powdered sugar</li>
                 <li>3 tablespoons meringue powder</li>
                 <li>6 tablespoons warm water</li>
                 <li>Gel food coloring (optional)</li>
-            </ul>
+              </ul>
 
-            <h3 style="color: #7a4a1b; margin-top: 1.5rem;">Instructions:</h3>
-            <ol style="margin-left: 1.5rem; line-height: 2.2;">
+              <h4>Instructions</h4>
+              <ol>
                 <li>In a mixing bowl, combine powdered sugar and meringue powder.</li>
                 <li>Add warm water and mix on medium-high for 1–2 minutes.</li>
                 <li>When the icing forms soft peaks, it's ready.</li>
                 <li><strong>For outlining:</strong> use icing as is.</li>
                 <li><strong>For flooding:</strong> add water 1 teaspoon at a time until it reaches a smooth, pourable consistency.</li>
                 <li>Color with gel food coloring if desired.</li>
-            </ol>
-
-            <div style="background: #fff8f0; padding: 1.5rem; border-radius: 8px; margin-top: 2rem; border-left: 4px solid #8b4513;">
-                <h3 style="margin-top: 0; color: #8b4513;">💡 Pro Tips:</h3>
-                <ul style="line-height: 2; margin: 0;">
-                    <li>Chill the dough thoroughly to prevent spreading</li>
-                    <li>Don't overbake – cookies should be barely golden at the edges</li>
-                    <li>Let cookies cool completely before icing to prevent melting</li>
-                    <li>Use parchment paper for easy cleanup and even baking</li>
-                </ul>
+              </ol>
             </div>
+
+            <div class="instructions" style="margin-top: 1.5rem;">
+              <h3>💡 Tips & Variations</h3>
+              <ul>
+                <li><strong>Chill the dough:</strong> Chilling prevents spreading and keeps cookies thick.</li>
+                <li><strong>Measure flour correctly:</strong> Spoon and level for best texture.</li>
+                <li><strong>Do not overbake:</strong> Remove cookies when edges are just set.</li>
+                <li><strong>Cool before decorating:</strong> Warm cookies will melt icing.</li>
+                <li><strong>Flavor variations:</strong> Replace half the vanilla with almond extract for almond cookies, or add lemon zest for lemon cookies.</li>
+              </ul>
+            </div>
+
+            <section id="faq" style="margin-top: 2.5rem;">
+              <h2>Frequently Asked Questions</h2>
+              
+              <div class="faq">
+                <h4>Can I freeze sugar cookie dough?</h4>
+                <p>Yes. Dough can be frozen for up to 3 months. Thaw overnight in the refrigerator before rolling.</p>
+              </div>
+
+              <div class="faq">
+                <h4>Why did my cookies spread?</h4>
+                <p>Spreading is usually caused by warm dough or too little flour. Chilling the dough helps prevent this.</p>
+              </div>
+
+              <div class="faq">
+                <h4>What icing works best for decorating?</h4>
+                <p>Royal icing is best for detailed decorating and piping, while glaze icing works well for simple designs and drizzles.</p>
+              </div>
+
+              <div class="faq">
+                <h4>How long do these cookies stay fresh?</h4>
+                <p>Stored in an airtight container at room temperature, these cookies will stay fresh for up to 5 days.</p>
+              </div>
+
+              <div class="faq">
+                <h4>Can I make these cookies in advance?</h4>
+                <p>Yes. You can prepare the dough days in advance and store it in the refrigerator, or freeze it for up to 3 months.</p>
+              </div>
+
+              <div class="faq">
+                <h4>What's the best way to store decorated cookies?</h4>
+                <p>Store decorated cookies in a single layer in an airtight container. Avoid stacking to prevent icing from cracking or peeling.</p>
+              </div>
+            </section>
+
+            <section id="storage" style="margin-top: 2.5rem; background: #f9f9f9; padding: 1.5rem; border-radius: 10px;">
+              <h2 style="margin-top: 0;">Storage & Shelf Life</h2>
+              <p>Store plain cookies in an airtight container at room temperature for up to 5 days. For decorated cookies, ensure the icing has completely dried before stacking, and store in a single layer to prevent damage. You can also freeze dough for up to 3 months, or baked cookies for up to 1 month in an airtight freezer-safe container.</p>
+            </section>
 
             <div style="text-align: center; margin-top: 2.5rem; padding: 2rem; background: #f9f4ef; border-radius: 12px;">
-                <p style="margin: 0 0 1rem 0; color: #8b4513; font-weight: 600; font-size: 1.1rem;">🎁 Craving these sugar cookies?</p>
-                <a href="../local-ordering.html" style="display: inline-block; padding: 0.8rem 1.5rem; background: #8b4513; color: white; text-decoration: none; border-radius: 6px; font-size: 1rem; font-weight: 600;">Order Your Cookies</a>
+              <p style="margin: 0 0 1rem 0; color: #8b4513; font-weight: 600; font-size: 1.1rem;">🎁 Craving these sugar cookies?</p>
+              <a href="../local-ordering.html" style="display: inline-block; padding: 0.8rem 1.5rem; background: #8b4513; color: white; text-decoration: none; border-radius: 6px; font-size: 1rem; font-weight: 600;">Order Your Cookies</a>
             </div>
-        </div>
+          </section>
+        </article>
+      </div>
 
-        <!-- ========================= -->
-        <!-- SEO + GOOGLE ADSENSE ADD-ONS (APPEND ONLY) -->
-        <!-- Place this code BELOW your existing recipe content -->
-        <!-- ========================= -->
-
-        <!-- Intro Content for SEO -->
-        <section id="recipe-intro" style="margin-top: 3rem;">
-          <h2 style="font-family: 'Dancing Script', cursive; color: #8b4513; font-size: 2rem;">Why You'll Love These Classic Sugar Cookies</h2>
-          <p style="line-height: 1.8;">
-            These classic sugar cookies are soft, buttery, and easy to work with, making them perfect for decorating or enjoying plain. This recipe has been tested to create cookies that hold their shape while baking, making it ideal for holidays, birthdays, and special occasions. Whether you're baking with kids or preparing cookies for an event, these sugar cookies offer reliable results every time.
-          </p>
-          <p style="line-height: 1.8;">
-            Unlike overly crisp or dry sugar cookies, this recipe balances flavor and texture, producing cookies that stay soft for days when stored properly. They pair beautifully with royal icing, glaze, or simple sanding sugar, and can be customized with flavors like vanilla, almond, or lemon.
-          </p>
-        </section>
-
-        <!-- Tips Section -->
-        <section id="recipe-tips" style="margin-top: 2rem;">
-          <h2 style="font-family: 'Dancing Script', cursive; color: #8b4513; font-size: 2rem;">Tips for Perfect Sugar Cookies</h2>
-          <ul style="margin-left: 1.5rem; line-height: 2.2;">
-            <li><strong>Chill the dough:</strong> Chilling prevents spreading and keeps cookies thick.</li>
-            <li><strong>Measure flour correctly:</strong> Spoon and level for best texture.</li>
-            <li><strong>Do not overbake:</strong> Remove cookies when edges are just set.</li>
-            <li><strong>Cool before decorating:</strong> Warm cookies will melt icing.</li>
-          </ul>
-        </section>
-
-        <!-- Variations -->
-        <section id="recipe-variations" style="margin-top: 2rem;">
-          <h2 style="font-family: 'Dancing Script', cursive; color: #8b4513; font-size: 2rem;">Flavor Variations</h2>
-          <ul style="margin-left: 1.5rem; line-height: 2.2;">
-            <li><strong>Almond:</strong> Replace half the vanilla with almond extract.</li>
-            <li><strong>Lemon:</strong> Add lemon zest and a splash of lemon extract.</li>
-            <li><strong>Holiday:</strong> Add festive sprinkles or colored sanding sugar.</li>
-          </ul>
-        </section>
-
-        <!-- Nutrition Info -->
-        <section id="nutrition" style="margin-top: 2rem;">
-          <h2 style="font-family: 'Dancing Script', cursive; color: #8b4513; font-size: 2rem;">Nutrition Information</h2>
-          <p style="font-style: italic;">Approximate values per cookie.</p>
-          <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
-            <tr style="background: #f5f5f5;">
-              <th style="padding: 0.75rem; border: 1px solid #ddd; text-align: left;">Calories</th>
-              <th style="padding: 0.75rem; border: 1px solid #ddd; text-align: left;">Carbs</th>
-              <th style="padding: 0.75rem; border: 1px solid #ddd; text-align: left;">Fat</th>
-              <th style="padding: 0.75rem; border: 1px solid #ddd; text-align: left;">Protein</th>
-            </tr>
-            <tr>
-              <td style="padding: 0.75rem; border: 1px solid #ddd;">90</td>
-              <td style="padding: 0.75rem; border: 1px solid #ddd;">13g</td>
-              <td style="padding: 0.75rem; border: 1px solid #ddd;">4g</td>
-              <td style="padding: 0.75rem; border: 1px solid #ddd;">1g</td>
-            </tr>
-          </table>
-        </section>
-
-        <!-- FAQ Section -->
-        <section id="recipe-faq" style="margin-top: 2rem;">
-          <h2 style="font-family: 'Dancing Script', cursive; color: #8b4513; font-size: 2rem;">Frequently Asked Questions</h2>
-
-          <h3 style="color: #7a4a1b; margin-top: 1.5rem;">Can I freeze sugar cookie dough?</h3>
-          <p style="line-height: 1.8;">Yes. Dough can be frozen for up to 3 months. Thaw overnight in the refrigerator before rolling.</p>
-
-          <h3 style="color: #7a4a1b; margin-top: 1.5rem;">Why did my cookies spread?</h3>
-          <p style="line-height: 1.8;">Spreading is usually caused by warm dough or too little flour. Chilling the dough helps.</p>
-
-          <h3 style="color: #7a4a1b; margin-top: 1.5rem;">What icing works best?</h3>
-          <p style="line-height: 1.8;">Royal icing is best for decorating, while glaze icing works well for simple designs.</p>
-        </section>
-
-        <!-- Recipe Schema for Google -->
-        <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "Recipe",
-          "name": "Classic Sugar Cookies",
-          "description": "Soft, buttery classic sugar cookies that hold their shape and are perfect for decorating.",
-          "author": {
-            "@type": "Person",
-            "name": "Elizabeth's Baked Goods"
-          },
-          "recipeYield": "24 cookies",
-          "prepTime": "PT20M",
-          "cookTime": "PT10M",
-          "totalTime": "PT30M",
-          "recipeCategory": "Dessert",
-          "recipeCuisine": "American",
-          "nutrition": {
-            "@type": "NutritionInformation",
-            "calories": "90 calories"
-          }
-        }
-        </script>
-
-        <!-- ========================= -->
-        <!-- END SEO + ADSENSE ADD-ONS -->
-        <!-- ========================= -->
-      </article>
-    </div>
-
-    <!-- RIGHT SIDEBAR (STICKY) -->
-    <aside style="flex: 0 0 300px;">
-      <div style="text-align: center; padding: 20px; background-color: #f9f5f0; border-radius: 8px; margin-bottom: 2rem; position: sticky; top: 100px;">
-        <img src="/images/aboutme.jpg" alt="Elizabeth" style="width: 200px; height: 200px; border-radius: 10px; object-fit: cover; object-position: top; margin: 0 auto 1rem; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-        <h3 style="font-family: 'Dancing Script', cursive; color: #8b4513; margin: 1rem 0;">About Elizabeth</h3>
-        <p style="font-size: 0.95rem; line-height: 1.6; color: #4d2c2a;">Hi! I'm Elizabeth, and I love creating delicious baked goods that bring joy to my family and friends. My passion is turning simple ingredients into memorable treats.</p>
-        <div style="text-align: center; margin-top: 1.5rem;">
-          <a href="/about.html" style="display: inline-block; background-color: #d93535; color: #fff; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: 600; font-size: 0.9rem;">Read My Story</a>
-        </div>
-        
-        <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid #ddd;">
-
-        <h4 style="font-family: 'Dancing Script', cursive; color: #8b4513; margin-bottom: 1rem;">Recommended Recipes</h4>
-        <div style="display: flex; flex-direction: column; gap: 1rem;">
-          <div style="text-align: center;">
-            <a href="../recipes/chunky-chocolate-chip-cookies.html">
-              <img src="../images/chochip.png.jfif" alt="Chunky Chocolate Chip Cookies" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-bottom: 0.5rem;">
-              <div style="color: #8b4513; text-decoration: underline; font-size: 0.85rem; font-weight: 600;">Chocolate Chip Cookies</div>
-            </a>
+      <div style="flex: 0 0 300px;">
+        <div style="text-align: center; padding: 20px; background-color: #f9f5f0; border-radius: 8px; margin-bottom: 2rem; position: sticky; top: 100px;">
+          <img src="/images/aboutme.jpg" alt="Elizabeth" style="width: 200px; height: 200px; border-radius: 10px; object-fit: cover; object-position: top; margin: 0 auto 1rem; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+          <h3 style="font-family: 'Dancing Script', cursive; color: #8b4513; margin: 1rem 0;">About Elizabeth</h3>
+          <p style="font-size: 0.95rem; line-height: 1.6; color: #4d2c2a;">Hi! I'm Elizabeth, and I love creating delicious baked goods that bring joy to my family and friends. My passion is turning simple ingredients into memorable treats.</p>
+          <div style="text-align: center; margin-top: 1.5rem;">
+            <a href="/about.html" style="display: inline-block; background-color: #d93535; color: #fff; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: 600; font-size: 0.9rem;">Read My Story</a>
           </div>
-          <div style="text-align: center;">
-            <a href="../recipes/ultimate-fudgy-brownies.html">
-              <img src="../images/browniesbiscoff.jfif" alt="Brownies" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-bottom: 0.5rem;">
-              <div style="color: #8b4513; text-decoration: underline; font-size: 0.85rem; font-weight: 600;">Fudgy Brownies</div>
-            </a>
-          </div>
-          <div style="text-align: center;">
-            <a href="../recipes/smores-cookies.html">
-              <img src="../images/smorescookie.jpg" alt="S'mores Cookies" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-bottom: 0.5rem;">
-              <div style="color: #8b4513; text-decoration: underline; font-size: 0.85rem; font-weight: 600;">S'mores Cookies</div>
-            </a>
+          
+          <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid #ddd;">
+
+          <h4 style="font-family: 'Dancing Script', cursive; color: #8b4513; margin-bottom: 1rem;">Recommended Recipes</h4>
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <div style="text-align: center;">
+              <a href="../recipes/chunky-chocolate-chip-cookies.html">
+                <img src="../images/chochip.png.jfif" alt="Chunky Chocolate Chip Cookies" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-bottom: 0.5rem;">
+                <div style="color: #8b4513; text-decoration: underline; font-size: 0.85rem; font-weight: 600;">Chocolate Chip Cookies</div>
+              </a>
+            </div>
+            <div style="text-align: center;">
+              <a href="../recipes/ultimate-fudgy-brownies.html">
+                <img src="../images/browniesbiscoff.jfif" alt="Brownies" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-bottom: 0.5rem;">
+                <div style="color: #8b4513; text-decoration: underline; font-size: 0.85rem; font-weight: 600;">Fudgy Brownies</div>
+              </a>
+            </div>
+            <div style="text-align: center;">
+              <a href="../recipes/smores-cookies.html">
+                <img src="../images/smorescookie.jpg" alt="S'mores Cookies" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-bottom: 0.5rem;">
+                <div style="color: #8b4513; text-decoration: underline; font-size: 0.85rem; font-weight: 600;">S'mores Cookies</div>
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </aside>
-  </div>
-
-<section class="recommended-recipes" style="max-width: 1400px; margin: 3rem auto; padding: 0 3%;">
-  <h2 style="text-align: center; margin-bottom: 2rem;">Suggested Blog Posts to Read</h2>
-  
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
-    <div style="background: #f9f5f0; padding: 1.5rem; border-radius: 10px; display: flex; flex-direction: column;">
-      <h3 style="font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 1.1rem; margin-top: 0;"><a href="../blog/how-to-decorate-sugar-cookies-like-a-pro.html" style="color: #4d2c2a; text-decoration: none;">How to Decorate Sugar Cookies Like a Pro</a></h3>
-      <p style="flex-grow: 1; color: #666; font-size: 0.95rem; line-height: 1.6;">Learn pro techniques for decorating sugar cookies with royal icing, including piping, flooding, and design ideas.</p>
-      <a href="../blog/how-to-decorate-sugar-cookies-like-a-pro.html" style="color: #8b4513; text-decoration: underline; font-weight: 600; font-size: 0.9rem;">Read Post →</a>
     </div>
 
-    <div style="background: #f9f5f0; padding: 1.5rem; border-radius: 10px; display: flex; flex-direction: column;">
-      <h3 style="font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 1.1rem; margin-top: 0;"><a href="../blog/holiday-sugar-cookie-decorating.html" style="color: #4d2c2a; text-decoration: none;">Holiday Sugar Cookie Decorating Ideas</a></h3>
-      <p style="flex-grow: 1; color: #666; font-size: 0.95rem; line-height: 1.6;">Explore creative holiday-themed designs and decorating tips perfect for gift-giving and celebrations.</p>
-      <a href="../blog/holiday-sugar-cookie-decorating.html" style="color: #8b4513; text-decoration: underline; font-weight: 600; font-size: 0.9rem;">Read Post →</a>
-    </div>
+    <hr style="margin: 3rem 0; border: none; border-top: 2px solid #ddd;">
 
-    <div style="background: #f9f5f0; padding: 1.5rem; border-radius: 10px; display: flex; flex-direction: column;">
-      <h3 style="font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 1.1rem; margin-top: 0;"><a href="../blog/how-to-store-homemade-cookies.html" style="color: #4d2c2a; text-decoration: none;">How to Store Homemade Cookies</a></h3>
-      <p style="flex-grow: 1; color: #666; font-size: 0.95rem; line-height: 1.6;">Keep your sugar cookies fresh for days with proper storage methods and tips for maintaining texture and flavor.</p>
-      <a href="../blog/how-to-store-homemade-cookies.html" style="color: #8b4513; text-decoration: underline; font-weight: 600; font-size: 0.9rem;">Read Post →</a>
-    </div>
-  </div>
-</section>
+    <section style="margin-top: 3rem;">
+      <h2 style="font-family: 'Playfair Display', serif; font-weight: 700; color: #4d2c2a; font-size: 2rem; text-align: center; margin-bottom: 2rem;">Suggested Blog Posts to Read</h2>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+        <div style="background: #f9f5f0; padding: 1.5rem; border-radius: 10px; display: flex; flex-direction: column;">
+          <h3 style="font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 1.1rem; margin-top: 0;"><a href="../blog/how-to-decorate-sugar-cookies-like-a-pro.html" style="color: #4d2c2a; text-decoration: none;">How to Decorate Sugar Cookies Like a Pro</a></h3>
+          <p style="flex-grow: 1; color: #666; font-size: 0.95rem; line-height: 1.6;">Learn pro techniques for decorating sugar cookies with royal icing, including piping, flooding, and design ideas.</p>
+          <a href="../blog/how-to-decorate-sugar-cookies-like-a-pro.html" style="color: #8b4513; text-decoration: underline; font-weight: 600; font-size: 0.9rem;">Read Post →</a>
+        </div>
+
+        <div style="background: #f9f5f0; padding: 1.5rem; border-radius: 10px; display: flex; flex-direction: column;">
+          <h3 style="font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 1.1rem; margin-top: 0;"><a href="../blog/holiday-sugar-cookie-decorating.html" style="color: #4d2c2a; text-decoration: none;">Holiday Sugar Cookie Decorating Ideas</a></h3>
+          <p style="flex-grow: 1; color: #666; font-size: 0.95rem; line-height: 1.6;">Explore creative holiday-themed designs and decorating tips perfect for gift-giving and celebrations.</p>
+          <a href="../blog/holiday-sugar-cookie-decorating.html" style="color: #8b4513; text-decoration: underline; font-weight: 600; font-size: 0.9rem;">Read Post →</a>
+        </div>
+
+        <div style="background: #f9f5f0; padding: 1.5rem; border-radius: 10px; display: flex; flex-direction: column;">
+          <h3 style="font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 1.1rem; margin-top: 0;"><a href="../blog/how-to-store-homemade-cookies.html" style="color: #4d2c2a; text-decoration: none;">How to Store Homemade Cookies</a></h3>
+          <p style="flex-grow: 1; color: #666; font-size: 0.95rem; line-height: 1.6;">Keep your sugar cookies fresh for days with proper storage methods and tips for maintaining texture and flavor.</p>
+          <a href="../blog/how-to-store-homemade-cookies.html" style="color: #8b4513; text-decoration: underline; font-weight: 600; font-size: 0.9rem;">Read Post →</a>
+        </div>
+      </div>
+    </section>
+</main>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "Classic Sugar Cookies",
+  "description": "Soft, buttery classic sugar cookies that hold their shape and are perfect for decorating.",
+  "author": {
+    "@type": "Person",
+    "name": "Elizabeth's Baked Goods"
+  },
+  "recipeYield": "24 cookies",
+  "prepTime": "PT20M",
+  "cookTime": "PT10M",
+  "totalTime": "PT30M",
+  "recipeCategory": "Dessert",
+  "recipeCuisine": "American"
+}
+</script>
 
 <footer>
     <p>&copy; 2025 Elizabeth's Baked Goods | <a href="../privacy-policy.html" style="color: inherit; text-decoration: underline;">Privacy Policy</a> • <a href="../terms-and-conditions.html" style="color: inherit; text-decoration: underline;">Terms</a> • <a href="../disclaimer.html" style="color: inherit; text-decoration: underline;">Disclaimer</a> • <a href="../refund-policy.html" style="color: inherit; text-decoration: underline;">Returns</a> • <a href="../shipping-delivery-policy.html" style="color: inherit; text-decoration: underline;">Shipping</a></p>
