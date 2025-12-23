@@ -435,13 +435,6 @@
 
         // Confirm payment with Stripe
         try {
-            const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
-                email + name // This will be replaced with proper client secret from server
-            );
-
-            // For this implementation, we'll use a simpler approach with Payment Intents
-            // Create the payment intent directly with Stripe
-            
             const response = await fetch('https://elizabeths-checkout.bethsbakedgoodss.workers.dev', {
                 method: 'POST',
                 headers: {
@@ -467,9 +460,9 @@
                 return;
             }
 
-            if (data.requiresAction) {
-                // Handle 3D Secure if required
-                const { paymentIntent: confirmedIntent, error: confirmError } = await stripe.confirmCardPayment(
+            // If we got a client secret, confirm the payment
+            if (data.clientSecret) {
+                const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
                     data.clientSecret
                 );
 
@@ -480,26 +473,36 @@
                     submitBtn.textContent = 'Buy Now - $1.00';
                     return;
                 }
-            }
 
-            if (data.success || data.status === 'succeeded') {
-                // Success!
+                // Payment succeeded
+                if (paymentIntent && paymentIntent.status === 'succeeded') {
+                    // Success!
+                    form.style.display = 'none';
+                    successDiv.style.display = 'block';
+                    downloadSection.style.display = 'block';
+
+                    downloadBtn.textContent = '✓ Download Your File';
+                    downloadBtn.style.background = '#27ae60';
+                    downloadBtn.style.cursor = 'pointer';
+
+                    // Show message with email download
+                    const downloadText = document.createElement('p');
+                    downloadText.style.marginTop = '15px';
+                    downloadText.style.color = '#666';
+                    downloadText.style.fontSize = '0.9rem';
+                    downloadText.innerHTML = '📧 A download link has been sent to <strong>' + email + '</strong>';
+                    downloadSection.appendChild(downloadText);
+                }
+            } else if (data.success || data.status === 'succeeded') {
+                // Success without client secret needed
                 form.style.display = 'none';
                 successDiv.style.display = 'block';
                 downloadSection.style.display = 'block';
 
-                // Create a download blob for the coloring page
-                // In production, this would be served from a secure server endpoint
-                downloadBtn.onclick = function(e) {
-                    e.preventDefault();
-                    alert('Your download is being prepared. A download link has been sent to ' + email + '. Check your email for the download link, or contact support if you have any issues.');
-                };
-                
                 downloadBtn.textContent = '✓ Download Your File';
                 downloadBtn.style.background = '#27ae60';
                 downloadBtn.style.cursor = 'pointer';
 
-                // Show message with email download
                 const downloadText = document.createElement('p');
                 downloadText.style.marginTop = '15px';
                 downloadText.style.color = '#666';
