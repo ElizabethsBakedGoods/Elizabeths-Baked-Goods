@@ -2,78 +2,101 @@ import Stripe from 'stripe'
 
 export default {
   async fetch(request, env) {
-    console.log('=== Worker invoked ===')
-    console.log('Method:', request.method)
-    console.log('URL:', request.url)
-
-    try {
-      // Parse request body
-      let body
-      try {
-        body = await request.json()
-        console.log('Request body received:', JSON.stringify(body))
-      } catch (parseErr) {
-        console.error('JSON parse error:', parseErr.message)
-        return new Response(
-          JSON.stringify({ error: 'Invalid JSON: ' + parseErr.message }),
-          { status: 400, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
-        )
-      }
-
-      // Check Stripe key
-      console.log('Checking STRIPE_SECRET_KEY...')
-      if (!env.STRIPE_SECRET_KEY) {
-        console.error('STRIPE_SECRET_KEY not found in env')
-        return new Response(
-          JSON.stringify({ error: 'STRIPE_SECRET_KEY not configured' }),
-          { status: 500, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
-        )
-      }
-      console.log('STRIPE_SECRET_KEY found')
-
-      // Initialize Stripe
-      console.log('Initializing Stripe...')
-      const stripe = new Stripe(env.STRIPE_SECRET_KEY)
-      console.log('Stripe initialized')
-
-      // Create checkout session
-      console.log('Creating checkout session with priceId:', body.priceId)
-      const session = await stripe.checkout.sessions.create({
-        mode: 'payment',
-        payment_method_types: ['card'],
-        line_items: [
-          {
-            price: body.priceId,
-            quantity: 1,
-          },
-        ],
-        success_url: 'https://elizabethsbakedgoods.com/success',
-        cancel_url: 'https://elizabethsbakedgoods.com/cancel',
+    // Handle CORS preflight
+    if (request.method === 'OPTIONS') {
+      return new Response(null, {
+        status: 204,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'POST, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type',
+        },
       })
-      console.log('Session created:', session.id)
-      console.log('Session URL:', session.url)
+    }
 
+    // Only accept POST
+    if (request.method !== 'POST') {
       return new Response(
-        JSON.stringify({ url: session.url, sessionId: session.id }),
+        JSON.stringify({ error: 'Method not allowed' }),
         {
+          status: 405,
           headers: {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
           },
         }
       )
-    } catch (err) {
-      console.error('=== WORKER ERROR ===')
-      console.error('Error type:', err.constructor.name)
-      console.error('Error message:', err.message)
-      console.error('Error stack:', err.stack)
-      console.error('Full error:', JSON.stringify(err))
+    }
+
+    try {
+      // Parse request body
+      const body = await request.json()
+      const { priceId } = body
+
+      // Validate priceId
+      if (!priceId) {
+        return new Response(
+          JSON.stringify({ error: 'priceId is required' }),
+          {
+            status: 400,
+            headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*',
+            },
+          }
+        )
+      }
+
+      // Validate Stripe key
+      if (!env.STRIPE_SECRET_KEY) {
+        console.error('STRIPE_SECRET_KEY not configured')
+        return new Response(
+          JSON.stringify({ error: 'Server configuration error' }),
+          {
+            status: 500,
+            headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*',
+            },
+          }
+        )
+      }
+
+      // Initialize Stripe and create session
+      const stripe = new Stripe(env.STRIPE_SECRET_KEY)
+      const session = await stripe.checkout.sessions.create({
+        mode: 'payment',
+        payment_method_types: ['card'],
+        line_items: [
+          {
+            price: priceId,
+            quantity: 1,
+          },
+        ],
+        success_url: 'https://elizabethsbakedgoods.com/success.html',
+        cancel_url: 'https://elizabethsbakedgoods.com/designs.html',
+      })
+
+      return new Response(
+        JSON.stringify({ url: session.url }),
+        {
+          status: 200,
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+          },
+        }
+      )
+    } catch (error) {
+      // Log full error details
+      console.error('Checkout error:', error.message)
+      console.error('Error type:', error.constructor.name)
+      console.error('Stack trace:', error.stack)
 
       return new Response(
         JSON.stringify({
-          error: err.message || String(err),
-          type: err.constructor.name,
-          details: err.toString(),
+          error: error.message || 'Checkout failed',
+          type: error.constructor.name,
         }),
         {
           status: 500,
@@ -85,20 +108,4 @@ export default {
       )
     }
   },
-}
-
-
-
-    <p><a href="${productInfo.url}" style="background: #d93535; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; display: inline-block;">Download Your File</a></p>
-    <p><strong>File:</strong> ${productInfo.filename}</p>
-    <hr/>
-    <p><small>This is an instant digital download. You may download this file at any time from the link above.</small></p>
-    <p><small>If you have any questions, please contact us at your earliest convenience.</small></p>
-    <p><small>© 2025 Elizabeth's Baked Goods</small></p>
-  `;
-
-  // Note: To actually send emails, you would need to integrate with a service like SendGrid, Mailgun, or AWS SES
-  // For now, this is a placeholder for email functionality
-  console.log('Email would be sent to:', email);
-  console.log('Product:', product);
 }

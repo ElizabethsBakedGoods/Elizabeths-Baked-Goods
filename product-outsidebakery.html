@@ -318,22 +318,6 @@
 
             <!-- Payment Form -->
             <form id="payment-form">
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required placeholder="your@email.com">
-                </div>
-
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" required placeholder="Your Name">
-                </div>
-
-                <div class="stripe-element-container">
-                    <div id="card-element"></div>
-                </div>
-
-                <div id="card-errors" class="error-message" style="display: none;"></div>
-
                 <button type="submit" class="cta-button" id="submit-btn">
                     <i class="fas fa-lock"></i> Buy Now - $1.00
                 </button>
@@ -343,24 +327,6 @@
                     <p><i class="fas fa-lock"></i> Your information is encrypted and secure</p>
                 </div>
             </form>
-
-            <!-- Success Message -->
-            <div class="success-message" id="success-message">
-                <h3><i class="fas fa-check-circle"></i> Payment Successful!</h3>
-                <p>Thank you for your purchase. Your download link is ready below.</p>
-            </div>
-
-            <!-- Download Link (shown after payment) -->
-            <div class="download-link" id="download-section">
-                <h3><i class="fas fa-file-download"></i> Your Digital Download</h3>
-                <p>Click the button below to download your coloring page:</p>
-                <a href="#" id="download-btn" download="outsidebakery.png">
-                    <i class="fas fa-download"></i> Download File
-                </a>
-                <p style="font-size: 0.85rem; margin-top: 15px; color: #666;">
-                    File size: ~2 MB | Format: PNG | High Quality
-                </p>
-            </div>
 
             <!-- Error Message -->
             <div class="error-message" id="error-message"></div>
@@ -381,12 +347,9 @@
 </footer>
 
 <script>
-    // Stripe configuration
+    // Stripe configuration (public key for client-side use)
     const STRIPE_PUBLIC_KEY = 'pk_live_51SNIwWAKipJWOAbPpTyitJZ0bjUS8DtFYMDOwWW7vfmUpXqaP4C5U9rq4cGhG6iragLQ0CrKlQgo5az178HPRg4I00y6YwznJ8';
     const stripe = Stripe(STRIPE_PUBLIC_KEY);
-    const elements = stripe.elements();
-    const cardElement = elements.create('card');
-    cardElement.mount('#card-element');
 
     const form = document.getElementById('payment-form');
     const submitBtn = document.getElementById('submit-btn');
@@ -394,124 +357,41 @@
     const successDiv = document.getElementById('success-message');
     const downloadSection = document.getElementById('download-section');
     const downloadBtn = document.getElementById('download-btn');
-    const cardErrorsDiv = document.getElementById('card-errors');
-
-    // Handle card errors
-    cardElement.on('change', (event) => {
-        if (event.error) {
-            cardErrorsDiv.style.display = 'block';
-            cardErrorsDiv.textContent = event.error.message;
-        } else {
-            cardErrorsDiv.style.display = 'none';
-        }
-    });
 
     // Handle form submission
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
         submitBtn.disabled = true;
         submitBtn.textContent = 'Processing...';
+        errorDiv.style.display = 'none';
 
-        const email = document.getElementById('email').value;
-        const name = document.getElementById('name').value;
-
-        // Create payment method
-        const { paymentMethod, error: pmError } = await stripe.createPaymentMethod({
-            type: 'card',
-            card: cardElement,
-            billing_details: {
-                name: name,
-                email: email
-            }
-        });
-
-        if (pmError) {
-            errorDiv.style.display = 'block';
-            errorDiv.textContent = pmError.message;
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Buy Now - $1.00';
-            return;
-        }
-
-        // Send payment to Cloudflare Worker
         try {
+            // Call worker to create Checkout Session
             const response = await fetch('https://elizabeths-checkout.bethsbakedgoodss.workers.dev', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    paymentMethodId: paymentMethod.id,
-                    email: email,
-                    name: name,
-                    amount: 100,
-                    product: 'outside-bakery-coloring',
-                    productName: 'Outside Bakery Coloring Page'
+                    priceId: 'price_1QLOqJAKipJWOAbPiR6P6bS7' // Outside Bakery Coloring Page - $1.00
                 })
             });
 
             const data = await response.json();
-            
+
             if (!response.ok || data.error) {
-                errorDiv.style.display = 'block';
-                errorDiv.textContent = data.error || 'Payment failed. Please try again.';
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Buy Now - $1.00';
-                return;
+                throw new Error(data.error || 'Failed to create checkout session');
             }
 
-            // Payment succeeded
-            if (data.success || data.status === 'succeeded') {
-                form.style.display = 'none';
-                successDiv.style.display = 'block';
-                downloadSection.style.display = 'block';
-                downloadBtn.textContent = '✓ Download Your File';
-                downloadBtn.style.background = '#27ae60';
-                
-                const downloadText = document.createElement('p');
-                downloadText.style.marginTop = '15px';
-                downloadText.style.color = '#666';
-                downloadText.style.fontSize = '0.9rem';
-                downloadText.innerHTML = '📧 A download link has been sent to <strong>' + email + '</strong>';
-                downloadSection.appendChild(downloadText);
-                return;
+            if (!data.url) {
+                throw new Error('No checkout URL received from server');
             }
 
-            // Requires 3D Secure
-            if (data.requiresAction && data.clientSecret) {
-                const { paymentIntent, error } = await stripe.confirmCardPayment(data.clientSecret);
-                
-                if (error) {
-                    errorDiv.style.display = 'block';
-                    errorDiv.textContent = error.message;
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Buy Now - $1.00';
-                    return;
-                }
-
-                if (paymentIntent && paymentIntent.status === 'succeeded') {
-                    form.style.display = 'none';
-                    successDiv.style.display = 'block';
-                    downloadSection.style.display = 'block';
-                    downloadBtn.textContent = '✓ Download Your File';
-                    downloadBtn.style.background = '#27ae60';
-                    
-                    const downloadText = document.createElement('p');
-                    downloadText.style.marginTop = '15px';
-                    downloadText.style.color = '#666';
-                    downloadText.style.fontSize = '0.9rem';
-                    downloadText.innerHTML = '📧 A download link has been sent to <strong>' + email + '</strong>';
-                    downloadSection.appendChild(downloadText);
-                }
-                return;
-            }
-
-            errorDiv.style.display = 'block';
-            errorDiv.textContent = 'Payment could not be processed. Please try again.';
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Buy Now - $1.00';
+            // Redirect to Stripe Checkout
+            window.location.href = data.url;
 
         } catch (error) {
+            console.error('Checkout error:', error);
             errorDiv.style.display = 'block';
-            errorDiv.textContent = 'An error occurred: ' + error.message;
+            errorDiv.textContent = 'Error: ' + error.message;
             submitBtn.disabled = false;
             submitBtn.textContent = 'Buy Now - $1.00';
         }
