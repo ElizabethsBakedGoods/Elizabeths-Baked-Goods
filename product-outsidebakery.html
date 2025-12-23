@@ -450,7 +450,20 @@
                 })
             });
 
-            const data = await response.json();
+            let data;
+            try {
+                data = await response.json();
+            } catch (parseError) {
+                console.error('Response parse error:', parseError);
+                console.error('Response text:', await response.text());
+                errorDiv.style.display = 'block';
+                errorDiv.textContent = 'Error processing payment response. Please try again.';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Buy Now - $1.00';
+                return;
+            }
+
+            console.log('Payment response:', data);
 
             if (data.error) {
                 errorDiv.style.display = 'block';
