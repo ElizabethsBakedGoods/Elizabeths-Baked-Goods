@@ -460,41 +460,9 @@
                 return;
             }
 
-            // If we got a client secret, confirm the payment
-            if (data.clientSecret) {
-                const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
-                    data.clientSecret
-                );
-
-                if (confirmError) {
-                    errorDiv.style.display = 'block';
-                    errorDiv.textContent = confirmError.message;
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Buy Now - $1.00';
-                    return;
-                }
-
-                // Payment succeeded
-                if (paymentIntent && paymentIntent.status === 'succeeded') {
-                    // Success!
-                    form.style.display = 'none';
-                    successDiv.style.display = 'block';
-                    downloadSection.style.display = 'block';
-
-                    downloadBtn.textContent = '✓ Download Your File';
-                    downloadBtn.style.background = '#27ae60';
-                    downloadBtn.style.cursor = 'pointer';
-
-                    // Show message with email download
-                    const downloadText = document.createElement('p');
-                    downloadText.style.marginTop = '15px';
-                    downloadText.style.color = '#666';
-                    downloadText.style.fontSize = '0.9rem';
-                    downloadText.innerHTML = '📧 A download link has been sent to <strong>' + email + '</strong>';
-                    downloadSection.appendChild(downloadText);
-                }
-            } else if (data.success || data.status === 'succeeded') {
-                // Success without client secret needed
+            // Check if payment was successful (worker already confirmed it)
+            if (data.success || data.status === 'succeeded') {
+                // Success!
                 form.style.display = 'none';
                 successDiv.style.display = 'block';
                 downloadSection.style.display = 'block';
@@ -509,6 +477,36 @@
                 downloadText.style.fontSize = '0.9rem';
                 downloadText.innerHTML = '📧 A download link has been sent to <strong>' + email + '</strong>';
                 downloadSection.appendChild(downloadText);
+            } else if (data.requiresAction && data.clientSecret) {
+                // Handle 3D Secure or other authentication required
+                const { paymentIntent: confirmedIntent, error: confirmError } = await stripe.confirmCardPayment(
+                    data.clientSecret
+                );
+
+                if (confirmError) {
+                    errorDiv.style.display = 'block';
+                    errorDiv.textContent = confirmError.message;
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Buy Now - $1.00';
+                    return;
+                }
+
+                if (confirmedIntent && confirmedIntent.status === 'succeeded') {
+                    form.style.display = 'none';
+                    successDiv.style.display = 'block';
+                    downloadSection.style.display = 'block';
+
+                    downloadBtn.textContent = '✓ Download Your File';
+                    downloadBtn.style.background = '#27ae60';
+                    downloadBtn.style.cursor = 'pointer';
+
+                    const downloadText = document.createElement('p');
+                    downloadText.style.marginTop = '15px';
+                    downloadText.style.color = '#666';
+                    downloadText.style.fontSize = '0.9rem';
+                    downloadText.innerHTML = '📧 A download link has been sent to <strong>' + email + '</strong>';
+                    downloadSection.appendChild(downloadText);
+                }
             } else {
                 errorDiv.style.display = 'block';
                 errorDiv.textContent = 'Payment could not be processed. Please try again.';
