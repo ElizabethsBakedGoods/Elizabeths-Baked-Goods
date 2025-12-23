@@ -433,86 +433,67 @@
             return;
         }
 
-        // Confirm payment with Stripe
+        // Send payment to Cloudflare Worker
         try {
             const response = await fetch('https://elizabeths-checkout.bethsbakedgoodss.workers.dev', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     paymentMethodId: paymentMethod.id,
                     email: email,
                     name: name,
-                    amount: 100, // $1.00 in cents
+                    amount: 100,
                     product: 'outside-bakery-coloring',
                     productName: 'Outside Bakery Coloring Page'
                 })
             });
 
-            let data;
-            try {
-                data = await response.json();
-            } catch (parseError) {
-                console.error('Response parse error:', parseError);
-                console.error('Response text:', await response.text());
+            const data = await response.json();
+            
+            if (!response.ok || data.error) {
                 errorDiv.style.display = 'block';
-                errorDiv.textContent = 'Error processing payment response. Please try again.';
+                errorDiv.textContent = data.error || 'Payment failed. Please try again.';
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Buy Now - $1.00';
                 return;
             }
 
-            console.log('Payment response:', data);
-
-            if (data.error) {
-                errorDiv.style.display = 'block';
-                errorDiv.textContent = data.error;
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Buy Now - $1.00';
-                return;
-            }
-
-            // Check if payment was successful (worker already confirmed it)
+            // Payment succeeded
             if (data.success || data.status === 'succeeded') {
-                // Success!
                 form.style.display = 'none';
                 successDiv.style.display = 'block';
                 downloadSection.style.display = 'block';
-
                 downloadBtn.textContent = '✓ Download Your File';
                 downloadBtn.style.background = '#27ae60';
-                downloadBtn.style.cursor = 'pointer';
-
+                
                 const downloadText = document.createElement('p');
                 downloadText.style.marginTop = '15px';
                 downloadText.style.color = '#666';
                 downloadText.style.fontSize = '0.9rem';
                 downloadText.innerHTML = '📧 A download link has been sent to <strong>' + email + '</strong>';
                 downloadSection.appendChild(downloadText);
-            } else if (data.requiresAction && data.clientSecret) {
-                // Handle 3D Secure or other authentication required
-                const { paymentIntent: confirmedIntent, error: confirmError } = await stripe.confirmCardPayment(
-                    data.clientSecret
-                );
+                return;
+            }
 
-                if (confirmError) {
+            // Requires 3D Secure
+            if (data.requiresAction && data.clientSecret) {
+                const { paymentIntent, error } = await stripe.confirmCardPayment(data.clientSecret);
+                
+                if (error) {
                     errorDiv.style.display = 'block';
-                    errorDiv.textContent = confirmError.message;
+                    errorDiv.textContent = error.message;
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'Buy Now - $1.00';
                     return;
                 }
 
-                if (confirmedIntent && confirmedIntent.status === 'succeeded') {
+                if (paymentIntent && paymentIntent.status === 'succeeded') {
                     form.style.display = 'none';
                     successDiv.style.display = 'block';
                     downloadSection.style.display = 'block';
-
                     downloadBtn.textContent = '✓ Download Your File';
                     downloadBtn.style.background = '#27ae60';
-                    downloadBtn.style.cursor = 'pointer';
-
+                    
                     const downloadText = document.createElement('p');
                     downloadText.style.marginTop = '15px';
                     downloadText.style.color = '#666';
@@ -520,12 +501,13 @@
                     downloadText.innerHTML = '📧 A download link has been sent to <strong>' + email + '</strong>';
                     downloadSection.appendChild(downloadText);
                 }
-            } else {
-                errorDiv.style.display = 'block';
-                errorDiv.textContent = 'Payment could not be processed. Please try again.';
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Buy Now - $1.00';
+                return;
             }
+
+            errorDiv.style.display = 'block';
+            errorDiv.textContent = 'Payment could not be processed. Please try again.';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Buy Now - $1.00';
 
         } catch (error) {
             errorDiv.style.display = 'block';
