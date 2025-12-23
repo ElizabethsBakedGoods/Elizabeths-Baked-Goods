@@ -1,5 +1,5 @@
-// Cloudflare Worker for Stripe Payment Intent and Digital Products
-// Deploy this to Cloudflare Workers for handling digital product payments
+// Cloudflare Worker for Stripe Payment Processing
+// Simple, reliable payment handler for digital products and cart checkout
 
 export default {
   async fetch(request, env) {
@@ -9,43 +9,105 @@ export default {
       'Access-Control-Allow-Headers': 'Content-Type',
     };
 
-    // Handle CORS preflight
     if (request.method === 'OPTIONS') {
       return new Response(null, { headers: corsHeaders });
     }
 
     if (request.method !== 'POST') {
-      return new Response('Method not allowed', { status: 405, headers: corsHeaders });
+      return new Response(JSON.stringify({ error: 'Method not allowed' }), {
+        status: 405,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
     }
 
     try {
       const body = await request.json();
-      const STRIPE_SECRET_KEY = env.STRIPE_SECRET_KEY;
+      const STRIPE_KEY = env.STRIPE_SECRET_KEY;
 
-      if (!STRIPE_SECRET_KEY) {
-        return new Response(JSON.stringify({ error: 'Stripe not configured in environment' }), {
+      if (!STRIPE_KEY) {
+        return new Response(JSON.stringify({ error: 'Stripe not configured' }), {
           status: 500,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         });
       }
 
-      // Handle digital product payment
+      // Digital product payment
       if (body.paymentMethodId && body.amount && body.product) {
-        return await handleDigitalProductPayment(
-          body,
-          STRIPE_SECRET_KEY,
-          corsHeaders
-        );
+        const piRes = await fetch('https://api.stripe.com/v1/payment_intents', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${STRIPE_KEY}`,
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: `amount=${body.amount}&currency=usd&payment_method=${body.paymentMethodId}&confirm=true&receipt_email=${body.email}`,
+        });
+
+        const pi = await piRes.json();
+
+        if (!piRes.ok) {
+          return new Response(JSON.stringify({ error: pi.error?.message || 'Payment failed' }), {
+            status: 400,
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          });
+        }
+
+        if (pi.status === 'succeeded') {
+          return new Response(JSON.stringify({ success: true, status: 'succeeded' }), {
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          });
+        }
+
+        if (pi.status === 'requires_action') {
+          return new Response(JSON.stringify({ requiresAction: true, clientSecret: pi.client_secret }), {
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          });
+        }
+
+        return new Response(JSON.stringify({ success: false, status: pi.status }), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
       }
 
-      // Handle cart checkout (physical products)
-      if (body.cart) {
-        return await handleCartCheckout(
-          body,
-          STRIPE_SECRET_KEY,
-          corsHeaders,
-          request
-        );
+      // Cart checkout
+      if (body.cart && Array.isArray(body.cart)) {
+        const lineItems = body.cart.map((item, i) => ({
+          [`line_items[${i}][price_data][currency]`]: 'usd',
+          [`line_items[${i}][price_data][product_data][name]`]: item.name,
+          [`line_items[${i}][price_data][unit_amount]`]: item.price,
+          [`line_items[${i}][quantity]`]: item.quantity || 1,
+        }));
+
+        const params = new URLSearchParams({
+          'mode': 'payment',
+          'success_url': 'https://elizabethsbakedgoods.com?checkout=success',
+          'cancel_url': 'https://elizabethsbakedgoods.com?checkout=cancel',
+        });
+
+        lineItems.forEach(item => {
+          Object.entries(item).forEach(([k, v]) => params.append(k, v));
+        });
+
+        const sessRes = await fetch('https://api.stripe.com/v1/checkout/sessions', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${STRIPE_KEY}`,
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: params.toString(),
+        });
+
+        const sess = await sessRes.json();
+
+        if (!sessRes.ok) {
+          return new Response(JSON.stringify({ error: sess.error?.message || 'Session failed' }), {
+            status: 400,
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          });
+        }
+
+        return new Response(JSON.stringify({ url: sess.url }), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
       }
 
       return new Response(JSON.stringify({ error: 'Invalid request' }), {
@@ -54,8 +116,7 @@ export default {
       });
 
     } catch (error) {
-      console.error('Worker error:', error);
-      return new Response(JSON.stringify({ error: error.message }), {
+      return new Response(JSON.stringify({ error: error.message || error.toString() }), {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
@@ -63,182 +124,6 @@ export default {
   },
 };
 
-async function handleDigitalProductPayment(body, STRIPE_SECRET_KEY, corsHeaders) {
-  try {
-    const { paymentMethodId, email, name, amount, product, productName } = body;
-
-    if (!paymentMethodId || !email || !name || !amount) {
-      return new Response(JSON.stringify({ error: 'Missing required fields' }), {
-        status: 400,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      });
-    }
-
-    // Create Payment Intent
-    const paymentIntentResponse = await fetch('https://api.stripe.com/v1/payment_intents', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${STRIPE_SECRET_KEY}`,
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: new URLSearchParams({
-        'amount': amount,
-        'currency': 'usd',
-        'payment_method': paymentMethodId,
-        'confirm': 'true',
-        'return_url': 'https://elizabethsbakedgoods.com',
-        'metadata[product]': product,
-        'metadata[product_name]': productName,
-        'metadata[customer_email]': email,
-        'metadata[customer_name]': name,
-        'receipt_email': email,
-        'statement_descriptor': 'ELIZABETHS DESIGNS',
-      }),
-    });
-
-    const paymentIntent = await paymentIntentResponse.json();
-
-    if (!paymentIntentResponse.ok) {
-      return new Response(JSON.stringify({ error: paymentIntent.error?.message || 'Payment failed' }), {
-        status: 400,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      });
-    }
-
-  // Check if payment suc
-    await sendDownloadEmail(email, name, product, STRIPE_SECRET_KEY);
-    
-    return new Response(JSON.stringify({
-      success: true,
-      status: 'succeeded',
-      clientSecret: paymentIntent.client_secret,
-    }), {
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-    });
-  } else if (paymentIntent.status === 'requires_action') {
-    // 3D Secure or other authentication required
-    return new Response(JSON.stringify({
-      requiresAction: true,
-      clientSecret: paymentIntent.client_secret,
-    }), {
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-    });
-  }
-
-  return new Response(JSON.stringify({
-    success: false,
-    status: paymentIntent.status,
-    clientSecret: paymentIntent.client_secret,
-  }), {
-    headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-  });
-  } catch (error) {
-    return new Response(JSON.stringify({ error: error.message || 'Payment processing failed' }), {
-      status: 500,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-    });
-  } {
-    headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-  });
-}
-
-async function handleCartCheckout(body, STRIPE_SECRET_KEY, corsHeaders, request) {
-  const { cart, shippingRateId } = body;
-
-  // Determine shipping cost
-  const shippingCost = 800; // $8 in cents
-  const shippingLabel = 'Standard Shipping';
-
-  // Create line items
-  const lineItems = cart.map(item => ({
-    price_data: {
-      currency: 'usd',
-      product_data: {
-        name: item.name,
-        description: `Flavor: ${item.flavor}`,
-      },
-      unit_amount: item.price,
-    },
-    quantity: item.quantity || 1,
-  }));
-
-  // Add shipping as a line item
-  lineItems.push({
-    price_data: {
-      currency: 'usd',
-      product_data: {
-        name: shippingLabel,
-      },
-      unit_amount: shippingCost,
-    },
-    quantity: 1,
-  });
-
-  // Create Stripe Checkout Session
-  const origin = request.headers.get('origin') || 'https://elizabethsbakedgoods.com';
-
-  const params = {
-    'mode': 'payment',
-    'success_url': `${origin}?checkout=success`,
-    'cancel_url': `${origin}?checkout=cancel`,
-    'phone_number_collection[enabled]': 'true',
-  };
-
-  // Add line items
-  lineItems.forEach((item, i) => {
-    params[`line_items[${i}][price_data][currency]`] = item.price_data.currency;
-    params[`line_items[${i}][price_data][product_data][name]`] = item.price_data.product_data.name;
-    if (item.price_data.product_data.description) {
-      params[`line_items[${i}][price_data][product_data][description]`] = item.price_data.product_data.description;
-    }
-    params[`line_items[${i}][price_data][unit_amount]`] = item.price_data.unit_amount;
-    params[`line_items[${i}][quantity]`] = item.quantity;
-  });
-
-  const stripeResponse = await fetch('https://api.stripe.com/v1/checkout/sessions', {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${STRIPE_SECRET_KEY}`,
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: new URLSearchParams(params),
-  });
-
-  const session = await stripeResponse.json();
-
-  if (!stripeResponse.ok) {
-    throw new Error(session.error?.message || 'Failed to create checkout session');
-  }
-
-  return new Response(JSON.stringify({ sessionId: session.id, url: session.url }), {
-    status: 200,
-    headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-  });
-}
-
-async function sendDownloadEmail(email, name, product, STRIPE_SECRET_KEY) {
-  // Map product IDs to download URLs
-  const downloadLinks = {
-    'outside-bakery-coloring': {
-      filename: 'outsidebakery.png',
-      title: 'Outside Bakery Coloring Page',
-      url: 'https://elizabethsbakedgoods.com/downloads/outsidebakery.png'
-    },
-    // Add more products here as needed
-  };
-
-  const productInfo = downloadLinks[product] || {
-    filename: 'file.zip',
-    title: 'Your Digital Download',
-    url: 'https://elizabethsbakedgoods.com/downloads/default.zip'
-  };
-
-  // Email content
-  const emailContent = `
-    <h2>Thank you for your purchase!</h2>
-    <p>Hi ${name},</p>
-    <p>Your payment has been processed successfully. Your digital download is ready!</p>
-    <h3>${productInfo.title}</h3>
     <p><a href="${productInfo.url}" style="background: #d93535; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; display: inline-block;">Download Your File</a></p>
     <p><strong>File:</strong> ${productInfo.filename}</p>
     <hr/>
