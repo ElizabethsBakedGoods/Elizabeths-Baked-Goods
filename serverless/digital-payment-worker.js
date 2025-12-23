@@ -2,10 +2,42 @@ import Stripe from 'stripe'
 
 export default {
   async fetch(request, env) {
-    try {
-      const stripe = new Stripe(env.STRIPE_SECRET_KEY)
-      const body = await request.json()
+    console.log('=== Worker invoked ===')
+    console.log('Method:', request.method)
+    console.log('URL:', request.url)
 
+    try {
+      // Parse request body
+      let body
+      try {
+        body = await request.json()
+        console.log('Request body received:', JSON.stringify(body))
+      } catch (parseErr) {
+        console.error('JSON parse error:', parseErr.message)
+        return new Response(
+          JSON.stringify({ error: 'Invalid JSON: ' + parseErr.message }),
+          { status: 400, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
+        )
+      }
+
+      // Check Stripe key
+      console.log('Checking STRIPE_SECRET_KEY...')
+      if (!env.STRIPE_SECRET_KEY) {
+        console.error('STRIPE_SECRET_KEY not found in env')
+        return new Response(
+          JSON.stringify({ error: 'STRIPE_SECRET_KEY not configured' }),
+          { status: 500, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
+        )
+      }
+      console.log('STRIPE_SECRET_KEY found')
+
+      // Initialize Stripe
+      console.log('Initializing Stripe...')
+      const stripe = new Stripe(env.STRIPE_SECRET_KEY)
+      console.log('Stripe initialized')
+
+      // Create checkout session
+      console.log('Creating checkout session with priceId:', body.priceId)
       const session = await stripe.checkout.sessions.create({
         mode: 'payment',
         payment_method_types: ['card'],
@@ -18,9 +50,11 @@ export default {
         success_url: 'https://elizabethsbakedgoods.com/success',
         cancel_url: 'https://elizabethsbakedgoods.com/cancel',
       })
+      console.log('Session created:', session.id)
+      console.log('Session URL:', session.url)
 
       return new Response(
-        JSON.stringify({ url: session.url }),
+        JSON.stringify({ url: session.url, sessionId: session.id }),
         {
           headers: {
             'Content-Type': 'application/json',
@@ -29,9 +63,17 @@ export default {
         }
       )
     } catch (err) {
+      console.error('=== WORKER ERROR ===')
+      console.error('Error type:', err.constructor.name)
+      console.error('Error message:', err.message)
+      console.error('Error stack:', err.stack)
+      console.error('Full error:', JSON.stringify(err))
+
       return new Response(
         JSON.stringify({
           error: err.message || String(err),
+          type: err.constructor.name,
+          details: err.toString(),
         }),
         {
           status: 500,
