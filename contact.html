@@ -81,5 +81,17 @@
     </div>
     <p>&copy; 2025 Elizabeth's Baked Goods | <a href="privacy-policy.html" style="color: inherit; text-decoration: underline;">Privacy Policy</a></p>
   </footer>
+
+<div id="footer-placeholder"></div>
+
+<script>
+  fetch('/footer.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+    })
+    .catch(error => console.log('Footer load error:', error));
+</script>
+
 </body>
 </html>
