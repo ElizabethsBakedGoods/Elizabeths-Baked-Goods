@@ -22,6 +22,7 @@
             flex: 1;
             min-width: 300px;
             text-align: center;
+            position: relative;
         }
 
         .product-image img {
@@ -29,6 +30,22 @@
             height: auto;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .product-image::after {
+            content: 'PROOF';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 5rem;
+            font-weight: bold;
+            color: rgba(217, 53, 53, 0.3);
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 10;
+            font-family: Arial, sans-serif;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .product-details {
