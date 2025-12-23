@@ -1,0 +1,516 @@
+<!-- TEMPLATE: Digital Product Page
+This is a template for creating new digital product pages.
+Instructions:
+1. Copy product-outsidebakery.html and rename it to product-[name].html
+2. Replace all instances of [PRODUCT_NAME], [PRICE], [DESCRIPTION], [IMAGE_FILE], and [PRODUCT_ID]
+3. Update the image path
+4. Deploy to web server
+
+Example variables:
+- [PRODUCT_NAME] = "Dessert Coloring Page"
+- [PRICE] = "$2.99"
+- [PRICE_CENTS] = "299"
+- [DESCRIPTION] = "A collection of 5 pages featuring cookies, cakes, and candy designs."
+- [IMAGE_FILE] = "coloring-desserts.jpg"
+- [PRODUCT_ID] = "dessert-coloring-page"
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[PRODUCT_NAME] - Elizabeth's Baked Goods</title>
+    <meta name="description" content="Download [PRODUCT_NAME] from Elizabeth's Baked Goods. Instant digital download, no physical product shipped.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        .product-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        .product-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .product-details {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #4d2c2a;
+            margin: 0 0 15px 0;
+        }
+
+        .product-price {
+            font-size: 2rem;
+            color: #d93535;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .product-type-badge {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .product-description {
+            color: #666;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .digital-download-notice {
+            background: #fff3e0;
+            border-left: 4px solid #f57c00;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+            color: #5d4037;
+        }
+
+        .digital-download-notice strong {
+            display: block;
+            margin-bottom: 8px;
+            color: #4d2c2a;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .feature-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            color: #666;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list li:before {
+            content: "✓ ";
+            color: #27ae60;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .cta-button {
+            width: 100%;
+            padding: 16px;
+            background: #d93535;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #b72a2a;
+        }
+
+        .cta-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .payment-info {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .payment-info i {
+            color: #27ae60;
+            margin-right: 8px;
+        }
+
+        .stripe-element-container {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: white;
+        }
+
+        .form-group {
+            margin: 15px 0;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #4d2c2a;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #d93535;
+            box-shadow: 0 0 0 3px rgba(217, 53, 53, 0.1);
+        }
+
+        .success-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error-message {
+            display: none;
+            background: #f8d7da;
+            color: #721c24;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid #f5c6cb;
+        }
+
+        .download-link {
+            display: none;
+            background: #c8e6c9;
+            color: #2e7d32;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .download-link a {
+            display: inline-block;
+            background: #27ae60;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .download-link a:hover {
+            background: #229954;
+        }
+
+        @media (max-width: 768px) {
+            .product-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .product-title {
+                font-size: 1.5rem;
+            }
+
+            .product-price {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+  <nav class="navbar">
+    <a href="/index.html">Home</a>
+    <a href="/about.html">About</a>
+    <a href="/blog.html">Blogs</a>
+    <a href="/recipes.html">Recipes</a>
+    <a href="/order.html">Order</a>
+    <a href="/local-ordering.html">Local Ordering</a>
+    <a href="/designs.html">Designs</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/policies.html">Policies</a>
+  </nav>
+</header>
+
+<main style="padding-top: 20px; padding-bottom: 60px;">
+
+    <!-- BREADCRUMB -->
+    <div style="max-width: 1000px; margin: 0 auto; padding: 0 20px; margin-bottom: 20px;">
+        <a href="/designs.html" style="color: #d93535; text-decoration: none;">← Back to Designs</a>
+    </div>
+
+    <!-- PRODUCT SECTION -->
+    <div class="product-container">
+        <!-- Product Image -->
+        <div class="product-image">
+            <img src="/images/[IMAGE_FILE]" alt="[PRODUCT_NAME]">
+            <p style="color: #999; font-size: 0.9rem; margin-top: 10px;">Click to download after purchase</p>
+        </div>
+
+        <!-- Product Details -->
+        <div class="product-details">
+            <span class="product-type-badge">
+                <i class="fas fa-download"></i> DIGITAL DOWNLOAD
+            </span>
+
+            <h1 class="product-title">[PRODUCT_NAME]</h1>
+
+            <div class="product-price">[PRICE]</div>
+
+            <p class="product-description">
+                [DESCRIPTION]
+            </p>
+
+            <!-- Features -->
+            <ul class="feature-list">
+                <li>Instant digital download</li>
+                <li>High-quality format</li>
+                <li>Print-ready design</li>
+                <li>No physical product shipped</li>
+                <li>Personal use license included</li>
+            </ul>
+
+            <!-- Digital Download Notice -->
+            <div class="digital-download-notice">
+                <strong>✓ Instant Digital Download</strong>
+                After successful payment, you'll receive your file immediately. No physical product will be shipped.
+            </div>
+
+            <!-- Payment Form -->
+            <form id="payment-form">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="your@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Your Name">
+                </div>
+
+                <div class="stripe-element-container">
+                    <div id="card-element"></div>
+                </div>
+
+                <div id="card-errors" class="error-message" style="display: none;"></div>
+
+                <button type="submit" class="cta-button" id="submit-btn">
+                    <i class="fas fa-lock"></i> Buy Now - [PRICE]
+                </button>
+
+                <div class="payment-info">
+                    <p><i class="fas fa-check-circle"></i> Secure payment powered by Stripe</p>
+                    <p><i class="fas fa-lock"></i> Your information is encrypted and secure</p>
+                </div>
+            </form>
+
+            <!-- Success Message -->
+            <div class="success-message" id="success-message">
+                <h3><i class="fas fa-check-circle"></i> Payment Successful!</h3>
+                <p>Thank you for your purchase. Your download link is ready below.</p>
+            </div>
+
+            <!-- Download Link (shown after payment) -->
+            <div class="download-link" id="download-section">
+                <h3><i class="fas fa-file-download"></i> Your Digital Download</h3>
+                <p>Click the button below to download your file:</p>
+                <a href="#" id="download-btn" download>
+                    <i class="fas fa-download"></i> Download File
+                </a>
+                <p style="font-size: 0.85rem; margin-top: 15px; color: #666;">
+                    [ADDITIONAL_FILE_INFO]
+                </p>
+            </div>
+
+            <!-- Error Message -->
+            <div class="error-message" id="error-message"></div>
+
+        </div>
+    </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer style="background:#333; color:white; padding:30px; text-align:center;">
+    <p>© 2025 Elizabeth's Baked Goods – Rosenberg, Texas</p>
+    <p>
+        <a href="/contact.html" style="color: white; text-decoration: none;">Contact</a> | 
+        <a href="/policies.html" style="color: white; text-decoration: none;">Policies</a> | 
+        <a href="/about.html" style="color: white; text-decoration: none;">About</a>
+    </p>
+</footer>
+
+<script>
+    // Stripe configuration
+    const STRIPE_PUBLIC_KEY = 'pk_live_51SNIwWAKipJWOAbPpTyitJZ0bjUS8DtFYMDOwWW7vfmUpXqaP4C5U9rq4cGhG6iragLQ0CrKlQgo5az178HPRg4I00y6YwznJ8';
+    const stripe = Stripe(STRIPE_PUBLIC_KEY);
+    const elements = stripe.elements();
+    const cardElement = elements.create('card');
+    cardElement.mount('#card-element');
+
+    const form = document.getElementById('payment-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const errorDiv = document.getElementById('error-message');
+    const successDiv = document.getElementById('success-message');
+    const downloadSection = document.getElementById('download-section');
+    const downloadBtn = document.getElementById('download-btn');
+    const cardErrorsDiv = document.getElementById('card-errors');
+
+    // Handle card errors
+    cardElement.on('change', (event) => {
+        if (event.error) {
+            cardErrorsDiv.style.display = 'block';
+            cardErrorsDiv.textContent = event.error.message;
+        } else {
+            cardErrorsDiv.style.display = 'none';
+        }
+    });
+
+    // Handle form submission
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Processing...';
+
+        const email = document.getElementById('email').value;
+        const name = document.getElementById('name').value;
+
+        // Create payment method
+        const { paymentMethod, error: pmError } = await stripe.createPaymentMethod({
+            type: 'card',
+            card: cardElement,
+            billing_details: {
+                name: name,
+                email: email
+            }
+        });
+
+        if (pmError) {
+            errorDiv.style.display = 'block';
+            errorDiv.textContent = pmError.message;
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Buy Now - [PRICE]';
+            return;
+        }
+
+        // Process payment via Cloudflare Worker
+        try {
+            const response = await fetch('https://elizabeths-checkout.bethsbakedgoodss.workers.dev', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    paymentMethodId: paymentMethod.id,
+                    email: email,
+                    name: name,
+                    amount: [PRICE_CENTS],
+                    product: '[PRODUCT_ID]',
+                    productName: '[PRODUCT_NAME]'
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.error) {
+                errorDiv.style.display = 'block';
+                errorDiv.textContent = data.error;
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Buy Now - [PRICE]';
+                return;
+            }
+
+            if (data.requiresAction) {
+                // Handle 3D Secure if required
+                const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
+                    data.clientSecret
+                );
+
+                if (confirmError) {
+                    errorDiv.style.display = 'block';
+                    errorDiv.textContent = confirmError.message;
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Buy Now - [PRICE]';
+                    return;
+                }
+            }
+
+            if (data.success || data.status === 'succeeded') {
+                // Success!
+                form.style.display = 'none';
+                successDiv.style.display = 'block';
+                downloadSection.style.display = 'block';
+
+                downloadBtn.onclick = function(e) {
+                    e.preventDefault();
+                    alert('Your download is being prepared. A download link has been sent to ' + email + '. Check your email, or contact support if you have any issues.');
+                };
+
+                downloadBtn.textContent = '✓ Download Your File';
+                downloadBtn.style.background = '#27ae60';
+                downloadBtn.style.cursor = 'pointer';
+
+                const downloadText = document.createElement('p');
+                downloadText.style.marginTop = '15px';
+                downloadText.style.color = '#666';
+                downloadText.style.fontSize = '0.9rem';
+                downloadText.innerHTML = '📧 A download link has been sent to <strong>' + email + '</strong>';
+                downloadSection.appendChild(downloadText);
+            } else {
+                errorDiv.style.display = 'block';
+                errorDiv.textContent = 'Payment could not be processed. Please try again.';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Buy Now - [PRICE]';
+            }
+
+        } catch (error) {
+            errorDiv.style.display = 'block';
+            errorDiv.textContent = 'An error occurred: ' + error.message;
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Buy Now - [PRICE]';
+        }
+    });
+</script>
+
+</body>
+</html>
