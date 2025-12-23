@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful - Elizabeth's Baked Goods</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .success-container {
+            max-width: 600px;
+            margin: 80px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .success-box {
+            background: #f1f8f6;
+            border: 2px solid #27ae60;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: #27ae60;
+            margin-bottom: 20px;
+        }
+
+        .success-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #2e7d32;
+            margin: 20px 0;
+        }
+
+        .success-message {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .button-group {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .button-group a {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #27ae60;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #229954;
+        }
+
+        .btn-secondary {
+            background: #d93535;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #c32929;
+        }
+
+        .confirmation-details {
+            background: white;
+            border-radius: 4px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: #999;
+            font-weight: bold;
+        }
+
+        .detail-value {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+  <nav class="navbar">
+    <a href="/index.html">Home</a>
+    <a href="/about.html">About</a>
+    <a href="/blog.html">Blogs</a>
+    <a href="/recipes.html">Recipes</a>
+    <a href="/order.html">Order</a>
+    <a href="/local-ordering.html">Local Ordering</a>
+    <a href="/designs.html">Designs</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/policies.html">Policies</a>
+  </nav>
+</header>
+
+<main style="padding-top: 20px; padding-bottom: 100px;">
+    <div class="success-container">
+        <div class="success-box">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+
+            <h1 class="success-title">Payment Successful!</h1>
+
+            <p class="success-message">
+                Thank you for your purchase! Your digital download is ready.
+            </p>
+
+            <div class="confirmation-details">
+                <div class="detail-row">
+                    <span class="detail-label">Order Status:</span>
+                    <span class="detail-value">✓ Confirmed</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Product:</span>
+                    <span class="detail-value">Outside Bakery Coloring Page</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Amount Paid:</span>
+                    <span class="detail-value">$1.00</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Email:</span>
+                    <span class="detail-value">Check your email for download details</span>
+                </div>
+            </div>
+
+            <p class="success-message">
+                <strong>📧 Check your email</strong> for your download link. The file should arrive within a few minutes.
+            </p>
+
+            <div class="button-group">
+                <a href="/designs.html" class="btn-primary">
+                    <i class="fas fa-shopping-bag"></i> Back to Designs
+                </a>
+                <a href="/index.html" class="btn-secondary">
+                    <i class="fas fa-home"></i> Return Home
+                </a>
+            </div>
+
+            <p style="color: #999; font-size: 0.9rem; margin-top: 30px;">
+                If you don't see your download email, please check your spam folder or <a href="/contact.html" style="color: #d93535;">contact us</a>.
+            </p>
+        </div>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer style="background:#333; color:white; padding:30px; text-align:center;">
+    <p>© 2025 Elizabeth's Baked Goods – Rosenberg, Texas</p>
+    <p>
+        <a href="/contact.html" style="color: white; text-decoration: none;">Contact</a> | 
+        <a href="/policies.html" style="color: white; text-decoration: none;">Policies</a> | 
+        <a href="/about.html" style="color: white; text-decoration: none;">About</a>
+    </p>
+</footer>
+
+<div id="footer-placeholder"></div>
+
+<script>
+  // Get session ID from URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const sessionId = urlParams.get('session_id');
+
+  // Log for debugging
+  if (sessionId) {
+    console.log('Checkout Session ID:', sessionId);
+  } else {
+    console.log('No session ID in URL - user may have returned manually');
+  }
+
+  // Load footer
+  fetch('/footer.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+    })
+    .catch(error => console.log('Footer load error:', error));
+</script>
+
+</body>
+</html>

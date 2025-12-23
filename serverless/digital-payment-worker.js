@@ -73,7 +73,7 @@ export default {
             quantity: 1,
           },
         ],
-        success_url: 'https://elizabethsbakedgoods.com/success.html',
+        success_url: 'https://elizabethsbakedgoods.com/success.html?session_id={CHECKOUT_SESSION_ID}',
         cancel_url: 'https://elizabethsbakedgoods.com/designs.html',
       })
 
