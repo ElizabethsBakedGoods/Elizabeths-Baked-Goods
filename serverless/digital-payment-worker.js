@@ -22,7 +22,11 @@ export default {
       const body = await request.json();
       const STRIPE_SECRET_KEY = env.STRIPE_SECRET_KEY;
 
+      console.log('Worker received request body:', JSON.stringify(body));
+      console.log('STRIPE_SECRET_KEY configured:', !!STRIPE_SECRET_KEY);
+
       if (!STRIPE_SECRET_KEY) {
+        console.error('STRIPE_SECRET_KEY is not configured');
         return new Response(JSON.stringify({ error: 'Stripe not configured' }), {
           status: 500,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
@@ -66,6 +70,8 @@ export default {
 async function handleDigitalProductPayment(body, STRIPE_SECRET_KEY, corsHeaders) {
   const { paymentMethodId, email, name, amount, product, productName } = body;
 
+  console.log('handleDigitalProductPayment called with:', { paymentMethodId, email, name, amount, product, productName });
+
   // Create Payment Intent
   const paymentIntentResponse = await fetch('https://api.stripe.com/v1/payment_intents', {
     method: 'POST',
@@ -90,7 +96,11 @@ async function handleDigitalProductPayment(body, STRIPE_SECRET_KEY, corsHeaders)
 
   const paymentIntent = await paymentIntentResponse.json();
 
+  console.log('Stripe response status:', paymentIntentResponse.status);
+  console.log('Stripe response:', JSON.stringify(paymentIntent));
+
   if (!paymentIntentResponse.ok) {
+    console.error('Stripe error:', paymentIntent.error);
     return new Response(JSON.stringify({ error: paymentIntent.error?.message || 'Payment failed' }), {
       status: 400,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
