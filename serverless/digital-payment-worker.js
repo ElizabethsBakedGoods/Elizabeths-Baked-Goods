@@ -1,6 +1,4 @@
 // Cloudflare Worker for Stripe Payment Processing
-// Simple, reliable payment handler for digital products and cart checkout
-
 export default {
   async fetch(request, env) {
     const corsHeaders = {
@@ -14,115 +12,91 @@ export default {
     }
 
     if (request.method !== 'POST') {
-      return new Response(JSON.stringify({ error: 'Method not allowed' }), {
+      return new Response(JSON.stringify({ error: 'POST only' }), {
         status: 405,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
 
     try {
-      const body = await request.json();
-      const STRIPE_KEY = env.STRIPE_SECRET_KEY;
+      // Parse request
+      let body;
+      try {
+        body = await request.json();
+      } catch (e) {
+        return new Response(JSON.stringify({ error: 'Invalid JSON: ' + e.message }), {
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
 
-      if (!STRIPE_KEY) {
-        return new Response(JSON.stringify({ error: 'Stripe not configured' }), {
+      // Check Stripe key
+      const key = env.STRIPE_SECRET_KEY;
+      if (!key) {
+        return new Response(JSON.stringify({ error: 'STRIPE_SECRET_KEY not set in environment' }), {
           status: 500,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         });
       }
 
       // Digital product payment
-      if (body.paymentMethodId && body.amount && body.product) {
-        const piRes = await fetch('https://api.stripe.com/v1/payment_intents', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${STRIPE_KEY}`,
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: `amount=${body.amount}&currency=usd&payment_method=${body.paymentMethodId}&confirm=true&receipt_email=${body.email}`,
-        });
+      if (body.paymentMethodId && body.amount) {
+        try {
+          const res = await fetch('https://api.stripe.com/v1/payment_intents', {
+            method: 'POST',
+            headers: {
+              'Authorization': 'Bearer ' + key,
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'amount=' + body.amount + '&currency=usd&payment_method=' + body.paymentMethodId + '&confirm=true',
+          });
 
-        const pi = await piRes.json();
+          const data = await res.json();
 
-        if (!piRes.ok) {
-          return new Response(JSON.stringify({ error: pi.error?.message || 'Payment failed' }), {
-            status: 400,
+          if (!res.ok) {
+            return new Response(JSON.stringify({ error: data.error?.message || 'Stripe error' }), {
+              status: 400,
+              headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+            });
+          }
+
+          if (data.status === 'succeeded') {
+            return new Response(JSON.stringify({ success: true, status: 'succeeded' }), {
+              headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+            });
+          }
+
+          if (data.status === 'requires_action') {
+            return new Response(JSON.stringify({ requiresAction: true, clientSecret: data.client_secret }), {
+              headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+            });
+          }
+
+          return new Response(JSON.stringify({ success: false, status: data.status }), {
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          });
+        } catch (stripeError) {
+          return new Response(JSON.stringify({ error: 'Stripe request failed: ' + stripeError.message }), {
+            status: 500,
             headers: { ...corsHeaders, 'Content-Type': 'application/json' },
           });
         }
-
-        if (pi.status === 'succeeded') {
-          return new Response(JSON.stringify({ success: true, status: 'succeeded' }), {
-            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-          });
-        }
-
-        if (pi.status === 'requires_action') {
-          return new Response(JSON.stringify({ requiresAction: true, clientSecret: pi.client_secret }), {
-            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-          });
-        }
-
-        return new Response(JSON.stringify({ success: false, status: pi.status }), {
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        });
       }
 
-      // Cart checkout
-      if (body.cart && Array.isArray(body.cart)) {
-        const lineItems = body.cart.map((item, i) => ({
-          [`line_items[${i}][price_data][currency]`]: 'usd',
-          [`line_items[${i}][price_data][product_data][name]`]: item.name,
-          [`line_items[${i}][price_data][unit_amount]`]: item.price,
-          [`line_items[${i}][quantity]`]: item.quantity || 1,
-        }));
-
-        const params = new URLSearchParams({
-          'mode': 'payment',
-          'success_url': 'https://elizabethsbakedgoods.com?checkout=success',
-          'cancel_url': 'https://elizabethsbakedgoods.com?checkout=cancel',
-        });
-
-        lineItems.forEach(item => {
-          Object.entries(item).forEach(([k, v]) => params.append(k, v));
-        });
-
-        const sessRes = await fetch('https://api.stripe.com/v1/checkout/sessions', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${STRIPE_KEY}`,
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: params.toString(),
-        });
-
-        const sess = await sessRes.json();
-
-        if (!sessRes.ok) {
-          return new Response(JSON.stringify({ error: sess.error?.message || 'Session failed' }), {
-            status: 400,
-            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-          });
-        }
-
-        return new Response(JSON.stringify({ url: sess.url }), {
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        });
-      }
-
-      return new Response(JSON.stringify({ error: 'Invalid request' }), {
+      return new Response(JSON.stringify({ error: 'Missing paymentMethodId or amount' }), {
         status: 400,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
 
     } catch (error) {
-      return new Response(JSON.stringify({ error: error.message || error.toString() }), {
+      return new Response(JSON.stringify({ error: 'Worker error: ' + error.message }), {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
   },
 };
+
 
     <p><a href="${productInfo.url}" style="background: #d93535; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; display: inline-block;">Download Your File</a></p>
     <p><strong>File:</strong> ${productInfo.filename}</p>
