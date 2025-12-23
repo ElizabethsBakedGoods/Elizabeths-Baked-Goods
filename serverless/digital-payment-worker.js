@@ -22,12 +22,8 @@ export default {
       const body = await request.json();
       const STRIPE_SECRET_KEY = env.STRIPE_SECRET_KEY;
 
-      console.log('Worker received request body:', JSON.stringify(body));
-      console.log('STRIPE_SECRET_KEY configured:', !!STRIPE_SECRET_KEY);
-
       if (!STRIPE_SECRET_KEY) {
-        console.error('STRIPE_SECRET_KEY is not configured');
-        return new Response(JSON.stringify({ error: 'Stripe not configured' }), {
+        return new Response(JSON.stringify({ error: 'Stripe not configured in environment' }), {
           status: 500,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         });
@@ -68,48 +64,48 @@ export default {
 };
 
 async function handleDigitalProductPayment(body, STRIPE_SECRET_KEY, corsHeaders) {
-  const { paymentMethodId, email, name, amount, product, productName } = body;
+  try {
+    const { paymentMethodId, email, name, amount, product, productName } = body;
 
-  console.log('handleDigitalProductPayment called with:', { paymentMethodId, email, name, amount, product, productName });
+    if (!paymentMethodId || !email || !name || !amount) {
+      return new Response(JSON.stringify({ error: 'Missing required fields' }), {
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
 
-  // Create Payment Intent
-  const paymentIntentResponse = await fetch('https://api.stripe.com/v1/payment_intents', {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${STRIPE_SECRET_KEY}`,
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: new URLSearchParams({
-      'amount': amount,
-      'currency': 'usd',
-      'payment_method': paymentMethodId,
-      'confirm': 'true',
-      'return_url': 'https://elizabethsbakedgoods.com',
-      'metadata[product]': product,
-      'metadata[product_name]': productName,
-      'metadata[customer_email]': email,
-      'metadata[customer_name]': name,
-      'receipt_email': email,
-      'statement_descriptor': 'ELIZABETHS DESIGNS',
-    }),
-  });
-
-  const paymentIntent = await paymentIntentResponse.json();
-
-  console.log('Stripe response status:', paymentIntentResponse.status);
-  console.log('Stripe response:', JSON.stringify(paymentIntent));
-
-  if (!paymentIntentResponse.ok) {
-    console.error('Stripe error:', paymentIntent.error);
-    return new Response(JSON.stringify({ error: paymentIntent.error?.message || 'Payment failed' }), {
-      status: 400,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    // Create Payment Intent
+    const paymentIntentResponse = await fetch('https://api.stripe.com/v1/payment_intents', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${STRIPE_SECRET_KEY}`,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({
+        'amount': amount,
+        'currency': 'usd',
+        'payment_method': paymentMethodId,
+        'confirm': 'true',
+        'return_url': 'https://elizabethsbakedgoods.com',
+        'metadata[product]': product,
+        'metadata[product_name]': productName,
+        'metadata[customer_email]': email,
+        'metadata[customer_name]': name,
+        'receipt_email': email,
+        'statement_descriptor': 'ELIZABETHS DESIGNS',
+      }),
     });
-  }
 
-  // Check if payment succeeded or needs additional action
-  if (paymentIntent.status === 'succeeded') {
-    // Payment successful - send email with download link
+    const paymentIntent = await paymentIntentResponse.json();
+
+    if (!paymentIntentResponse.ok) {
+      return new Response(JSON.stringify({ error: paymentIntent.error?.message || 'Payment failed' }), {
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+  // Check if payment suc
     await sendDownloadEmail(email, name, product, STRIPE_SECRET_KEY);
     
     return new Response(JSON.stringify({
@@ -134,6 +130,14 @@ async function handleDigitalProductPayment(body, STRIPE_SECRET_KEY, corsHeaders)
     status: paymentIntent.status,
     clientSecret: paymentIntent.client_secret,
   }), {
+    headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+  });
+  } catch (error) {
+    return new Response(JSON.stringify({ error: error.message || 'Payment processing failed' }), {
+      status: 500,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
+  } {
     headers: { ...corsHeaders, 'Content-Type': 'application/json' },
   });
 }
