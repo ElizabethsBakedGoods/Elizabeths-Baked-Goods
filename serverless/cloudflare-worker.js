@@ -28,7 +28,8 @@ export default {
     }
 
     try {
-      const { cart, shippingRateId } = await request.json();
+      const body = await request.json();
+      const { priceId, cart, shippingRateId } = body;
       
       // You'll need to add your Stripe secret key to Cloudflare Workers environment variables
       const STRIPE_SECRET_KEY = env.STRIPE_SECRET_KEY;
@@ -36,6 +37,44 @@ export default {
       if (!STRIPE_SECRET_KEY) {
         return new Response(JSON.stringify({ error: 'Stripe not configured' }), {
           status: 500,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+
+      // Handle single priceId checkout (digital products)
+      if (priceId) {
+        const params = {
+          'mode': 'payment',
+          'success_url': 'https://elizabethsbakedgoods.com/success.html?session_id={CHECKOUT_SESSION_ID}',
+          'cancel_url': 'https://elizabethsbakedgoods.com/designs.html',
+          'line_items[0][price]': priceId,
+          'line_items[0][quantity]': '1',
+        };
+
+        const stripeResponse = await fetch('https://api.stripe.com/v1/checkout/sessions', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${STRIPE_SECRET_KEY}`,
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: new URLSearchParams(params),
+        });
+
+        const session = await stripeResponse.json();
+
+        if (!stripeResponse.ok) {
+          throw new Error(session.error?.message || 'Failed to create checkout session');
+        }
+
+        return new Response(JSON.stringify({ url: session.url }), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+
+      // Handle cart checkout (regular products with shipping)
+      if (!cart || !Array.isArray(cart) || cart.length === 0) {
+        return new Response(JSON.stringify({ error: 'priceId or cart is required' }), {
+          status: 400,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         });
       }

@@ -265,7 +265,10 @@ function updateCartDisplay() {
 
 	if (!cartItems || !cartTotal) return;
 
-	if (cart.length === 0) {
+	// Defensive: default to empty array if cart is undefined
+	const items = Array.isArray(cart) ? cart : [];
+
+	if (items.length === 0) {
 		if (cartEmpty) cartEmpty.style.display = "block";
 		if (checkoutBtn) checkoutBtn.style.display = "none";
 		if (contactForm) contactForm.style.display = "none";
@@ -278,22 +281,28 @@ function updateCartDisplay() {
 	if (checkoutBtn) checkoutBtn.style.display = "inline-block";
 	if (contactForm) contactForm.style.display = "block";
 
-	// Render cart items
-	cartItems.innerHTML = cart.map((item, index) => `
+	// Render cart items - safe map with null checks
+	cartItems.innerHTML = items.map((item, index) => {
+		// Defensive checks for item properties
+		const name = (item && item.name) || 'Unknown';
+		const flavor = (item && item.flavor) || 'N/A';
+		const price = (item && item.price) || 0;
+		return `
 		<div class="cart-item" style="display:flex; justify-content:space-between; align-items:center; padding:0.5rem; border-bottom:1px solid #e0e0e0;">
 			<div>
-				<strong>${item.name}</strong><br>
-				<small>Flavor: ${item.flavor}</small>
+				<strong>${name}</strong><br>
+				<small>Flavor: ${flavor}</small>
 			</div>
 			<div style="display:flex; align-items:center; gap:1rem;">
-				<span>$${(item.price / 100).toFixed(2)}</span>
+				<span>$${(price / 100).toFixed(2)}</span>
 				<button onclick="removeFromCart(${index})" class="remove-btn" style="background:#dc3545; color:white; border:none; padding:0.3rem 0.6rem; border-radius:4px; cursor:pointer;">Remove</button>
 			</div>
 		</div>
-	`).join("");
+	`;
+	}).join("");
 
-	// Calculate total
-	const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+	// Calculate total - safe reduce with null checks
+	const subtotal = items.reduce((sum, item) => sum + ((item && item.price) || 0), 0);
 	cartTotal.textContent = `$${(subtotal / 100).toFixed(2)}`;
 }
 
@@ -309,12 +318,15 @@ function showCartMessage(msg) {
 }
 
 async function handleCheckout() {
-	if (cart.length === 0) {
+	// Defensive: ensure cart is an array
+	const items = Array.isArray(cart) ? cart : [];
+
+	if (items.length === 0) {
 		alert("Your cart is empty!");
 		return;
 	}
 
-	const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+	const subtotal = items.reduce((sum, item) => sum + ((item && item.price) || 0), 0);
 	const subtotalDollars = subtotal / 100;
 
 	// Enforce $25 minimum
@@ -328,10 +340,13 @@ async function handleCheckout() {
 		try {
 			// Always use standard shipping rate ($8)
 			const shippingRateId = CONFIG.shippingRates.standard;
+			const requestBody = { cart: items, shippingRateId };
+			console.log('Sending checkout request:', requestBody);
+			
 			const res = await fetch(CONFIG.workerEndpoint, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ cart, shippingRateId })
+				body: JSON.stringify(requestBody)
 			});
 			const data = await res.json();
 			if (!res.ok || !data.url) {
@@ -340,7 +355,7 @@ async function handleCheckout() {
 				return;
 			}
 			// Store order for post-success notification
-			sessionStorage.setItem('pendingOrder', JSON.stringify(cart));
+			sessionStorage.setItem('pendingOrder', JSON.stringify(items));
 			// Redirect to Stripe Checkout Session URL
 			window.location.href = data.url;
 			return;
@@ -352,13 +367,13 @@ async function handleCheckout() {
 	}
 
 	// Fallback: If cart has only ONE item, redirect directly to its Stripe payment link
-	if (cart.length === 1) {
-		const item = cart[0];
-		const paymentLink = CONFIG.paymentLinks[item.id];
+	if (items.length === 1) {
+		const item = items[0];
+		const paymentLink = item && CONFIG.paymentLinks[item.id];
 		if (paymentLink) {
 			// Send you an order email via Formspree before redirecting
-			try { await sendOrderNotification(cart); } catch (e) { console.warn('Notify failed (non-blocking):', e); }
-			sessionStorage.setItem('pendingOrder', JSON.stringify(cart));
+			try { await sendOrderNotification(items); } catch (e) { console.warn('Notify failed (non-blocking):', e); }
+			sessionStorage.setItem('pendingOrder', JSON.stringify(items));
 			// Redirect to Stripe Payment Link (collects shipping/contact configured in Stripe)
 			window.location.href = paymentLink;
 			return;
@@ -373,8 +388,8 @@ async function handleCheckout() {
 		return;
 	}
 
-	const orderDetails = cart.map((item, i) => 
-		`${i + 1}. ${item.name} - Flavor: ${item.flavor} - $${(item.price / 100).toFixed(2)}`
+	const orderDetails = (Array.isArray(items) ? items : []).map((item, i) => 
+		`${i + 1}. ${(item && item.name) || 'Unknown'} - Flavor: ${(item && item.flavor) || 'N/A'} - $${((item && item.price) || 0) / 100).toFixed(2)}`
 	).join('\n');
 	
 	const shippingCost = subtotalDollars >= 60 ? 'FREE' : '$8.00';
@@ -386,10 +401,10 @@ async function handleCheckout() {
 	
 	const emailSubject = encodeURIComponent(`New Order - $${grandTotal.toFixed(2)}`);
 	
-	const message = `📦 Your Order (${cart.length} items):\n\n${cart.map((item, i) => `${i + 1}. ${item.name} (${item.flavor})`).join('\n')}\n\nSubtotal: $${subtotalDollars.toFixed(2)}\nShipping: ${shippingCost}\nTotal: $${grandTotal.toFixed(2)}\n\nWe’ll email you one secure Stripe link to pay for all items together.\nClick OK to send your order.`;
+	const message = `📦 Your Order (${items.length} items):\n\n${(Array.isArray(items) ? items : []).map((item, i) => `${i + 1}. ${(item && item.name) || 'Unknown'} (${(item && item.flavor) || 'N/A'})`).join('\n')}\n\nSubtotal: $${subtotalDollars.toFixed(2)}\nShipping: ${shippingCost}\nTotal: $${grandTotal.toFixed(2)}\n\nWe'll email you one secure Stripe link to pay for all items together.\nClick OK to send your order.`;
 	
 	// Send you an order email via Formspree so you can reply with a combined link
-	try { await sendOrderNotification(cart, customerEmail); } catch (e) { console.warn('Notify failed (non-blocking):', e); }
+	try { await sendOrderNotification(items, customerEmail); } catch (e) { console.warn('Notify failed (non-blocking):', e); }
 	alert(message + "\n\nThanks! We\'ll email your payment link shortly.");
 	
 	// Clear cart after sending order
@@ -430,15 +445,18 @@ function checkForSuccessfulCheckout() {
 
 // Send order notification to Formspree
 async function sendOrderNotification(orderItems, customerEmail) {
-	const subtotalCents = orderItems.reduce((sum, item) => sum + item.price, 0);
+	// Defensive: ensure orderItems is an array
+	const items = Array.isArray(orderItems) ? orderItems : [];
+	
+	const subtotalCents = items.reduce((sum, item) => sum + ((item && item.price) || 0), 0);
 	const subtotalDollars = (subtotalCents / 100).toFixed(2);
 	const freeShipping = subtotalCents >= 6000; // $60 threshold
 	const shippingDollars = freeShipping ? 'FREE' : '$8.00';
 	const totalDollars = ((subtotalCents + (freeShipping ? 0 : 800)) / 100).toFixed(2);
 
-	// Format order details for email
-	const orderDetails = orderItems.map((item, index) => 
-		`${index + 1}. ${item.name} - Flavor: ${item.flavor} - $${(item.price / 100).toFixed(2)}`
+	// Format order details for email - safe map
+	const orderDetails = (Array.isArray(items) ? items : []).map((item, index) => 
+		`${index + 1}. ${(item && item.name) || 'Unknown'} - Flavor: ${(item && item.flavor) || 'N/A'} - $${((item && item.price) || 0) / 100).toFixed(2)}`
 	).join('\n');
 
 	const emailBody = `

@@ -346,64 +346,68 @@
     </p>
 </footer>
 
-<script>
-    // Stripe configuration (public key for client-side use)
+<script type="text/javascript">
+// Initialize checkout form
+(function() {
     const STRIPE_PUBLIC_KEY = 'pk_live_51SNIwWAKipJWOAbPpTyitJZ0bjUS8DtFYMDOwWW7vfmUpXqaP4C5U9rq4cGhG6iragLQ0CrKlQgo5az178HPRg4I00y6YwznJ8';
-    const stripe = Stripe(STRIPE_PUBLIC_KEY);
-
-    const form = document.getElementById('payment-form');
-    const submitBtn = document.getElementById('submit-btn');
-    const errorDiv = document.getElementById('error-message');
-    const successDiv = document.getElementById('success-message');
-    const downloadSection = document.getElementById('download-section');
-    const downloadBtn = document.getElementById('download-btn');
-
-    // Handle form submission
-    form.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Processing...';
-        errorDiv.style.display = 'none';
-
-        try {
-            // Call worker to create Checkout Session
-            const response = await fetch('https://elizabeths-checkout.bethsbakedgoodss.workers.dev', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    priceId: 'price_1QLOqJAKipJWOAbPiR6P6bS7' // Outside Bakery Coloring Page - $1.00
-                })
-            });
-
-            const data = await response.json();
-
-            if (!response.ok || data.error) {
-                throw new Error(data.error || 'Failed to create checkout session');
-            }
-
-            if (!data.url) {
-                throw new Error('No checkout URL received from server');
-            }
-
-            // Redirect to Stripe Checkout
-            window.location.href = data.url;
-
-        } catch (error) {
-            console.error('Checkout error:', error);
-            errorDiv.style.display = 'block';
-            errorDiv.textContent = 'Error: ' + error.message;
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Buy Now - $1.00';
+    const WORKER_ENDPOINT = 'https://elizabeths-checkout.bethsbakedgoodss.workers.dev';
+    const PRICE_ID = 'price_1QLOqJAKipJWOAbPiR6P6bS7';
+    
+    function initCheckout() {
+        const form = document.getElementById('payment-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const errorDiv = document.getElementById('error-message');
+        
+        if (!form || !submitBtn || !errorDiv) {
+            console.error('Missing required DOM elements');
+            return;
         }
-    });
-
-    // Download handler
-    downloadBtn.addEventListener('click', (e) => {
-        // This would normally download from a secure server endpoint
-        // For now, the actual download is handled server-side after payment verification
-        e.preventDefault();
-        alert('Your download link is being prepared. Check your email for the download link if it does not start automatically.');
-    });
+        
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            await handleSubmit();
+        });
+        
+        async function handleSubmit() {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing...';
+            errorDiv.style.display = 'none';
+            errorDiv.textContent = '';
+            
+            try {
+                const body = JSON.stringify({ priceId: PRICE_ID });
+                console.log('Sending:', body);
+                
+                const res = await fetch(WORKER_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: body
+                });
+                
+                const data = await res.json();
+                
+                if (!res.ok || !data.url) {
+                    throw new Error(data.error || 'Failed to create checkout');
+                }
+                
+                window.location.href = data.url;
+            } catch (err) {
+                console.error('Error:', err);
+                errorDiv.style.display = 'block';
+                errorDiv.textContent = 'Error: ' + (err.message || 'Unknown error');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Buy Now - $1.00';
+            }
+        }
+    }
+    
+    // Wait for DOM
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initCheckout);
+    } else {
+        initCheckout();
+    }
+})();
 </script>
 
 <div id="footer-placeholder"></div>
