@@ -34,15 +34,15 @@ const CONFIG = {
 	},
 	products: {
 		// Small Cookies
-		"cookies-4": { name: "Small Cookies Pack of 4", price: 800, flavor: true },
-		"cookies-6": { name: "Small Cookies Pack of 6", price: 1200, flavor: true },
-		"cookies-8": { name: "Small Cookies Pack of 8", price: 1800, flavor: true },
-		"cookies-12": { name: "Small Cookies Pack of 12", price: 2400, flavor: true },
+		"cookies-4": { name: "Small Cookies Pack of 4", price: 1200, flavor: true },
+		"cookies-6": { name: "Small Cookies Pack of 6", price: 1800, flavor: true },
+		"cookies-8": { name: "Small Cookies Pack of 8", price: 2400, flavor: true },
+		"cookies-12": { name: "Small Cookies Pack of 12", price: 3600, flavor: true },
 		// Large Cookies
-		"large-cookies-4": { name: "Large Cookies Pack of 4", price: 1600, flavor: true },
-		"large-cookies-6": { name: "Large Cookies Pack of 6", price: 2400, flavor: true },
-		"large-cookies-8": { name: "Large Cookies Pack of 8", price: 3200, flavor: true },
-		"large-cookies-12": { name: "Large Cookies Pack of 12", price: 4800, flavor: true },
+		"large-cookies-4": { name: "Large Cookies Pack of 4", price: 2000, flavor: true },
+		"large-cookies-6": { name: "Large Cookies Pack of 6", price: 3000, flavor: true },
+		"large-cookies-8": { name: "Large Cookies Pack of 8", price: 4000, flavor: true },
+		"large-cookies-12": { name: "Large Cookies Pack of 12", price: 6000, flavor: true },
 		// Brownies (no flavor selection - classic only)
 		"brownies-4": { name: "Brownies 4 count", price: 1600, flavor: false },
 		"brownies-6": { name: "Brownies 6 count", price: 2400, flavor: false },
@@ -54,23 +54,24 @@ const CONFIG = {
 		"gourmet-brownies-8": { name: "Gourmet Brownies 8 count", price: 6400, flavor: true },
 		"gourmet-brownies-12": { name: "Gourmet Brownies 12 count", price: 9600, flavor: true },
 		// Cupcakes
-		"cupcake-single": { name: "Cupcake", price: 400, flavor: true },
-		"cupcake-dozen": { name: "Cupcakes (dozen)", price: 4000, flavor: true },
+		"cupcake-6": { name: "Cupcakes (6 count)", price: 2400, flavor: true },
+		"cupcake-12": { name: "Cupcakes (12 count)", price: 4800, flavor: true },
+		"cupcake-24": { name: "Cupcakes (24 count)", price: 9600, flavor: true },
 		// Cereal Bars
-		"cerealbar-ricekrispies": { name: "Rice Krispies Cereal Bar", price: 300, flavor: false },
-		"cerealbar-fruitypebbles": { name: "Fruity Pebbles Cereal Bar", price: 300, flavor: false },
-		"cerealbar-reesespuffs": { name: "Reese's Puffs Cereal Bar", price: 300, flavor: false },
-		// Pretzels (no flavor selection)
+		"cerealbar-ricekrispies": { name: "Rice Krispies Cereal Bar", price: 3600, flavor: false },
+		"cerealbar-fruitypebbles": { name: "Fruity Pebbles Cereal Bar", price: 3600, flavor: false },
+		"cerealbar-reesespuffs": { name: "Reese's Puffs Cereal Bar", price: 3600, flavor: false },
+		// Pretzels
+		"pretzel-rod": { name: "Chocolate Pretzel Rod", price: 200, flavor: false },
 		"pretzel-large-3": { name: "Large Pretzel Set (3)", price: 300, flavor: false },
-		// Cotton Candy
-		"cottoncandy-large": { name: "Large Cotton Candy", price: 800, flavor: true },
-		"cottoncandy-small": { name: "Small Cotton Candy", price: 400, flavor: true },
 		// Popcorn
-		"popcorn-gourmet": { name: "Gourmet Popcorn", price: 800, flavor: true },
+		"popcorn-gourmet": { name: "Gourmet Popcorn (10 oz)", price: 1500, flavor: true },
 		// Cookie Cakes
-		"cookiecake-small": { name: "Small Cookie Cake (6\")", price: 2500, flavor: true },
-		"cookiecake-medium": { name: "Medium Cookie Cake (8\")", price: 3500, flavor: true },
-		"cookiecake-large": { name: "Large Cookie Cake (12\")", price: 5000, flavor: true }
+		"cookiecake-small": { name: "Small Cookie Cake (6\")", price: 3000, flavor: true },
+		"cookiecake-medium": { name: "Medium Cookie Cake (8\")", price: 4000, flavor: true },
+		"cookiecake-large": { name: "Large Cookie Cake (12\")", price: 5500, flavor: true },
+		// Gift Basket
+		"gift-basket": { name: "Holiday Gift Basket", price: 5000, flavor: false }
 	}
 };
 
@@ -191,7 +192,7 @@ function showFlavorModal(productId) {
 	let flavors = [];
 	if (productId.includes("cookies") || productId.includes("cookie")) {
 		flavors = FLAVOR_OPTIONS.cookies;
-	} else if (productId.includes("gourmet-brownie")) {
+	} else if (productId.includes("gourmet-brownies")) {
 		// Only gourmet brownies get flavor selection
 		flavors = FLAVOR_OPTIONS.brownies;
 	} else if (productId.includes("cupcake")) {

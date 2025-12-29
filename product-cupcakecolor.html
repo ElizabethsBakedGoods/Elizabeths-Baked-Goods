@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Outside Bakery Coloring Page - Elizabeth's Baked Goods</title>
-    <meta name="description" content="Download the Outside Bakery Coloring Page - a fun digital design for all ages. Instant download, no physical product shipped.">
+    <title>Cupcake Coloring Page - Elizabeth's Baked Goods</title>
+    <meta name="description" content="Download the Cupcake Coloring Page - a fun digital design for all ages. Instant download, no physical product shipped.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/style.css">
     <script src="https://js.stripe.com/v3/"></script>
@@ -160,86 +160,6 @@
             margin-right: 8px;
         }
 
-        .stripe-element-container {
-            margin: 20px 0;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            background: white;
-        }
-
-        .form-group {
-            margin: 15px 0;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #4d2c2a;
-            font-weight: bold;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-            font-family: inherit;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: #d93535;
-            box-shadow: 0 0 0 3px rgba(217, 53, 53, 0.1);
-        }
-
-        .success-message {
-            display: none;
-            background: #d4edda;
-            color: #155724;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            border: 1px solid #c3e6cb;
-        }
-
-        .error-message {
-            display: none;
-            background: #f8d7da;
-            color: #721c24;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            border: 1px solid #f5c6cb;
-        }
-
-        .download-link {
-            display: none;
-            background: #c8e6c9;
-            color: #2e7d32;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .download-link a {
-            display: inline-block;
-            background: #27ae60;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 10px;
-            transition: background 0.3s ease;
-        }
-
-        .download-link a:hover {
-            background: #229954;
-        }
-
         @media (max-width: 768px) {
             .product-container {
                 flex-direction: column;
@@ -283,7 +203,7 @@
     <div class="product-container">
         <!-- Product Image -->
         <div class="product-image">
-            <img src="/images/outsidebakery.png" alt="Outside Bakery Coloring Page">
+            <img src="/images/cupcakecolor.png" alt="Cupcake Coloring Page">
             <p style="color: #999; font-size: 0.9rem; margin-top: 10px;">Click to download after purchase</p>
         </div>
 
@@ -293,12 +213,12 @@
                 <i class="fas fa-download"></i> DIGITAL DOWNLOAD
             </span>
 
-            <h1 class="product-title">Outside Bakery Coloring Page</h1>
+            <h1 class="product-title">Cupcake Coloring Page</h1>
 
             <div class="product-price">$1.50</div>
 
             <p class="product-description">
-                A charming coloring page featuring an outdoor bakery scene. Perfect for relaxation, creativity, and fun for all ages. Download instantly and start coloring!
+                A delightful coloring page featuring beautifully designed cupcakes in various styles. Perfect for relaxation, creativity, and fun for all ages. Download instantly and start coloring!
             </p>
 
             <!-- Features -->
@@ -328,9 +248,6 @@
                 </div>
             </form>
 
-            <!-- Error Message -->
-            <div class="error-message" id="error-message"></div>
-
         </div>
     </div>
 
@@ -348,59 +265,29 @@
 
 <script type="text/javascript">
 // Stripe Payment Link Integration for Digital Products
-// ======================================================
-// This page uses Stripe Payment Links for secure payment processing
-// 
-// Payment Flow:
-// 1. Customer clicks "Buy Now" button
-// 2. Redirected to Stripe Payment Link checkout
-// 3. After payment, customer is redirected to /digital-success.html
-// 4. Download page displays the digital product file
-// 5. Customer receives Stripe receipt email with download reference
-//
-// Configuration:
-// - PAYMENT_LINK: Must match the Stripe Payment Link URL
-// - Success URL must be configured in Stripe Dashboard:
-//   https://buy.stripe.com/[YOUR-LINK-ID]
-//   Set "After payment" → "Success URL" to:
-//   https://your-domain.com/digital-success.html?product_id=outside-bakery
-//
-// No custom checkout form is needed - all payment collection 
-// is handled by Stripe's Payment Link
-
 (function() {
-    // Stripe Payment Link for the Outside Bakery Coloring Page
-    // This link is configured in the Stripe Dashboard with:
-    // - Success URL: /success.html?product_id=outside-bakery
-    // - Email collection: Enabled
-    // - Product: Outside Bakery Coloring Page ($1.50)
-    const BASE_PAYMENT_LINK = 'https://buy.stripe.com/eVq3cubf3cPt5bk5zL1VK0w';
-    const PAYMENT_LINK = BASE_PAYMENT_LINK + '?success_url=' + encodeURIComponent(window.location.origin + '/success.html?product_id=outside-bakery') + '&cancel_url=' + encodeURIComponent(window.location.origin + '/designs.html');
+    // Stripe Payment Link for Cupcake Coloring Page
+    // Success URL configured to: /success.html?product_id=cupcake
+    const BASE_PAYMENT_LINK = 'https://buy.stripe.com/8x26oGfvj4iX8nwd2d1VK0B';
+    const PAYMENT_LINK = BASE_PAYMENT_LINK + '?success_url=' + encodeURIComponent(window.location.origin + '/success.html?product_id=cupcake') + '&cancel_url=' + encodeURIComponent(window.location.origin + '/designs.html');
     
     function initCheckout() {
         const form = document.getElementById('payment-form');
         const submitBtn = document.getElementById('submit-btn');
-        const errorDiv = document.getElementById('error-message');
         
-        if (!form || !submitBtn || !errorDiv) {
+        if (!form || !submitBtn) {
             console.error('Missing required DOM elements for checkout');
             return;
         }
         
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // Disable button and show loading state
             submitBtn.disabled = true;
             submitBtn.textContent = 'Redirecting to checkout...';
-            
-            // Redirect to Stripe Payment Link
-            // No data is collected here - Stripe handles everything
             window.location.href = PAYMENT_LINK;
         });
     }
     
-    // Initialize checkout when DOM is ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initCheckout);
     } else {

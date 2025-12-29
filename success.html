@@ -1,212 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Successful - Elizabeth's Baked Goods</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/style.css">
-    <style>
-        .success-container {
-            max-width: 600px;
-            margin: 80px auto;
-            padding: 0 20px;
-            text-align: center;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Download your digital purchase from Elizabeth's Baked Goods. Your file is ready for instant download.">
+  <title>Thank You for Your Purchase - Elizabeth's Baked Goods</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/style.css">
+  
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9289301430903450"
+    crossorigin="anonymous"></script>
+  
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      padding: 0;
+    }
 
-        .success-box {
-            background: #f1f8f6;
-            border: 2px solid #27ae60;
-            border-radius: 8px;
-            padding: 40px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
+    .success-container {
+      max-width: 700px;
+      margin: 60px auto;
+      padding: 0 20px;
+      flex: 1;
+      text-align: center;
+    }
 
-        .success-icon {
-            font-size: 4rem;
-            color: #27ae60;
-            margin-bottom: 20px;
-        }
+    .success-box {
+      background: white;
+      border-radius: 12px;
+      padding: 50px 40px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    }
 
-        .success-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: #2e7d32;
-            margin: 20px 0;
-        }
+    .success-icon {
+      font-size: 4rem;
+      color: #27ae60;
+      margin-bottom: 20px;
+    }
 
-        .success-message {
-            font-size: 1.1rem;
-            color: #555;
-            line-height: 1.8;
-            margin: 20px 0;
-        }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: #4d2c2a;
+      margin: 20px 0;
+    }
 
-        .button-group {
-            margin-top: 30px;
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+    .success-message {
+      font-size: 1.1rem;
+      color: #666;
+      line-height: 1.8;
+      margin: 20px 0;
+    }
 
-        .button-group a {
-            display: inline-block;
-            padding: 12px 24px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background 0.3s ease;
-        }
+    .download-link {
+      display: inline-block;
+      background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin: 25px 0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
 
-        .btn-primary {
-            background: #27ae60;
-            color: white;
-        }
+    .download-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(39, 174, 96, 0.3);
+    }
 
-        .btn-primary:hover {
-            background: #229954;
-        }
+    .help-text {
+      color: #999;
+      font-size: 0.95rem;
+      margin-top: 20px;
+      padding: 15px;
+      background: #f9f9f9;
+      border-radius: 6px;
+    }
 
-        .btn-secondary {
-            background: #d93535;
-            color: white;
-        }
+    .back-button {
+      display: inline-block;
+      margin-top: 20px;
+      color: #d93535;
+      text-decoration: none;
+      font-weight: 600;
+    }
 
-        .btn-secondary:hover {
-            background: #c32929;
-        }
+    .back-button:hover {
+      text-decoration: underline;
+    }
 
-        .confirmation-details {
-            background: white;
-            border-radius: 4px;
-            padding: 20px;
-            margin: 20px 0;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
+    .product-details {
+      background: #f5f5f5;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      text-align: left;
+    }
 
-        .detail-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
+    .product-details h3 {
+      color: #4d2c2a;
+      margin: 0 0 10px 0;
+    }
 
-        .detail-row:last-child {
-            border-bottom: none;
-        }
+    .product-details p {
+      color: #666;
+      margin: 5px 0;
+      font-size: 0.95rem;
+    }
 
-        .detail-label {
-            color: #999;
-            font-weight: bold;
-        }
+    footer {
+      background: #333;
+      color: white;
+      padding: 30px;
+      text-align: center;
+      margin-top: 60px;
+    }
 
-        .detail-value {
-            color: #333;
-        }
-    </style>
+    footer a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .success-box {
+        padding: 30px 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .success-icon {
+        font-size: 3rem;
+      }
+    }
+  </style>
 </head>
 <body>
+  <main class="success-container">
+    <div class="success-box">
+      <div class="success-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      
+      <h1>Thank You for Your Purchase!</h1>
+      
+      <p class="success-message">
+        ✓ Your payment has been received successfully. Your digital download is ready to use immediately!
+      </p>
 
-<header>
-  <nav class="navbar">
-    <a href="/index.html">Home</a>
-    <a href="/about.html">About</a>
-    <a href="/blog.html">Blogs</a>
-    <a href="/recipes.html">Recipes</a>
-    <a href="/order.html">Order</a>
-    <a href="/local-ordering.html">Local Ordering</a>
-    <a href="/designs.html">Designs</a>
-    <a href="/contact.html">Contact</a>
-    <a href="/policies.html">Policies</a>
-  </nav>
-</header>
+      <div class="product-details">
+        <h3>Your Download</h3>
+        <p><strong>Order Status:</strong> Confirmed</p>
+        <p><strong>File Type:</strong> Instant Digital Download (PNG)</p>
+        <p><strong>License:</strong> Personal Use</p>
+      </div>
 
-<main style="padding-top: 20px; padding-bottom: 100px;">
-    <div class="success-container">
-        <div class="success-box">
-            <div class="success-icon">
-                <i class="fas fa-check-circle"></i>
-            </div>
+      <button class="download-link" onclick="downloadFile()">
+        <i class="fas fa-download"></i> Click Here to Download Your File
+      </button>
 
-            <h1 class="success-title">Payment Successful!</h1>
+      <div class="help-text">
+        <p><strong>Download Not Starting?</strong></p>
+        <p>If your download doesn't start automatically, right-click the button above and select "Save link as..."</p>
+        <p>You can also bookmark this page and return to download anytime.</p>
+      </div>
 
-            <p class="success-message">
-                Thank you for your purchase! Your digital download is ready.
-            </p>
+      <p class="success-message">
+        A confirmation email has been sent to your email address with your receipt and download link.
+      </p>
 
-            <div class="confirmation-details">
-                <div class="detail-row">
-                    <span class="detail-label">Order Status:</span>
-                    <span class="detail-value">✓ Confirmed</span>
-                </div>
-                <div class="detail-row">
-                    <span class="detail-label">Product:</span>
-                    <span class="detail-value">Outside Bakery Coloring Page</span>
-                </div>
-                <div class="detail-row">
-                    <span class="detail-label">Amount Paid:</span>
-                    <span class="detail-value">$1.00</span>
-                </div>
-                <div class="detail-row">
-                    <span class="detail-label">Email:</span>
-                    <span class="detail-value">Check your email for download details</span>
-                </div>
-            </div>
-
-            <p class="success-message">
-                <strong>📧 Check your email</strong> for your download link. The file should arrive within a few minutes.
-            </p>
-
-            <div class="button-group">
-                <a href="/designs.html" class="btn-primary">
-                    <i class="fas fa-shopping-bag"></i> Back to Designs
-                </a>
-                <a href="/index.html" class="btn-secondary">
-                    <i class="fas fa-home"></i> Return Home
-                </a>
-            </div>
-
-            <p style="color: #999; font-size: 0.9rem; margin-top: 30px;">
-                If you don't see your download email, please check your spam folder or <a href="/contact.html" style="color: #d93535;">contact us</a>.
-            </p>
-        </div>
+      <a href="/designs.html" class="back-button">
+        ← Back to Designs
+      </a>
     </div>
-</main>
 
-<!-- FOOTER -->
-<footer style="background:#333; color:white; padding:30px; text-align:center;">
-    <p>© 2025 Elizabeth's Baked Goods – Rosenberg, Texas</p>
-    <p>
-        <a href="/contact.html" style="color: white; text-decoration: none;">Contact</a> | 
-        <a href="/policies.html" style="color: white; text-decoration: none;">Policies</a> | 
-        <a href="/about.html" style="color: white; text-decoration: none;">About</a>
-    </p>
-</footer>
+    <!-- Google AdSense Ad Space -->
+    <div style="margin: 40px 0; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+      <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-9289301430903450"
+        data-ad-slot="1234567890"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  </main>
 
-<div id="footer-placeholder"></div>
+  <footer>
+    <p>&copy; 2025 Elizabeth's Baked Goods – Rosenberg, Texas</p>
+    <a href="/contact.html">Contact</a> |
+    <a href="/policies.html">Policies</a> |
+    <a href="/about.html">About</a> |
+    <a href="/index.html">Home</a>
+  </footer>
 
-<script>
-  // Get session ID from URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const sessionId = urlParams.get('session_id');
+  <script>
+    // Function to determine which file to download based on product ID in URL
+    function downloadFile() {
+      // Get product ID from URL parameters if available
+      const params = new URLSearchParams(window.location.search);
+      const productId = params.get('product_id') || 'outside-bakery';
+      
+      // Map product IDs to download files in the downloads folder
+      const downloadMap = {
+        'outside-bakery': '/downloads/outsidebakery.png',
+        'cupcake': '/downloads/cupcakecolor.png',
+        'gingerbread': '/downloads/gingerbreadcookiecolor.png',
+        'inside-bakery-girl': '/downloads/insidebakerygirl.png',
+        'inside-bakery-man': '/downloads/insidebakeryman.png',
+        'cookie': '/downloads/cookiecolor.png',
+        'treats': '/downloads/treatscolor.png'
+      };
+      
+      const downloadUrl = downloadMap[productId] || downloadMap['outside-bakery'];
+      
+      // Create temporary link and trigger download
+      const link = document.createElement('a');
+      link.href = downloadUrl;
+      link.download = true;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
 
-  // Log for debugging
-  if (sessionId) {
-    console.log('Checkout Session ID:', sessionId);
-  } else {
-    console.log('No session ID in URL - user may have returned manually');
-  }
-
-  // Load footer
-  fetch('/footer.html')
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('footer-placeholder').innerHTML = data;
-    })
-    .catch(error => console.log('Footer load error:', error));
-</script>
-
+    // Auto-trigger download when page loads
+    window.addEventListener('load', function() {
+      // Small delay to ensure page is fully loaded
+      setTimeout(downloadFile, 500);
+    });
+  </script>
 </body>
 </html>
