@@ -294,18 +294,20 @@
                 <li>Delivery: Instant digital download after purchase</li>
             </ul>
 
-            <!-- Download Files Section -->
-            <div class="section-title">Bundle Contents - All 7 Files</div>
-            <div class="whats-included">
-                <ul>
-                    <li><a href="/downloads/cookiecolor.png" download style="color: #d93535; text-decoration: underline;">📥 Cookie Coloring Page</a></li>
-                    <li><a href="/downloads/cupcakecolor.png" download style="color: #d93535; text-decoration: underline;">📥 Cupcake Coloring Page</a></li>
-                    <li><a href="/downloads/gingerbreadcookiecolor.png" download style="color: #d93535; text-decoration: underline;">📥 Gingerbread Cookie Coloring Page</a></li>
-                    <li><a href="/downloads/insidebakerygirl.png" download style="color: #d93535; text-decoration: underline;">📥 Inside Bakery Girl Coloring Page</a></li>
-                    <li><a href="/downloads/insidebakeryman.png" download style="color: #d93535; text-decoration: underline;">📥 Inside Bakery Man Coloring Page</a></li>
-                    <li><a href="/downloads/outsidebakery.png" download style="color: #d93535; text-decoration: underline;">📥 Outside Bakery Coloring Page</a></li>
-                    <li><a href="/downloads/treatscolor.png" download style="color: #d93535; text-decoration: underline;">📥 Treats Coloring Page</a></li>
-                </ul>
+            <!-- Download Files Section - Only show after purchase -->
+            <div id="download-section" style="display: none;">
+                <div class="section-title">Bundle Contents - All 7 Files</div>
+                <div class="whats-included">
+                    <ul>
+                        <li><a href="/downloads/cookiecolor.png" download style="color: #d93535; text-decoration: underline;">📥 Cookie Coloring Page</a></li>
+                        <li><a href="/downloads/cupcakecolor.png" download style="color: #d93535; text-decoration: underline;">📥 Cupcake Coloring Page</a></li>
+                        <li><a href="/downloads/gingerbreadcookiecolor.png" download style="color: #d93535; text-decoration: underline;">📥 Gingerbread Cookie Coloring Page</a></li>
+                        <li><a href="/downloads/insidebakerygirl.png" download style="color: #d93535; text-decoration: underline;">📥 Inside Bakery Girl Coloring Page</a></li>
+                        <li><a href="/downloads/insidebakeryman.png" download style="color: #d93535; text-decoration: underline;">📥 Inside Bakery Man Coloring Page</a></li>
+                        <li><a href="/downloads/outsidebakery.png" download style="color: #d93535; text-decoration: underline;">📥 Outside Bakery Coloring Page</a></li>
+                        <li><a href="/downloads/treatscolor.png" download style="color: #d93535; text-decoration: underline;">📥 Treats Coloring Page</a></li>
+                    </ul>
+                </div>
             </div>
 
             <!-- Digital Download Notice -->
@@ -375,10 +377,26 @@
 <script type="text/javascript">
 // Stripe Payment Link Integration for Digital Products
 (function() {
+    // Check if this is a successful purchase return
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('product_id');
+    
+    if (productId === '7-page-bakery-bundle') {
+        // Show download section and hide purchase form
+        document.getElementById('download-section').style.display = 'block';
+        document.getElementById('payment-form').style.display = 'none';
+        
+        // Add success message
+        const successMsg = document.createElement('div');
+        successMsg.style.cssText = 'background: #e8f5e9; border-left: 4px solid #27ae60; padding: 15px; border-radius: 4px; margin: 20px 0; color: #1b5e20;';
+        successMsg.innerHTML = '<strong>✓ Purchase Successful!</strong><p style="margin: 8px 0 0 0;">All 7 coloring pages are ready to download below. Check your email for download links as well.</p>';
+        document.getElementById('payment-form').parentNode.insertBefore(successMsg, document.getElementById('payment-form'));
+    }
+    
     // Stripe Payment Link for 7 Page Bakery Coloring Bundle
-    // Success URL configured to: /digital-success.html?product_id=7-page-bakery-bundle
+    // Replace STRIPE_PAYMENT_LINK_HERE with your actual Stripe payment link
     const BASE_PAYMENT_LINK = 'https://buy.stripe.com/7sYbJ0cj7dTxbzIbY91VK0D';
-    const PAYMENT_LINK = BASE_PAYMENT_LINK + '?success_url=' + encodeURIComponent(window.location.origin + '/digital-success.html?product_id=7-page-bakery-bundle') + '&cancel_url=' + encodeURIComponent(window.location.origin + '/designs.html');
+    const PAYMENT_LINK = BASE_PAYMENT_LINK + '?success_url=' + encodeURIComponent(window.location.origin + '/product-7-page-bakery-bundle.html?product_id=7-page-bakery-bundle') + '&cancel_url=' + encodeURIComponent(window.location.origin + '/designs.html');
     
     function initCheckout() {
         const form = document.getElementById('payment-form');
