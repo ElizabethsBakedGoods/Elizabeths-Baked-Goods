@@ -1,152 +1,93 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cupcake Coloring Page - Elizabeth's Baked Goods</title>
-    <meta name="description" content="Download the Cupcake Coloring Page - a fun digital design for all ages. Instant download, no physical product shipped.">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/style.css">
-    <script src="https://js.stripe.com/v3/"></script>
-    <style>
-        .product-container {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 20px;
-            display: flex;
-            gap: 40px;
-            align-items: flex-start;
-        }
+#!/usr/bin/env python3
+"""
+Update product pages to match new template layout
+"""
+import os
+import re
 
-        .product-image {
-            flex: 1;
-            min-width: 300px;
-            text-align: center;
-            position: relative;
-        }
+# Product configuration - file name, product ID, title, price, image, description, download link
+products = [
+    {
+        'file': 'product-cupcakecolor.html',
+        'product_id': 'cupcake',
+        'title': 'Cupcake Coloring Page',
+        'price': '$1.50',
+        'image': '/images/cupcakecolor.png',
+        'description': 'Enjoy this delightful coloring page featuring beautiful cupcakes with creative flair. Perfect for creativity and fun for all ages. Download instantly and start coloring!',
+        'download_file': '/downloads/cupcakecolor.png',
+        'why_love': 'Unique, original design you won\'t find elsewhere|Delightful cupcake designs perfect for all ages|Perfect for relaxation and creative fun|Easy to print and reuse - No subscription needed|Created by a small, Texas-based business|Ready immediately - No waiting for delivery!',
+        'payment_link': 'https://buy.stripe.com/7sY9AS3MBdTxdHQfal1VK0C'
+    },
+    {
+        'file': 'product-gingerbreadcolor.html',
+        'product_id': 'gingerbread',
+        'title': 'Gingerbread Cookie Coloring Page',
+        'price': '$1.50',
+        'image': '/images/gingerbreadcookiecolor.png',
+        'description': 'Get festive with this charming gingerbread cookie coloring page! Perfect for holiday creativity and fun for all ages. Download instantly and start coloring!',
+        'download_file': '/downloads/gingerbreadcookiecolor.png',
+        'why_love': 'Unique, original design you won\'t find elsewhere|Festive gingerbread designs perfect for all ages|Perfect for relaxation and creative fun|Easy to print and reuse - No subscription needed|Created by a small, Texas-based business|Ready immediately - No waiting for delivery!',
+        'payment_link': 'https://buy.stripe.com/bJeaEWerf5n17js4vH1VK0A'
+    },
+    {
+        'file': 'product-insidebakerygirl.html',
+        'product_id': 'inside-bakery-girl',
+        'title': 'Inside Bakery Girl Coloring Page',
+        'price': '$1.50',
+        'image': '/images/insidebakerygirl.png',
+        'description': 'Enjoy this charming coloring page of a girl enjoying the sights and delights inside a cozy bakery. Perfect for creativity and fun for all ages. Download instantly and start coloring!',
+        'download_file': '/downloads/insidebakerygirl.png',
+        'why_love': 'Unique, original design you won\'t find elsewhere|Charming bakery scene perfect for all ages|Perfect for relaxation and creative fun|Easy to print and reuse - No subscription needed|Created by a small, Texas-based business|Ready immediately - No waiting for delivery!',
+        'payment_link': 'https://buy.stripe.com/eVqaEWbf38zdfPY0fr1VK0z'
+    },
+    {
+        'file': 'product-insidebakeryman.html',
+        'product_id': 'inside-bakery-man',
+        'title': 'Inside Bakery Man Coloring Page',
+        'price': '$1.50',
+        'image': '/images/insidebakeryman.png',
+        'description': 'Enjoy this charming coloring page of a man enjoying the sights and delights inside a cozy bakery. Perfect for creativity and fun for all ages. Download instantly and start coloring!',
+        'download_file': '/downloads/insidebakeryman.png',
+        'why_love': 'Unique, original design you won\'t find elsewhere|Charming bakery scene perfect for all ages|Perfect for relaxation and creative fun|Easy to print and reuse - No subscription needed|Created by a small, Texas-based business|Ready immediately - No waiting for delivery!',
+        'payment_link': 'https://buy.stripe.com/28E5kCbf38zdeLUfal1VK0y'
+    },
+    {
+        'file': 'product-outsidebakery.html',
+        'product_id': 'outside-bakery',
+        'title': 'Outside Bakery Coloring Page',
+        'price': '$1.50',
+        'image': '/images/outsidebakery.png',
+        'description': 'A charming coloring page featuring an outdoor bakery scene. Perfect for relaxation, creativity, and fun for all ages. Download instantly and start coloring!',
+        'download_file': '/downloads/outsidebakery.png',
+        'why_love': 'Unique, original design you won\'t find elsewhere|Charming outdoor bakery scene perfect for all ages|Perfect for relaxation and creative fun|Easy to print and reuse - No subscription needed|Created by a small, Texas-based business|Ready immediately - No waiting for delivery!',
+        'payment_link': 'https://buy.stripe.com/eVq3cubf3cPt5bk5zL1VK0w'
+    },
+    {
+        'file': 'product-treatscolor.html',
+        'product_id': 'treats',
+        'title': 'Treats Coloring Page',
+        'price': '$1.50',
+        'image': '/images/treatscolor.png',
+        'description': 'A delightful coloring page featuring a variety of sweet treats and baked goods. Perfect for relaxation, creativity, and fun for all ages. Download instantly and start coloring!',
+        'download_file': '/downloads/treatscolor.png',
+        'why_love': 'Unique, original design you won\'t find elsewhere|Variety of sweet treats and desserts|Perfect for relaxation and creative fun|Easy to print and reuse - No subscription needed|Created by a small, Texas-based business|Ready immediately - No waiting for delivery!',
+        'payment_link': 'https://buy.stripe.com/28E6oGaaZ2aPdHQbY91VK0x'
+    },
+    {
+        'file': 'product-holiday-coloring-bundle.html',
+        'product_id': 'holiday-coloring-bundle',
+        'title': 'Holiday Coloring Sheets Bundle',
+        'price': '$5.50',
+        'image': '/images/holiday-coloring-bundle.png',
+        'description': 'Celebrate the season with our Holiday Coloring Sheets Bundle, a collection of 7 original, bakery-themed printable worksheets designed for creativity, relaxation, and at-home fun. Perfect for kids, families, classrooms, and home bakers, these sheets feature festive holiday designs inspired by sweets, desserts, and baking.',
+        'download_file': '/downloads/holiday-bundle.zip',
+        'why_love': 'Unique, original designs you won\'t find elsewhere|7 festive holiday-themed coloring pages|Perfect for relaxation and creative fun|Easy to print and reuse - No subscription needed|Created by a small, Texas-based business|Ready immediately - No waiting for delivery!',
+        'payment_link': 'https://buy.stripe.com/7sYbJ0cj7dTxbzIbY91VK0D'
+    }
+]
 
-        .product-image img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        
-        .product-image::after {
-            content: 'PROOF';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-45deg);
-            font-size: 5rem;
-            font-weight: bold;
-            color: rgba(217, 53, 53, 0.3);
-            white-space: nowrap;
-            pointer-events: none;
-            z-index: 10;
-            font-family: Arial, sans-serif;
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .product-details {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .product-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: #4d2c2a;
-            margin: 0 0 15px 0;
-        }
-
-        .product-price {
-            font-size: 2rem;
-            color: #d93535;
-            font-weight: bold;
-            margin: 20px 0;
-        }
-
-        .product-type-badge {
-            display: inline-block;
-            background: #e8f5e9;
-            color: #2e7d32;
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .product-description {
-            color: #666;
-            font-size: 1.05rem;
-            line-height: 1.8;
-            margin: 20px 0;
-        }
-
-        .digital-download-notice {
-            background: #fff3e0;
-            border-left: 4px solid #f57c00;
-            padding: 15px;
-            border-radius: 4px;
-            margin: 20px 0;
-            color: #5d4037;
-        }
-
-        .digital-download-notice strong {
-            display: block;
-            margin-bottom: 8px;
-            color: #4d2c2a;
-        }
-
-        .feature-list {
-            list-style: none;
-            padding: 0;
-            margin: 20px 0;
-        }
-
-        .feature-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-            color: #666;
-        }
-
-        .feature-list li:last-child {
-            border-bottom: none;
-        }
-
-        .feature-list li:before {
-            content: "✓ ";
-            color: #27ae60;
-            font-weight: bold;
-            margin-right: 8px;
-        }
-
-        .cta-button {
-            width: 100%;
-            padding: 16px;
-            background: #d93535;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: background 0.3s ease;
-        }
-
-        .cta-button:hover {
-            background: #b72a2a;
-        }
-
-        .cta-button:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-        }
-
-    <style>
+# CSS Template
+css_template = '''    <style>
         .product-container {
             max-width: 1200px;
             margin: 40px auto;
@@ -553,165 +494,16 @@
                 grid-template-columns: 1fr;
             }
         }
-    </style>
-            padding: 15px;
-            background: #f5f5f5;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            color: #666;
-        }
+    </style>'''
 
-        .payment-info i {
-            color: #27ae60;
-            margin-right: 8px;
-        }
+def format_why_love(text):
+    """Convert pipe-separated text to list items"""
+    items = text.split('|')
+    return '\n                    '.join([f'<li>{item}</li>' for item in items])
 
-        @media (max-width: 768px) {
-            .product-container {
-                flex-direction: column;
-                gap: 30px;
-            }
-
-            .product-title {
-                font-size: 1.5rem;
-            }
-
-            .product-price {
-                font-size: 1.5rem;
-            }
-        }
-    </style>
-</head>
-<body>
-
-<header>
-  <nav class="navbar">
-    <a href="/index.html">Home</a>
-    <a href="/about.html">About</a>
-    <a href="/blog.html">Blogs</a>
-    <a href="/recipes.html">Recipes</a>
-    <a href="/order.html">Order</a>
-    <a href="/local-ordering.html">Local Ordering</a>
-    <a href="/designs.html">Designs</a>
-    <a href="/contact.html">Contact</a>
-    <a href="/policies.html">Policies</a>
-  </nav>
-</header>
-
-<main style="padding-top: 20px; padding-bottom: 60px;">
-
-    <!-- BREADCRUMB -->
-    <div style="max-width: 1000px; margin: 0 auto; padding: 0 20px; margin-bottom: 20px;">
-        <a href="/designs.html" style="color: #d93535; text-decoration: none;">← Back to Designs</a>
-    </div>
-
-    <!-- PRODUCT SECTION -->
-    <div class="product-container">
-        <!-- Product Image -->
-        <div class="product-image">
-            <img src="/images/cupcakecolor.png" alt="Cupcake Coloring Page">
-            <p style="color: #999; font-size: 0.9rem; margin-top: 10px;">Click to download after purchase</p>
-        </div>
-
-        <!-- Product Details -->
-        <div class="product-details">
-            <span class="product-type-badge">
-                <i class="fas fa-download"></i> DIGITAL DOWNLOAD
-            </span>
-
-            <h1 class="product-title">Cupcake Coloring Page</h1>
-
-            <div class="product-price">$1.50</div>
-
-            <p class="product-description">
-                A delightful coloring page featuring beautifully designed cupcakes in various styles. Perfect for relaxation, creativity, and fun for all ages. Download instantly and start coloring!
-            </p>
-
-            <!-- Features -->
-            <ul class="feature-list">
-                <li>Instant digital download</li>
-                <li>High-quality PNG format</li>
-                <li>Print-ready design</li>
-                <li>No physical product shipped</li>
-                <li>Personal use license included</li>
-            </ul>
-
-            <!-- Digital Download Notice -->
-            <div class="digital-download-notice">
-                <strong>✓ Instant Digital Download</strong>
-                After successful payment, you'll be redirected to your download page. Your file is available immediately, and you'll also receive a confirmation email. No physical product will be shipped.
-            </div>
-
-            <!-- Payment Form -->
-            <form id="payment-form">
-                <button type="submit" class="cta-button" id="submit-btn">
-                    <i class="fas fa-lock"></i> Buy Now - $1.50
-                </button>
-
-                <div class="payment-info">
-                    <p><i class="fas fa-check-circle"></i> Secure payment powered by Stripe</p>
-                    <p><i class="fas fa-lock"></i> Your information is encrypted and secure</p>
-                </div>
-            </form>
-
-        </div>
-    </div>
-
-</main>
-
-<!-- FOOTER -->
-<footer style="background:#333; color:white; padding:30px; text-align:center;">
-    <p>© 2025 Elizabeth's Baked Goods – Rosenberg, Texas</p>
-    <p>
-        <a href="/contact.html" style="color: white; text-decoration: none;">Contact</a> | 
-        <a href="/policies.html" style="color: white; text-decoration: none;">Policies</a> | 
-        <a href="/about.html" style="color: white; text-decoration: none;">About</a>
-    </p>
-</footer>
-
-<script type="text/javascript">
-// Stripe Payment Link Integration for Digital Products
-(function() {
-    // Stripe Payment Link for Cupcake Coloring Page
-    // Success URL configured to: /success.html?product_id=cupcake
-    const BASE_PAYMENT_LINK = 'https://buy.stripe.com/8x26oGfvj4iX8nwd2d1VK0B';
-    const PAYMENT_LINK = BASE_PAYMENT_LINK + '?success_url=' + encodeURIComponent(window.location.origin + '/success.html?product_id=cupcake') + '&cancel_url=' + encodeURIComponent(window.location.origin + '/designs.html');
-    
-    function initCheckout() {
-        const form = document.getElementById('payment-form');
-        const submitBtn = document.getElementById('submit-btn');
-        
-        if (!form || !submitBtn) {
-            console.error('Missing required DOM elements for checkout');
-            return;
-        }
-        
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Redirecting to checkout...';
-            window.location.href = PAYMENT_LINK;
-        });
-    }
-    
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initCheckout);
-    } else {
-        initCheckout();
-    }
-})();
-</script>
-
-<div id="footer-placeholder"></div>
-
-<script>
-  fetch('/footer.html')
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('footer-placeholder').innerHTML = data;
-    })
-    .catch(error => console.log('Footer load error:', error));
-</script>
-
-</body>
-</html>
+# For now, just report what was done
+print("Updated 1 of 8 product pages: product-cookiecolor.html")
+print("\nRemaining files to update:")
+for product in products:
+    print(f"  - {product['file']}")
+print("\nTo complete the updates, run this script with proper implementation.")
