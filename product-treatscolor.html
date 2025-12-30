@@ -4,16 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Treats Coloring Page - Elizabeth's Baked Goods</title>
-    <meta name="description" content="Download the Treats Coloring Page - a fun digital design for all ages. Instant download, no physical product shipped.">
+    <meta name="description" content="Download Treats Coloring Page - A beautifully designed, printable coloring sheet perfect for all ages. Instant digital download.">
+    <meta name="keywords" content="treats coloring page, printable coloring sheets, kids coloring, dessert coloring, digital downloads">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/style.css">
     <script src="https://js.stripe.com/v3/"></script>
     <style>
-        .product-container {max-width: 1000px; margin: 40px auto; padding: 0 20px; display: flex; gap: 40px; align-items: flex-start;}
+        .product-container {max-width: 1200px; margin: 40px auto; padding: 0 20px; display: flex; gap: 40px; align-items: flex-start;}
+        .product-left-column {flex: 0 0 350px; display: flex; flex-direction: column; gap: 25px;}
         .product-image {flex: 1; min-width: 300px; text-align: center; position: relative;}
+        .info-box {background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 20px; border-top: 4px solid #d93535;}
+        .info-box h3 {font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 1.1rem; margin: 0 0 15px 0; padding-bottom: 10px; border-bottom: 2px solid #f0f0f0;}
+        .info-box ol, .info-box ul {list-style-position: inside; padding: 0; margin: 0; color: #666; line-height: 1.6; font-size: 0.95rem;}
+        .info-box li {padding: 8px 0; border-bottom: 1px solid #f5f5f5;}
+        .info-box li:last-child {border-bottom: none;}
+        .info-box li:before {content: "✓ "; color: #27ae60; font-weight: bold; margin-right: 6px;}
+        .sidebar {display: none;}
+        .sidebar-below {max-width: 1200px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: 280px 1fr 1fr; gap: 30px;}
+        .sidebar-section {background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 20px; border-top: 4px solid #d93535;}
+        .sidebar-section h3 {font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 1.2rem; margin: 0 0 15px 0; padding-bottom: 10px; border-bottom: 2px solid #f0f0f0;}
+        .sidebar-section ul {list-style: none; padding: 0; margin: 0;}
+        .sidebar-section li {padding: 10px 0; border-bottom: 1px solid #f5f5f5;}
+        .sidebar-section li:last-child {border-bottom: none;}
+        .sidebar-section a {color: #d93535; text-decoration: none; font-size: 0.95rem; line-height: 1.4; transition: color 0.3s ease;}
+        .sidebar-section a:hover {color: #b72a2a; text-decoration: underline;}
+        .how-to-order {background: #fff9f0; border-top: 4px solid #f57c00 !important;}
+        .how-to-order h3 {color: #5d4037;}
+        .how-to-order ol {list-style-position: inside; padding: 0; margin: 0; counter-reset: item;}
+        .how-to-order li {padding: 8px 0; border-bottom: 1px solid #f5e8d4; color: #666; font-size: 0.9rem; line-height: 1.5;}
+        .how-to-order li:last-child {border-bottom: none;}
         .product-image img {max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);}
         .product-image::after {content: 'PROOF'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg); font-size: 5rem; font-weight: bold; color: rgba(217, 53, 53, 0.3); white-space: nowrap; pointer-events: none; z-index: 10; font-family: Arial, sans-serif; text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);}
-        .product-details {flex: 1; min-width: 300px;}
+        .product-details {flex: 1; min-width: 350px;}
         .product-title {font-family: 'Playfair Display', serif; font-size: 2rem; color: #4d2c2a; margin: 0 0 15px 0;}
         .product-price {font-size: 2rem; color: #d93535; font-weight: bold; margin: 20px 0;}
         .product-type-badge {display: inline-block; background: #e8f5e9; color: #2e7d32; padding: 6px 12px; border-radius: 4px; font-size: 0.9rem; font-weight: bold; margin-bottom: 15px;}
@@ -29,11 +51,25 @@
         .cta-button:disabled {background: #ccc; cursor: not-allowed;}
         .payment-info {margin-top: 20px; padding: 15px; background: #f5f5f5; border-radius: 4px; font-size: 0.9rem; color: #666;}
         .payment-info i {color: #27ae60; margin-right: 8px;}
-        @media (max-width: 768px) {.product-container {flex-direction: column; gap: 30px;} .product-title {font-size: 1.5rem;} .product-price {font-size: 1.5rem;}}
+        .recipe-cards {max-width: 1200px; margin: 50px auto; padding: 0 20px;}
+        .recipe-cards h2 {font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 1.8rem; text-align: center; margin: 0 0 30px 0;}
+        .cards-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;}
+        .recipe-card {background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;}
+        .recipe-card:hover {transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.15);}
+        .recipe-card img {width: 100%; height: 150px; object-fit: cover; display: block;}
+        .recipe-card-content {padding: 15px; text-align: center;}
+        .recipe-card-content h3 {margin: 0 0 10px 0; color: #4d2c2a; font-size: 1rem; font-family: 'Playfair Display', serif;}
+        .recipe-card-content a {color: #d93535; text-decoration: none; font-weight: bold; font-size: 0.9rem; transition: color 0.3s ease;}
+        .recipe-card-content a:hover {color: #b72a2a; text-decoration: underline;}
+        .section-title {font-family: 'Playfair Display', serif; font-size: 1.3rem; color: #4d2c2a; margin-top: 30px; margin-bottom: 15px; border-bottom: 2px solid #e0e0e0; padding-bottom: 10px;}
+        .whats-included {background: #f9f9f9; padding: 20px; border-radius: 6px; margin: 20px 0;}
+        .whats-included ul {list-style: none; padding: 0; margin: 0;}
+        .whats-included li {padding: 8px 0; color: #666;}
+        .whats-included li:before {content: "📄 "; margin-right: 8px;}
+        @media (max-width: 768px) {.product-container {flex-direction: column; gap: 20px;} .product-left-column {flex: 1;} .product-image {flex: 1;} .product-title {font-size: 1.5rem;} .product-price {font-size: 1.5rem;} .sidebar-below {grid-template-columns: 1fr;}}
     </style>
 </head>
 <body>
-
 <header>
   <nav class="navbar">
     <a href="/index.html">Home</a>
@@ -47,49 +83,148 @@
     <a href="/policies.html">Policies</a>
   </nav>
 </header>
-
 <main style="padding-top: 20px; padding-bottom: 60px;">
     <div style="max-width: 1000px; margin: 0 auto; padding: 0 20px; margin-bottom: 20px;">
         <a href="/designs.html" style="color: #d93535; text-decoration: none;">← Back to Designs</a>
     </div>
-
     <div class="product-container">
-        <div class="product-image">
-            <img src="/images/treatscolor.png" alt="Treats Coloring Page">
-            <p style="color: #999; font-size: 0.9rem; margin-top: 10px;">Click to download after purchase</p>
+        <div class="product-left-column">
+            <div class="product-image">
+                <img src="/images/treatscolor.png" alt="Treats Coloring Page">
+                <p style="color: #999; font-size: 0.9rem; margin-top: 10px;">Click to download after purchase</p>
+            </div>
+            <div class="info-box">
+                <h3>How It Works</h3>
+                <ol>
+                    <li><strong>Purchase the coloring page</strong> - Complete your payment securely through Stripe</li>
+                    <li><strong>Download instantly</strong> - Immediately after purchase, access your file</li>
+                    <li><strong>Print at home or through a local print shop</strong> - No setup or special software required</li>
+                    <li><strong>Color, enjoy, and share the fun</strong> - Print as many times as you like for personal use</li>
+                </ol>
+            </div>
+            <div class="info-box">
+                <h3>Why You'll Love This Coloring Page</h3>
+                <ul>
+                    <li>Unique, original design you won't find elsewhere</li>
+                    <li>Affordable at just $1.50 per page</li>
+                    <li>A variety of sweet treats and baked goods</li>
+                    <li>Easy to print and reuse - No subscription or special software needed</li>
+                    <li>Created by a small, Texas-based business - Supporting local artisans</li>
+                    <li>Ready immediately - No waiting for delivery!</li>
+                </ul>
+            </div>
+            <div class="info-box">
+                <h3>Please Note</h3>
+                <ul>
+                    <li>This is a digital product. No physical items will be mailed.</li>
+                    <li>Colors may vary slightly depending on your printer and screen settings.</li>
+                    <li>For personal use only. Not for resale, redistribution, or commercial use.</li>
+                    <li>Print-ready PNG file format</li>
+                </ul>
+            </div>
         </div>
-
         <div class="product-details">
             <span class="product-type-badge"><i class="fas fa-download"></i> DIGITAL DOWNLOAD</span>
             <h1 class="product-title">Treats Coloring Page</h1>
             <div class="product-price">$1.50</div>
-            <p class="product-description">
-                A delightful coloring page featuring a variety of sweet treats and baked goods. Perfect for relaxation, creativity, and fun for all ages. Download instantly and start coloring!
-            </p>
-            <ul class="feature-list">
-                <li>Instant digital download</li>
-                <li>High-quality PNG format</li>
-                <li>Print-ready design</li>
-                <li>No physical product shipped</li>
-                <li>Personal use license included</li>
-            </ul>
-            <div class="digital-download-notice">
-                <strong>✓ Instant Digital Download</strong>
-                After successful payment, you'll be redirected to your download page. Your file is available immediately, and you'll also receive a confirmation email.
-            </div>
+            <p class="product-description">Get creative with our delightful Treats Coloring Page! This beautifully illustrated design features a variety of sweet treats and baked goods, perfect for all ages who love baking and sweets. Whether you're looking for a fun rainy day activity, a creative break, or a gift for a baking enthusiast, this coloring page delivers instant artistic joy.</p>
+            <p class="product-description">The page is carefully designed with clean line art that's perfect for crayons, colored pencils, or markers. Print as many times as you'd like for personal use and share the joy of creative coloring with your loved ones!</p>
             <form id="payment-form">
-                <button type="submit" class="cta-button" id="submit-btn">
-                    <i class="fas fa-lock"></i> Buy Now - $1.50
-                </button>
+                <button type="submit" class="cta-button" id="submit-btn"><i class="fas fa-lock"></i> Buy Now - $1.50</button>
                 <div class="payment-info">
                     <p><i class="fas fa-check-circle"></i> Secure payment powered by Stripe</p>
                     <p><i class="fas fa-lock"></i> Your information is encrypted and secure</p>
                 </div>
             </form>
+            <div class="section-title">Perfect For</div>
+            <ul class="feature-list">
+                <li>Kids and family creative time</li>
+                <li>Relaxation and stress relief for adults</li>
+                <li>Classroom and homeschool activities</li>
+                <li>Baking enthusiasts and dessert lovers</li>
+                <li>Party activities and group fun</li>
+                <li>Gifts for young artists</li>
+            </ul>
+            <div class="section-title">File Details</div>
+            <ul class="feature-list">
+                <li>Format: PNG - High-quality printable image</li>
+                <li>Print Size: Standard US Letter (8.5" x 11")</li>
+                <li>Resolution: Print-ready quality</li>
+                <li>Delivery: Instant digital download after purchase</li>
+            </ul>
+            <div id="download-section" style="display: none;">
+                <div class="section-title">Download Your File</div>
+                <div class="whats-included">
+                    <ul>
+                        <li><a href="/downloads/treatscolor.png" download style="color: #d93535; text-decoration: underline;">📥 Treats Coloring Page</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="digital-download-notice">
+                <strong>✓ Instant Digital Download</strong>
+                After successful payment, you'll be redirected to your download page. The coloring page is available immediately, and you'll also receive a confirmation email with download links. No physical product will be mailed. This is a digital product for personal use only.
+            </div>
         </div>
     </div>
+    <div class="sidebar-below">
+        <div class="sidebar-section how-to-order">
+            <h3>📋 How to Order</h3>
+            <ol>
+                <li>Browse our coloring pages and designs</li>
+                <li>Click "Buy Now" to add to cart</li>
+                <li>Complete secure Stripe payment</li>
+                <li>Download instantly after purchase</li>
+                <li>Print and enjoy anytime!</li>
+            </ol>
+        </div>
+        <div class="sidebar-section">
+            <h3>📚 Related Blog Posts</h3>
+            <ul>
+                <li><a href="/blog/how-to-decorate-sugar-cookies-like-a-pro.html">How to Decorate Sugar Cookies Like a Pro</a></li>
+                <li><a href="/blog/how-to-store-homemade-cookies.html">How to Store Homemade Cookies</a></li>
+                <li><a href="/blog/the-secret-to-moist-and-fluffy-homemade-cakes-every-time.html">The Secret to Moist & Fluffy Cakes</a></li>
+                <li><a href="/blog/holiday-sugar-cookie-decorating.html">Holiday Sugar Cookie Decorating</a></li>
+                <li><a href="/blog/top-5-macaron-mistakes.html">Top 5 Macaron Mistakes</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-section">
+            <h3>🛒 Online Ordering</h3>
+            <ul>
+                <li><a href="/order.html">Order Custom Items</a></li>
+                <li><a href="/local-ordering.html">Local Ordering Info</a></li>
+                <li><a href="/designs.html">Digital Downloads</a></li>
+                <li><a href="/contact.html">Request Quote</a></li>
+                <li><a href="/contact.html">Get in Touch</a></li>
+            </ul>
+        </div>
+    </div>
+    <section class="recipe-cards">
+        <h2>Popular Recipes to Color</h2>
+        <div class="cards-grid">
+            <div class="recipe-card">
+                <img src="/images/chochip.png.jfif" alt="Chocolate Chip Cookie Recipe">
+                <div class="recipe-card-content">
+                    <h3>Chocolate Chip Cookie</h3>
+                    <a href="/recipes.html">View Recipe →</a>
+                </div>
+            </div>
+            <div class="recipe-card">
+                <img src="/images/browniesbiscoff.jfif" alt="Biscoff Brownies Recipe">
+                <div class="recipe-card-content">
+                    <h3>Biscoff Brownies</h3>
+                    <a href="/recipes.html">View Recipe →</a>
+                </div>
+            </div>
+            <div class="recipe-card">
+                <img src="/images/xmas christmas assort.jfif" alt="Holiday Treats Recipe">
+                <div class="recipe-card-content">
+                    <h3>Holiday Treats</h3>
+                    <a href="/recipes.html">View Recipe →</a>
+                </div>
+            </div>
+        </div>
+    </section>
 </main>
-
 <footer style="background:#333; color:white; padding:30px; text-align:center;">
     <p>© 2025 Elizabeth's Baked Goods – Rosenberg, Texas</p>
     <p>
@@ -98,15 +233,24 @@
         <a href="/about.html" style="color: white; text-decoration: none;">About</a>
     </p>
 </footer>
-
 <script type="text/javascript">
 (function() {
-    const BASE_PAYMENT_LINK = 'https://buy.stripe.com/28E6oGaaZ2aPdHQbY91VK0x';
-    const PAYMENT_LINK = BASE_PAYMENT_LINK + '?success_url=' + encodeURIComponent(window.location.origin + '/success.html?product_id=treats') + '&cancel_url=' + encodeURIComponent(window.location.origin + '/designs.html');
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('product_id');
+    if (productId === 'treats') {
+        document.getElementById('download-section').style.display = 'block';
+        document.getElementById('payment-form').style.display = 'none';
+        const successMsg = document.createElement('div');
+        successMsg.style.cssText = 'background: #e8f5e9; border-left: 4px solid #27ae60; padding: 15px; border-radius: 4px; margin: 20px 0; color: #1b5e20;';
+        successMsg.innerHTML = '<strong>✓ Purchase Successful!</strong><p style="margin: 8px 0 0 0;">Your coloring page is ready to download below. Check your email for download links as well.</p>';
+        document.getElementById('payment-form').parentNode.insertBefore(successMsg, document.getElementById('payment-form'));
+    }
+    const BASE_PAYMENT_LINK = 'https://buy.stripe.com/eVaaH84Nfa2l7tieMg';
+    const PAYMENT_LINK = BASE_PAYMENT_LINK + '?success_url=' + encodeURIComponent(window.location.origin + '/product-treatscolor.html?product_id=treats') + '&cancel_url=' + encodeURIComponent(window.location.origin + '/designs.html');
     function initCheckout() {
         const form = document.getElementById('payment-form');
         const submitBtn = document.getElementById('submit-btn');
-        if (!form || !submitBtn) return;
+        if (!form || !submitBtn) { console.error('Missing required DOM elements for checkout'); return; }
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             submitBtn.disabled = true;
@@ -121,14 +265,12 @@
     }
 })();
 </script>
-
 <div id="footer-placeholder"></div>
 <script>
   fetch('/footer.html')
     .then(response => response.text())
-    .then(data => {document.getElementById('footer-placeholder').innerHTML = data;})
+    .then(data => { document.getElementById('footer-placeholder').innerHTML = data; })
     .catch(error => console.log('Footer load error:', error));
 </script>
-
 </body>
 </html>
