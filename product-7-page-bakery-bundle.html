@@ -309,7 +309,70 @@
             margin-right: 8px;
         }
 
-        .section-title {
+        .recipe-cards {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .recipe-cards h2 {
+            font-family: 'Playfair Display', serif;
+            color: #4d2c2a;
+            font-size: 1.8rem;
+            text-align: center;
+            margin: 0 0 30px 0;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .recipe-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .recipe-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .recipe-card-content {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .recipe-card-content h3 {
+            margin: 0 0 10px 0;
+            color: #4d2c2a;
+            font-size: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .recipe-card-content a {
+            color: #d93535;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .recipe-card-content a:hover {
+            color: #b72a2a;
+            text-decoration: underline;
+        }
             font-family: 'Playfair Display', serif;
             font-size: 1.3rem;
             color: #4d2c2a;
@@ -567,6 +630,39 @@
             </ul>
         </div>
     </div>
+
+    <!-- POPULAR RECIPES SECTION -->
+    <section class="recipe-cards">
+        <h2>Popular Recipes to Color</h2>
+        <div class="cards-grid">
+            <!-- Chocolate Chip Cookie Recipe -->
+            <div class="recipe-card">
+                <img src="/images/chochip.png.jfif" alt="Chocolate Chip Cookie Recipe">
+                <div class="recipe-card-content">
+                    <h3>Chocolate Chip Cookie</h3>
+                    <a href="/recipes.html">View Recipe →</a>
+                </div>
+            </div>
+
+            <!-- S'mores Cookie Recipe -->
+            <div class="recipe-card">
+                <img src="/images/smorescookie.jpg" alt="S'mores Cookie Recipe">
+                <div class="recipe-card-content">
+                    <h3>S'mores Cookie</h3>
+                    <a href="/recipes.html">View Recipe →</a>
+                </div>
+            </div>
+
+            <!-- Brownies Recipe -->
+            <div class="recipe-card">
+                <img src="/images/browniespic.png" alt="Brownies Recipe">
+                <div class="recipe-card-content">
+                    <h3>Fudgy Brownies</h3>
+                    <a href="/recipes.html">View Recipe →</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
 </main>
 
