@@ -15,15 +15,27 @@
             margin: 40px auto;
             padding: 0 20px;
             display: flex;
-            gap: 30px;
+            gap: 40px;
             align-items: flex-start;
         }
 
         .sidebar {
-            flex: 0 0 280px;
+            display: none;
+        }
+
+        .product-wrapper {
+            flex: 1;
             display: flex;
-            flex-direction: column;
-            gap: 20px;
+            gap: 40px;
+        }
+
+        .sidebar-below {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 280px 1fr 1fr;
+            gap: 30px;
         }
 
         .sidebar-section {
@@ -97,13 +109,6 @@
 
         .how-to-order li:last-child {
             border-bottom: none;
-        }
-
-        .product-wrapper {
-            flex: 1;
-            min-width: 300px;
-            display: flex;
-            gap: 30px;
         }
 
         .product-image {
@@ -287,14 +292,13 @@
                 gap: 20px;
             }
 
-            .sidebar {
-                flex: 1;
-                order: -1;
-            }
-
             .product-wrapper {
                 flex-direction: column;
                 gap: 20px;
+            }
+
+            .sidebar-below {
+                grid-template-columns: 1fr;
             }
 
             .product-title {
@@ -332,67 +336,14 @@
 
     <!-- PRODUCT SECTION -->
     <div class="product-container">
-        <!-- SIDEBAR -->
-        <aside class="sidebar">
-            <!-- How to Order Section -->
-            <div class="sidebar-section how-to-order">
-                <h3>📋 How to Order</h3>
-                <ol>
-                    <li>Browse our coloring pages and designs</li>
-                    <li>Click "Buy Now" to add to cart</li>
-                    <li>Complete secure Stripe payment</li>
-                    <li>Download instantly after purchase</li>
-                    <li>Print and enjoy anytime!</li>
-                </ol>
-            </div>
+        <!-- Product Image -->
+        <div class="product-image">
+            <img src="/images/7 Page Bakery Coloring Bundle 7 Coloring Pages $5.50.png" alt="7 Page Bakery Coloring Bundle">
+            <p style="color: #999; font-size: 0.9rem; margin-top: 10px;">Click to download after purchase</p>
+        </div>
 
-            <!-- Related Blogs Section -->
-            <div class="sidebar-section">
-                <h3>📚 Related Blog Posts</h3>
-                <ul>
-                    <li><a href="/blog/how-to-decorate-sugar-cookies-like-a-pro.html">How to Decorate Sugar Cookies Like a Pro</a></li>
-                    <li><a href="/blog/how-to-store-homemade-cookies.html">How to Store Homemade Cookies</a></li>
-                    <li><a href="/blog/the-secret-to-moist-and-fluffy-homemade-cakes-every-time.html">The Secret to Moist & Fluffy Cakes</a></li>
-                    <li><a href="/blog/holiday-sugar-cookie-decorating.html">Holiday Sugar Cookie Decorating</a></li>
-                    <li><a href="/blog/top-5-macaron-mistakes.html">Top 5 Macaron Mistakes</a></li>
-                </ul>
-            </div>
-
-            <!-- Related Recipes Section -->
-            <div class="sidebar-section">
-                <h3>🍪 Popular Recipes</h3>
-                <ul>
-                    <li><a href="/recipes.html#cookies">Cookie Recipes</a></li>
-                    <li><a href="/recipes.html#cakes">Cake Recipes</a></li>
-                    <li><a href="/recipes.html#cupcakes">Cupcake Recipes</a></li>
-                    <li><a href="/recipes.html#treats">Dessert Treats</a></li>
-                    <li><a href="/recipes.html">View All Recipes</a></li>
-                </ul>
-            </div>
-
-            <!-- Quick Links Section -->
-            <div class="sidebar-section">
-                <h3>⚡ Quick Links</h3>
-                <ul>
-                    <li><a href="/designs.html">Back to Designs</a></li>
-                    <li><a href="/order.html">Order Custom Items</a></li>
-                    <li><a href="/local-ordering.html">Local Ordering Info</a></li>
-                    <li><a href="/contact.html">Contact Us</a></li>
-                    <li><a href="/policies.html">Policies & FAQs</a></li>
-                </ul>
-            </div>
-        </aside>
-
-        <!-- PRODUCT CONTENT -->
-        <div class="product-wrapper">
-            <!-- Product Image -->
-            <div class="product-image">
-                <img src="/images/7 Page Bakery Coloring Bundle 7 Coloring Pages $5.50.png" alt="7 Page Bakery Coloring Bundle">
-                <p style="color: #999; font-size: 0.9rem; margin-top: 10px;">Click to download after purchase</p>
-            </div>
-
-            <!-- Product Details -->
-            <div class="product-details">
+        <!-- Product Details -->
+        <div class="product-details">
             <span class="product-type-badge">
                 <i class="fas fa-download"></i> DIGITAL DOWNLOAD
             </span>
@@ -478,7 +429,45 @@
                 </div>
             </form>
 
-            </div>
+        </div>
+    </div>
+
+    <!-- SIDEBAR BELOW -->
+    <div class="sidebar-below">
+        <!-- How to Order Section -->
+        <div class="sidebar-section how-to-order">
+            <h3>📋 How to Order</h3>
+            <ol>
+                <li>Browse our coloring pages and designs</li>
+                <li>Click "Buy Now" to add to cart</li>
+                <li>Complete secure Stripe payment</li>
+                <li>Download instantly after purchase</li>
+                <li>Print and enjoy anytime!</li>
+            </ol>
+        </div>
+
+        <!-- Related Blogs Section -->
+        <div class="sidebar-section">
+            <h3>📚 Related Blog Posts</h3>
+            <ul>
+                <li><a href="/blog/how-to-decorate-sugar-cookies-like-a-pro.html">How to Decorate Sugar Cookies Like a Pro</a></li>
+                <li><a href="/blog/how-to-store-homemade-cookies.html">How to Store Homemade Cookies</a></li>
+                <li><a href="/blog/the-secret-to-moist-and-fluffy-homemade-cakes-every-time.html">The Secret to Moist & Fluffy Cakes</a></li>
+                <li><a href="/blog/holiday-sugar-cookie-decorating.html">Holiday Sugar Cookie Decorating</a></li>
+                <li><a href="/blog/top-5-macaron-mistakes.html">Top 5 Macaron Mistakes</a></li>
+            </ul>
+        </div>
+
+        <!-- Related Recipes Section -->
+        <div class="sidebar-section">
+            <h3>🍪 Popular Recipes</h3>
+            <ul>
+                <li><a href="/recipes.html#cookies">Cookie Recipes</a></li>
+                <li><a href="/recipes.html#cakes">Cake Recipes</a></li>
+                <li><a href="/recipes.html#cupcakes">Cupcake Recipes</a></li>
+                <li><a href="/recipes.html#treats">Dessert Treats</a></li>
+                <li><a href="/recipes.html">View All Recipes</a></li>
+            </ul>
         </div>
     </div>
 
