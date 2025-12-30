@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7 Page Bakery Coloring Bundle - Elizabeth's Baked Goods</title>
+    <meta name="description" content="Download the 7 Page Bakery Coloring Bundle - premium bakery-themed printable coloring pages. Perfect for kids, families, and baking enthusiasts. Instant digital download.">
+    <meta name="keywords" content="bakery coloring pages, printable coloring sheets, kids coloring, dessert coloring, digital downloads">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        .product-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        .product-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+            position: relative;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .product-image::after {
+            content: 'PROOF';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 5rem;
+            font-weight: bold;
+            color: rgba(217, 53, 53, 0.3);
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 10;
+            font-family: Arial, sans-serif;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-details {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #4d2c2a;
+            margin: 0 0 15px 0;
+        }
+
+        .product-price {
+            font-size: 2rem;
+            color: #d93535;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .product-type-badge {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .product-description {
+            color: #666;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .digital-download-notice {
+            background: #fff3e0;
+            border-left: 4px solid #f57c00;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+            color: #5d4037;
+        }
+
+        .digital-download-notice strong {
+            display: block;
+            margin-bottom: 8px;
+            color: #4d2c2a;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .feature-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            color: #666;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list li:before {
+            content: "✓ ";
+            color: #27ae60;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .cta-button {
+            width: 100%;
+            padding: 16px;
+            background: #d93535;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #b72a2a;
+        }
+
+        .cta-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .payment-info {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .payment-info i {
+            color: #27ae60;
+            margin-right: 8px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: #4d2c2a;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .whats-included {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+
+        .whats-included ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .whats-included li {
+            padding: 8px 0;
+            color: #666;
+        }
+
+        .whats-included li:before {
+            content: "📄 ";
+            margin-right: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .product-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .product-title {
+                font-size: 1.5rem;
+            }
+
+            .product-price {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+  <nav class="navbar">
+    <a href="/index.html">Home</a>
+    <a href="/about.html">About</a>
+    <a href="/blog.html">Blogs</a>
+    <a href="/recipes.html">Recipes</a>
+    <a href="/order.html">Order</a>
+    <a href="/local-ordering.html">Local Ordering</a>
+    <a href="/designs.html">Designs</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/policies.html">Policies</a>
+  </nav>
+</header>
+
+<main style="padding-top: 20px; padding-bottom: 60px;">
+
+    <!-- BREADCRUMB -->
+    <div style="max-width: 1000px; margin: 0 auto; padding: 0 20px; margin-bottom: 20px;">
+        <a href="/designs.html" style="color: #d93535; text-decoration: none;">← Back to Designs</a>
+    </div>
+
+    <!-- PRODUCT SECTION -->
+    <div class="product-container">
+        <!-- Product Image -->
+        <div class="product-image">
+            <img src="/images/7 Page Bakery Coloring Bundle 7 Coloring Pages $5.50.png" alt="7 Page Bakery Coloring Bundle">
+            <p style="color: #999; font-size: 0.9rem; margin-top: 10px;">Click to download after purchase</p>
+        </div>
+
+        <!-- Product Details -->
+        <div class="product-details">
+            <span class="product-type-badge">
+                <i class="fas fa-download"></i> DIGITAL DOWNLOAD
+            </span>
+
+            <h1 class="product-title">7 Page Bakery Coloring Bundle</h1>
+
+            <div class="product-price">$5.50</div>
+
+            <p class="product-description">
+                Get creative with our delightful 7 Page Bakery Coloring Bundle! This premium collection features seven beautifully illustrated, bakery-themed coloring pages perfect for children, adults, families, and anyone who loves baking and sweets. Whether you're looking for a fun rainy day activity, a creative break, or a gift for a baking enthusiast, this bundle delivers instant artistic joy.
+            </p>
+
+            <p class="product-description">
+                Each page is carefully designed with clean line art that's perfect for crayons, colored pencils, or markers. Print as many times as you'd like for personal use and share the joy of creative coloring with your loved ones!
+            </p>
+
+            <!-- What's Included -->
+            <div class="whats-included">
+                <h3 style="margin-top: 0; color: #4d2c2a;">What's Included (7 Pages)</h3>
+                <ul>
+                    <li>Cookie Coloring Page - Beautifully designed cookies in various styles</li>
+                    <li>Cupcake Coloring Page - Delightful cupcakes with creative flair</li>
+                    <li>Gingerbread Cookie Coloring Page - Festive gingerbread designs</li>
+                    <li>Inside Bakery Girl Coloring Page - A charming girl enjoying a cozy bakery</li>
+                    <li>Inside Bakery Man Coloring Page - A charming man in a bakery setting</li>
+                    <li>Outside Bakery Coloring Page - An outdoor bakery scene</li>
+                    <li>Treats Coloring Page - A variety of sweet treats and baked goods</li>
+                </ul>
+            </div>
+
+            <!-- Features -->
+            <div class="section-title">Perfect For</div>
+            <ul class="feature-list">
+                <li>Kids and family creative time</li>
+                <li>Relaxation and stress relief for adults</li>
+                <li>Classroom and homeschool activities</li>
+                <li>Baking enthusiasts and dessert lovers</li>
+                <li>Party activities and group fun</li>
+                <li>Gifts for young artists</li>
+            </ul>
+
+            <!-- File Details -->
+            <div class="section-title">File Details</div>
+            <ul class="feature-list">
+                <li>Format: PNG - High-quality printable images</li>
+                <li>Number of Files: 7 unique coloring pages</li>
+                <li>Print Size: Standard US Letter (8.5" x 11")</li>
+                <li>Resolution: Print-ready quality</li>
+                <li>Delivery: Instant digital download after purchase</li>
+            </ul>
+
+            <!-- Download Files Section -->
+            <div class="section-title">Bundle Contents - All 7 Files</div>
+            <div class="whats-included">
+                <ul>
+                    <li><a href="/downloads/cookiecolor.png" download style="color: #d93535; text-decoration: underline;">📥 Cookie Coloring Page</a></li>
+                    <li><a href="/downloads/cupcakecolor.png" download style="color: #d93535; text-decoration: underline;">📥 Cupcake Coloring Page</a></li>
+                    <li><a href="/downloads/gingerbreadcookiecolor.png" download style="color: #d93535; text-decoration: underline;">📥 Gingerbread Cookie Coloring Page</a></li>
+                    <li><a href="/downloads/insidebakerygirl.png" download style="color: #d93535; text-decoration: underline;">📥 Inside Bakery Girl Coloring Page</a></li>
+                    <li><a href="/downloads/insidebakeryman.png" download style="color: #d93535; text-decoration: underline;">📥 Inside Bakery Man Coloring Page</a></li>
+                    <li><a href="/downloads/outsidebakery.png" download style="color: #d93535; text-decoration: underline;">📥 Outside Bakery Coloring Page</a></li>
+                    <li><a href="/downloads/treatscolor.png" download style="color: #d93535; text-decoration: underline;">📥 Treats Coloring Page</a></li>
+                </ul>
+            </div>
+
+            <!-- Digital Download Notice -->
+            <div class="digital-download-notice">
+                <strong>✓ Instant Digital Download</strong>
+                After successful payment, you'll be redirected to your download page. All 7 coloring pages are available immediately, and you'll also receive a confirmation email with download links. No physical product will be shipped. This is a digital product for personal use only.
+            </div>
+
+            <!-- Payment Form -->
+            <form id="payment-form">
+                <button type="submit" class="cta-button" id="submit-btn">
+                    <i class="fas fa-lock"></i> Buy Now - $5.50
+                </button>
+
+                <div class="payment-info">
+                    <p><i class="fas fa-check-circle"></i> Secure payment powered by Stripe</p>
+                    <p><i class="fas fa-lock"></i> Your information is encrypted and secure</p>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <!-- ADDITIONAL INFO SECTION -->
+    <div style="max-width: 1000px; margin: 60px auto; padding: 0 20px;">
+        <div style="background: #f9f9f9; padding: 30px; border-radius: 8px;">
+            <h2 style="font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 1.5rem; margin-top: 0;">How It Works</h2>
+            <ol style="color: #666; line-height: 1.8;">
+                <li><strong>Purchase the bundle</strong> - Complete your payment securely through Stripe</li>
+                <li><strong>Download all 7 files instantly</strong> - Immediately after purchase, access your complete bundle</li>
+                <li><strong>Print at home or through a local print shop</strong> - No setup or special software required</li>
+                <li><strong>Color, enjoy, and share the fun</strong> - Print as many times as you like for personal use</li>
+            </ol>
+
+            <h3 style="font-family: 'Playfair Display', serif; color: #4d2c2a; margin-top: 30px;">Why You'll Love This Bundle</h3>
+            <ul style="color: #666; line-height: 1.8;">
+                <li><strong>✔ 7 unique, original designs</strong> you won't find elsewhere</li>
+                <li><strong>✔ Incredible value</strong> - Seven pages for just $5.50!</li>
+                <li><strong>✔ Bakery-themed fun</strong> - Perfect for baking lovers of all ages</li>
+                <li><strong>✔ Easy to print and reuse</strong> - No subscription or special software needed</li>
+                <li><strong>✔ Created by a small, Texas-based business</strong> - Supporting local artisans</li>
+                <li><strong>✔ Ready immediately</strong> - No waiting for delivery!</li>
+            </ul>
+
+            <h3 style="font-family: 'Playfair Display', serif; color: #4d2c2a; margin-top: 30px;">Please Note</h3>
+            <ul style="color: #666; line-height: 1.8; font-size: 0.95rem;">
+                <li>This is a digital product. No physical items will be mailed.</li>
+                <li>Colors may vary slightly depending on your printer and screen settings.</li>
+                <li>For personal use only. Not for resale, redistribution, or commercial use.</li>
+                <li>All 7 files are included in this single purchase.</li>
+            </ul>
+        </div>
+    </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer style="background:#333; color:white; padding:30px; text-align:center;">
+    <p>© 2025 Elizabeth's Baked Goods – Rosenberg, Texas</p>
+    <p>
+        <a href="/contact.html" style="color: white; text-decoration: none;">Contact</a> | 
+        <a href="/policies.html" style="color: white; text-decoration: none;">Policies</a> | 
+        <a href="/about.html" style="color: white; text-decoration: none;">About</a>
+    </p>
+</footer>
+
+<script type="text/javascript">
+// Stripe Payment Link Integration for Digital Products
+(function() {
+    // Stripe Payment Link for 7 Page Bakery Coloring Bundle
+    // Success URL configured to: /digital-success.html?product_id=7-page-bakery-bundle
+    const BASE_PAYMENT_LINK = 'https://buy.stripe.com/7sYbJ0cj7dTxbzIbY91VK0D';
+    const PAYMENT_LINK = BASE_PAYMENT_LINK + '?success_url=' + encodeURIComponent(window.location.origin + '/digital-success.html?product_id=7-page-bakery-bundle') + '&cancel_url=' + encodeURIComponent(window.location.origin + '/designs.html');
+    
+    function initCheckout() {
+        const form = document.getElementById('payment-form');
+        const submitBtn = document.getElementById('submit-btn');
+        
+        if (!form || !submitBtn) {
+            console.error('Missing required DOM elements for checkout');
+            return;
+        }
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Redirecting to checkout...';
+            window.location.href = PAYMENT_LINK;
+        });
+    }
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initCheckout);
+    } else {
+        initCheckout();
+    }
+})();
+</script>
+
+<div id="footer-placeholder"></div>
+
+<script>
+  fetch('/footer.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+    })
+    .catch(error => console.log('Footer load error:', error));
+</script>
+
+</body>
+</html>
