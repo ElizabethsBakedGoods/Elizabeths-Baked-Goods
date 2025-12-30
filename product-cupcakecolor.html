@@ -10,63 +10,416 @@
     <link rel="stylesheet" href="/style.css">
     <script src="https://js.stripe.com/v3/"></script>
     <style>
-        .product-container {max-width: 1200px; margin: 40px auto; padding: 0 20px; display: flex; gap: 40px; align-items: flex-start;}
-        .product-left-column {flex: 0 0 350px; display: flex; flex-direction: column; gap: 25px;}
-        .product-image {flex: 1; min-width: 300px; text-align: center; position: relative;}
-        .info-box {background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 20px; border-top: 4px solid #d93535;}
-        .info-box h3 {font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 1.1rem; margin: 0 0 15px 0; padding-bottom: 10px; border-bottom: 2px solid #f0f0f0;}
-        .info-box ol, .info-box ul {list-style-position: inside; padding: 0; margin: 0; color: #666; line-height: 1.6; font-size: 0.95rem;}
-        .info-box li {padding: 8px 0; border-bottom: 1px solid #f5f5f5;}
-        .info-box li:last-child {border-bottom: none;}
-        .info-box li:before {content: "✓ "; color: #27ae60; font-weight: bold; margin-right: 6px;}
-        .sidebar {display: none;}
-        .sidebar-below {max-width: 1200px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: 280px 1fr 1fr; gap: 30px;}
-        .sidebar-section {background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 20px; border-top: 4px solid #d93535;}
-        .sidebar-section h3 {font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 1.2rem; margin: 0 0 15px 0; padding-bottom: 10px; border-bottom: 2px solid #f0f0f0;}
-        .sidebar-section ul {list-style: none; padding: 0; margin: 0;}
-        .sidebar-section li {padding: 10px 0; border-bottom: 1px solid #f5f5f5;}
-        .sidebar-section li:last-child {border-bottom: none;}
-        .sidebar-section a {color: #d93535; text-decoration: none; font-size: 0.95rem; line-height: 1.4; transition: color 0.3s ease;}
-        .sidebar-section a:hover {color: #b72a2a; text-decoration: underline;}
-        .how-to-order {background: #fff9f0; border-top: 4px solid #f57c00 !important;}
-        .how-to-order h3 {color: #5d4037;}
-        .how-to-order ol {list-style-position: inside; padding: 0; margin: 0; counter-reset: item;}
-        .how-to-order li {padding: 8px 0; border-bottom: 1px solid #f5e8d4; color: #666; font-size: 0.9rem; line-height: 1.5;}
-        .how-to-order li:last-child {border-bottom: none;}
-        .product-image img {max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);}
-        .product-image::after {content: 'PROOF'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg); font-size: 5rem; font-weight: bold; color: rgba(217, 53, 53, 0.3); white-space: nowrap; pointer-events: none; z-index: 10; font-family: Arial, sans-serif; text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);}
-        .product-details {flex: 1; min-width: 350px;}
-        .product-title {font-family: 'Playfair Display', serif; font-size: 2rem; color: #4d2c2a; margin: 0 0 15px 0;}
-        .product-price {font-size: 2rem; color: #d93535; font-weight: bold; margin: 20px 0;}
-        .product-type-badge {display: inline-block; background: #e8f5e9; color: #2e7d32; padding: 6px 12px; border-radius: 4px; font-size: 0.9rem; font-weight: bold; margin-bottom: 15px;}
-        .product-description {color: #666; font-size: 1.05rem; line-height: 1.8; margin: 20px 0;}
-        .digital-download-notice {background: #fff3e0; border-left: 4px solid #f57c00; padding: 15px; border-radius: 4px; margin: 20px 0; color: #5d4037;}
-        .digital-download-notice strong {display: block; margin-bottom: 8px; color: #4d2c2a;}
-        .feature-list {list-style: none; padding: 0; margin: 20px 0;}
-        .feature-list li {padding: 10px 0; border-bottom: 1px solid #eee; color: #666;}
-        .feature-list li:last-child {border-bottom: none;}
-        .feature-list li:before {content: "✓ "; color: #27ae60; font-weight: bold; margin-right: 8px;}
-        .cta-button {width: 100%; padding: 16px; background: #d93535; color: white; border: none; border-radius: 6px; font-size: 1.1rem; font-weight: bold; cursor: pointer; margin-top: 20px; transition: background 0.3s ease;}
-        .cta-button:hover {background: #b72a2a;}
-        .cta-button:disabled {background: #ccc; cursor: not-allowed;}
-        .payment-info {margin-top: 20px; padding: 15px; background: #f5f5f5; border-radius: 4px; font-size: 0.9rem; color: #666;}
-        .payment-info i {color: #27ae60; margin-right: 8px;}
-        .recipe-cards {max-width: 1200px; margin: 50px auto; padding: 0 20px;}
-        .recipe-cards h2 {font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 1.8rem; text-align: center; margin: 0 0 30px 0;}
-        .cards-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;}
-        .recipe-card {background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;}
-        .recipe-card:hover {transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.15);}
-        .recipe-card img {width: 100%; height: 150px; object-fit: cover; display: block;}
-        .recipe-card-content {padding: 15px; text-align: center;}
-        .recipe-card-content h3 {margin: 0 0 10px 0; color: #4d2c2a; font-size: 1rem; font-family: 'Playfair Display', serif;}
-        .recipe-card-content a {color: #d93535; text-decoration: none; font-weight: bold; font-size: 0.9rem; transition: color 0.3s ease;}
-        .recipe-card-content a:hover {color: #b72a2a; text-decoration: underline;}
-        .section-title {font-family: 'Playfair Display', serif; font-size: 1.3rem; color: #4d2c2a; margin-top: 30px; margin-bottom: 15px; border-bottom: 2px solid #e0e0e0; padding-bottom: 10px;}
-        .whats-included {background: #f9f9f9; padding: 20px; border-radius: 6px; margin: 20px 0;}
-        .whats-included ul {list-style: none; padding: 0; margin: 0;}
-        .whats-included li {padding: 8px 0; color: #666;}
-        .whats-included li:before {content: "📄 "; margin-right: 8px;}
-        @media (max-width: 768px) {.product-container {flex-direction: column; gap: 20px;} .product-left-column {flex: 1;} .product-image {flex: 1;} .product-title {font-size: 1.5rem;} .product-price {font-size: 1.5rem;} .sidebar-below {grid-template-columns: 1fr;}}
+        .product-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        .product-left-column {
+            flex: 0 0 350px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .product-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+            position: relative;
+        }
+
+        .info-box {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            border-top: 4px solid #d93535;
+        }
+
+        .info-box h3 {
+            font-family: 'Playfair Display', serif;
+            color: #4d2c2a;
+            font-size: 1.1rem;
+            margin: 0 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .info-box ol, .info-box ul {
+            list-style-position: inside;
+            padding: 0;
+            margin: 0;
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .info-box li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .info-box li:last-child {
+            border-bottom: none;
+        }
+
+        .info-box li:before {
+            content: "✓ ";
+            color: #27ae60;
+            font-weight: bold;
+            margin-right: 6px;
+        }
+
+        .sidebar {
+            display: none;
+        }
+
+        .sidebar-below {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 280px 1fr 1fr;
+            gap: 30px;
+        }
+
+        .sidebar-section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            border-top: 4px solid #d93535;
+        }
+
+        .sidebar-section h3 {
+            font-family: 'Playfair Display', serif;
+            color: #4d2c2a;
+            font-size: 1.2rem;
+            margin: 0 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .sidebar-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-section li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .sidebar-section li:last-child {
+            border-bottom: none;
+        }
+
+        .sidebar-section a {
+            color: #d93535;
+            text-decoration: none;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            transition: color 0.3s ease;
+        }
+
+        .sidebar-section a:hover {
+            color: #b72a2a;
+            text-decoration: underline;
+        }
+
+        .how-to-order {
+            background: #fff9f0;
+            border-top: 4px solid #f57c00 !important;
+        }
+
+        .how-to-order h3 {
+            color: #5d4037;
+        }
+
+        .how-to-order ol {
+            list-style-position: inside;
+            padding: 0;
+            margin: 0;
+            counter-reset: item;
+        }
+
+        .how-to-order li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f5e8d4;
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .how-to-order li:last-child {
+            border-bottom: none;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .product-image::after {
+            content: 'PROOF';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 5rem;
+            font-weight: bold;
+            color: rgba(217, 53, 53, 0.3);
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 10;
+            font-family: Arial, sans-serif;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-details {
+            flex: 1;
+            min-width: 350px;
+        }
+
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #4d2c2a;
+            margin: 0 0 15px 0;
+        }
+
+        .product-price {
+            font-size: 2rem;
+            color: #d93535;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .product-type-badge {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .product-description {
+            color: #666;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .digital-download-notice {
+            background: #fff3e0;
+            border-left: 4px solid #f57c00;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+            color: #5d4037;
+        }
+
+        .digital-download-notice strong {
+            display: block;
+            margin-bottom: 8px;
+            color: #4d2c2a;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .feature-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            color: #666;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list li:before {
+            content: "✓ ";
+            color: #27ae60;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .cta-button {
+            width: 100%;
+            padding: 16px;
+            background: #d93535;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #b72a2a;
+        }
+
+        .cta-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .payment-info {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .payment-info i {
+            color: #27ae60;
+            margin-right: 8px;
+        }
+
+        .recipe-cards {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .recipe-cards h2 {
+            font-family: 'Playfair Display', serif;
+            color: #4d2c2a;
+            font-size: 1.8rem;
+            text-align: center;
+            margin: 0 0 30px 0;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .recipe-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .recipe-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .recipe-card-content {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .recipe-card-content h3 {
+            margin: 0 0 10px 0;
+            color: #4d2c2a;
+            font-size: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .recipe-card-content a {
+            color: #d93535;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .recipe-card-content a:hover {
+            color: #b72a2a;
+            text-decoration: underline;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: #4d2c2a;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .whats-included {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+
+        .whats-included ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .whats-included li {
+            padding: 8px 0;
+            color: #666;
+        }
+
+        .whats-included li:before {
+            content: "📄 ";
+            margin-right: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .product-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .product-left-column {
+                flex: 1;
+            }
+
+            .product-image {
+                flex: 1;
+            }
+
+            .product-title {
+                font-size: 1.5rem;
+            }
+
+            .product-price {
+                font-size: 1.5rem;
+            }
+
+            .sidebar-below {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
