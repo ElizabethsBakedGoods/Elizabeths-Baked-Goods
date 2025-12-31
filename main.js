@@ -100,6 +100,31 @@ window.removeFromCart = function(index) {
 	updateCartDisplay();
 };
 
+// Global handler for onclick buttons
+window.handleAddToCart = function(productId) {
+	console.log("handleAddToCart called with:", productId);
+	const product = CONFIG.products[productId];
+	
+	if (!product) {
+		console.error("Product not found in CONFIG:", productId);
+		alert("Product not found. Please refresh and try again.");
+		return;
+	}
+	
+	console.log("Product found:", product);
+	
+	// If product requires flavor selection, show modal
+	if (product.flavor) {
+		console.log("Product requires flavor selection");
+		pendingProductId = productId;
+		showFlavorModal(productId);
+	} else {
+		// No flavor needed, add directly
+		console.log("Adding product without flavor selection");
+		addToCart(productId, "N/A");
+	}
+};
+
 window.addEventListener("load", () => {
 	initializeCart();
 	initializeFlavorModal();
