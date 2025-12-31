@@ -125,17 +125,28 @@ function initializeCart() {
 		const productId = btn.dataset.product;
 		console.log(`Button ${index}: product=${productId}`);
 		
-		btn.addEventListener("click", (e) => {
+		btn.addEventListener("click", function(e) {
+			console.log("Button clicked:", productId);
 			e.preventDefault();
 			e.stopPropagation();
 			const product = CONFIG.products[productId];
 			
+			if (!product) {
+				console.error("Product not found in CONFIG:", productId);
+				alert("Product configuration not found. Please contact support.");
+				return;
+			}
+			
+			console.log("Product found:", product);
+			
 			// If product requires flavor selection, show modal
-			if (product && product.flavor) {
+			if (product.flavor) {
+				console.log("Product requires flavor selection");
 				pendingProductId = productId;
 				showFlavorModal(productId);
 			} else {
 				// No flavor needed, add directly
+				console.log("Adding product without flavor selection");
 				addToCart(productId, "N/A");
 			}
 		});
