@@ -100,47 +100,6 @@ window.removeFromCart = function(index) {
 	updateCartDisplay();
 };
 
-// Global handler for onclick buttons - GLOBAL SCOPE
-// Make sure this is defined and accessible immediately
-if (typeof window !== 'undefined') {
-	window.handleAddToCart = function(productId) {
-		try {
-			console.log("🛒 handleAddToCart called with productId:", productId);
-			
-			if (!CONFIG || !CONFIG.products) {
-				console.error("❌ CONFIG or CONFIG.products not available yet");
-				alert("System not ready. Please refresh the page.");
-				return;
-			}
-			
-			const product = CONFIG.products[productId];
-			console.log("🔍 Product lookup:", productId, "=>", product);
-			
-			if (!product) {
-				console.error("❌ Product not found in CONFIG:", productId);
-				alert("Product not found. Available products: " + Object.keys(CONFIG.products).join(", "));
-				return;
-			}
-			
-			console.log("✅ Product found:", product.name);
-			
-			// If product requires flavor selection, show modal
-			if (product.flavor) {
-				console.log("📋 Product requires flavor selection");
-				pendingProductId = productId;
-				showFlavorModal(productId);
-			} else {
-				// No flavor needed, add directly
-				console.log("✨ Adding product without flavor selection");
-				addToCart(productId, "N/A");
-			}
-		} catch (error) {
-			console.error("❌ Error in handleAddToCart:", error);
-			alert("Error adding to cart: " + error.message);
-		}
-	};
-}
-
 window.addEventListener("load", () => {
 	initializeCart();
 	initializeFlavorModal();
