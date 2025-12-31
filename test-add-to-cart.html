@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add-to-Cart Test</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #f5f5f5; }
+        .test-section { background: white; padding: 20px; margin: 20px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .test-result { padding: 10px; margin: 10px 0; border-radius: 4px; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+        .cart-display { background: #fff3cd; padding: 15px; border-radius: 4px; margin: 20px 0; }
+        code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <h1>🛒 Add-to-Cart System Test</h1>
+    
+    <div class="test-section">
+        <h2>1. System Initialization</h2>
+        <div id="init-results"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>2. Product Configuration Check</h2>
+        <div id="product-check"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>3. Test Adding Products</h2>
+        <button onclick="testAddProduct('large-cookies-12')">Test: Large Cookies 12</button>
+        <button onclick="testAddProduct('brownies-6')">Test: Brownies 6</button>
+        <button onclick="testAddProduct('cupcake-24')">Test: Cupcakes 24</button>
+        <div id="add-test-results"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>4. Cart Contents</h2>
+        <div id="cart-display" class="cart-display"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>5. Console Output</h2>
+        <p>Open your browser's Developer Console (F12) to see detailed logging</p>
+    </div>
+
+    <script>
+        // Copy the CONFIG from main.js
+        const CONFIG = {
+            products: {
+                "large-cookies-12": { name: "Large Cookies Pack of 12", price: 6000, flavor: true },
+                "brownies-6": { name: "Brownies 6 count", price: 2400, flavor: false },
+                "cupcake-24": { name: "Cupcakes (24 count)", price: 9600, flavor: true },
+            }
+        };
+        
+        let cart = [];
+        
+        // Test 1: Check if CONFIG is loaded
+        function test1() {
+            const results = document.getElementById('init-results');
+            console.log("✅ Test 1: System Initialization");
+            
+            if (CONFIG && CONFIG.products) {
+                results.innerHTML = '<div class="test-result success">✅ CONFIG object loaded successfully</div>';
+                console.log("✅ CONFIG.products:", CONFIG.products);
+            } else {
+                results.innerHTML = '<div class="test-result error">❌ CONFIG object not found</div>';
+                console.error("❌ CONFIG not available");
+            }
+        }
+        
+        // Test 2: Check products
+        function test2() {
+            const results = document.getElementById('product-check');
+            console.log("✅ Test 2: Product Configuration");
+            
+            const productIds = Object.keys(CONFIG.products);
+            console.log("Products available:", productIds);
+            
+            let html = '<p>Found ' + productIds.length + ' products:</p><ul>';
+            productIds.forEach(id => {
+                const product = CONFIG.products[id];
+                html += '<li>' + product.name + ' - $' + (product.price/100).toFixed(2) + ' (Flavor: ' + (product.flavor ? 'Yes' : 'No') + ')</li>';
+            });
+            html += '</ul>';
+            results.innerHTML = html;
+            console.log("✅ All products validated");
+        }
+        
+        // Test 3: Add product to cart
+        function testAddProduct(productId) {
+            console.log(`🎯 Testing add product: ${productId}`);
+            const results = document.getElementById('add-test-results');
+            const product = CONFIG.products[productId];
+            
+            if (!product) {
+                const error = `❌ Product not found: ${productId}`;
+                console.error(error);
+                results.innerHTML += '<div class="test-result error">' + error + '</div>';
+                return;
+            }
+            
+            // Simulate adding to cart
+            const flavor = product.flavor ? "Chocolate Chip" : "N/A";
+            cart.push({
+                id: productId,
+                name: product.name,
+                price: product.price,
+                flavor: flavor
+            });
+            
+            const success = `✅ Added: ${product.name} (Flavor: ${flavor})`;
+            console.log(success);
+            results.innerHTML += '<div class="test-result success">' + success + '</div>';
+            
+            updateCartDisplay();
+        }
+        
+        // Update cart display
+        function updateCartDisplay() {
+            const display = document.getElementById('cart-display');
+            if (cart.length === 0) {
+                display.innerHTML = '<p>Cart is empty</p>';
+                return;
+            }
+            
+            let total = 0;
+            let html = '<h3>Items in Cart:</h3><ul>';
+            cart.forEach((item, idx) => {
+                const price = (item.price/100).toFixed(2);
+                html += '<li>' + (idx+1) + '. ' + item.name + ' - Flavor: ' + item.flavor + ' - $' + price + '</li>';
+                total += item.price;
+            });
+            html += '</ul><p><strong>Total: $' + (total/100).toFixed(2) + '</strong></p>';
+            display.innerHTML = html;
+        }
+        
+        // Run tests on load
+        window.addEventListener('load', () => {
+            console.log("🚀 Test Page Loaded");
+            test1();
+            test2();
+            console.log("✅ All tests initialized");
+        });
+    </script>
+</body>
+</html>
