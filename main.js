@@ -1,4 +1,6 @@
 // Stripe Checkout with dynamic shipping rates
+console.log("📦 main.js loaded - Elizabeth's Baked Goods shopping system initializing...");
+
 const CONFIG = {
 	formspreeEndpoint: "https://formspree.io/f/mgvpvzkz",
 	stripePublishableKey: "pk_live_51SNIwWAKipJWOAbPpTyitJZ0bjUS8DtFYMDOwWW7vfmUpXqaP4C5U9rq4cGhG6iragLQ0CrKlQgo5az178HPRg4I00y6YwznJ8",
@@ -101,9 +103,11 @@ window.removeFromCart = function(index) {
 };
 
 window.addEventListener("load", () => {
+	console.log("🚀 Window load event fired - initializing shopping system...");
 	initializeCart();
 	initializeFlavorModal();
 	checkForSuccessfulCheckout();
+	console.log("✅ All initializations complete");
 });
 
 function initializeCart() {
@@ -111,42 +115,50 @@ function initializeCart() {
 	const checkoutBtn = document.getElementById("checkout-btn");
 	
 	if (!cartContainer || !checkoutBtn) {
-		console.error("Cart container or checkout button not found");
+		console.error("❌ Cart container or checkout button not found");
+		console.error("  - cartContainer found:", !!cartContainer);
+		console.error("  - checkoutBtn found:", !!checkoutBtn);
 		return;
 	}
 
-	console.log("Initializing cart...");
+	console.log("✅ Initializing cart...");
 
 	// Add to cart button listeners
 	const buttons = document.querySelectorAll(".add-to-cart-btn");
-	console.log(`Found ${buttons.length} add-to-cart buttons`);
+	console.log(`✅ Found ${buttons.length} add-to-cart buttons`);
+	
+	if (buttons.length === 0) {
+		console.error("❌ NO BUTTONS FOUND! Check if HTML has class='add-to-cart-btn'");
+		return;
+	}
 	
 	buttons.forEach((btn, index) => {
 		const productId = btn.dataset.product;
-		console.log(`Button ${index}: product=${productId}`);
+		console.log(`   Button ${index + 1}: data-product="${productId}"`);
 		
 		btn.addEventListener("click", function(e) {
-			console.log("Button clicked:", productId);
+			console.log(`✅ Button clicked: ${productId}`);
 			e.preventDefault();
 			e.stopPropagation();
 			const product = CONFIG.products[productId];
 			
 			if (!product) {
-				console.error("Product not found in CONFIG:", productId);
+				console.error(`❌ Product not found in CONFIG: ${productId}`);
+				console.error("Available products:", Object.keys(CONFIG.products));
 				alert("Product configuration not found. Please contact support.");
 				return;
 			}
 			
-			console.log("Product found:", product);
+			console.log(`✅ Product found: ${product.name}`);
 			
 			// If product requires flavor selection, show modal
 			if (product.flavor) {
-				console.log("Product requires flavor selection");
+				console.log(`📋 Showing flavor modal for: ${productId}`);
 				pendingProductId = productId;
 				showFlavorModal(productId);
 			} else {
 				// No flavor needed, add directly
-				console.log("Adding product without flavor selection");
+				console.log(`✨ Adding product without flavor selection: ${productId}`);
 				addToCart(productId, "N/A");
 			}
 		});
@@ -159,7 +171,7 @@ function initializeCart() {
 	});
 
 	updateCartDisplay();
-	console.log("Cart initialized successfully");
+	console.log("✅ Cart initialized successfully");
 }
 
 function initializeFlavorModal() {
@@ -193,11 +205,17 @@ function initializeFlavorModal() {
 }
 
 function showFlavorModal(productId) {
+	console.log(`📋 showFlavorModal called for: ${productId}`);
 	const modal = document.getElementById("flavor-modal");
 	const flavorSelect = document.getElementById("flavor-select");
 	const title = document.getElementById("flavor-modal-title");
 	
-	if (!modal || !flavorSelect) return;
+	if (!modal || !flavorSelect) {
+		console.error("❌ Modal elements not found");
+		console.error("  - modal found:", !!modal);
+		console.error("  - flavorSelect found:", !!flavorSelect);
+		return;
+	}
 	
 	// Determine flavor options based on product
 	let flavors = [];
@@ -227,12 +245,14 @@ function showFlavorModal(productId) {
 	
 	title.textContent = `Choose Your Flavor`;
 	modal.style.display = "flex";
+	console.log(`✅ Flavor modal opened with ${flavors.length} options`);
 }
 
 function addToCart(productId, flavor) {
+	console.log(`🛒 addToCart called: productId="${productId}", flavor="${flavor}"`);
 	const product = CONFIG.products[productId];
 	if (!product) {
-		console.error("Product not found:", productId);
+		console.error(`❌ Product not found: ${productId}`);
 		return;
 	}
 
@@ -244,7 +264,8 @@ function addToCart(productId, flavor) {
 		quantity: 1
 	});
 
-	console.log("Cart updated:", cart);
+	console.log(`✅ Item added to cart: ${product.name} - $${(product.price/100).toFixed(2)}`);
+	console.log("Cart contents:", cart);
 	updateCartDisplay();
 	showCartMessage("Added to cart!");
 }
