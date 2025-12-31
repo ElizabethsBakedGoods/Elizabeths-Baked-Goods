@@ -510,6 +510,13 @@
             })();
         </script>
 
+    <script>
+        // Fallback to ensure handleAddToCart is available
+        window.handleAddToCart = window.handleAddToCart || function(productId) {
+            console.warn("handleAddToCart called before main.js loaded, productId:", productId);
+            // This will be replaced by the actual function from main.js
+        };
+    </script>
     <script src="main.js" defer></script>
 
 <div id="footer-placeholder"></div>
