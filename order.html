@@ -513,12 +513,14 @@
 
     <!-- Define cart and core functions immediately for onclick handlers -->
     <script>
-        // Shopping cart - initialize before main.js
-        let cart = [];
-        let pendingProductId = null;
+        // Shopping cart - let main.js define the actual cart
+        // We just need to ensure addProductToCart is available for onclick handlers
         
         // Define CONFIG as empty object initially - main.js will populate it
         window.CONFIG = window.CONFIG || {};
+        
+        // Track retry attempts to prevent infinite loops
+        let addProductToCartRetries = {};
         
         // This function will be called by onclick handlers
         // It will work both before and after main.js loads
@@ -527,12 +529,24 @@
             
             // If main.js hasn't loaded yet, wait a moment and retry
             if (!window.CONFIG || !window.CONFIG.products || !window.addToCart) {
-                console.warn('⏳ Waiting for main.js to load...');
+                addProductToCartRetries[productId] = (addProductToCartRetries[productId] || 0) + 1;
+                
+                if (addProductToCartRetries[productId] > 50) {
+                    // 50 retries = 5 seconds max
+                    console.error('❌ Timeout waiting for main.js to load');
+                    alert('Page is taking too long to load. Please refresh and try again.');
+                    return;
+                }
+                
+                console.warn(`⏳ Waiting for main.js to load... (attempt ${addProductToCartRetries[productId]})`);
                 setTimeout(function() {
                     window.addProductToCart(productId);
                 }, 100);
                 return;
             }
+            
+            // Reset retry count on successful attempt
+            delete addProductToCartRetries[productId];
             
             const product = window.CONFIG.products[productId];
             
@@ -547,18 +561,22 @@
             if (product.flavor) {
                 window.pendingProductId = productId;
                 if (window.showFlavorModal) {
+                    console.log(`📋 Calling showFlavorModal for ${productId}`);
                     window.showFlavorModal(productId);
                 } else {
                     console.error('❌ showFlavorModal not available');
                 }
             } else {
                 if (window.addToCart) {
+                    console.log(`🛒 Calling addToCart for ${productId}`);
                     window.addToCart(productId, 'N/A');
                 } else {
                     console.error('❌ addToCart not available');
                 }
             }
         };
+        
+        console.log('✅ addProductToCart function defined and ready');
     </script>
     
     <script src="main.js" defer></script>
