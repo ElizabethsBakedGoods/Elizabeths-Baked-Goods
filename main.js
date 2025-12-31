@@ -553,6 +553,9 @@ Customer will receive Stripe email receipt
 // This ensures onclick handlers and other external code can call these functions
 // ============================================================================
 
+// Expose CONFIG to window so inline script can access product data
+window.CONFIG = CONFIG;
+
 // Expose core cart functions to window
 window.addToCart = addToCart;
 window.showFlavorModal = showFlavorModal;
