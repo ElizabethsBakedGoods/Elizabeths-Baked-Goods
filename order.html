@@ -511,6 +511,56 @@
             })();
         </script>
 
+    <!-- Define cart and core functions immediately for onclick handlers -->
+    <script>
+        // Shopping cart - initialize before main.js
+        let cart = [];
+        let pendingProductId = null;
+        
+        // Define CONFIG as empty object initially - main.js will populate it
+        window.CONFIG = window.CONFIG || {};
+        
+        // This function will be called by onclick handlers
+        // It will work both before and after main.js loads
+        window.addProductToCart = function(productId) {
+            console.log(`🎯 addProductToCart called: ${productId}`);
+            
+            // If main.js hasn't loaded yet, wait a moment and retry
+            if (!window.CONFIG || !window.CONFIG.products || !window.addToCart) {
+                console.warn('⏳ Waiting for main.js to load...');
+                setTimeout(function() {
+                    window.addProductToCart(productId);
+                }, 100);
+                return;
+            }
+            
+            const product = window.CONFIG.products[productId];
+            
+            if (!product) {
+                console.error(`❌ Product not found: ${productId}`);
+                alert('Product not found. Please contact support.');
+                return;
+            }
+            
+            console.log(`✅ Product found: ${product.name}`);
+            
+            if (product.flavor) {
+                window.pendingProductId = productId;
+                if (window.showFlavorModal) {
+                    window.showFlavorModal(productId);
+                } else {
+                    console.error('❌ showFlavorModal not available');
+                }
+            } else {
+                if (window.addToCart) {
+                    window.addToCart(productId, 'N/A');
+                } else {
+                    console.error('❌ addToCart not available');
+                }
+            }
+        };
+    </script>
+    
     <script src="main.js" defer></script>
 
 <div id="footer-placeholder"></div>

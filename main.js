@@ -547,3 +547,21 @@ Customer will receive Stripe email receipt
 		// Don't show error to customer - they already paid successfully
 	}
 }
+
+// ============================================================================
+// EXPOSE FUNCTIONS TO WINDOW OBJECT FOR EXTERNAL ACCESS
+// This ensures onclick handlers and other external code can call these functions
+// ============================================================================
+
+// Expose core cart functions to window
+window.addToCart = addToCart;
+window.showFlavorModal = showFlavorModal;
+window.updateCartDisplay = updateCartDisplay;
+window.showCartMessage = showCartMessage;
+window.initializeCart = initializeCart;
+window.initializeFlavorModal = initializeFlavorModal;
+window.handleCheckout = handleCheckout;
+window.sendOrderNotification = sendOrderNotification;
+
+console.log("✅ All cart functions exposed to window object");
+
