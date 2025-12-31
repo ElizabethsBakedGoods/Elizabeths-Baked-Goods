@@ -110,6 +110,25 @@ window.addEventListener("load", () => {
 	console.log("✅ All initializations complete");
 });
 
+// Global function for direct onclick handlers as backup
+window.addProductToCart = function(productId) {
+	console.log(`🎯 addProductToCart called directly: ${productId}`);
+	const product = CONFIG.products[productId];
+	
+	if (!product) {
+		console.error(`❌ Product not found: ${productId}`);
+		alert("Product not found");
+		return;
+	}
+	
+	if (product.flavor) {
+		pendingProductId = productId;
+		showFlavorModal(productId);
+	} else {
+		addToCart(productId, "N/A");
+	}
+};
+
 function initializeCart() {
 	const cartContainer = document.getElementById("cart-container");
 	const checkoutBtn = document.getElementById("checkout-btn");
