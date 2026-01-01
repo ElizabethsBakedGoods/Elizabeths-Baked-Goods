@@ -428,7 +428,7 @@ async function handleCheckout() {
 	}
 
 	const orderDetails = (Array.isArray(items) ? items : []).map((item, i) => 
-		`${i + 1}. ${(item && item.name) || 'Unknown'} - Flavor: ${(item && item.flavor) || 'N/A'} - $${((item && item.price) || 0) / 100).toFixed(2)}`
+		`${i + 1}. ${(item && item.name) || 'Unknown'} - Flavor: ${(item && item.flavor) || 'N/A'} - $${(((item && item.price) || 0) / 100).toFixed(2)}`
 	).join('\n');
 	
 	const shippingCost = subtotalDollars >= 60 ? 'FREE' : '$8.00';
