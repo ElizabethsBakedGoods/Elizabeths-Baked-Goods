@@ -540,6 +540,7 @@ Customer will receive Stripe email receipt
 
 // Expose CONFIG to window so inline script can access product data
 window.CONFIG = CONFIG;
+console.log('✅ [main.js] CONFIG exposed to window.CONFIG with', Object.keys(CONFIG.products).length, 'products');
 
 // Expose core cart functions to window
 window.addToCart = addToCart;
@@ -551,5 +552,5 @@ window.initializeFlavorModal = initializeFlavorModal;
 window.handleCheckout = handleCheckout;
 window.sendOrderNotification = sendOrderNotification;
 
-console.log("✅ All cart functions exposed to window object");
+console.log("✅ [main.js] All cart functions exposed to window object");
 
