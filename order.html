@@ -513,7 +513,7 @@
 
     <!-- Define core cart function immediately for onclick handlers -->
     <script>
-        console.log('📌 [Inline Script] Defining window.addProductToCart function');
+        console.log('📌 [Inline] Defining window.addProductToCart function at', new Date().toISOString());
         
         // Track retry attempts to prevent infinite loops
         let __addProductToCartRetries = {};
@@ -521,19 +521,29 @@
         // This function will be called by all "Add to Cart" button onclick handlers
         // It waits for main.js to load (with retry logic) and then delegates to main.js functions
         window.addProductToCart = function(productId) {
-            console.log(`🎯 [Inline] addProductToCart called: ${productId}`);
+            console.log(`🎯 [Inline] addProductToCart called: ${productId} at ${new Date().toISOString()}`);
+            
+            // Debug: log current state
+            console.log(`🔍 [Inline] Checking window state:`, {
+                hasConfig: !!window.CONFIG,
+                hasConfigProducts: !!(window.CONFIG && window.CONFIG.products),
+                hasAddToCart: typeof window.addToCart === 'function',
+                hasShowFlavorModal: typeof window.showFlavorModal === 'function'
+            });
             
             // Check if main.js has loaded by checking if CONFIG and key functions exist
             if (!window.CONFIG || !window.CONFIG.products) {
                 __addProductToCartRetries[productId] = (__addProductToCartRetries[productId] || 0) + 1;
                 
                 if (__addProductToCartRetries[productId] > 50) {
-                    console.error('❌ [Inline] Timeout: main.js did not load within 5 seconds');
-                    alert('Page is taking too long to load. Please refresh and try again.');
+                    console.error('❌ [Inline] TIMEOUT: main.js did not load within 5 seconds');
+                    console.error('❌ [Inline] window.CONFIG:', window.CONFIG);
+                    console.error('❌ [Inline] window.CONFIG.products:', window.CONFIG ? window.CONFIG.products : 'CONFIG does not exist');
+                    alert('ERROR: The shopping system failed to load. Please refresh the page. If this persists, contact support.');
                     return;
                 }
                 
-                console.warn(`⏳ [Inline] Waiting for main.js to load... (attempt ${__addProductToCartRetries[productId]}/50)`);
+                console.warn(`⏳ [Inline] Waiting for main.js (attempt ${__addProductToCartRetries[productId]}/50)`);
                 setTimeout(function() {
                     window.addProductToCart(productId);
                 }, 100);
@@ -587,8 +597,6 @@
         
         console.log('✅ [Inline] window.addProductToCart function defined and ready for button clicks');
     </script>
-    
-    <script src="main.js" defer></script>
 
 <div id="footer-placeholder"></div>
 
@@ -600,6 +608,9 @@
     })
     .catch(error => console.log('Footer load error:', error));
 </script>
+
+<!-- Load main.js after all HTML is parsed -->
+<script src="main.js"></script>
 
 </body>
 </html>

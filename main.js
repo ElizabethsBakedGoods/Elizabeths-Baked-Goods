@@ -1,5 +1,6 @@
 // Stripe Checkout with dynamic shipping rates
-console.log("📦 main.js loaded - Elizabeth's Baked Goods shopping system initializing...");
+console.log("📦 [main.js] LOADING - Elizabeth's Baked Goods shopping system initializing...");
+console.log("📦 [main.js] Current time:", new Date().toISOString());
 
 const CONFIG = {
 	formspreeEndpoint: "https://formspree.io/f/mgvpvzkz",
@@ -76,6 +77,7 @@ const CONFIG = {
 		"gift-basket": { name: "Holiday Gift Basket", price: 5000, flavor: false }
 	}
 };
+console.log("📦 [main.js] CONFIG object defined with", Object.keys(CONFIG.products).length, "products");
 
 // Shopping cart
 let cart = [];
