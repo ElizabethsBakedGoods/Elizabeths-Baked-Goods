@@ -513,6 +513,8 @@
 
     <!-- Define core cart function immediately for onclick handlers -->
     <script>
+        console.log('📌 [Inline] Script starting at', new Date().toISOString());
+        console.log('📌 [Inline] Current URL:', window.location.href);
         console.log('📌 [Inline] Defining window.addProductToCart function at', new Date().toISOString());
         
         // Track retry attempts to prevent infinite loops
@@ -536,9 +538,10 @@
                 __addProductToCartRetries[productId] = (__addProductToCartRetries[productId] || 0) + 1;
                 
                 if (__addProductToCartRetries[productId] > 50) {
-                    console.error('❌ [Inline] TIMEOUT: main.js did not load within 5 seconds');
+                    console.error('❌ [Inline] TIMEOUT: main.js did not populate window.CONFIG within 5 seconds');
                     console.error('❌ [Inline] window.CONFIG:', window.CONFIG);
                     console.error('❌ [Inline] window.CONFIG.products:', window.CONFIG ? window.CONFIG.products : 'CONFIG does not exist');
+                    console.error('❌ [Inline] typeof window.addToCart:', typeof window.addToCart);
                     alert('ERROR: The shopping system failed to load. Please refresh the page. If this persists, contact support.');
                     return;
                 }
@@ -609,8 +612,22 @@
     .catch(error => console.log('Footer load error:', error));
 </script>
 
-<!-- Load main.js after all HTML is parsed -->
-<script src="main.js"></script>
+<!-- Load main.js with error handling -->
+<script>
+  console.log('🔧 [Script Loader] About to load main.js from:', window.location.origin + '/main.js');
+  
+  // Create script element dynamically for better error handling
+  const mainScriptTag = document.createElement('script');
+  mainScriptTag.src = '/main.js';
+  mainScriptTag.onerror = function() {
+    console.error('❌ [Script Loader] FAILED to load main.js - 404 or network error');
+    alert('ERROR: Could not load main.js. Check your internet connection.');
+  };
+  mainScriptTag.onload = function() {
+    console.log('✅ [Script Loader] main.js loaded successfully');
+  };
+  document.body.appendChild(mainScriptTag);
+</script>
 
 </body>
 </html>
