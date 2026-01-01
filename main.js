@@ -495,7 +495,7 @@ async function sendOrderNotification(orderItems, customerEmail) {
 
 	// Format order details for email - safe map
 	const orderDetails = (Array.isArray(items) ? items : []).map((item, index) => 
-		`${index + 1}. ${(item && item.name) || 'Unknown'} - Flavor: ${(item && item.flavor) || 'N/A'} - $${((item && item.price) || 0) / 100).toFixed(2)}`
+		`${index + 1}. ${(item && item.name) || 'Unknown'} - Flavor: ${(item && item.flavor) || 'N/A'} - $${(((item && item.price) || 0) / 100).toFixed(2)}`
 	).join('\n');
 
 	const emailBody = `
