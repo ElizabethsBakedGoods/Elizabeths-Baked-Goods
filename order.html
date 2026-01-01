@@ -511,72 +511,81 @@
             })();
         </script>
 
-    <!-- Define cart and core functions immediately for onclick handlers -->
+    <!-- Define core cart function immediately for onclick handlers -->
     <script>
-        // Shopping cart - let main.js define the actual cart
-        // We just need to ensure addProductToCart is available for onclick handlers
-        
-        // Define CONFIG as empty object initially - main.js will populate it
-        window.CONFIG = window.CONFIG || {};
+        console.log('📌 [Inline Script] Defining window.addProductToCart function');
         
         // Track retry attempts to prevent infinite loops
-        let addProductToCartRetries = {};
+        let __addProductToCartRetries = {};
         
-        // This function will be called by onclick handlers
-        // It will work both before and after main.js loads
+        // This function will be called by all "Add to Cart" button onclick handlers
+        // It waits for main.js to load (with retry logic) and then delegates to main.js functions
         window.addProductToCart = function(productId) {
-            console.log(`🎯 addProductToCart called: ${productId}`);
+            console.log(`🎯 [Inline] addProductToCart called: ${productId}`);
             
-            // If main.js hasn't loaded yet, wait a moment and retry
-            if (!window.CONFIG || !window.CONFIG.products || !window.addToCart) {
-                addProductToCartRetries[productId] = (addProductToCartRetries[productId] || 0) + 1;
+            // Check if main.js has loaded by checking if CONFIG and key functions exist
+            if (!window.CONFIG || !window.CONFIG.products) {
+                __addProductToCartRetries[productId] = (__addProductToCartRetries[productId] || 0) + 1;
                 
-                if (addProductToCartRetries[productId] > 50) {
-                    // 50 retries = 5 seconds max
-                    console.error('❌ Timeout waiting for main.js to load');
+                if (__addProductToCartRetries[productId] > 50) {
+                    console.error('❌ [Inline] Timeout: main.js did not load within 5 seconds');
                     alert('Page is taking too long to load. Please refresh and try again.');
                     return;
                 }
                 
-                console.warn(`⏳ Waiting for main.js to load... (attempt ${addProductToCartRetries[productId]})`);
+                console.warn(`⏳ [Inline] Waiting for main.js to load... (attempt ${__addProductToCartRetries[productId]}/50)`);
                 setTimeout(function() {
                     window.addProductToCart(productId);
                 }, 100);
                 return;
             }
             
-            // Reset retry count on successful attempt
-            delete addProductToCartRetries[productId];
+            // main.js has loaded - clear retry counter
+            delete __addProductToCartRetries[productId];
             
-            const product = window.CONFIG.products[productId];
-            
-            if (!product) {
-                console.error(`❌ Product not found: ${productId}`);
-                alert('Product not found. Please contact support.');
-                return;
-            }
-            
-            console.log(`✅ Product found: ${product.name}`);
-            
-            if (product.flavor) {
-                window.pendingProductId = productId;
-                if (window.showFlavorModal) {
-                    console.log(`📋 Calling showFlavorModal for ${productId}`);
-                    window.showFlavorModal(productId);
-                } else {
-                    console.error('❌ showFlavorModal not available');
+            try {
+                // Get the product from CONFIG
+                const product = window.CONFIG.products[productId];
+                
+                if (!product) {
+                    console.error(`❌ [Inline] Product not found in CONFIG: ${productId}`);
+                    console.error('Available products:', Object.keys(window.CONFIG.products));
+                    alert('Product not found. Please contact support.');
+                    return;
                 }
-            } else {
-                if (window.addToCart) {
-                    console.log(`🛒 Calling addToCart for ${productId}`);
-                    window.addToCart(productId, 'N/A');
+                
+                console.log(`✅ [Inline] Product found: ${product.name}`);
+                
+                // Check if product needs flavor selection
+                if (product.flavor) {
+                    console.log(`📋 [Inline] Product requires flavor - showing modal`);
+                    
+                    // Set pending product and call showFlavorModal
+                    if (typeof window.showFlavorModal === 'function') {
+                        window.pendingProductId = productId;
+                        window.showFlavorModal(productId);
+                    } else {
+                        console.error('❌ [Inline] showFlavorModal function not available');
+                        alert('Flavor selector not ready. Please try again.');
+                    }
                 } else {
-                    console.error('❌ addToCart not available');
+                    console.log(`🛒 [Inline] No flavor needed - adding to cart directly`);
+                    
+                    // Add directly without flavor
+                    if (typeof window.addToCart === 'function') {
+                        window.addToCart(productId, 'N/A');
+                    } else {
+                        console.error('❌ [Inline] addToCart function not available');
+                        alert('Cart not ready. Please try again.');
+                    }
                 }
+            } catch (error) {
+                console.error('❌ [Inline] Error in addProductToCart:', error);
+                alert('An error occurred. Please check the console and try again.');
             }
         };
         
-        console.log('✅ addProductToCart function defined and ready');
+        console.log('✅ [Inline] window.addProductToCart function defined and ready for button clicks');
     </script>
     
     <script src="main.js" defer></script>

@@ -110,24 +110,9 @@ window.addEventListener("load", () => {
 	console.log("✅ All initializations complete");
 });
 
-// Global function for direct onclick handlers as backup
-window.addProductToCart = function(productId) {
-	console.log(`🎯 addProductToCart called directly: ${productId}`);
-	const product = CONFIG.products[productId];
-	
-	if (!product) {
-		console.error(`❌ Product not found: ${productId}`);
-		alert("Product not found");
-		return;
-	}
-	
-	if (product.flavor) {
-		pendingProductId = productId;
-		showFlavorModal(productId);
-	} else {
-		addToCart(productId, "N/A");
-	}
-};
+// Note: window.addProductToCart is defined in order.html inline script
+// This ensures it's available immediately for onclick handlers
+// Main.js just needs to ensure addToCart, showFlavorModal, etc. are available when called
 
 function initializeCart() {
 	const cartContainer = document.getElementById("cart-container");
