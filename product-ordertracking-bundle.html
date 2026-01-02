@@ -657,9 +657,8 @@
         document.getElementById('payment-form').parentNode.insertBefore(successMsg, document.getElementById('payment-form'));
     }
     
-    // Stripe Payment Link for Order Tracking Bundle - Replace with your actual link
-    const BASE_PAYMENT_LINK = 'REPLACE_WITH_YOUR_STRIPE_LINK';
-    const PAYMENT_LINK = BASE_PAYMENT_LINK + '?success_url=' + encodeURIComponent(window.location.origin + '/product-ordertracking-bundle.html?product_id=order-tracking-bundle') + '&cancel_url=' + encodeURIComponent(window.location.origin + '/designs.html');
+    // Stripe Payment Link for Order Tracking Bundle
+    const PAYMENT_LINK = 'https://buy.stripe.com/9B63cu96VdTxdHQ2nz1VK0H';
     
     function initCheckout() {
         const form = document.getElementById('payment-form');
