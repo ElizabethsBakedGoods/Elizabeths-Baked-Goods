@@ -164,7 +164,7 @@
         ✓ Your payment has been received successfully. Your digital download is ready to use immediately!
       </p>
 
-      <div class="product-details">
+      <div class="product-details" id="product-details">
         <h3>Your Download</h3>
         <p><strong>Order Status:</strong> Confirmed</p>
         <p><strong>File Type:</strong> Instant Digital Download (PNG)</p>
@@ -213,6 +213,70 @@
   </footer>
 
   <script>
+    // Product metadata for displaying correct info on success page
+    const productMetadata = {
+      'outside-bakery': {
+        name: 'Outside Bakery Coloring Page',
+        fileType: 'PNG Image',
+        description: '1 high-quality printable coloring page'
+      },
+      'cupcake': {
+        name: 'Cupcake Coloring Page',
+        fileType: 'PNG Image',
+        description: '1 high-quality printable coloring page'
+      },
+      'gingerbread': {
+        name: 'Gingerbread Coloring Page',
+        fileType: 'PNG Image',
+        description: '1 high-quality printable coloring page'
+      },
+      'inside-bakery-girl': {
+        name: 'Inside Bakery Girl Coloring Page',
+        fileType: 'PNG Image',
+        description: '1 high-quality printable coloring page'
+      },
+      'inside-bakery-man': {
+        name: 'Inside Bakery Man Coloring Page',
+        fileType: 'PNG Image',
+        description: '1 high-quality printable coloring page'
+      },
+      'cookie': {
+        name: 'Cookie Coloring Page',
+        fileType: 'PNG Image',
+        description: '1 high-quality printable coloring page'
+      },
+      'treats': {
+        name: 'Treats Coloring Page',
+        fileType: 'PNG Image',
+        description: '1 high-quality printable coloring page'
+      },
+      'order-tracking-bundle': {
+        name: 'Order Tracking Bundle',
+        fileType: 'Multiple Files (Excel + PNG)',
+        description: 'Complete bakery order management system with 4 files'
+      }
+    };
+
+    // Update product details on page load
+    window.addEventListener('load', function() {
+      const params = new URLSearchParams(window.location.search);
+      const productId = params.get('product_id') || 'outside-bakery';
+      const metadata = productMetadata[productId] || productMetadata['outside-bakery'];
+      
+      const productDetailsDiv = document.getElementById('product-details');
+      if (productDetailsDiv) {
+        productDetailsDiv.innerHTML = `
+          <h3>Your Download - ${metadata.name}</h3>
+          <p><strong>Order Status:</strong> Confirmed</p>
+          <p><strong>File Type:</strong> Instant Digital Download (${metadata.fileType})</p>
+          <p><strong>Details:</strong> ${metadata.description}</p>
+          <p><strong>License:</strong> Personal Use</p>
+        `;
+      }
+    });
+  </script>
+
+  <script>
     // Function to determine which file to download based on product ID in URL
     function downloadFile() {
       // Get product ID from URL parameters if available
@@ -227,24 +291,45 @@
         'inside-bakery-girl': '/downloads/insidebakerygirl.png',
         'inside-bakery-man': '/downloads/insidebakeryman.png',
         'cookie': '/downloads/cookiecolor.png',
-        'treats': '/downloads/treatscolor.png'
+        'treats': '/downloads/treatscolor.png',
+        'order-tracking-bundle': [
+          '/downloads/copy%20of%20bakery%20costing.xlsx',
+          '/downloads/orderlog.png',
+          '/downloads/ordertracker.png',
+          '/downloads/ordertrackinglogo.png'
+        ]
       };
       
       const downloadUrl = downloadMap[productId] || downloadMap['outside-bakery'];
       
-      // Create temporary link and trigger download
-      const link = document.createElement('a');
-      link.href = downloadUrl;
-      link.download = true;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      // Handle multiple file downloads for bundles
+      if (Array.isArray(downloadUrl)) {
+        downloadUrl.forEach((url, index) => {
+          // Stagger downloads to avoid browser blocking
+          setTimeout(() => {
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = true;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          }, index * 200);
+        });
+      } else {
+        // Single file download
+        const link = document.createElement('a');
+        link.href = downloadUrl;
+        link.download = true;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
     }
 
     // Auto-trigger download when page loads
     window.addEventListener('load', function() {
-      // Small delay to ensure page is fully loaded
-      setTimeout(downloadFile, 500);
+      // Small delay to ensure page is fully loaded and metadata is displayed
+      setTimeout(downloadFile, 800);
     });
   </script>
 </body>
