@@ -44,6 +44,25 @@ header nav.navbar a:hover {
   border-radius: 4px;
 }
 
+header nav.navbar .social-icons {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-left: 10px;
+}
+
+header nav.navbar .social-icons a {
+  font-size: 1.3rem;
+  color: #d93535;
+  padding: 0;
+  transition: color 0.3s ease;
+}
+
+header nav.navbar .social-icons a:hover {
+  color: #b72a2a;
+  background-color: transparent;
+}
+
 /* MOBILE / SMALL SCREEN RESPONSIVENESS */
 @media (max-width: 768px) {
   header nav.navbar {
