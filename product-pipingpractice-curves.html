@@ -341,6 +341,71 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        .recipe-cards {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .recipe-cards h2 {
+            font-family: 'Playfair Display', serif;
+            color: #4d2c2a;
+            font-size: 1.8rem;
+            text-align: center;
+            margin: 0 0 30px 0;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .recipe-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .recipe-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .recipe-card-content {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .recipe-card-content h3 {
+            margin: 0 0 10px 0;
+            color: #4d2c2a;
+            font-size: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .recipe-card-content a {
+            color: #d93535;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .recipe-card-content a:hover {
+            color: #b72a2a;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -415,38 +480,63 @@
 
 <div class="sidebar-below">
     <div class="sidebar-section how-to-order">
-        <h3>How to Order</h3>
+        <h3>📋 How to Order</h3>
         <ol>
-            <li><strong>Review the design</strong> - See the preview above</li>
-            <li><strong>Add to cart</strong> - Click "Complete Purchase via Stripe"</li>
-            <li><strong>Secure checkout</strong> - Complete your payment securely through Stripe</li>
-            <li><strong>Download instantly</strong> - Access your file immediately</li>
-            <li><strong>Start practicing!</strong> - Print and begin mastering your piping skills</li>
+            <li>Review the practice sheet preview</li>
+            <li>Click "Complete Purchase via Stripe"</li>
+            <li>Complete secure payment</li>
+            <li>Download instantly after purchase</li>
+            <li>Print and start practicing!</li>
         </ol>
     </div>
-
     <div class="sidebar-section">
-        <h3>What's Included</h3>
+        <h3>📚 Related Blog Posts</h3>
         <ul>
-            <li>1 high-resolution PDF practice sheet</li>
-            <li>Multiple curve patterns for progression</li>
-            <li>Tips for smooth, flowing lines</li>
-            <li>Control and pressure techniques</li>
-            <li>Advanced curve variations</li>
+            <li><a href="/blog/how-to-decorate-sugar-cookies-like-a-pro.html">How to Decorate Sugar Cookies Like a Pro</a></li>
+            <li><a href="/blog/how-to-store-homemade-cookies.html">How to Store Homemade Cookies</a></li>
+            <li><a href="/blog/holiday-sugar-cookie-decorating.html">Holiday Sugar Cookie Decorating</a></li>
+            <li><a href="/blog/how-i-build-my-50-holiday-gift-baskets.html">How I Build Holiday Gift Baskets</a></li>
+            <li><a href="/blog/moving-to-houston-helped-me-rediscover-food.html">Moving to Houston Story</a></li>
         </ul>
     </div>
-
     <div class="sidebar-section">
-        <h3>Perfect For</h3>
+        <h3>🛒 Online Ordering</h3>
         <ul>
-            <li>Beginner pipers</li>
-            <li>Skill refinement</li>
-            <li>Cake decorators</li>
-            <li>Cupcake enthusiasts</li>
-            <li>Professional bakers</li>
+            <li><a href="/order.html">Order Custom Items</a></li>
+            <li><a href="/local-ordering.html">Local Ordering Info</a></li>
+            <li><a href="/designs.html">Digital Downloads</a></li>
+            <li><a href="/contact.html">Request Quote</a></li>
+            <li><a href="/contact.html">Get in Touch</a></li>
         </ul>
     </div>
 </div>
+
+<section class="recipe-cards">
+    <h2>Popular Recipes to Master</h2>
+    <div class="cards-grid">
+        <div class="recipe-card">
+            <img src="/images/chochip.png.jfif" alt="Chocolate Chip Cookie Recipe">
+            <div class="recipe-card-content">
+                <h3>Chocolate Chip Cookie</h3>
+                <a href="/recipes.html">View Recipe →</a>
+            </div>
+        </div>
+        <div class="recipe-card">
+            <img src="/images/browniesbiscoff.jfif" alt="Biscoff Brownies Recipe">
+            <div class="recipe-card-content">
+                <h3>Biscoff Brownies</h3>
+                <a href="/recipes.html">View Recipe →</a>
+            </div>
+        </div>
+        <div class="recipe-card">
+            <img src="/images/xmas christmas assort.jfif" alt="Holiday Treats Recipe">
+            <div class="recipe-card-content">
+                <h3>Holiday Treats</h3>
+                <a href="/recipes.html">View Recipe →</a>
+            </div>
+        </div>
+    </div>
+</section>
 
 <div id="footer-placeholder"></div>
 
