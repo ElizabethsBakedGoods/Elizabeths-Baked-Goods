@@ -344,7 +344,24 @@
     </style>
 </head>
 <body>
-<div id="navbar-placeholder"></div>
+<header>
+  <nav class="navbar">
+    <a href="/index.html">Home</a>
+    <a href="/about.html">About</a>
+    <a href="/blog.html">Blogs</a>
+    <a href="/recipes.html">Recipes</a>
+    <a href="/order.html">Order</a>
+    <a href="/local-ordering.html">Local Ordering</a>
+    <a href="/designs.html">Designs</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/policies.html">Policies</a>
+  </nav>
+</header>
+
+<main style="padding-top: 20px; padding-bottom: 60px;">
+    <div style="max-width: 1000px; margin: 0 auto; padding: 0 20px; margin-bottom: 20px;">
+        <a href="/designs.html" style="color: #d93535; text-decoration: none;">← Back to Designs</a>
+    </div>
 
 <div class="product-container">
     <div class="product-left-column">
@@ -431,13 +448,25 @@
     </div>
 </div>
 
+</div>
+</main>
+
+<footer style="background:#333; color:white; padding:30px; text-align:center;">
+    <p>© 2025 Elizabeth's Baked Goods – Rosenberg, Texas</p>
+    <p>
+        <a href="/contact.html" style="color: white; text-decoration: none;">Contact</a> | 
+        <a href="/policies.html" style="color: white; text-decoration: none;">Policies</a> | 
+        <a href="/about.html" style="color: white; text-decoration: none;">About</a>
+    </p>
+</footer>
+
 <div id="footer-placeholder"></div>
 
 <script>
-  fetch('/navbar.html')
+  fetch('/footer.html')
     .then(response => response.text())
-    .then(data => { document.getElementById('navbar-placeholder').innerHTML = data; })
-    .catch(error => console.log('Navbar load error:', error));
+    .then(data => { document.getElementById('footer-placeholder').innerHTML = data; })
+    .catch(error => console.log('Footer load error:', error));
 </script>
 
 <script>
