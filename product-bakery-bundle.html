@@ -256,10 +256,7 @@
         successMsg.innerHTML = '<strong>✓ Purchase Successful!</strong><p style="margin: 8px 0 0 0;">Your bakery bundle is ready to download below. Check your email for download links as well.</p>';
         document.getElementById('payment-form').parentNode.insertBefore(successMsg, document.getElementById('payment-form'));
     }
-    const successUrl = window.location.href.split('?')[0] + '?product_id=bakery-bundle';
-    const cancelUrl = window.location.origin + '/designs.html';
-    const BASE_PAYMENT_LINK = 'https://buy.stripe.com/9B63cu96VdTxdHQ2nz1VK0H';
-    const PAYMENT_LINK = BASE_PAYMENT_LINK + '?success_url=' + encodeURIComponent(successUrl) + '&cancel_url=' + encodeURIComponent(cancelUrl);
+    const PAYMENT_LINK = 'https://buy.stripe.com/9B63cu96VdTxdHQ2nz1VK0H';
     function initCheckout() {
         const form = document.getElementById('payment-form');
         const submitBtn = document.getElementById('submit-btn');

@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piping Practice - Straight Lines - Elizabeth's Baked Goods</title>
+    <meta name="description" content="Download Piping Practice - Straight Lines - Master the art of piping with our straight lines practice sheet. Instant digital download.">
+    <meta name="keywords" content="piping practice, straight lines, baking tutorial, digital downloads, pastry skills">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        .product-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        .product-left-column {
+            flex: 0 0 350px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .product-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+            position: relative;
+        }
+
+        .info-box {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            border-top: 4px solid #d93535;
+        }
+
+        .info-box h3 {
+            font-family: 'Playfair Display', serif;
+            color: #4d2c2a;
+            font-size: 1.1rem;
+            margin: 0 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .info-box ol, .info-box ul {
+            list-style-position: inside;
+            padding: 0;
+            margin: 0;
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .info-box li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .info-box li:last-child {
+            border-bottom: none;
+        }
+
+        .info-box li:before {
+            content: "✓ ";
+            color: #27ae60;
+            font-weight: bold;
+            margin-right: 6px;
+        }
+
+        .sidebar {
+            display: none;
+        }
+
+        .sidebar-below {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 280px 1fr 1fr;
+            gap: 30px;
+        }
+
+        .sidebar-section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            border-top: 4px solid #d93535;
+        }
+
+        .sidebar-section h3 {
+            font-family: 'Playfair Display', serif;
+            color: #4d2c2a;
+            font-size: 1.2rem;
+            margin: 0 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .sidebar-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-section li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .sidebar-section li:last-child {
+            border-bottom: none;
+        }
+
+        .sidebar-section a {
+            color: #d93535;
+            text-decoration: none;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            transition: color 0.3s ease;
+        }
+
+        .sidebar-section a:hover {
+            color: #b72a2a;
+            text-decoration: underline;
+        }
+
+        .how-to-order {
+            background: #fff9f0;
+            border-top: 4px solid #f57c00 !important;
+        }
+
+        .how-to-order h3 {
+            color: #5d4037;
+        }
+
+        .how-to-order ol {
+            list-style-position: inside;
+            padding: 0;
+            margin: 0;
+            counter-reset: item;
+        }
+
+        .how-to-order li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f5e8d4;
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .how-to-order li:last-child {
+            border-bottom: none;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .product-image::after {
+            content: 'PROOF';
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 5rem;
+            font-weight: bold;
+            color: rgba(217, 53, 53, 0.3);
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 10;
+            font-family: Arial, sans-serif;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-details {
+            flex: 1;
+            min-width: 350px;
+        }
+
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #4d2c2a;
+            margin: 0 0 15px 0;
+        }
+
+        .product-price {
+            font-size: 2rem;
+            color: #d93535;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .product-type-badge {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .product-description {
+            color: #666;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .digital-download-notice {
+            background: #fff3e0;
+            border-left: 4px solid #f57c00;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+            color: #5d4037;
+        }
+
+        .digital-download-notice strong {
+            display: block;
+            margin-bottom: 8px;
+            color: #4d2c2a;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .feature-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            color: #666;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list li:before {
+            content: "✓ ";
+            color: #27ae60;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .cta-button {
+            width: 100%;
+            padding: 16px;
+            background: #d93535;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #b72a2a;
+        }
+
+        .cta-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .payment-info {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .payment-info i {
+            color: #27ae60;
+            margin-right: 8px;
+        }
+
+        .download-section {
+            display: none;
+            background: #e8f5e9;
+            border: 2px solid #27ae60;
+            border-radius: 8px;
+            padding: 30px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .download-section h3 {
+            color: #1b5e20;
+            margin-top: 0;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: #27ae60;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background: #1b5e20;
+        }
+
+        @media (max-width: 768px) {
+            .product-container {
+                flex-direction: column;
+            }
+
+            .product-left-column {
+                flex: none;
+                width: 100%;
+            }
+
+            .sidebar-below {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .recipe-cards {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .recipe-cards h2 {
+            font-family: 'Playfair Display', serif;
+            color: #4d2c2a;
+            font-size: 1.8rem;
+            text-align: center;
+            margin: 0 0 30px 0;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .recipe-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .recipe-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .recipe-card-content {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .recipe-card-content h3 {
+            margin: 0 0 10px 0;
+            color: #4d2c2a;
+            font-size: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .recipe-card-content a {
+            color: #d93535;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .recipe-card-content a:hover {
+            color: #b72a2a;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <a href="/index.html">Home</a>
+    <a href="/about.html">About</a>
+    <a href="/blog.html">Blogs</a>
+    <a href="/recipes.html">Recipes</a>
+    <a href="/order.html">Order</a>
+    <a href="/local-ordering.html">Local Ordering</a>
+    <a href="/designs.html">Designs</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/policies.html">Policies</a>
+  </nav>
+</header>
+
+<main style="padding-top: 20px; padding-bottom: 60px;">
+    <div style="max-width: 1000px; margin: 0 auto; padding: 0 20px; margin-bottom: 20px;">
+        <a href="/designs.html" style="color: #d93535; text-decoration: none;">← Back to Designs</a>
+    </div>
+
+<div class="product-container">
+    <div class="product-left-column">
+        <div class="product-image">
+            <img src="/images/pipingpractice-straightlines.jfif" alt="Piping Practice - Straight Lines">
+        </div>
+    </div>
+
+    <div class="product-details">
+        <span class="product-type-badge">✓ Instant Digital Download</span>
+        <h1 class="product-title">Piping Practice - Straight Lines</h1>
+        <p class="product-price">$1.50</p>
+
+        <p class="product-description">
+            Master the fundamental skill of piping perfect straight lines with this practice sheet. Whether you're a beginner or looking to refine your technique, this guide provides structured exercises to help you achieve consistent, beautiful straight lines every time.
+        </p>
+
+        <div class="digital-download-notice">
+            <strong>📥 Digital Download</strong>
+            This is an instant digital download. You'll receive your file immediately after purchase via email and on this page.
+        </div>
+
+        <ul class="feature-list">
+            <li>Printable practice sheet</li>
+            <li>Perfect for piping bag training</li>
+            <li>High-resolution PDF format</li>
+            <li>Reusable for unlimited practice</li>
+            <li>Professional guide included</li>
+        </ul>
+
+        <form id="payment-form">
+            <button type="submit" class="cta-button" id="submit-btn">
+                Complete Purchase via Stripe
+            </button>
+        </form>
+
+        <div id="download-section" class="download-section">
+            <h3>✓ Your Purchase is Complete!</h3>
+            <p>Your piping practice sheet is ready to download:</p>
+            <a href="/downloads/pipingpractice-straightlines.jfif" class="download-btn" download>
+                <i class="fas fa-download"></i> Download Now
+            </a>
+        </div>
+
+        <div class="payment-info">
+            <p><i class="fas fa-lock"></i> Secure payment powered by Stripe</p>
+            <p><i class="fas fa-envelope"></i> Download link sent to your email</p>
+        </div>
+    </div>
+</div>
+
+<div class="sidebar-below">
+    <div class="sidebar-section how-to-order">
+        <h3>📋 How to Order</h3>
+        <ol>
+            <li>Review the practice sheet preview</li>
+            <li>Click "Complete Purchase via Stripe"</li>
+            <li>Complete secure payment</li>
+            <li>Download instantly after purchase</li>
+            <li>Print and start practicing!</li>
+        </ol>
+    </div>
+    <div class="sidebar-section">
+        <h3>📚 Related Blog Posts</h3>
+        <ul>
+            <li><a href="/blog/how-to-decorate-sugar-cookies-like-a-pro.html">How to Decorate Sugar Cookies Like a Pro</a></li>
+            <li><a href="/blog/how-to-store-homemade-cookies.html">How to Store Homemade Cookies</a></li>
+            <li><a href="/blog/holiday-sugar-cookie-decorating.html">Holiday Sugar Cookie Decorating</a></li>
+            <li><a href="/blog/how-i-build-my-50-holiday-gift-baskets.html">How I Build Holiday Gift Baskets</a></li>
+            <li><a href="/blog/moving-to-houston-helped-me-rediscover-food.html">Moving to Houston Story</a></li>
+        </ul>
+    </div>
+    <div class="sidebar-section">
+        <h3>🛒 Online Ordering</h3>
+        <ul>
+            <li><a href="/order.html">Order Custom Items</a></li>
+            <li><a href="/local-ordering.html">Local Ordering Info</a></li>
+            <li><a href="/designs.html">Digital Downloads</a></li>
+            <li><a href="/contact.html">Request Quote</a></li>
+            <li><a href="/contact.html">Get in Touch</a></li>
+        </ul>
+    </div>
+</div>
+
+<section class="recipe-cards">
+    <h2>Popular Recipes to Master</h2>
+    <div class="cards-grid">
+        <div class="recipe-card">
+            <img src="/images/chochip.png.jfif" alt="Chocolate Chip Cookie Recipe">
+            <div class="recipe-card-content">
+                <h3>Chocolate Chip Cookie</h3>
+                <a href="/recipes.html">View Recipe →</a>
+            </div>
+        </div>
+        <div class="recipe-card">
+            <img src="/images/browniesbiscoff.jfif" alt="Biscoff Brownies Recipe">
+            <div class="recipe-card-content">
+                <h3>Biscoff Brownies</h3>
+                <a href="/recipes.html">View Recipe →</a>
+            </div>
+        </div>
+        <div class="recipe-card">
+            <img src="/images/xmas christmas assort.jfif" alt="Holiday Treats Recipe">
+            <div class="recipe-card-content">
+                <h3>Holiday Treats</h3>
+                <a href="/recipes.html">View Recipe →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+</div>
+</main>
+
+<footer style="background:#333; color:white; padding:30px; text-align:center;">
+    <p>© 2025 Elizabeth's Baked Goods – Rosenberg, Texas</p>
+    <p>
+        <a href="/contact.html" style="color: white; text-decoration: none;">Contact</a> | 
+        <a href="/policies.html" style="color: white; text-decoration: none;">Policies</a> | 
+        <a href="/about.html" style="color: white; text-decoration: none;">About</a>
+    </p>
+</footer>
+
+<div id="footer-placeholder"></div>
+
+<script>
+  fetch('/footer.html')
+    .then(response => response.text())
+    .then(data => { document.getElementById('footer-placeholder').innerHTML = data; })
+    .catch(error => console.log('Footer load error:', error));
+</script>
+
+<script>
+(function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('product_id');
+    if (productId === 'pipingpractice-straightlines') {
+        document.getElementById('download-section').style.display = 'block';
+        document.getElementById('payment-form').style.display = 'none';
+        const successMsg = document.createElement('div');
+        successMsg.style.cssText = 'background: #e8f5e9; border-left: 4px solid #27ae60; padding: 15px; border-radius: 4px; margin: 20px 0; color: #1b5e20;';
+        successMsg.innerHTML = '<strong>✓ Purchase Successful!</strong><p style="margin: 8px 0 0 0;">Your piping practice sheet is ready to download below. Check your email for download links as well.</p>';
+        document.getElementById('payment-form').parentNode.insertBefore(successMsg, document.getElementById('payment-form'));
+    }
+    const BASE_PAYMENT_LINK = 'https://buy.stripe.com/5kQeVc4QF4iX33caU51VK0F4';
+    const PAYMENT_LINK = BASE_PAYMENT_LINK + '?success_url=' + encodeURIComponent(window.location.origin + '/product-pipingpractice-straightlines.html?product_id=pipingpractice-straightlines') + '&cancel_url=' + encodeURIComponent(window.location.origin + '/designs.html');
+    function initCheckout() {
+        const form = document.getElementById('payment-form');
+        const submitBtn = document.getElementById('submit-btn');
+        if (!form || !submitBtn) { console.error('Missing required DOM elements for checkout'); return; }
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Redirecting to checkout...';
+            window.location.href = PAYMENT_LINK;
+        });
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initCheckout);
+    } else {
+        initCheckout();
+    }
+})();
+</script>
+
+<script>
+  fetch('/footer.html')
+    .then(response => response.text())
+    .then(data => { document.getElementById('footer-placeholder').innerHTML = data; })
+    .catch(error => console.log('Footer load error:', error));
+</script>
+</body>
+</html>
