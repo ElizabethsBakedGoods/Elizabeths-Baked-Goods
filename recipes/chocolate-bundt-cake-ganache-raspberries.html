@@ -1,809 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chocolate Bundt Cake with Ganache & Raspberries - Elizabeth's Baked Goods</title>
-    <meta name="description" content="Learn how to bake a stunning chocolate Bundt cake with silky chocolate ganache, powdered sugar, and fresh raspberries. Easy recipe with detailed instructions.">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/style.css?v=20260111x3">
-    <style>
-        .recipe-container {
-            display: flex;
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .recipe-content {
-            flex: 2;
-            min-width: 300px;
-        }
-        
-        .recipe-sidebar {
-            flex: 1;
-            min-width: 250px;
-            align-self: flex-start;
-            position: relative;
-            border-left: none !important;
-            padding-left: 0 !important;
-            max-height: none !important;
-            overflow: visible !important;
-            height: auto !important;
-        }
-        
-        .sidebar-card:first-child {
-            position: sticky;
-            top: 100px;
-            z-index: 100;
-        }
-        
-        .sidebar-card:first-child img {
-            max-width: 100%;
-            height: auto;
-            object-fit: cover;
-            object-position: center top;
-            display: block;
-        }
-        
-        .recipe-section {
-            margin: 40px 0;
-        }
-        
-        .recipe-section h2 {
-            font-family: 'Playfair Display', serif;
-            color: #4d2c2a;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #d93535;
-            padding-bottom: 10px;
-        }
-        
-        .recipe-section h3 {
-            font-family: 'Playfair Display', serif;
-            color: #4d2c2a;
-            font-size: 1.3rem;
-            margin-top: 25px;
-            margin-bottom: 15px;
-        }
-        
-        .recipe-meta {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            background: #fff6f6;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
-        
-        .meta-item {
-            text-align: center;
-        }
-        
-        .meta-label {
-            font-weight: bold;
-            color: #d93535;
-            font-size: 0.9rem;
-        }
-        
-        .meta-value {
-            font-size: 1.1rem;
-            color: #333;
-            margin-top: 5px;
-        }
-        
-        .ingredients-list {
-            background: #fafafa;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 15px 0;
-        }
-        
-        .ingredients-list ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .ingredients-list li {
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-        
-        .ingredients-list li:last-child {
-            border-bottom: none;
-        }
-        
-        .ingredients-list li:before {
-            content: "✓ ";
-            color: #d93535;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        
-        .instructions-list {
-            list-style: none;
-            padding: 0;
-            counter-reset: step-counter;
-        }
-        
-        .instructions-list li {
-            counter-increment: step-counter;
-            padding: 15px;
-            margin: 15px 0;
-            background: #fff;
-            border-left: 4px solid #d93535;
-            position: relative;
-        }
-        
-        .instructions-list li:before {
-            content: counter(step-counter);
-            position: absolute;
-            left: -25px;
-            top: 15px;
-            background: #d93535;
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-        
-        .nutrition-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .nutrition-table th {
-            background: #d93535;
-            color: white;
-            padding: 12px;
-            text-align: left;
-            font-weight: bold;
-        }
-        
-        .nutrition-table td {
-            padding: 12px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .nutrition-table tr:last-child td {
-            border-bottom: none;
-        }
-        
-        .nutrition-table tr:nth-child(even) {
-            background: #f9f9f9;
-        }
-        
-        .faq-item {
-            background: #fff6f6;
-            padding: 20px;
-            margin: 15px 0;
-            border-radius: 8px;
-            border-left: 4px solid #d93535;
-        }
-        
-        .faq-item strong {
-            color: #4d2c2a;
-            display: block;
-            margin-bottom: 8px;
-            font-size: 1.05rem;
-        }
-        
-        .faq-item p {
-            margin: 0;
-            line-height: 1.6;
-            color: #555;
-        }
-        
-        .sidebar-card {
-            background: #fff6f6;
-            padding: 25px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            border: 2px solid #d93535;
-        }
-        
-        .sidebar-card h3 {
-            font-family: 'Playfair Display', serif;
-            color: #4d2c2a;
-            font-size: 1.3rem;
-            margin-top: 0;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #d93535;
-            padding-bottom: 10px;
-        }
-        
-        .sidebar-card p {
-            line-height: 1.6;
-            color: #555;
-            margin: 10px 0;
-        }
-        
-        .sidebar-links {
-            list-style: none;
-            padding: 0;
-            margin: 15px 0;
-        }
-        
-        .sidebar-links li {
-            padding: 10px 0;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        .sidebar-links li:last-child {
-            border-bottom: none;
-        }
-        
-        .sidebar-links a {
-            color: #d93535;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        .sidebar-links a:hover {
-            color: #b72a2a;
-            text-decoration: underline;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background: #d93535;
-            color: white;
-            padding: 15px 25px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            text-align: center;
-            transition: background 0.3s;
-            margin: 20px 0;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        
-        .cta-button:hover {
-            background: #b72a2a;
-        }
-        
-        .intro-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #555;
-            margin: 20px 0;
-        }
-        
-        @media (max-width: 900px) {
-            .recipe-container {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .recipe-sidebar {
-                order: -1;
-                position: static;
-                align-self: auto;
-            }
-            
-            .sidebar-card:first-child {
-                position: static;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chocolate Bundt Cake with Ganache & Raspberries Recipe | Elizabeth's Baked Goods</title>
+  <meta name="description" content="Learn how to bake a stunning chocolate Bundt cake with silky chocolate ganache, powdered sugar, and fresh raspberries. Easy recipe with detailed instructions.">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9289301430903450"
+     crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    .recipe-page { padding: 0; }
+    .recipe-header { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-bottom: 1.25rem; }
+    .back-link { text-decoration:none; color: var(--text-color); background:#f2f2f2; padding:0.5rem 0.9rem; border-radius: 20px; }
+    .jump-btn { text-decoration:none; background: var(--dark-pink); color:#fff; padding:0.6rem 1.1rem; border-radius:22px; }
+    .recipe-title { font-size: 2rem; margin: 0.5rem 0 0.75rem; }
+    .blog p { margin-bottom: 1rem; }
+    .ingredients, .instructions { background: #fff; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); padding: 1.25rem; }
+    .ingredients ul { padding-left: 1.2rem; }
+    .instructions ol { padding-left: 1.25rem; }
+    .note { font-size: 0.95rem; color:#444; margin-top:0.5rem; }
+    .faq { background: #f9f9f9; border-left: 4px solid #d93535; padding: 1.25rem; border-radius: 8px; margin: 1.5rem 0; }
+    .faq h4 { color: #d93535; margin-top: 0; }
+    @media (max-width: 900px) {
+      .recipe-sidebar-sticky { position: static !important; }
+    }
+  </style>
 </head>
 <body>
-
-<!-- Desktop Header -->
-<div style="display: block !important; background-color: #f8f4f4; position: fixed; top: 0; left: 0; right: 0; z-index: 10000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); width: 100%;">
-  <nav style="display: flex !important; align-items: center;">
-    <div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: nowrap; gap: 10px; list-style: none; margin: 0; padding: 15px 20px; width: 100%;">
-      <a href="/index.html" style="text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 8px 12px; display: inline-block;">Home</a>
-      <a href="/about.html" style="text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 8px 12px; display: inline-block;">About</a>
-      <a href="/blog.html" style="text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 8px 12px; display: inline-block;">Blogs</a>
-      <a href="/recipes.html" style="text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 8px 12px; display: inline-block;">Recipes</a>
-      <a href="/order.html" style="text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 8px 12px; display: inline-block;">Order</a>
-      <a href="/local-ordering.html" style="text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 8px 12px; display: inline-block;">Local Ordering</a>
-      <a href="/designs.html" style="text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 8px 12px; display: inline-block;">Designs</a>
-      <a href="/contact.html" style="text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 8px 12px; display: inline-block;">Contact</a>
-      <a href="/policies.html" style="text-decoration: none; color: #333; font-weight: bold; font-size: 16px; padding: 8px 12px; display: inline-block;">Policies</a>
-      <div style="display: flex; gap: 15px; align-items: center; margin-left: auto;">
-        <a href="https://www.instagram.com/elizabethsbakedgoodss?igsh=MTh4ZnVvOHBoOHMwbA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" title="Instagram" style="font-size: 1.3rem; color: #d93535; padding: 0; text-decoration: none;"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.facebook.com/share/1anTwZmPpf/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" title="Facebook" style="font-size: 1.3rem; color: #d93535; padding: 0; text-decoration: none;"><i class="fab fa-facebook"></i></a>
-        <a href="https://www.pinterest.com/Elizabethsbakedgoods/" target="_blank" rel="noopener noreferrer" title="Pinterest" style="font-size: 1.3rem; color: #d93535; padding: 0; text-decoration: none;"><i class="fab fa-pinterest"></i></a>
-      </div>
-    </div>
-  </nav>
-</div>
-
-<!-- Mobile Header -->
-<div class="mobile-header">
-  <button class="hamburger" aria-label="Menu">☰</button>
-  <nav class="mobile-nav">
+<header>
+  <nav class="navbar">
     <a href="/index.html">Home</a>
     <a href="/about.html">About</a>
     <a href="/blog.html">Blogs</a>
     <a href="/recipes.html">Recipes</a>
     <a href="/order.html">Order</a>
-    <a href="/local-ordering.html">Custom Orders</a>
+    <a href="/local-ordering.html">Local Ordering</a>
     <a href="/designs.html">Designs</a>
     <a href="/contact.html">Contact</a>
     <a href="/policies.html">Policies</a>
   </nav>
-</div>
+</header>
 
-<!-- Main Recipe Container -->
-<main style="padding: 100px 40px 40px 40px; background: #fff;">
-
-<div class="recipe-container">
+<main class="recipe-layout">
+  <div class="recipe-main">
+    <h1 style="font-family: 'Dancing Script', cursive; color: #8b4513; font-size: 2.8rem; margin-bottom: 1.5rem;">Chocolate Bundt Cake with Chocolate Ganache & Raspberries</h1>
     
-    <!-- Main Recipe Content -->
-    <div class="recipe-content">
+    <div style="display: flex; gap: 2rem; align-items: flex-start;">
+      <div style="flex: 1; min-width: 0;">
+        <img src="../images/bundtcakechoraspberry.jpg" alt="Chocolate Bundt Cake with Chocolate Ganache and Fresh Raspberries" style="width: 100%; max-width: 500px; height: auto; border-radius: 12px; margin-bottom: 0.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: block;">
+        <p style="font-size: 0.85rem; color: #999; font-style: italic; margin: 0 0 2rem 0;">*Photo shows a mini version of this recipe</p>
         
-        <h1 style="font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 2.2rem; margin-bottom: 10px;">
-            Chocolate Bundt Cake with Chocolate Ganache, Powdered Sugar & Fresh Raspberries
-        </h1>
-        
-        <p style="color: #888; font-size: 0.95rem; margin-bottom: 30px;">
-            By Elizabeth's Baked Goods | Updated January 11, 2026
-        </p>
-        
-        <!-- Featured Image -->
-        <div style="margin: 40px 0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
-            <img src="/images/bundtcakechoraspberry.jpg" alt="Chocolate Bundt Cake with Chocolate Ganache and Fresh Raspberries" style="width: 100%; height: auto; display: block;">
+        <article>
+          <h2 style="margin: 1rem 0 0.75rem;">A Chocolate Bundt Cake That Looks as Good as It Tastes</h2>
+          <p>There's something truly special about a chocolate Bundt cake. With its sculpted shape, rich cocoa flavor, and tender crumb, it's a cake that looks impressive without requiring complicated decorating techniques. This is exactly what I was looking for when I set out to create the perfect chocolate Bundt cake recipe.</p>
+          <p>What makes this recipe so reliable is the balance of ingredients. I use cocoa powder instead of melted chocolate, which gives us a lighter texture while still delivering deep chocolate flavor. The combination of hot coffee and buttermilk keeps the cake moist without making it dense. When you pair this with a silky chocolate ganache, a dusting of powdered sugar, and fresh raspberries, you get a dessert that feels both elegant and approachable.</p>
+          <p>I've baked this cake dozens of times for family gatherings, celebrations, and just because I craved chocolate. Every single time, it delivers consistent, beautiful results. The Bundt pan shape ensures even baking and that beautiful presentation straight from the oven—no complicated frosting techniques needed.</p>
+          <p>Whether you're a home baker looking for a dependable chocolate cake recipe, a small business baker needing something that performs consistently, or simply someone who loves chocolate, this recipe is for you. Below, you'll find detailed instructions, helpful baking tips, ingredient explanations, and answers to frequently asked questions to help ensure your success every time.</p>
+
+          <section id="recipe" style="margin-top: 2rem;">
+            <h2 style="margin-bottom: 0.75rem;">Recipe</h2>
+            
+            <div class="ingredients" style="margin-bottom: 1rem;">
+              <h3>Ingredients</h3>
+              <ul>
+                <li>All-purpose flour — 200 g</li>
+                <li>Unsweetened cocoa powder — 50 g</li>
+                <li>Baking soda — 1.5 tsp</li>
+                <li>Salt — 0.5 tsp</li>
+                <li>Unsalted butter — 113 g (softened)</li>
+                <li>Granulated sugar — 200 g</li>
+                <li>Eggs (large) — 2</li>
+                <li>Vanilla extract — 1 tsp</li>
+                <li>Buttermilk — 120 ml</li>
+                <li>Hot coffee or hot water — 120 ml</li>
+                <li>Semi-sweet chocolate (for ganache) — 170 g</li>
+                <li>Heavy cream (for ganache) — 120 ml</li>
+                <li>Powdered sugar — for dusting</li>
+                <li>Fresh raspberries — for topping</li>
+              </ul>
+              <p class="note"><strong>Tip:</strong> Grease your Bundt pan thoroughly and dust with cocoa powder to prevent sticking.</p>
+            </div>
+
+            <div class="instructions">
+              <h3>Instructions</h3>
+              <ol>
+                <li>Preheat oven to 350°F (175°C). Thoroughly grease a 10–12 cup Bundt pan with butter or non-stick spray. Dust lightly with cocoa powder.</li>
+                <li>In a small bowl, whisk together flour, cocoa powder, baking soda, and salt. Set aside.</li>
+                <li>In a large bowl, cream softened butter and granulated sugar together for 3–4 minutes until light and fluffy.</li>
+                <li>Add eggs one at a time, beating well after each addition. Mix in vanilla extract.</li>
+                <li>Alternate adding the dry mixture and buttermilk to the wet mixture, starting and ending with the dry mixture. Mix on low speed just until combined.</li>
+                <li>Carefully stir in the hot coffee or water. The batter will be thin—this is normal and necessary for a moist cake.</li>
+                <li>Pour the batter into the prepared Bundt pan, smoothing the top.</li>
+                <li>Bake at 350°F for 45–55 minutes. The cake is done when a toothpick inserted into the thickest part comes out with just a few moist crumbs.</li>
+                <li>Cool the cake in the pan for 15 minutes. Run a thin knife around the edges and center, then invert onto a wire rack to cool completely (about 1 hour).</li>
+                <li>To make ganache: Heat heavy cream until steaming. Pour over chopped chocolate in a bowl. Let sit 1 minute, then stir until smooth. Cool for 5 minutes.</li>
+                <li>Drizzle or pour ganache over the cooled cake. Allow it to set for 10–15 minutes.</li>
+                <li>Dust with powdered sugar and top with fresh raspberries. Serve and enjoy!</li>
+              </ol>
+              <p class="note"><strong>Tip:</strong> For the best results, allow the ganache to cool slightly before pouring—this prevents it from running off too quickly.</p>
+            </div>
+
+            <div class="instructions" style="margin-top: 1.5rem;">
+              <h3>💡 Tips & Variations</h3>
+              <ul>
+                <li><strong>Pan preparation:</strong> Don't skimp on greasing. Use butter or non-stick spray and dust with cocoa powder for the best release.</li>
+                <li><strong>Coffee for depth:</strong> Coffee enhances chocolate flavor without making the cake taste like coffee. Use hot water if preferred.</li>
+                <li><strong>Ganache thickness:</strong> Use more cream for a thinner, pourable ganache. Use less for a thicker, spreadable ganache.</li>
+                <li><strong>Alternative toppings:</strong> Try whipped cream, chocolate shavings, powdered sugar alone, or fresh berries instead of raspberries.</li>
+                <li><strong>Make ahead:</strong> Bake the cake 1–2 days ahead. Add ganache and toppings just before serving.</li>
+                <li><strong>Different pan:</strong> This recipe works in two 9-inch round pans or a 9×13-inch rectangular pan. Adjust baking time as needed.</li>
+              </ul>
+            </div>
+
+            <section id="faq" style="margin-top: 2.5rem;">
+              <h2>Frequently Asked Questions</h2>
+              
+              <div class="faq">
+                <h4>What makes this chocolate Bundt cake moist?</h4>
+                <p>The combination of oil, buttermilk, and hot coffee keeps the cake moist without making it dense. The hot liquid also helps bloom the cocoa flavor.</p>
+              </div>
+
+              <div class="faq">
+                <h4>Can I make this cake ahead of time?</h4>
+                <p>Yes! Bake the cake 1–2 days ahead and store covered at room temperature or in the refrigerator. Add ganache and toppings shortly before serving for best presentation.</p>
+              </div>
+
+              <div class="faq">
+                <h4>Do I have to use coffee in this recipe?</h4>
+                <p>No. Coffee enhances the chocolate flavor but does not make the cake taste like coffee. You may substitute hot water if preferred.</p>
+              </div>
+
+              <div class="faq">
+                <h4>Why is my Bundt cake sticking to the pan?</h4>
+                <p>This usually happens due to insufficient pan greasing. Make sure every groove of the Bundt pan is thoroughly coated. Dusting with cocoa powder also helps.</p>
+              </div>
+
+              <div class="faq">
+                <h4>Can I freeze chocolate Bundt cake?</h4>
+                <p>Yes. The unfrosted cake freezes well for up to 2 months when wrapped tightly. Thaw completely before adding ganache and toppings.</p>
+              </div>
+
+              <div class="faq">
+                <h4>Can I customize this cake for special occasions?</h4>
+                <p>Absolutely! This recipe can be adapted with different toppings, fillings, or decorations to suit birthdays, holidays, and events.</p>
+              </div>
+
+              <div class="faq">
+                <h4>Is chocolate ganache the same as chocolate frosting?</h4>
+                <p>No. Ganache is made with chocolate and cream, giving it a smoother, richer texture than traditional butter-based frosting.</p>
+              </div>
+
+              <div class="faq">
+                <h4>What type of cocoa powder works best?</h4>
+                <p>Both natural and Dutch-processed cocoa can be used. Natural cocoa provides a more pronounced chocolate flavor, while Dutch-processed offers a smoother taste.</p>
+              </div>
+            </section>
+
+            <section id="storage" style="margin-top: 2.5rem; background: #f9f9f9; padding: 1.5rem; border-radius: 10px;">
+              <h2 style="margin-top: 0;">Storage & Shelf Life</h2>
+              <p>Store baked cake at room temperature covered with plastic wrap or in a cake container for up to 2 days. Refrigerate for up to 4 days. For longer storage, wrap the unfrosted cake tightly in plastic wrap and freeze for up to 2 months. Thaw completely at room temperature before adding ganache and toppings. The unfrosted cake stays fresh thanks to the moisture from the coffee and buttermilk.</p>
+            </section>
+
+            <div style="text-align: center; margin-top: 2.5rem; padding: 2rem; background: #f9f4ef; border-radius: 12px;">
+              <p style="margin: 0 0 1rem 0; color: #8b4513; font-weight: 600; font-size: 1.1rem;">🎁 Want This Cake Made for You?</p>
+              <a href="../local-ordering.html" style="display: inline-block; padding: 0.8rem 1.5rem; background: #8b4513; color: white; text-decoration: none; border-radius: 6px; font-size: 1rem; font-weight: 600;">Request Custom Order</a>
+            </div>
+          </section>
+        </article>
+      </div>
+
+      <div style="flex: 0 0 300px;">
+        <div class="recipe-sidebar-sticky" style="text-align: center; padding: 20px; background-color: #f9f5f0; border-radius: 8px; margin-bottom: 2rem; position: sticky; top: 100px;">
+          <!-- Social Media Icons -->
+          <div style="text-align: center; margin-bottom: 1.5rem;">
+            <p style="font-size: 0.85rem; color: #8b4513; font-weight: 600; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px;">Follow Me</p>
+            <div style="display: flex; justify-content: center; gap: 0.75rem;">
+              <a href="https://www.instagram.com/elizabethsbakedgoodss" target="_blank" rel="noopener" aria-label="Follow on Instagram" title="Instagram" style="display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; background: #fff; border: 2px solid #8b4513; border-radius: 50%; color: #8b4513; transition: all 0.3s ease; text-decoration: none;" onmouseover="this.style.backgroundColor='#8b4513'; this.style.color='#fff';" onmouseout="this.style.backgroundColor='#fff'; this.style.color='#8b4513';">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="1.8" fill="none"/>
+                  <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8" fill="none"/>
+                  <circle cx="17.3" cy="6.7" r="1.3" fill="currentColor"/>
+                </svg>
+              </a>
+              <a href="https://www.facebook.com/profile.php?id=61580339963937" target="_blank" rel="noopener" aria-label="Follow on Facebook" title="Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; background: #fff; border: 2px solid #8b4513; border-radius: 50%; color: #8b4513; transition: all 0.3s ease; text-decoration: none;" onmouseover="this.style.backgroundColor='#8b4513'; this.style.color='#fff';" onmouseout="this.style.backgroundColor='#fff'; this.style.color='#8b4513';">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M22 12.07C22 6.98 18.02 3 12.93 3 7.84 3 3.86 6.98 3.86 12.07c0 4.5 3.12 8.24 7.2 9.08v-6.42H8.86v-2.66h2.2v-2.04c0-2.18 1.3-3.39 3.29-3.39.95 0 1.95.17 1.95.17v2.14h-1.1c-1.08 0-1.41.67-1.41 1.35v1.77h2.4l-.38 2.66h-2.02v6.42c4.08-.84 7.2-4.58 7.2-9.08z" fill="currentColor"/>
+                </svg>
+              </a>
+              <a href="https://www.pinterest.com/elizabethsbakedgoods" target="_blank" rel="noopener" aria-label="Follow on Pinterest" title="Pinterest" style="display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; background: #fff; border: 2px solid #8b4513; border-radius: 50%; color: #8b4513; transition: all 0.3s ease; text-decoration: none;" onmouseover="this.style.backgroundColor='#8b4513'; this.style.color='#fff';" onmouseout="this.style.backgroundColor='#fff'; this.style.color='#8b4513';">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8" fill="none"/>
+                  <path d="M8 12c0-2.21 1.79-4 4-4s4 1.79 4 4-1.79 4-4 4-4-1.79-4-4z" fill="currentColor"/>
+                  <circle cx="16.5" cy="7.5" r="0.75" fill="currentColor"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <img src="/images/aboutme.jpg" alt="Elizabeth" style="width: 200px; height: 200px; border-radius: 10px; object-fit: cover; object-position: top; margin: 0 auto 1rem; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+          <h3 style="font-family: 'Dancing Script', cursive; color: #8b4513; margin: 1rem 0;">About Elizabeth</h3>
+          <p style="font-size: 0.95rem; line-height: 1.6; color: #4d2c2a;">Hi! I'm Elizabeth, a passionate baker dedicated to creating handcrafted desserts using premium ingredients. I love turning simple ingredients into memorable treats that bring joy to your table.</p>
+          <div style="text-align: center; margin-top: 1.5rem;">
+            <a href="/about.html" style="display: inline-block; background-color: #d93535; color: #fff; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: 600; font-size: 0.9rem;">Read My Story</a>
+          </div>
+          
+          <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid #ddd;">
+
+          <h4 style="font-family: 'Dancing Script', cursive; color: #8b4513; margin-bottom: 1rem;">Recommended Recipes</h4>
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <div style="text-align: center;">
+              <a href="../recipes/dark-chocolate-ganache-biscoff-buttercream-chantilly-cream.html">
+                <img src="../images/browniesbiscoff.jfif" alt="Dark Chocolate Ganache" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-bottom: 0.5rem;">
+                <div style="color: #8b4513; text-decoration: underline; font-size: 0.85rem; font-weight: 600;">Dark Chocolate Ganache</div>
+              </a>
+            </div>
+            <div style="text-align: center;">
+              <a href="../recipes/chunky-chocolate-chip-cookies.html">
+                <img src="../images/chocchip2.jpg" alt="Chocolate Chip Cookies" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-bottom: 0.5rem;">
+                <div style="color: #8b4513; text-decoration: underline; font-size: 0.85rem; font-weight: 600;">Chocolate Chip Cookies</div>
+              </a>
+            </div>
+            <div style="text-align: center;">
+              <a href="../recipes/classic-sugar-cookies.html">
+                <img src="../images/xmas christmas assort.jfif" alt="Classic Sugar Cookies" style="width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-bottom: 0.5rem;">
+                <div style="color: #8b4513; text-decoration: underline; font-size: 0.85rem; font-weight: 600;">Sugar Cookies</div>
+              </a>
+            </div>
+          </div>
         </div>
-        <p style="font-size: 0.85rem; color: #999; font-style: italic; margin: 5px 0 30px 0;">*Photo shows a mini version of this recipe</p>
-        
-        <!-- Introduction -->
-        <section class="recipe-section">
-            <h2>Introduction</h2>
-            <p class="intro-text">
-                There are certain desserts that feel timeless—reliable, elegant, and comforting all at once. A chocolate Bundt cake is one of those desserts. With its sculpted shape, rich cocoa flavor, and tender crumb, it's a cake that looks impressive without requiring complicated decorating techniques. When paired with a silky chocolate ganache, lightly dusted powdered sugar, and fresh raspberries, this cake becomes both indulgent and refined.
-            </p>
-            <p class="intro-text">
-                This recipe page is designed for home bakers, small business bakers, and dessert lovers who want a dependable chocolate cake recipe that delivers consistent results. Whether you're baking for a family gathering, a celebration, or simply because you crave chocolate, this chocolate Bundt cake strikes the perfect balance between rich flavor and approachability.
-            </p>
-            <p class="intro-text">
-                Below, you'll find a detailed chocolate Bundt cake recipe, a smooth chocolate ganache recipe, and serving suggestions using powdered sugar and raspberries. This page also includes helpful baking tips, ingredient explanations, storage guidance, and frequently asked questions to help ensure your success every time you bake.
-            </p>
-        </section>
-        
-        <!-- Why This Recipe Works -->
-        <section class="recipe-section">
-            <h2>Why This Chocolate Bundt Cake Works</h2>
-            <p class="intro-text">
-                This chocolate Bundt cake recipe is carefully balanced to create a moist, tender crumb without being dense or dry. Using cocoa powder instead of melted chocolate allows the chocolate flavor to shine while keeping the texture light. The Bundt pan shape ensures even baking and a beautiful presentation straight from the oven.
-            </p>
-            <p class="intro-text">
-                The chocolate ganache adds a luxurious finish that enhances the cake without overpowering it. Powdered sugar provides a classic bakery-style look, while raspberries bring brightness and contrast to the rich chocolate flavor.
-            </p>
-            <p class="intro-text">This combination makes the cake ideal for:</p>
-            <ul style="margin: 15px 0; padding-left: 25px;">
-                <li>Dinner parties and holidays</li>
-                <li>Birthdays and special occasions</li>
-                <li>Bake sales and markets</li>
-                <li>Elegant desserts without complex decoration</li>
-            </ul>
-        </section>
-        
-        <!-- Recipe Snapshot -->
-        <section class="recipe-section">
-            <h2>Recipe Snapshot</h2>
-            <div class="recipe-meta">
-                <div class="meta-item">
-                    <div class="meta-label">Prep Time</div>
-                    <div class="meta-value">20 minutes</div>
-                </div>
-                <div class="meta-item">
-                    <div class="meta-label">Bake Time</div>
-                    <div class="meta-value">45–55 minutes</div>
-                </div>
-                <div class="meta-item">
-                    <div class="meta-label">Cooling Time</div>
-                    <div class="meta-value">30–45 minutes</div>
-                </div>
-                <div class="meta-item">
-                    <div class="meta-label">Total Time</div>
-                    <div class="meta-value">~1 hour 45 minutes</div>
-                </div>
-                <div class="meta-item">
-                    <div class="meta-label">Servings</div>
-                    <div class="meta-value">12 slices</div>
-                </div>
-                <div class="meta-item">
-                    <div class="meta-label">Yield</div>
-                    <div class="meta-value">One 10–12 cup Bundt</div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Inside Image -->
-        <div style="margin: 30px 0; text-align: center;">
-            <img src="/images/bundtcakeinside.jpg" alt="Chocolate Bundt Cake Interior Crumb" style="max-width: 400px; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
-            <p style="font-size: 0.9rem; color: #888; margin-top: 10px; font-style: italic;">Moist, tender crumb with rich chocolate flavor</p>
-        </div>
-        
-        <!-- Nutrition Information -->
-        <section class="recipe-section">
-            <h2>Nutrition Information (Per Serving)</h2>
-            <p style="font-size: 0.9rem; color: #888; margin-bottom: 15px;">
-                Approximate values based on 12 servings per cake. Estimates vary by ingredient brands and portion sizes.
-            </p>
-            <table class="nutrition-table">
-                <tr>
-                    <th>Nutrient</th>
-                    <th>Amount</th>
-                </tr>
-                <tr>
-                    <td>Calories</td>
-                    <td>420 kcal</td>
-                </tr>
-                <tr>
-                    <td>Total Fat</td>
-                    <td>24 g</td>
-                </tr>
-                <tr>
-                    <td>Saturated Fat</td>
-                    <td>10 g</td>
-                </tr>
-                <tr>
-                    <td>Cholesterol</td>
-                    <td>75 mg</td>
-                </tr>
-                <tr>
-                    <td>Sodium</td>
-                    <td>310 mg</td>
-                </tr>
-                <tr>
-                    <td>Total Carbohydrates</td>
-                    <td>50 g</td>
-                </tr>
-                <tr>
-                    <td>Dietary Fiber</td>
-                    <td>3 g</td>
-                </tr>
-                <tr>
-                    <td>Total Sugars</td>
-                    <td>32 g</td>
-                </tr>
-                <tr>
-                    <td>Protein</td>
-                    <td>5 g</td>
-                </tr>
-            </table>
-        </section>
-        
-        <!-- Ingredients -->
-        <section class="recipe-section">
-            <h2>Ingredients</h2>
-            
-            <h3>Dry Ingredients</h3>
-            <div class="ingredients-list">
-                <ul>
-                    <li>2 cups all-purpose flour</li>
-                    <li>¾ cup unsweetened cocoa powder</li>
-                    <li>1 teaspoon baking powder</li>
-                    <li>1 teaspoon baking soda</li>
-                    <li>½ teaspoon salt</li>
-                </ul>
-            </div>
-            
-            <h3>Wet Ingredients</h3>
-            <div class="ingredients-list">
-                <ul>
-                    <li>1 cup granulated sugar</li>
-                    <li>½ cup light brown sugar, packed</li>
-                    <li>¾ cup vegetable oil</li>
-                    <li>3 large eggs, room temperature</li>
-                    <li>1 cup buttermilk, room temperature</li>
-                    <li>1 cup hot coffee or hot water</li>
-                    <li>2 teaspoons vanilla extract</li>
-                </ul>
-            </div>
-            
-            <h3>For the Pan</h3>
-            <div class="ingredients-list">
-                <ul>
-                    <li>Nonstick cooking spray or softened butter</li>
-                    <li>Cocoa powder (for dusting the pan)</li>
-                </ul>
-            </div>
-        </section>
-        
-        <!-- Instructions -->
-        <section class="recipe-section">
-            <h2>Instructions</h2>
-            <ol class="instructions-list">
-                <li>Preheat your oven to 350°F (175°C). Thoroughly grease a 10–12 cup Bundt pan with nonstick spray or butter, making sure to coat all grooves. Dust lightly with cocoa powder and tap out any excess.</li>
-                <li>In a large bowl, whisk together the flour, cocoa powder, baking powder, baking soda, and salt. Set aside.</li>
-                <li>In a separate large mixing bowl, whisk together the granulated sugar, brown sugar, and vegetable oil until smooth and well combined.</li>
-                <li>Add the eggs one at a time, whisking well after each addition. The mixture should become slightly thick and glossy.</li>
-                <li>Stir in the vanilla extract and buttermilk until fully incorporated.</li>
-                <li>Gradually add the dry ingredients to the wet ingredients, mixing just until combined. Avoid overmixing to keep the cake tender.</li>
-                <li>Slowly pour in the hot coffee or hot water, whisking gently. The batter will be thin—this is expected and helps create a moist cake.</li>
-                <li>Pour the batter evenly into the prepared Bundt pan.</li>
-                <li>Bake for 45–55 minutes, or until a toothpick inserted into the center comes out with a few moist crumbs but no wet batter.</li>
-                <li>Remove the cake from the oven and allow it to cool in the pan for 15 minutes.</li>
-                <li>Carefully invert the cake onto a wire rack and allow it to cool completely before adding ganache or toppings.</li>
-            </ol>
-        </section>
-        
-        <!-- Chocolate Ganache Recipe -->
-        <section class="recipe-section">
-            <h2>Chocolate Ganache Recipe</h2>
-            
-            <h3>Ingredients</h3>
-            <div class="ingredients-list">
-                <ul>
-                    <li>1 cup heavy cream</li>
-                    <li>8 ounces semi-sweet chocolate, finely chopped or chocolate chips</li>
-                </ul>
-            </div>
-            
-            <h3>Instructions</h3>
-            <ol class="instructions-list">
-                <li>Place the chopped chocolate in a heatproof bowl and set aside.</li>
-                <li>Heat the heavy cream in a small saucepan over medium heat until it just begins to simmer. Do not let it boil.</li>
-                <li>Pour the hot cream over the chocolate. Cover the bowl and let it sit undisturbed for 3–5 minutes.</li>
-                <li>Gently whisk the mixture until the chocolate is completely melted and the ganache is smooth and glossy.</li>
-                <li>Allow the ganache to cool slightly before pouring so it thickens to your desired consistency.</li>
-            </ol>
-        </section>
-        
-        <!-- Finishing the Cake -->
-        <section class="recipe-section">
-            <h2>Finishing the Cake</h2>
-            <h3>Toppings</h3>
-            <ul style="padding-left: 25px;">
-                <li>Chocolate ganache</li>
-                <li>Powdered sugar</li>
-                <li>Fresh raspberries</li>
-            </ul>
-            <p class="intro-text">
-                Once the cake is completely cool, spoon or pour the chocolate ganache over the top, allowing it to naturally drip down the sides. Let the ganache set for about 10–15 minutes.
-            </p>
-            <p class="intro-text">
-                Lightly dust the cake with powdered sugar just before serving. Garnish with fresh raspberries, placing them around the base of the cake or on top for a polished, bakery-style finish.
-            </p>
-        </section>
-        
-        <!-- Baking Tips -->
-        <section class="recipe-section">
-            <h2>Ingredient Notes and Baking Tips</h2>
-            
-            <h3>Cocoa Powder</h3>
-            <p>Use unsweetened cocoa powder for best results. Dutch-processed cocoa will produce a slightly smoother flavor, while natural cocoa powder offers a more intense chocolate taste.</p>
-            
-            <h3>Coffee in Chocolate Cake</h3>
-            <p>Hot coffee enhances the chocolate flavor without making the cake taste like coffee. If you prefer not to use coffee, hot water works well as a substitute.</p>
-            
-            <h3>Buttermilk</h3>
-            <p>Buttermilk adds moisture and tenderness to the cake. If you don't have buttermilk, you can substitute by adding 1 tablespoon of vinegar or lemon juice to 1 cup of milk and letting it sit for 5 minutes.</p>
-            
-            <h3>Bundt Pan Preparation</h3>
-            <p>Properly greasing and dusting your Bundt pan is essential. Cocoa powder prevents white residue and helps the cake release cleanly.</p>
-        </section>
-        
-        <!-- Storage -->
-        <section class="recipe-section">
-            <h2>Storage and Make-Ahead Tips</h2>
-            
-            <h3>Room Temperature</h3>
-            <p>Store the cake covered at room temperature for up to 2 days.</p>
-            
-            <h3>Refrigerator</h3>
-            <p>Store covered for up to 5 days. Allow the cake to come to room temperature before serving.</p>
-            
-            <h3>Freezing</h3>
-            <p>The unfrosted cake can be wrapped tightly and frozen for up to 2 months. Thaw completely before adding ganache and toppings.</p>
-            
-            <h3>Ganache</h3>
-            <p>Ganache can be made ahead and stored in the refrigerator for up to 3 days. Gently reheat before using.</p>
-        </section>
-        
-        <!-- Serving Suggestions -->
-        <section class="recipe-section">
-            <h2>Serving Suggestions</h2>
-            <p class="intro-text">This chocolate Bundt cake pairs beautifully with:</p>
-            <ul style="padding-left: 25px;">
-                <li>Whipped cream</li>
-                <li>Vanilla ice cream</li>
-                <li>Espresso or coffee</li>
-                <li>Fresh berries</li>
-            </ul>
-            <p class="intro-text">It works equally well as a casual dessert or a formal centerpiece.</p>
-        </section>
-        
-        <!-- FAQ -->
-        <section class="recipe-section">
-            <h2>Frequently Asked Questions</h2>
-            
-            <div class="faq-item">
-                <strong>Q: What makes this chocolate Bundt cake moist?</strong>
-                <p>A: This cake stays moist due to the combination of oil, buttermilk, and hot coffee or water. These ingredients help retain moisture and enhance the chocolate flavor without making the cake dense.</p>
-            </div>
-            
-            <div class="faq-item">
-                <strong>Q: Can I make this chocolate Bundt cake ahead of time?</strong>
-                <p>A: Yes. This cake can be baked 1–2 days in advance and stored covered at room temperature or in the refrigerator. Add the ganache and toppings shortly before serving for best presentation.</p>
-            </div>
-            
-            <div class="faq-item">
-                <strong>Q: Do I have to use coffee in this recipe?</strong>
-                <p>A: No. Coffee enhances the chocolate flavor but does not make the cake taste like coffee. You may substitute hot water if preferred.</p>
-            </div>
-            
-            <div class="faq-item">
-                <strong>Q: What type of cocoa powder works best for chocolate Bundt cake?</strong>
-                <p>A: Unsweetened cocoa powder works best. Both natural and Dutch-processed cocoa can be used, depending on your flavor preference.</p>
-            </div>
-            
-            <div class="faq-item">
-                <strong>Q: How do I prevent my Bundt cake from sticking to the pan?</strong>
-                <p>A: Thoroughly grease every crevice of the Bundt pan and dust with cocoa powder. Allow the cake to cool for 10–15 minutes before inverting.</p>
-            </div>
-            
-            <div class="faq-item">
-                <strong>Q: Can I freeze chocolate Bundt cake?</strong>
-                <p>A: Yes. The unfrosted cake freezes well for up to 2 months when wrapped tightly. Thaw completely before adding ganache and toppings.</p>
-            </div>
-            
-            <div class="faq-item">
-                <strong>Q: Is chocolate ganache the same as chocolate frosting?</strong>
-                <p>A: No. Ganache is made with chocolate and cream, giving it a smoother, richer texture than traditional butter-based frosting.</p>
-            </div>
-            
-            <div class="faq-item">
-                <strong>Q: Can I customize this cake for special occasions?</strong>
-                <p>A: Absolutely. This recipe can be adapted with different toppings, fillings, or decorations to suit birthdays, holidays, and events.</p>
-            </div>
-            
-            <div class="faq-item">
-                <strong>Q: Can I make this cake without a Bundt pan?</strong>
-                <p>A: Yes. You can bake this recipe in two 9-inch round pans or a 9×13-inch pan. Adjust baking time accordingly.</p>
-            </div>
-            
-            <div class="faq-item">
-                <strong>Q: Why is my Bundt cake sticking?</strong>
-                <p>A: This usually happens due to insufficient pan greasing. Make sure every groove is coated thoroughly.</p>
-            </div>
-            
-            <div class="faq-item">
-                <strong>Q: Can I use milk chocolate for ganache?</strong>
-                <p>A: You can, but the ganache will be sweeter and softer. Semi-sweet chocolate provides better balance.</p>
-            </div>
-            
-            <div class="faq-item">
-                <strong>Q: Can I add mix-ins?</strong>
-                <p>A: Yes. Chocolate chips or chopped nuts can be folded into the batter before baking.</p>
-            </div>
-        </section>
-        
-        <!-- Final Thoughts -->
-        <section class="recipe-section">
-            <h2>Final Thoughts</h2>
-            <p class="intro-text">
-                This chocolate Bundt cake with chocolate ganache, powdered sugar, and fresh raspberries is a reliable, elegant dessert that delivers on both flavor and presentation. It's rich without being overwhelming, visually stunning without complicated techniques, and versatile enough for everyday baking or special occasions.
-            </p>
-            <p class="intro-text">
-                Whether you're baking for loved ones or creating content for your bakery website, this recipe is designed to perform consistently and showcase the beauty of classic chocolate baking. With simple ingredients, clear instructions, and thoughtful finishing touches, this chocolate Bundt cake is one you'll return to again and again.
-            </p>
-        </section>
-        
-        <!-- Baking Insights & Resources -->
-        <section class="recipe-section" style="background: #fff6f6; padding: 30px; border-radius: 8px; border: 2px solid #d93535;">
-            <h2 style="border-bottom: 2px solid #d93535;">More Baking Resources</h2>
-            <p class="intro-text">Want to explore more? Check out our other resources:</p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 20px 0;">
-                <a href="/blog.html" style="background: #fff; padding: 20px; border-radius: 6px; text-decoration: none; border: 1px solid #d93535; text-align: center; color: #d93535; font-weight: bold; transition: all 0.3s;">
-                    📚 Visit Our Blog
-                </a>
-                <a href="/about.html" style="background: #fff; padding: 20px; border-radius: 6px; text-decoration: none; border: 1px solid #d93535; text-align: center; color: #d93535; font-weight: bold; transition: all 0.3s;">
-                    👩‍🍳 Our Story
-                </a>
-                <a href="/contact.html" style="background: #fff; padding: 20px; border-radius: 6px; text-decoration: none; border: 1px solid #d93535; text-align: center; color: #d93535; font-weight: bold; transition: all 0.3s;">
-                    💌 Get In Touch
-                </a>
-            </div>
-        </section>
-        
-        <!-- Custom Order CTA -->
-        <section class="recipe-section" style="background: #d93535; padding: 40px; border-radius: 8px; text-align: center; color: white;">
-            <h2 style="color: white; border-color: white; margin-top: 0;">Want This Cake Made for You?</h2>
-            <p style="font-size: 1.1rem; margin: 15px 0; line-height: 1.6;">
-                Don't have time to bake? We specialize in custom-made chocolate Bundt cakes tailored to your preferences. Perfect for birthdays, celebrations, and special events.
-            </p>
-            <p style="font-size: 0.95rem; margin: 20px 0; opacity: 0.95;">
-                Choose your flavors, toppings, and delivery date. Fresh, handcrafted, made with premium ingredients.
-            </p>
-            <a href="/local-ordering.html" style="display: inline-block; background: white; color: #d93535; padding: 15px 40px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 1.05rem; margin-top: 20px; transition: all 0.3s; border: 2px solid white;">
-                Request Your Custom Order
-            </a>
-        </section>
-        
+      </div>
     </div>
-    
-    <!-- Sidebar -->
-    <aside class="recipe-sidebar">
-        
-        <!-- About Elizabeth -->
-        <div class="sidebar-card">
-            <img src="/images/aboutme.jpg" alt="Elizabeth's Baked Goods" style="width: 100%; height: 200px; border-radius: 6px; margin-bottom: 15px; display: block; object-fit: cover; object-position: center top;">
-            <h3>About Elizabeth's Baked Goods</h3>
-            <p>
-                Welcome! I'm Elizabeth, a passionate baker dedicated to creating handcrafted desserts using premium ingredients. Every recipe on this site comes from years of baking experience and a commitment to consistent, delicious results.
-            </p>
-            <p>
-                Whether you're baking at home or looking for custom desserts for your event, I'm here to inspire and guide you.
-            </p>
-        </div>
-        
-        <!-- Suggested Recipes -->
-        <div class="sidebar-card">
-            <h3>Explore More Recipes</h3>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 15px 0;">
-                <div style="text-align: center;">
-                    <a href="/recipes/dark-chocolate-ganache-biscoff-buttercream-chantilly-cream.html" style="text-decoration: none; display: block;">
-                        <img src="/images/browniesbiscoff.jfif" alt="Dark Chocolate Ganache & Biscoff" style="width: 100%; height: 120px; border-radius: 6px; object-fit: cover; margin-bottom: 8px;">
-                        <span style="color: #d93535; font-weight: 500; font-size: 0.9rem;">Dark Chocolate Ganache</span>
-                    </a>
-                </div>
-                <div style="text-align: center;">
-                    <a href="/recipes/classic-sugar-cookies.html" style="text-decoration: none; display: block;">
-                        <img src="/images/sugarcookiesanta.jpg" alt="Classic Sugar Cookies" style="width: 100%; height: 120px; border-radius: 6px; object-fit: cover; margin-bottom: 8px;">
-                        <span style="color: #d93535; font-weight: 500; font-size: 0.9rem;">Sugar Cookies</span>
-                    </a>
-                </div>
-                <div style="text-align: center;">
-                    <a href="/recipes/ultimate-fudgy-brownies.html" style="text-decoration: none; display: block;">
-                        <img src="/images/browniesbiscoff.jfif" alt="Fudgy Brownies" style="width: 100%; height: 120px; border-radius: 6px; object-fit: cover; margin-bottom: 8px;">
-                        <span style="color: #d93535; font-weight: 500; font-size: 0.9rem;">Fudgy Brownies</span>
-                    </a>
-                </div>
-                <div style="text-align: center;">
-                    <a href="/recipes/smores-cookies.html" style="text-decoration: none; display: block;">
-                        <img src="/images/smorescookie.jpg" alt="S'mores Cookies" style="width: 100%; height: 120px; border-radius: 6px; object-fit: cover; margin-bottom: 8px;">
-                        <span style="color: #d93535; font-weight: 500; font-size: 0.9rem;">S'mores Cookies</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- CTA -->
-        <div class="sidebar-card" style="background: #d93535; border-color: #b72a2a; text-align: center; padding: 30px 20px;">
-            <h3 style="color: white; border-color: white; margin-top: 0;">Ready for Custom Desserts?</h3>
-            <p style="color: white; font-size: 0.95rem;">
-                Looking for a custom-made chocolate Bundt cake or other desserts for your special event? We specialize in made-to-order treats tailored to your preferences.
-            </p>
-            <a href="/local-ordering.html" class="cta-button" style="background: white; color: #d93535; font-weight: bold;">Request Custom Dessert Order</a>
-        </div>
-        
-    </aside>
 
-</div>
+    <hr style="margin: 3rem 0; border: none; border-top: 2px solid #ddd;">
 
+    <section style="margin-top: 3rem;">
+      <h2 style="font-family: 'Playfair Display', serif; font-weight: 700; color: #4d2c2a; font-size: 2rem; text-align: center; margin-bottom: 2rem;">Suggested Blog Posts to Read</h2>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+        <div style="background: #f9f5f0; padding: 1.5rem; border-radius: 10px; display: flex; flex-direction: column;">
+          <h3 style="font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 1.1rem; margin-top: 0;"><a href="../blog.html" style="color: #4d2c2a; text-decoration: none;">Baking Tips & Tricks</a></h3>
+          <p style="flex-grow: 1; color: #666; font-size: 0.95rem; line-height: 1.6;">Learn essential baking techniques and tips to improve your cake baking skills and achieve professional results at home.</p>
+          <a href="../blog.html" style="color: #8b4513; text-decoration: underline; font-weight: 600; font-size: 0.9rem;">Read Post →</a>
+        </div>
+
+        <div style="background: #f9f5f0; padding: 1.5rem; border-radius: 10px; display: flex; flex-direction: column;">
+          <h3 style="font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 1.1rem; margin-top: 0;"><a href="../blog.html" style="color: #4d2c2a; text-decoration: none;">Chocolate Desserts Guide</a></h3>
+          <p style="flex-grow: 1; color: #666; font-size: 0.95rem; line-height: 1.6;">Explore the world of chocolate desserts and learn what makes chocolate work beautifully in baking.</p>
+          <a href="../blog.html" style="color: #8b4513; text-decoration: underline; font-weight: 600; font-size: 0.9rem;">Read Post →</a>
+        </div>
+
+        <div style="background: #f9f5f0; padding: 1.5rem; border-radius: 10px; display: flex; flex-direction: column;">
+          <h3 style="font-family: 'Playfair Display', serif; color: #4d2c2a; font-size: 1.1rem; margin-top: 0;"><a href="../blog.html" style="color: #4d2c2a; text-decoration: none;">Behind the Scenes: How I Make My Holiday Boxes</a></h3>
+          <p style="flex-grow: 1; color: #666; font-size: 0.95rem; line-height: 1.6;">Get an inside look at my complete process for designing, baking, packaging, and assembling holiday treat boxes.</p>
+          <a href="../blog.html" style="color: #8b4513; text-decoration: underline; font-weight: 600; font-size: 0.9rem;">Read Post →</a>
+        </div>
+      </div>
+    </section>
 </main>
 
-<footer style="background: #333; color: #fff; padding: 30px; margin-top: 60px; text-align: center;">
-    <p>&copy; 2026 Elizabeth's Baked Goods. All rights reserved.</p>
-    <p style="font-size: 0.9rem; margin-top: 10px;">
-        <a href="/privacy-policy.html" style="color: #d93535; text-decoration: none;">Privacy Policy</a> | 
-        <a href="/terms-and-conditions.html" style="color: #d93535; text-decoration: none;">Terms & Conditions</a> |
-        <a href="/contact.html" style="color: #d93535; text-decoration: none;">Contact</a>
-    </p>
-</footer>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "Chocolate Bundt Cake with Chocolate Ganache & Raspberries",
+  "description": "A stunning chocolate Bundt cake with silky chocolate ganache, powdered sugar, and fresh raspberries.",
+  "author": {
+    "@type": "Person",
+    "name": "Elizabeth's Baked Goods"
+  },
+  "recipeYield": "12 slices",
+  "prepTime": "PT20M",
+  "cookTime": "PT50M",
+  "totalTime": "PT1H50M",
+  "recipeCategory": "Dessert",
+  "recipeCuisine": "American"
+}
+</script>
 
-<script src="/main.js"></script>
+<footer>
+    <p>&copy; 2026 Elizabeth's Baked Goods | <a href="../privacy-policy.html" style="color: inherit; text-decoration: underline;">Privacy Policy</a> • <a href="../terms-and-conditions.html" style="color: inherit; text-decoration: underline;">Terms</a> • <a href="../disclaimer.html" style="color: inherit; text-decoration: underline;">Disclaimer</a> • <a href="../refund-policy.html" style="color: inherit; text-decoration: underline;">Returns</a> • <a href="../shipping-delivery-policy.html" style="color: inherit; text-decoration: underline;">Shipping</a></p>
+</footer>
 
 </body>
 </html>
