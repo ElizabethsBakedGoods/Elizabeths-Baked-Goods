@@ -185,6 +185,7 @@ nav:not(.navbar):not(.desktop-nav) {
 
 /* Desktop Header Container */
 .desktop-header {
+  display: block;
   background-color: #f8f4f4;
   position: sticky;
   top: 0;
@@ -193,6 +194,10 @@ nav:not(.navbar):not(.desktop-nav) {
 }
 
 /* Desktop Navigation */
+.desktop-nav {
+  display: flex;
+}
+
 .desktop-nav ul {
   display: flex;
   justify-content: space-around;
