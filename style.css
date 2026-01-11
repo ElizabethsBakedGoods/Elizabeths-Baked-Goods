@@ -173,8 +173,8 @@ header h1 {
     display: none;
 }
 
-/* OVERRIDE old nav rules (but NOT .navbar) */
-nav:not(.navbar) {
+/* OVERRIDE old nav rules (but NOT .navbar and NOT .desktop-nav) */
+nav:not(.navbar):not(.desktop-nav) {
     display: none !important;
 }
 
@@ -241,6 +241,19 @@ nav:not(.navbar) {
 .desktop-nav .social-icons a:hover {
   color: #b72a2a;
   background-color: transparent;
+}
+
+/* Hide desktop header on mobile, show mobile header instead */
+@media (max-width: 768px) {
+  .desktop-header {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-header {
+    display: none !important;
+  }
 }
 
 /* Hamburger Menu Button */
