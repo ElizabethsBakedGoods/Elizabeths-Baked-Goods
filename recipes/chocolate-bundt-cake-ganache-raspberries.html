@@ -24,6 +24,9 @@
         .recipe-sidebar {
             flex: 1;
             min-width: 250px;
+            position: sticky;
+            top: 90px;
+            height: fit-content;
         }
         
         .recipe-section {
@@ -316,7 +319,7 @@
 </div>
 
 <!-- Main Recipe Container -->
-<main style="padding: 70px 40px 40px 40px; background: #fff;">
+<main style="padding: 100px 40px 40px 40px; background: #fff;">
 
 <div class="recipe-container">
     
@@ -666,6 +669,37 @@
             </p>
         </section>
         
+        <!-- Baking Insights & Resources -->
+        <section class="recipe-section" style="background: #fff6f6; padding: 30px; border-radius: 8px; border: 2px solid #d93535;">
+            <h2 style="border-bottom: 2px solid #d93535;">More Baking Resources</h2>
+            <p class="intro-text">Want to explore more? Check out our other resources:</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 20px 0;">
+                <a href="/blog.html" style="background: #fff; padding: 20px; border-radius: 6px; text-decoration: none; border: 1px solid #d93535; text-align: center; color: #d93535; font-weight: bold; transition: all 0.3s;">
+                    📚 Visit Our Blog
+                </a>
+                <a href="/about.html" style="background: #fff; padding: 20px; border-radius: 6px; text-decoration: none; border: 1px solid #d93535; text-align: center; color: #d93535; font-weight: bold; transition: all 0.3s;">
+                    👩‍🍳 Our Story
+                </a>
+                <a href="/contact.html" style="background: #fff; padding: 20px; border-radius: 6px; text-decoration: none; border: 1px solid #d93535; text-align: center; color: #d93535; font-weight: bold; transition: all 0.3s;">
+                    💌 Get In Touch
+                </a>
+            </div>
+        </section>
+        
+        <!-- Custom Order CTA -->
+        <section class="recipe-section" style="background: #d93535; padding: 40px; border-radius: 8px; text-align: center; color: white;">
+            <h2 style="color: white; border-color: white; margin-top: 0;">Want This Cake Made for You?</h2>
+            <p style="font-size: 1.1rem; margin: 15px 0; line-height: 1.6;">
+                Don't have time to bake? We specialize in custom-made chocolate Bundt cakes tailored to your preferences. Perfect for birthdays, celebrations, and special events.
+            </p>
+            <p style="font-size: 0.95rem; margin: 20px 0; opacity: 0.95;">
+                Choose your flavors, toppings, and delivery date. Fresh, handcrafted, made with premium ingredients.
+            </p>
+            <a href="/local-ordering.html" style="display: inline-block; background: white; color: #d93535; padding: 15px 40px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 1.05rem; margin-top: 20px; transition: all 0.3s; border: 2px solid white;">
+                Request Your Custom Order
+            </a>
+        </section>
+        
     </div>
     
     <!-- Sidebar -->
@@ -673,6 +707,7 @@
         
         <!-- About Elizabeth -->
         <div class="sidebar-card">
+            <img src="/images/aboutme.jpg" alt="Elizabeth's Baked Goods" style="width: 100%; border-radius: 6px; margin-bottom: 15px; display: block;">
             <h3>About Elizabeth's Baked Goods</h3>
             <p>
                 Welcome! I'm Elizabeth, a passionate baker dedicated to creating handcrafted desserts using premium ingredients. Every recipe on this site comes from years of baking experience and a commitment to consistent, delicious results.
@@ -685,23 +720,32 @@
         <!-- Suggested Recipes -->
         <div class="sidebar-card">
             <h3>Explore More Recipes</h3>
-            <ul class="sidebar-links">
-                <li><a href="/recipes/dark-chocolate-ganache-biscoff-buttercream-chantilly-cream.html">Dark Chocolate Ganache & Biscoff Buttercream</a></li>
-                <li><a href="/recipes/classic-sugar-cookies.html">Classic Sugar Cookies</a></li>
-                <li><a href="/recipes/ultimate-fudgy-brownies.html">Ultimate Fudgy Brownies</a></li>
-                <li><a href="/recipes/smores-cookies.html">S'mores Cookies</a></li>
-                <li><a href="/recipes/classic-french-macarons.html">Classic French Macarons</a></li>
-            </ul>
-        </div>
-        
-        <!-- Suggested Blog Posts -->
-        <div class="sidebar-card">
-            <h3>Baking Insights</h3>
-            <ul class="sidebar-links">
-                <li><a href="/blog.html">Visit Our Blog</a></li>
-                <li><a href="/about.html">Our Story</a></li>
-                <li><a href="/contact.html">Get In Touch</a></li>
-            </ul>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 15px 0;">
+                <div style="text-align: center;">
+                    <a href="/recipes/dark-chocolate-ganache-biscoff-buttercream-chantilly-cream.html" style="text-decoration: none; display: block;">
+                        <img src="/images/browniesbiscoff.jfif" alt="Dark Chocolate Ganache & Biscoff" style="width: 100%; height: 120px; border-radius: 6px; object-fit: cover; margin-bottom: 8px;">
+                        <span style="color: #d93535; font-weight: 500; font-size: 0.9rem;">Dark Chocolate Ganache</span>
+                    </a>
+                </div>
+                <div style="text-align: center;">
+                    <a href="/recipes/classic-sugar-cookies.html" style="text-decoration: none; display: block;">
+                        <img src="/images/sugarcookiesanta.jpg" alt="Classic Sugar Cookies" style="width: 100%; height: 120px; border-radius: 6px; object-fit: cover; margin-bottom: 8px;">
+                        <span style="color: #d93535; font-weight: 500; font-size: 0.9rem;">Sugar Cookies</span>
+                    </a>
+                </div>
+                <div style="text-align: center;">
+                    <a href="/recipes/ultimate-fudgy-brownies.html" style="text-decoration: none; display: block;">
+                        <img src="/images/browniesbiscoff.jfif" alt="Fudgy Brownies" style="width: 100%; height: 120px; border-radius: 6px; object-fit: cover; margin-bottom: 8px;">
+                        <span style="color: #d93535; font-weight: 500; font-size: 0.9rem;">Fudgy Brownies</span>
+                    </a>
+                </div>
+                <div style="text-align: center;">
+                    <a href="/recipes/smores-cookies.html" style="text-decoration: none; display: block;">
+                        <img src="/images/smorescookie.jpg" alt="S'mores Cookies" style="width: 100%; height: 120px; border-radius: 6px; object-fit: cover; margin-bottom: 8px;">
+                        <span style="color: #d93535; font-weight: 500; font-size: 0.9rem;">S'mores Cookies</span>
+                    </a>
+                </div>
+            </div>
         </div>
         
         <!-- CTA -->
