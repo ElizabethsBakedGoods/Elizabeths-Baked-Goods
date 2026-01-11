@@ -28,9 +28,12 @@
         
         .sidebar-card:first-child {
             position: sticky;
-            top: 90px;
-            max-height: calc(100vh - 120px);
-            overflow: hidden;
+            top: 100px;
+        }
+        
+        .sidebar-card:first-child img {
+            max-width: 100%;
+            height: auto;
         }
         
         .recipe-section {
@@ -278,6 +281,10 @@
             
             .recipe-sidebar {
                 order: -1;
+            }
+            
+            .sidebar-card:first-child {
+                position: static;
             }
         }
     </style>
@@ -718,7 +725,7 @@
         
         <!-- About Elizabeth -->
         <div class="sidebar-card">
-            <img src="/images/aboutme.jpg" alt="Elizabeth's Baked Goods" style="width: 100%; border-radius: 6px; margin-bottom: 15px; display: block;">
+            <img src="/images/aboutme.jpg" alt="Elizabeth's Baked Goods" style="width: 100%; height: auto; border-radius: 6px; margin-bottom: 12px; display: block; max-height: 180px; object-fit: cover;">
             <h3>About Elizabeth's Baked Goods</h3>
             <p>
                 Welcome! I'm Elizabeth, a passionate baker dedicated to creating handcrafted desserts using premium ingredients. Every recipe on this site comes from years of baking experience and a commitment to consistent, delicious results.
