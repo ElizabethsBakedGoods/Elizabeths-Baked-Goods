@@ -185,17 +185,18 @@ nav:not(.navbar):not(.desktop-nav) {
 
 /* Desktop Header Container */
 .desktop-header {
-  display: block;
+  display: block !important;
   background-color: #f8f4f4;
   position: sticky;
   top: 0;
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  width: 100%;
 }
 
 /* Desktop Navigation */
 .desktop-nav {
-  display: flex;
+  display: flex !important;
 }
 
 .desktop-nav ul {
@@ -207,6 +208,7 @@ nav:not(.navbar):not(.desktop-nav) {
   list-style: none;
   margin: 0;
   padding: 15px 20px;
+  width: 100%;
 }
 
 .desktop-nav li {
