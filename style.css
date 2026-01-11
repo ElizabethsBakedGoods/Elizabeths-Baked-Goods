@@ -267,6 +267,17 @@ nav:not(.navbar):not(.desktop-nav) {
   }
 }
 
+/* Force Mobile Header to be hidden except on mobile */
+.mobile-header {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .mobile-header {
+    display: flex !important;
+  }
+}
+
 /* Hamburger Menu Button */
 .menu-toggle {
   display: none;
