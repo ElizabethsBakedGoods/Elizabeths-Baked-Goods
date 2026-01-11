@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Header Debug - Elizabeth's Baked Goods</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/style.css?v=20260104f">
+    <style>
+        .debug-panel {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.9);
+            color: #0f0;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 11px;
+            max-width: 300px;
+            z-index: 10000;
+            line-height: 1.4;
+        }
+        .debug-panel h3 {
+            margin: 0 0 10px 0;
+            color: #0f0;
+            font-size: 12px;
+        }
+        .debug-item {
+            margin: 5px 0;
+            word-break: break-all;
+        }
+        .visible { color: #0f0; }
+        .hidden { color: #f00; }
+    </style>
+</head>
+<body>
+
+<header>
+  <button class="mobile-menu-toggle" id="mobile-menu-btn">☰</button>
+  <nav class="navbar" id="navbar">
+    <a href="/index.html">Home</a>
+    <a href="/about.html">About</a>
+    <a href="/blog.html">Blogs</a>
+    <a href="/recipes.html">Recipes</a>
+    <a href="/order.html">Order</a>
+    <a href="/local-ordering.html">Custom Orders</a>
+    <a href="/designs.html">Designs</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/policies.html">Policies</a>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/elizabethsbakedgoodss?igsh=MTh4ZnVvOHBoOHMwbA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/share/1anTwZmPpf/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" title="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.pinterest.com/Elizabethsbakedgoods/" target="_blank" rel="noopener noreferrer" title="Pinterest"><i class="fab fa-pinterest"></i></a>
+    </div>
+  </nav>
+</header>
+
+<!-- MOBILE HEADER - Shows only on mobile -->
+<div class="mobile-header">
+  <button class="mobile-menu-toggle" id="mobile-menu-btn-mobile">☰</button>
+</div>
+
+<!-- MOBILE NAVIGATION MENU - Hidden by default, opens with hamburger click -->
+<nav class="mobile-nav-menu" id="mobile-nav-menu">
+  <a href="/index.html">Home</a>
+  <a href="/about.html">About</a>
+  <a href="/blog.html">Blogs</a>
+  <a href="/recipes.html">Recipes</a>
+  <a href="/order.html">Order</a>
+  <a href="/local-ordering.html">Custom Orders</a>
+  <a href="/designs.html">Designs</a>
+  <a href="/contact.html">Contact</a>
+  <a href="/policies.html">Policies</a>
+  <div class="mobile-social-icons">
+    <a href="https://www.instagram.com/elizabethsbakedgoodss?igsh=MTh4ZnVvOHBoOHMwbA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.facebook.com/share/1anTwZmPpf/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" title="Facebook"><i class="fab fa-facebook"></i></a>
+    <a href="https://www.pinterest.com/Elizabethsbakedgoods/" target="_blank" rel="noopener noreferrer" title="Pinterest"><i class="fab fa-pinterest"></i></a>
+  </div>
+</nav>
+
+<main style="padding: 20px; margin-top: 20px;">
+    <h1>📱 Mobile Header Debug Test</h1>
+    <p><strong>This page helps diagnose mobile header issues.</strong></p>
+    
+    <h2>What to check:</h2>
+    <ul>
+        <li>Desktop (769px+): Normal header with all navigation items</li>
+        <li>Mobile (≤768px): Only hamburger ☰ button visible in compact header</li>
+        <li>Tap ☰ to open dropdown menu</li>
+        <li>No stacking text</li>
+        <li>No excessive vertical space</li>
+    </ul>
+
+    <h2>Debug Info (bottom-left):</h2>
+    <p>A debug panel will appear showing real-time CSS visibility and dimensions.</p>
+
+    <h2>Test Instructions:</h2>
+    <ol>
+        <li>Open DevTools (F12)</li>
+        <li>Click device toggle (Ctrl+Shift+M) or select mobile preset</li>
+        <li>Check the debug panel - shows what's visible</li>
+        <li>Refresh page</li>
+        <li>If you see the old header instead of ☰ button, scroll down to see debug info</li>
+    </ol>
+
+    <h2>If it's NOT working:</h2>
+    <p style="background: #f0f0f0; padding: 10px; border-left: 3px solid #d93535;">
+        If the desktop header still appears on mobile instead of the mobile header, the issue is likely:
+        <ul>
+            <li>Cached CSS (hard refresh isn't clearing it)</li>
+            <li>Browser dev tools cache (close DevTools completely)</li>
+            <li>JavaScript overriding CSS</li>
+            <li>Header injected from external template/theme</li>
+        </ul>
+    </p>
+
+    <div style="margin-top: 40px; padding: 20px; background: #f9f9f9; border-radius: 6px;">
+        <h3>Content Below to Test Scrolling</h3>
+        <p>This is test content. Scroll down to verify the header behavior when scrolling.</p>
+        <p style="margin-top: 500px;">You've scrolled quite a bit. Check if the header stayed at top and remained compact.</p>
+    </div>
+</main>
+
+<div class="debug-panel">
+    <h3>📊 CSS Debug Info</h3>
+    <div class="debug-item">Viewport: <span id="viewport-width">--</span>px</div>
+    <div class="debug-item">Device: <span id="device-type">--</span></div>
+    <hr style="opacity: 0.3; margin: 8px 0;">
+    <div class="debug-item">Desktop header (header): <span id="desktop-header-visible" class="hidden">hidden</span></div>
+    <div class="debug-item">Mobile header (.mobile-header): <span id="mobile-header-visible" class="hidden">hidden</span></div>
+    <div class="debug-item">Hamburger (.mobile-menu-toggle): <span id="hamburger-visible" class="hidden">hidden</span></div>
+    <div class="debug-item">Nav menu (.mobile-nav-menu): <span id="nav-menu-visible" class="hidden">hidden</span></div>
+    <hr style="opacity: 0.3; margin: 8px 0;">
+    <div class="debug-item">Header height: <span id="header-height">--</span>px</div>
+    <div class="debug-item">Mobile header height: <span id="mobile-header-height">--</span>px</div>
+</div>
+
+<script>
+function updateDebugInfo() {
+    const width = window.innerWidth;
+    document.getElementById('viewport-width').textContent = width;
+    
+    let deviceType = 'Desktop (>768px)';
+    if (width <= 768) {
+        deviceType = 'Mobile (≤768px)';
+    }
+    document.getElementById('device-type').textContent = deviceType;
+    
+    // Check element visibility
+    const desktopHeader = document.querySelector('header');
+    const mobileHeader = document.querySelector('.mobile-header');
+    const hamburger = document.querySelector('.mobile-menu-toggle');
+    const navMenu = document.querySelector('.mobile-nav-menu');
+    
+    function isVisible(el) {
+        if (!el) return false;
+        const style = window.getComputedStyle(el);
+        return style.display !== 'none' && style.visibility !== 'hidden' && style.opacity !== '0';
+    }
+    
+    // Update visibility indicators
+    const desktopHeaderVis = document.getElementById('desktop-header-visible');
+    desktopHeaderVis.textContent = isVisible(desktopHeader) ? 'VISIBLE' : 'hidden';
+    desktopHeaderVis.className = isVisible(desktopHeader) ? 'visible' : 'hidden';
+    
+    const mobileHeaderVis = document.getElementById('mobile-header-visible');
+    mobileHeaderVis.textContent = isVisible(mobileHeader) ? 'VISIBLE' : 'hidden';
+    mobileHeaderVis.className = isVisible(mobileHeader) ? 'visible' : 'hidden';
+    
+    const hamburgerVis = document.getElementById('hamburger-visible');
+    hamburgerVis.textContent = isVisible(hamburger) ? 'VISIBLE' : 'hidden';
+    hamburgerVis.className = isVisible(hamburger) ? 'visible' : 'hidden';
+    
+    const navMenuVis = document.getElementById('nav-menu-visible');
+    navMenuVis.textContent = isVisible(navMenu) ? 'VISIBLE' : 'hidden';
+    navMenuVis.className = isVisible(navMenu) ? 'visible' : 'hidden';
+    
+    // Update heights
+    if (desktopHeader) {
+        document.getElementById('header-height').textContent = Math.round(desktopHeader.offsetHeight);
+    }
+    if (mobileHeader) {
+        document.getElementById('mobile-header-height').textContent = Math.round(mobileHeader.offsetHeight);
+    }
+}
+
+updateDebugInfo();
+window.addEventListener('resize', updateDebugInfo);
+window.addEventListener('load', updateDebugInfo);
+setTimeout(updateDebugInfo, 500);
+
+// Mobile menu toggle
+const hamburgerBtn = document.querySelector('#mobile-menu-btn-mobile');
+const mobileNav = document.querySelector('#mobile-nav-menu');
+if (hamburgerBtn && mobileNav) {
+    hamburgerBtn.addEventListener('click', function() {
+        mobileNav.classList.toggle('active');
+    });
+    
+    document.querySelectorAll('#mobile-nav-menu a').forEach(link => {
+        link.addEventListener('click', function() {
+            mobileNav.classList.remove('active');
+        });
+    });
+}
+</script>
+
+</body>
+</html>

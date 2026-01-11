@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Header Test - Elizabeth's Baked Goods</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .test-section {
+            padding: 20px;
+            margin: 20px;
+            border: 2px solid #d93535;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+        
+        .test-section h2 {
+            margin-top: 0;
+            color: #d93535;
+        }
+        
+        .device-label {
+            font-weight: bold;
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        /* Viewport indicators */
+        .viewport-info {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-family: monospace;
+            z-index: 10000;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+  <nav class="navbar">
+    <a href="/index.html">Home</a>
+    <a href="/about.html">About</a>
+    <a href="/blog.html">Blogs</a>
+    <a href="/recipes.html">Recipes</a>
+    <a href="/order.html">Order</a>
+    <a href="/local-ordering.html">Custom Orders</a>
+    <a href="/designs.html">Designs</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/policies.html">Policies</a>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/elizabethsbakedgoodss?igsh=MTh4ZnVvOHBoOHMwbA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/share/1anTwZmPpf/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" title="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.pinterest.com/Elizabethsbakedgoods/" target="_blank" rel="noopener noreferrer" title="Pinterest"><i class="fab fa-pinterest"></i></a>
+    </div>
+  </nav>
+</header>
+
+<main>
+    <div class="test-section">
+        <h2>📱 Mobile Header Test</h2>
+        <p><strong>How to test:</strong></p>
+        <ul>
+            <li><strong>Desktop:</strong> Open this page in your browser - header should display normally with all items in a row</li>
+            <li><strong>iPhone:</strong> Resize browser window to 375px width OR use iPhone device inspector (DevTools)</li>
+            <li><strong>Android:</strong> Resize browser window to 412px width OR use Android device inspector (DevTools)</li>
+            <li><strong>Tablet:</strong> Resize browser window to 768px width - should show transition point</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>✅ Expected Behavior</h2>
+        <ul>
+            <li><strong>Desktop (769px+):</strong> Navigation items spread horizontally, larger fonts (16px)</li>
+            <li><strong>Mobile (768px and below):</strong>
+                <ul>
+                    <li>Header height reduced with compact padding (10px 8px)</li>
+                    <li>Navigation items wrap into 2-3 rows to fit screen</li>
+                    <li>No horizontal scrolling</li>
+                    <li>Social icons on their own row at the bottom of header</li>
+                    <li>Font sizes reduced (11px for nav, 0.9rem for icons)</li>
+                </ul>
+            </li>
+            <li><strong>Extra small (480px and below):</strong> Even more compact with 10px fonts</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>📐 Testing Checklist</h2>
+        <ul>
+            <li>☐ Desktop browser at full width: Header looks normal</li>
+            <li>☐ Resize to 768px: Header becomes compact, wrapping begins</li>
+            <li>☐ Resize to 480px: Very compact layout, good readability</li>
+            <li>☐ No horizontal scrollbars appear on mobile</li>
+            <li>☐ Header stays sticky at top</li>
+            <li>☐ All navigation links are visible and clickable</li>
+            <li>☐ Social icons are visible and properly sized</li>
+            <li>☐ Content below header is not pushed down excessively</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>🔍 Inspect Element Guide</h2>
+        <p><strong>In Chrome DevTools (F12):</strong></p>
+        <ol>
+            <li>Press F12 to open DevTools</li>
+            <li>Click the device toggle icon (top-left, looks like phone/tablet)</li>
+            <li>Select "iPhone 12 Pro" (390×844) for iPhone testing</li>
+            <li>Select "Pixel 5" (393×851) for Android testing</li>
+            <li>Keep Desktop selected for desktop verification</li>
+            <li>Refresh the page to see responsive header in action</li>
+        </ol>
+    </div>
+
+    <div class="test-section">
+        <h2>🎨 Visual Details</h2>
+        <p>The header should:</p>
+        <ul>
+            <li>Have a light beige background (#f8f4f4)</li>
+            <li>Show subtle shadow underneath</li>
+            <li>Maintain sticky positioning (stays at top when scrolling)</li>
+            <li>Wrap navigation items naturally without cutting them off</li>
+            <li>Show social icons (Instagram, Facebook, Pinterest) in red (#d93535)</li>
+        </ul>
+    </div>
+
+    <div class="test-section" style="margin-top: 40px;">
+        <h2>📄 Test Content Below Header</h2>
+        <p>This is sample content to test scrolling behavior and header stickiness.</p>
+        <p>The header should remain visible at the top when you scroll down, and should not take up excessive vertical space on mobile devices.</p>
+        <p style="margin-top: 500px;">Scroll down to see if header stays at top and doesn't push content down excessively.</p>
+    </div>
+</main>
+
+<div class="viewport-info">
+    <div>Viewport: <span id="viewport-width">--</span>px</div>
+    <div id="device-type">Device: Desktop</div>
+</div>
+
+<script>
+    function updateViewport() {
+        const width = window.innerWidth;
+        document.getElementById('viewport-width').textContent = width;
+        
+        let deviceType = 'Desktop';
+        if (width <= 480) {
+            deviceType = 'Extra Small (≤480px)';
+        } else if (width <= 768) {
+            deviceType = 'Mobile (480-768px)';
+        }
+        
+        document.getElementById('device-type').textContent = 'Device: ' + deviceType;
+    }
+    
+    updateViewport();
+    window.addEventListener('resize', updateViewport);
+</script>
+
+</body>
+</html>

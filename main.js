@@ -537,6 +537,29 @@ Customer will receive Stripe email receipt
 
 // ============================================================================
 // EXPOSE FUNCTIONS TO WINDOW OBJECT FOR EXTERNAL ACCESS
+// ============================================================================
+// MOBILE HEADER INITIALIZATION
+// ============================================================================
+function initializeMobileHeader() {
+  const hamburger = document.querySelector('.mobile-header .hamburger');
+  const mobileNav = document.querySelector('.mobile-header .mobile-nav');
+  
+  // Hamburger toggle is optional - can be used for future functionality
+  if (hamburger) {
+    hamburger.addEventListener('click', () => {
+      // Currently hamburger is just for future use or custom menus
+      // The main nav stays visible and scrollable on mobile
+    });
+  }
+}
+
+// Initialize mobile header when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeMobileHeader);
+} else {
+  initializeMobileHeader();
+}
+
 // This ensures onclick handlers and other external code can call these functions
 // ============================================================================
 

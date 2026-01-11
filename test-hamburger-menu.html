@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Hamburger Menu Test - Elizabeth's Baked Goods</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/style.css?v=20260104f">
+    <style>
+        body {
+            background-color: #fafafa;
+        }
+        
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .device-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #333;
+            color: #fff;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            z-index: 2000;
+            font-weight: bold;
+        }
+
+        .device-indicator.mobile {
+            background: #d93535;
+        }
+
+        .device-indicator.desktop {
+            background: #4CAF50;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 16px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .info-box.success {
+            background: #f1f8e9;
+            border-left-color: #4CAF50;
+        }
+
+        .info-box.warning {
+            background: #fff3e0;
+            border-left-color: #FF9800;
+        }
+
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #d93535;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #555;
+            margin-top: 30px;
+        }
+
+        ul {
+            line-height: 1.8;
+        }
+
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .test-content {
+            background: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            margin-top: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        section {
+            margin: 40px 0;
+        }
+
+        .checklist {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .checklist li {
+            list-style: none;
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .checklist li:before {
+            content: "☐";
+            position: absolute;
+            left: 0;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- DESKTOP HEADER - 769px and up -->
+<header>
+  <nav class="navbar" id="navbar">
+    <a href="/index.html">Home</a>
+    <a href="/about.html">About</a>
+    <a href="/blog.html">Blogs</a>
+    <a href="/recipes.html">Recipes</a>
+    <a href="/order.html">Order</a>
+    <a href="/local-ordering.html">Custom Orders</a>
+    <a href="/designs.html">Designs</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/policies.html">Policies</a>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/elizabethsbakedgoodss?igsh=MTh4ZnVvOHBoOHMwbA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/share/1anTwZmPpf/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" title="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.pinterest.com/Elizabethsbakedgoods/" target="_blank" rel="noopener noreferrer" title="Pinterest"><i class="fab fa-pinterest"></i></a>
+    </div>
+  </nav>
+</header>
+
+<!-- MOBILE HEADER - 768px and below -->
+<div class="mobile-header">
+  <button class="mobile-menu-toggle" id="mobile-menu-btn-mobile">☰</button>
+</div>
+
+<!-- MOBILE NAVIGATION MENU -->
+<nav class="mobile-nav-menu" id="mobile-nav-menu">
+  <a href="/index.html">Home</a>
+  <a href="/about.html">About</a>
+  <a href="/blog.html">Blogs</a>
+  <a href="/recipes.html">Recipes</a>
+  <a href="/order.html">Order</a>
+  <a href="/local-ordering.html">Custom Orders</a>
+  <a href="/designs.html">Designs</a>
+  <a href="/contact.html">Contact</a>
+  <a href="/policies.html">Policies</a>
+  <div class="mobile-social-icons">
+    <a href="https://www.instagram.com/elizabethsbakedgoodss?igsh=MTh4ZnVvOHBoOHMwbA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.facebook.com/share/1anTwZmPpf/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" title="Facebook"><i class="fab fa-facebook"></i></a>
+    <a href="https://www.pinterest.com/Elizabethsbakedgoods/" target="_blank" rel="noopener noreferrer" title="Pinterest"><i class="fab fa-pinterest"></i></a>
+  </div>
+</nav>
+
+<!-- DEVICE INDICATOR -->
+<div class="device-indicator desktop" id="device-indicator">Desktop (769px+)</div>
+
+<!-- PAGE CONTENT -->
+<div class="test-container">
+    <h1>📱 Mobile Hamburger Menu Test</h1>
+    
+    <div class="info-box">
+        <strong>Purpose:</strong> Test the mobile-only hamburger menu implementation across different screen sizes.
+    </div>
+
+    <section>
+        <h2>How to Test</h2>
+        <div class="checklist">
+            <ul>
+                <li><strong>Desktop View (769px+):</strong> Resize your browser to full width - you should see the full horizontal navigation bar at the top</li>
+                <li><strong>Tablet/Mobile View (≤768px):</strong> Resize to mobile width - you should see ONLY a hamburger icon (☰) in a compact header</li>
+                <li><strong>Hamburger Tap:</strong> On mobile view, tap the ☰ icon - a vertical menu should slide down with all navigation links</li>
+                <li><strong>Menu Close:</strong> Tap the ☰ again, or tap any menu link - the menu should close</li>
+                <li><strong>Scrolling:</strong> Scroll down - the header should stay at the top (sticky positioning)</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>Expected Behavior</h2>
+        
+        <h3>Desktop (769px and up)</h3>
+        <div class="info-box success">
+            <ul>
+                <li>Header displays with full horizontal navigation</li>
+                <li>9 navigation links visible: Home, About, Blogs, Recipes, Order, Custom Orders, Designs, Contact, Policies</li>
+                <li>Social media icons (Instagram, Facebook, Pinterest) visible in header</li>
+                <li>Hamburger icon (☰) is HIDDEN</li>
+                <li>Mobile menu is HIDDEN</li>
+                <li>Header stays sticky at top when scrolling</li>
+            </ul>
+        </div>
+
+        <h3>Mobile (768px and below)</h3>
+        <div class="info-box success">
+            <ul>
+                <li>Header shows ONLY a hamburger icon (☰) - compact and clean</li>
+                <li>Header height under 80px</li>
+                <li>All desktop navigation links are HIDDEN</li>
+                <li>Mobile navigation menu is hidden by default</li>
+                <li>Tapping ☰ reveals vertical menu with all links</li>
+                <li>Menu closes when tapping ☰ again or any link</li>
+                <li>Header stays sticky at top</li>
+                <li>Menu overlays content (fixed positioning, doesn't push content down)</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>Technical Details</h2>
+        <ul>
+            <li><strong>CSS Breakpoint:</strong> 768px (max-width for mobile)</li>
+            <li><strong>Desktop Header:</strong> Uses <code>&lt;header&gt;</code> with <code>.navbar</code> class</li>
+            <li><strong>Mobile Header:</strong> Uses <code>&lt;div class="mobile-header"&gt;</code> with hamburger button</li>
+            <li><strong>Mobile Menu:</strong> Uses <code>&lt;nav class="mobile-nav-menu"&gt;</code> with <code>.active</code> class to show/hide</li>
+            <li><strong>JavaScript:</strong> Simple DOM manipulation with <code>classList.toggle()</code> and event listeners</li>
+            <li><strong>No Frameworks:</strong> Pure vanilla JavaScript - no jQuery, React, Vue, etc.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Responsive Testing Checklist</h2>
+        <div class="checklist">
+            <ul>
+                <li>Desktop browser (full width 1200px+): Full navigation visible, hamburger hidden ✓</li>
+                <li>Tablet landscape (769px-1024px): Full navigation visible, hamburger hidden ✓</li>
+                <li>Tablet portrait (481px-768px): Only hamburger visible, menu toggles ✓</li>
+                <li>Mobile phone (≤480px): Only hamburger visible, menu toggles ✓</li>
+                <li>Chrome DevTools mobile emulation: Hamburger and menu working ✓</li>
+                <li>Real mobile device (if available): Hamburger and menu working ✓</li>
+                <li>Header sticks to top when scrolling ✓</li>
+                <li>Menu closes when clicking outside ✓</li>
+                <li>Menu closes when clicking any link ✓</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>Sample Content for Scrolling</h2>
+        <p>This is test content to demonstrate header stickiness when scrolling.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p style="margin-top: 400px;">Scroll down further to test header stickiness...</p>
+        <p>The header should remain visible at the top of the screen.</p>
+        <p>On mobile, the hamburger menu button should stay accessible.</p>
+        <p>The menu should only expand when you tap the hamburger icon.</p>
+    </section>
+</div>
+
+<script>
+  // Mobile hamburger menu toggle
+  document.addEventListener('DOMContentLoaded', function() {
+    const toggleBtn = document.getElementById('mobile-menu-btn-mobile');
+    const navMenu = document.getElementById('mobile-nav-menu');
+    const navLinks = document.querySelectorAll('#mobile-nav-menu a');
+
+    // Toggle menu on hamburger click
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        navMenu.classList.toggle('active');
+      });
+    }
+
+    // Close menu when a link is clicked
+    navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        navMenu.classList.remove('active');
+      });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (navMenu.classList.contains('active') && 
+          !navMenu.contains(e.target) && 
+          !toggleBtn.contains(e.target)) {
+        navMenu.classList.remove('active');
+      }
+    });
+
+    // Device indicator
+    function updateDeviceIndicator() {
+      const indicator = document.getElementById('device-indicator');
+      const width = window.innerWidth;
+      if (width <= 768) {
+        indicator.textContent = `📱 Mobile (${width}px)`;
+        indicator.className = 'device-indicator mobile';
+      } else {
+        indicator.textContent = `🖥️ Desktop (${width}px)`;
+        indicator.className = 'device-indicator desktop';
+      }
+    }
+
+    updateDeviceIndicator();
+    window.addEventListener('resize', updateDeviceIndicator);
+  });
+</script>
+
+</body>
+</html>
