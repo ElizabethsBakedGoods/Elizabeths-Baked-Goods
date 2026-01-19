@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baking Tips | Elizabeth's Baked Goods</title>
-    <meta name="description" content="Helpful baking tips, tricks, and troubleshooting guides from Elizabeth's Baked Goods to make your homemade desserts perfect every time.">
-    <link rel="stylesheet" href="/style.css?v=20260119x1">
+    <title>Baking Tips & Tricks | Elizabeth's Baked Goods</title>
+    <meta name="description" content="Learn expert baking tips, tricks, and troubleshooting guides from Elizabeth's Baked Goods to make your homemade desserts perfect every time.">
+    <link rel="stylesheet" href="/style.css?v=20260119x2">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="/cookie-consent.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
@@ -23,27 +23,29 @@
 
         main {
             padding-top: 70px;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding-left: 20px;
-            padding-right: 20px;
+            padding: 70px 20px 40px 20px;
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 2rem;
         }
 
-        .page-header {
+        header {
             text-align: center;
             padding: 3rem 20px;
             background: linear-gradient(135deg, #f9f5f0 0%, #faf7f4 100%);
             margin-bottom: 2rem;
         }
 
-        .page-header h1 {
+        header h1 {
             font-family: 'Dancing Script', cursive;
             color: #8b4513;
             font-size: 2.8rem;
             margin: 0 0 1rem 0;
         }
 
-        .page-header p {
+        header p {
             color: #666;
             font-size: 1.1rem;
             max-width: 800px;
@@ -51,59 +53,108 @@
             line-height: 1.7;
         }
 
-        article {
+        .posts {
+            grid-column: 1;
+        }
+
+        .post {
             background: #f9f5f0;
-            padding: 2rem;
+            padding: 1.5rem;
             margin-bottom: 2rem;
             border-radius: 10px;
             border-left: 5px solid #d93535;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        article h2 {
-            font-family: 'Dancing Script', cursive;
-            color: #8b4513;
-            font-size: 1.8rem;
-            margin-top: 0;
+        .post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .featured-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
             margin-bottom: 1rem;
         }
 
-        article h3 {
-            color: #4d2c2a;
-            font-size: 1.2rem;
-            margin-top: 1.5rem;
-            margin-bottom: 0.8rem;
-        }
-
-        article p {
-            color: #4d2c2a;
-            line-height: 1.8;
-        }
-
-        article ol, article ul {
-            color: #4d2c2a;
-            line-height: 1.8;
-            margin-left: 2rem;
-        }
-
-        article li {
-            margin-bottom: 0.8rem;
-        }
-
-        article a {
+        .post h2 {
+            font-family: 'Dancing Script', cursive;
             color: #8b4513;
-            text-decoration: underline;
-            font-weight: 600;
+            font-size: 1.6rem;
+            margin: 0 0 0.8rem 0;
         }
 
-        article a:hover {
-            color: #c04a2f;
+        .post p {
+            color: #4d2c2a;
+            line-height: 1.7;
+            margin: 0 0 1rem 0;
         }
 
-        .related {
+        .read-more {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background: #8b4513;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .read-more:hover {
+            background: #c04a2f;
+        }
+
+        .related-posts {
             margin-top: 1rem;
             padding-top: 1rem;
             border-top: 1px solid #e8d4c8;
-            font-style: italic;
+            font-size: 0.95rem;
+        }
+
+        .related-posts p {
+            margin: 0;
+        }
+
+        .related-posts a {
+            color: #8b4513;
+            text-decoration: underline;
+        }
+
+        .sidebar {
+            grid-column: 2;
+        }
+
+        .sidebar h3 {
+            font-family: 'Dancing Script', cursive;
+            color: #8b4513;
+            font-size: 1.4rem;
+            margin: 0 0 1rem 0;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid #d93535;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2rem 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 0.8rem;
+        }
+
+        .sidebar a {
+            color: #4d2c2a;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            color: #8b4513;
+            text-decoration: underline;
         }
 
         footer {
@@ -111,7 +162,8 @@
             color: #fff;
             text-align: center;
             padding: 20px;
-            margin-top: 4rem;
+            margin-top: 2rem;
+            grid-column: 1 / -1;
         }
 
         footer a {
@@ -122,16 +174,21 @@
 
         @media (max-width: 768px) {
             main {
-                padding-left: 15px;
-                padding-right: 15px;
+                grid-template-columns: 1fr;
+                padding: 70px 15px 40px 15px;
             }
 
-            .page-header h1 {
+            header h1 {
                 font-size: 2rem;
             }
 
-            article {
-                padding: 1.5rem;
+            .sidebar {
+                grid-column: 1;
+                order: 2;
+            }
+
+            .posts {
+                order: 1;
             }
         }
     </style>
@@ -214,100 +271,115 @@
     });
 </script>
 
-<main>
-    <div class="page-header">
-        <h1>Baking Tips & Tricks</h1>
-        <p>Welcome to our Baking Tips & Tricks! Here, you'll find easy-to-follow advice, insider secrets, and troubleshooting guides to help your homemade baked goods turn out perfect every time. From understanding ingredients to mastering techniques, these tips will make baking fun and successful for beginners and experienced bakers alike.</p>
-    </div>
+<header>
+    <h1>Baking Tips & Tricks</h1>
+    <p>Welcome to our Baking Tips & Tricks! Here you'll find expert advice, troubleshooting guides, and insider secrets to make your homemade baked goods perfect every time. From ingredient tips to baking techniques, these tips are perfect for beginners and experienced bakers alike.</p>
+</header>
 
-    <!-- Post 1 -->
-    <article id="measure-flour">
-      <h2>How to Measure Flour Correctly Every Time</h2>
-      <p>Accurate flour measurement is one of the most important steps in baking. Too much flour can make cakes dry and cookies dense. Here's how to measure flour perfectly every time.</p>
-      <ol>
-        <li>Fluff up your flour with a spoon to aerate it.</li>
-        <li>Spoon the flour into your measuring cup — do not scoop directly.</li>
-        <li>Level off the top with a straight edge like a butter knife.</li>
-      </ol>
-      <h3>Pro Tips:</h3>
-      <ul>
-        <li>For more accuracy, use a kitchen scale and weigh your flour (1 cup ≈ 120g).</li>
-        <li>Different flours measure differently — cake flour vs all-purpose flour.</li>
-      </ul>
-      <p class="related"><strong>Related:</strong> <a href="#soft-chewy-cookies">The Secret to Soft and Chewy Cookies</a></p>
-    </article>
+<main class="container">
 
-    <!-- Post 2 -->
-    <article id="soft-chewy-cookies">
-      <h2>The Secret to Soft and Chewy Cookies</h2>
-      <p>Nothing beats a soft, chewy cookie straight from the oven. Follow these tips to get perfect texture every time.</p>
-      <ol>
-        <li>Use room temperature butter to ensure even mixing.</li>
-        <li>Don't overmix — once the flour is added, stop mixing.</li>
-        <li>Chill the dough for 30–60 minutes before baking.</li>
-      </ol>
-      <h3>Pro Tips:</h3>
-      <ul>
-        <li>Add an extra egg yolk for richer, chewier cookies.</li>
-        <li>Store baked cookies in an airtight container with a slice of bread to keep them soft.</li>
-      </ul>
-      <p class="related"><strong>Related:</strong> <a href="#measure-flour">How to Measure Flour Correctly Every Time</a></p>
-    </article>
+    <!-- Main posts section -->
+    <section class="posts">
+      
+      <!-- Post 1 -->
+      <article class="post">
+        <img src="images/chocchip2.jpg" alt="Measuring flour for baking" class="featured-image">
+        <h2>How to Measure Flour Correctly Every Time</h2>
+        <p>Accurate flour measurement is one of the most important steps in baking. Too much flour can make cakes dry and cookies dense. Learn the proper way to measure flour every time.</p>
+        <a href="#measure-flour-full" class="read-more">Read More</a>
+        <div class="related-posts">
+          <p><strong>Related Tips:</strong> 
+            <a href="#soft-chewy-cookies">Soft and Chewy Cookies</a>, 
+            <a href="#pound-cake-bake">Perfect Pound Cake Baking</a>
+          </p>
+        </div>
+      </article>
 
-    <!-- Post 3 -->
-    <article id="pound-cake-bake">
-      <h2>How to Tell When a Pound Cake is Perfectly Baked</h2>
-      <p>Pound cake is dense and moist, so it can be tricky to know when it's done. These tips will help you bake the perfect cake every time.</p>
-      <ol>
-        <li>Insert a toothpick or cake tester in the center — it should come out clean or with a few crumbs.</li>
-        <li>The edges should pull slightly away from the pan.</li>
-        <li>The top should be golden brown and spring back when lightly pressed.</li>
-      </ol>
-      <h3>Pro Tips:</h3>
-      <ul>
-        <li>Do not open the oven in the first 30 minutes — sudden temperature changes can cause sinking.</li>
-        <li>Cool the cake in the pan for 10–15 minutes before removing it to avoid cracks.</li>
-      </ul>
-      <p class="related"><strong>Related:</strong> <a href="#baking-mistakes">Common Baking Mistakes That Ruin Cakes</a></p>
-    </article>
+      <!-- Post 2 -->
+      <article class="post">
+        <img src="images/smorescookie.jpg" alt="Soft and chewy cookies" class="featured-image">
+        <h2>The Secret to Soft and Chewy Cookies</h2>
+        <p>Nothing beats a soft, chewy cookie fresh from the oven. Discover how to get the perfect texture every time with these simple tips.</p>
+        <a href="#soft-chewy-cookies-full" class="read-more">Read More</a>
+        <div class="related-posts">
+          <p><strong>Related Tips:</strong> 
+            <a href="#measure-flour">How to Measure Flour</a>, 
+            <a href="#store-cookies">Storing Homemade Cookies</a>
+          </p>
+        </div>
+      </article>
 
-    <!-- Post 4 -->
-    <article id="baking-mistakes">
-      <h2>Common Baking Mistakes That Ruin Cakes</h2>
-      <p>Even experienced bakers sometimes make mistakes that affect texture, rise, and flavor. Learn how to avoid these common pitfalls.</p>
-      <ol>
-        <li>Overmixing batter, which creates dense cakes.</li>
-        <li>Incorrect oven temperature — always preheat and use an oven thermometer.</li>
-        <li>Using expired baking powder or soda.</li>
-      </ol>
-      <h3>Pro Tips:</h3>
-      <ul>
-        <li>Measure ingredients accurately with a scale or proper measuring cups.</li>
-        <li>Follow the recipe steps carefully — substitutions can affect results.</li>
-      </ul>
-      <p class="related"><strong>Related:</strong> <a href="#pound-cake-bake">How to Tell When a Pound Cake is Perfectly Baked</a></p>
-    </article>
+      <!-- Post 3 -->
+      <article class="post">
+        <img src="images/chocolatepoundcake.jpg" alt="Baked pound cake" class="featured-image">
+        <h2>How to Tell When a Pound Cake is Perfectly Baked</h2>
+        <p>Pound cake is dense and moist, so it can be tricky to know when it's done. Learn how to bake it perfectly every time with these simple techniques.</p>
+        <a href="#pound-cake-bake-full" class="read-more">Read More</a>
+        <div class="related-posts">
+          <p><strong>Related Tips:</strong> 
+            <a href="#baking-mistakes">Common Baking Mistakes</a>, 
+            <a href="#soft-chewy-cookies">Soft and Chewy Cookies</a>
+          </p>
+        </div>
+      </article>
 
-    <!-- Post 5 -->
-    <article id="store-cookies">
-      <h2>How to Store Homemade Cookies & Keep Them Fresh</h2>
-      <p>Fresh cookies are always better! Proper storage keeps them soft, chewy, or crisp — depending on your preference.</p>
-      <ol>
-        <li>Cool cookies completely before storing.</li>
-        <li>Use airtight containers to maintain freshness.</li>
-        <li>Store different types separately to avoid flavor transfer.</li>
-      </ol>
-      <h3>Pro Tips:</h3>
+      <!-- Post 4 -->
+      <article class="post">
+        <img src="images/browniesbiscoff.jfif" alt="Baking mistakes" class="featured-image">
+        <h2>Common Baking Mistakes That Ruin Cakes</h2>
+        <p>Even experienced bakers make mistakes that affect texture, rise, and flavor. Avoid these common pitfalls with our easy tips.</p>
+        <a href="#baking-mistakes-full" class="read-more">Read More</a>
+        <div class="related-posts">
+          <p><strong>Related Tips:</strong> 
+            <a href="#pound-cake-bake">Perfect Pound Cake Baking</a>, 
+            <a href="#measure-flour">How to Measure Flour</a>
+          </p>
+        </div>
+      </article>
+
+      <!-- Post 5 -->
+      <article class="post">
+        <img src="images/hotcocoa.jpg" alt="Storing homemade cookies" class="featured-image">
+        <h2>How to Store Homemade Cookies & Keep Them Fresh</h2>
+        <p>Fresh cookies are always better! Proper storage keeps them soft, chewy, or crisp — depending on your preference. Learn how to store them for maximum freshness.</p>
+        <a href="#store-cookies-full" class="read-more">Read More</a>
+        <div class="related-posts">
+          <p><strong>Related Tips:</strong> 
+            <a href="#soft-chewy-cookies">Soft and Chewy Cookies</a>, 
+            <a href="#measure-flour">How to Measure Flour</a>
+          </p>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h3>Popular Tips</h3>
       <ul>
-        <li>Add a slice of bread to soft cookies containers to keep them moist.</li>
-        <li>For crisp cookies, leave them uncovered at room temperature for a few hours.</li>
+        <li><a href="#soft-chewy-cookies">The Secret to Soft and Chewy Cookies</a></li>
+        <li><a href="#pound-cake-bake">How to Tell When a Pound Cake is Perfectly Baked</a></li>
+        <li><a href="#baking-mistakes">Common Baking Mistakes That Ruin Cakes</a></li>
       </ul>
-      <p class="related"><strong>Related:</strong> <a href="#soft-chewy-cookies">The Secret to Soft and Chewy Cookies</a></p>
-    </article>
+
+      <h3>Recent Recipes</h3>
+      <ul>
+        <li><a href="/recipes/ultimate-chocolate-pound-cake.html">Chocolate Pound Cake</a></li>
+        <li><a href="/recipes/chunky-chocolate-chip-cookies.html">Chocolate Chip Cookies</a></li>
+        <li><a href="/recipes/ultimate-fudgy-brownies.html">Fudgy Brownies</a></li>
+      </ul>
+
+      <h3>Shop Our Bakery</h3>
+      <ul>
+        <li><a href="/order.html">Browse Desserts</a></li>
+        <li><a href="/local-ordering.html">Custom Orders</a></li>
+      </ul>
+    </aside>
+
 </main>
 
 <footer>
-    <p><a href="about.html">About</a> | <a href="contact.html">Contact</a> | <a href="privacy-policy.html">Privacy Policy</a></p>
+    <p><a href="/about.html">About</a> | <a href="/contact.html">Contact</a> | <a href="/privacy-policy.html">Privacy Policy</a></p>
     <p>&copy; 2026 Elizabeth's Baked Goods. All Rights Reserved.</p>
 </footer>
 
